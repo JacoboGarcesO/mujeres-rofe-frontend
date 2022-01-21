@@ -49,7 +49,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'mujeres-rofe-front-pdn'
+          app-name: 'mujeres-rofe-front-test'
           slot-name: 'Testing'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_C57D1223B5D84E74BC6C0FAF8A15E19F }}
           package: .
