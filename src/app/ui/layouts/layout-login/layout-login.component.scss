@@ -1,0 +1,13 @@
+@use '../../_styles/index.scss' as styles;
+
+.layout-login {
+  display: grid;
+  gap: styles.$box-pad-base;
+}
+
+@media (min-width: styles.$bkp-desktop) {
+  .layout-login {
+    display: grid;
+    grid-template-columns: 60% min-content;
+  }
+}

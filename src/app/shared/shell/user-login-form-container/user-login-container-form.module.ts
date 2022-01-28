@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserLoginContainerComponent } from './user-login-container.component';
+import { UserLoginFormContainerComponent } from './user-login-container-form.component';
 import { FormUserLoginModule } from 'src/app/ui/forms/form-user-login/form-user-login.module';
 
 @NgModule({
   declarations: [
-    UserLoginContainerComponent,
+    UserLoginFormContainerComponent,
   ],
   imports: [
     CommonModule,
     FormUserLoginModule,
   ],
   exports: [
-    UserLoginContainerComponent,
+    UserLoginFormContainerComponent,
   ],
 })
-export class UserLoginContainerModule { }
+export class UserLoginFormContainerModule { }

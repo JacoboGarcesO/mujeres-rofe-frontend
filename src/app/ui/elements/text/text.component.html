@@ -1,0 +1,18 @@
+<ng-container [ngSwitch]="type">
+  <span
+    *ngSwitchCase="'line'"
+    class="text text--{{type}} text--{{size}} text--{{weight}} text--{{color}} text--{{style}}"
+  >{{text}}</span>
+
+  <p
+    *ngSwitchCase="'text'"
+    class="text text--{{type}} text--{{size}} text--{{weight}} text--{{color}} text--{{style}}"
+    [style.-webkit-line-clamp]="clamp ? clamp : 'none'"
+  >{{text}}</p>
+
+  <p
+    *ngSwitchCase="'paragraph'"
+    class="text text--{{type}} text--{{size}} text--{{weight}} text--{{color}} text--{{style}}"
+    [style.-webkit-line-clamp]="clamp ? clamp : 'none'"
+  >{{text}}</p>
+</ng-container>

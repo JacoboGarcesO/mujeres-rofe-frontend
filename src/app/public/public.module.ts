@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { UserLoginContainerModule } from '../shared/shell/user-login-container/user-login-container.module';
+import { UserLoginAsideContainerModule } from '../shared/shell/user-login-aside-container/user-login-aside-container.module';
+import { UserLoginFormContainerModule } from '../shared/shell/user-login-form-container/user-login-container-form.module';
+import { LayoutLoginModule } from '../ui/layouts/layout-login/layout-login.module';
 import { PublicRoutingModule } from './public-routing.module';
 
 @NgModule({
@@ -8,7 +10,9 @@ import { PublicRoutingModule } from './public-routing.module';
   imports: [
     CommonModule,
     PublicRoutingModule,
-    UserLoginContainerModule,
+    UserLoginFormContainerModule,
+    UserLoginAsideContainerModule,
+    LayoutLoginModule,
   ],
 })
 export class PublicModule { }

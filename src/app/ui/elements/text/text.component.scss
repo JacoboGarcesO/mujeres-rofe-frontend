@@ -1,0 +1,65 @@
+@use '../../_styles/index.scss' as styles;
+
+.text {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+  text-transform: initial;
+
+  // type
+  &--line {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: styles.$box-wth-block;
+  }
+
+  &--text {
+    margin-bottom: styles.$box-mrg-none;
+  }
+
+  &--paragraph {
+    margin-bottom: styles.$box-mrg-base;
+  }
+
+  // size
+  &--base {
+    @include styles.font-base;
+  }
+
+  &--small {
+    @include styles.font-small;
+  }
+
+  &--medium {
+    @include styles.font-medium;
+  }
+
+  // weight
+  &--regular {
+    font-weight:  styles.$font-weight-regular;
+  }
+
+  &--light {
+    font-weight: styles.$font-weight-light;
+  }
+
+  &--bold {
+    font-weight: styles.$font-weight-bold;
+  }
+
+  // color
+  &--initial {
+    color: styles.$color-typo-base;
+  }
+
+  &--light {
+    color: styles.$color-typo-light;
+  }
+
+  // style
+  &--italic {
+    font-style: italic;
+  }
+}

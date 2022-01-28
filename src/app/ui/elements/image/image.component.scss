@@ -1,0 +1,83 @@
+@use '../../_styles/index.scss' as styles;
+
+.ui-image {
+  $self: &;
+
+  width: styles.$box-wth-block;
+  object-fit: cover;
+  height: styles.$box-hht-block;
+
+  &--none {
+    border-radius: styles.$box-rad-none;
+  }
+
+  &#{$self}--medium {
+    &--top-left {
+      border-top-left-radius: styles.$box-rad-medium;
+    }
+  
+    &--top-right {
+      border-top-right-radius: styles.$box-rad-medium;
+    }
+  
+    &--bottom-left {
+      border-bottom-left-radius: styles.$box-rad-medium;
+
+    }
+  
+    &--bottom-right {
+      border-bottom-right-radius: styles.$box-rad-medium
+    }
+  
+    &--all {
+      border-radius: styles.$box-rad-medium;
+    }
+  }
+
+  &#{$self}--large {
+    &--top-left {
+      border-top-left-radius: styles.$box-rad-large;
+    }
+  
+    &--top-right {
+      border-top-right-radius: styles.$box-rad-large;
+    }
+  
+    &--bottom-left {
+      border-bottom-left-radius: styles.$box-rad-large;
+
+    }
+  
+    &--bottom-right {
+      border-bottom-right-radius: styles.$box-rad-large
+    }
+  
+    &--all {
+      border-radius: styles.$box-rad-large;
+    }
+  }
+
+  &#{$self}--circle {
+    &--top-left {
+      border-top-left-radius: styles.$box-rad-rounded;
+    }
+  
+    &--top-right {
+      border-top-right-radius: styles.$box-rad-rounded;
+    }
+  
+    &--bottom-left {
+      border-bottom-left-radius: styles.$box-rad-rounded;
+
+    }
+  
+    &--bottom-right {
+      border-bottom-right-radius: styles.$box-rad-rounded
+    }
+  
+    &--all {
+      border-radius: styles.$box-rad-rounded;
+    }
+  }
+
+}

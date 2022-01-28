@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { UserLoginContainerModule } from './shared/shell/user-login-container/user-login-container.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +11,6 @@ import { UserLoginContainerModule } from './shared/shell/user-login-container/us
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UserLoginContainerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

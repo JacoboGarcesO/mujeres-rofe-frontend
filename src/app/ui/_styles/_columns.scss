@@ -1,5 +1,5 @@
 @use './break-points' as bkp;
-@use './box-models' as box;
+@use './box-model' as box;
 
 @mixin container-grid {
   display: grid;
