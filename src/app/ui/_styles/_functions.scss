@@ -1,0 +1,13 @@
+@use './box-model' as box;
+
+@function toNeg($value) {
+  @return $value * -1;
+}
+
+@function toRem($value) {
+  @return $value * box.$pad-base;
+}
+
+@function toFr($value) {
+  @return $value * box.$fr-base;
+}

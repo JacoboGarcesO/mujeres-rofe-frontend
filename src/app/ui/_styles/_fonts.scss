@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+@use './break-points' as bkp;
+@use './functions' as func;
+
+$weight-bold: 700;
+$weight-regular: 400;
+$weight-light: 300;
+
+@mixin _font {
+  font-family: 'Roboto', sans-serif;
+  font-weight: $weight-regular;
+}
+
+@mixin large {
+  @include _font;
+  font-size: func.toRem(1.25);
+  line-height: func.toRem(1.25);
+
+  @media (min-width: bkp.$desktop) {
+    font-size: func.toRem(1.35);
+    line-height: func.toRem(1.5);
+  }
+}
+
+@mixin medium {
+  @include _font;
+  font-size: func.toRem(1.125);
+  line-height: func.toRem(1.25);
+
+  @media (min-width: bkp.$desktop) {
+    font-size: func.toRem(1.25);
+    line-height: func.toRem(1.5);
+  }
+}
+
+@mixin base {
+  @include _font;
+  font-size: func.toRem(1);
+  line-height: func.toRem(1.25);
+}
+
+@mixin small {
+  @include _font;
+  font-size: func.toRem(0.875);
+  line-height: func.toRem(1);
+}

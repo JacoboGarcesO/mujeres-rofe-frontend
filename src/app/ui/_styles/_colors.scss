@@ -1,0 +1,39 @@
+$_red-10: #F93548;
+$_red-0: #F5CAD8;
+
+$_green-10: #4BAC3C;
+$_green-0: #D6E19A;
+
+$_blue-10: #4793A2;
+$_blue-0: #BFDEDC;
+
+$_orange-10: #FF5000;
+$_orange-0: #F0C280;
+
+$_yellow-10: #FFCF00;
+$_yellow-0: #FBE69C;
+
+$_neutral-20: #111010;
+$_neutral-10: #727272;
+$_neutral-0: #FFFFFF;
+
+$primary-color: $_red-10;
+$primary-color-light: $_red-0;
+
+$bg-white: $_neutral-0;
+
+$status-info: $_blue-0;
+$status-info-dark: $_blue-10;
+
+$status-success: $_green-0;
+$status-success-dark: $_green-10;
+
+$status-warning: $_yellow-0;
+$status-warning-dark: $_yellow-10;
+
+$status-error: $_orange-0;
+$status-error-dark: $_orange-10;
+
+$typo-base: $_neutral-20;
+$typo-light: $_neutral-10;
+$typo-contrast: $_neutral-0;

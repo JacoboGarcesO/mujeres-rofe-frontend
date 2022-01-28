@@ -1,0 +1,23 @@
+@use './break-points' as bkp;
+@use './box-models' as box;
+
+@mixin container-grid {
+  display: grid;
+  gap: box.$pad-double;
+  grid-template-columns: 100%;
+  margin: box.$mrg-none auto;
+  padding-left: box.$pad-half;
+  padding-right: box.$pad-half;
+
+  @media (min-width: bkp.$desktop) {
+    max-width: 82rem;
+    padding-left: box.$pad-onehalf;
+    padding-right: box.$pad-onehalf;
+  }
+}
+
+@mixin container-flex {
+  display: flex;
+  align-items: initial;
+  gap: box.$pad-base;
+}
