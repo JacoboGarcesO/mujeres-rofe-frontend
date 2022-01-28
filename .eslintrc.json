@@ -16,9 +16,9 @@
   "plugins": ["@typescript-eslint"],
   "rules": {
     "indent": ["error", 2],
-    "linebreak-style": ["error", "windows"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"],
+    "@typescript-eslint/no-unused-vars": ["off"],
     "max-len": [
       "error",
       {
