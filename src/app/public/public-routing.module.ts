@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserLoginContainerComponent } from '../shared/shell/user-login-container/user-login-container.component';
 import { PublicGuard } from './public.guard';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'login',
     canActivate: [PublicGuard],
-  }
+    component: UserLoginContainerComponent,
+  },
 ];
 
 @NgModule({
