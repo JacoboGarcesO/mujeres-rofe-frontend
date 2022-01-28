@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
 import { UserCredentialsModel } from 'src/app/core/models/user-credentials.model';
+import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
 
 @Component({
   selector: 'mr-form-user-login',
@@ -30,7 +31,7 @@ export class FormUserLoginComponent {
     output$: this.dataOutput,
     manualSave$: this.manualSave$,
     formControls: {
-      email: new FormControl(null, Validators.required),
+      email: new FormControl(null, [Validators.required, Validators.pattern(REGEX_RESOURCE.email)]),
       password: new FormControl(null, Validators.required),
     },
   });

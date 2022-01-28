@@ -1,9 +1,26 @@
-<form [formGroup]="form.formGroup">
-  <mr-sub-form-input [formControlName]="form.formControlNames.email"></mr-sub-form-input>
+<form class="form-user-login" [formGroup]="form.formGroup">
+  <fieldset class="form-user-login__section">
+    <mr-sub-form-input 
+      [type]="'input'"
+      [label]="'Correo'"
+      [icon]="'fa-user'"
+      [placeholder]="'mujer@email.com'"
+      [formControlName]="form.formControlNames.email"
+    ></mr-sub-form-input>
 
-  <mr-sub-form-input [formControlName]="form.formControlNames.password"></mr-sub-form-input>
+    <mr-sub-form-input 
+      [type]="'password'"
+      [label]="'Contraseña'"
+      [icon]="'fa-lock'"
+      [placeholder]="'**********'"
+      [formControlName]="form.formControlNames.password"
+    ></mr-sub-form-input>
 
-  <button color="primary" (click)="manualSave$.next()" [disabled]="form.formGroup.invalid || form.formGroup.disabled">
-    Upsert
-  </button>
+    <mr-button 
+      [label]="'Iniciar sesión'"
+      [display]="'block'"
+      [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
+      (clicked)="manualSave$.next()"
+    ></mr-button>
+  </fieldset>
 </form>

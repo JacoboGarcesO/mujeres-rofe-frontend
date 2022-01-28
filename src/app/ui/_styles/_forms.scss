@@ -1,0 +1,64 @@
+@use './box-model' as box;
+@use './colors' as color;
+@use './animations' as animation;
+@use './fonts' as font;
+
+@mixin input($name) {
+  .#{$name} {
+    $self: &;
+    position: relative;
+
+    &__label {
+      background-color: color.$bg-lighter;
+      border-radius: box.$rad-rounded;
+      border: box.$bor-solid color.$bor-light;
+      column-gap: box.$pad-half;
+      padding: box.$pad-half;
+      transition: animation.$ease;
+
+      align-items: center;
+      display: flex;
+      position: relative;
+
+      &#{$self}__label--focus {
+        background-color: color.$primary-color-light;
+        border-color: color.$primary-color;
+      }
+
+      &#{$self}__label--error {
+        background-color: color.$status-error;
+        border-color: color.$status-error-dark;
+      }
+
+      &--disabled {
+        background-color: color.$bg-lighter;
+        border-color: color.$bor-light;
+
+        &#{$self}__label--focus {
+          background-color: color.$bg-lighter;
+          border-color: color.$bor-light;
+        }
+      }
+    }
+
+    &__text {
+      width: calc(100% - #{box.$pad-double});
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    &__input {
+      @include font.micro;
+      display: inline-grid;
+      border: none;
+      outline: none;
+      background-color: transparent;
+    }
+
+    &__icon {
+      color: color.$primary-color;
+      font-size: 0.75rem;
+    }
+  }
+}

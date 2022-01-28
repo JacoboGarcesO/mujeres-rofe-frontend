@@ -2,17 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ImageComponent } from './image.component';
 
-
-
 @NgModule({
   declarations: [
-    ImageComponent
+    ImageComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
-    ImageComponent
-  ]
+    ImageComponent,
+  ],
 })
 export class ImageModule { }

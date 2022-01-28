@@ -44,3 +44,9 @@ $weight-light: 300;
   font-size: func.toRem(0.875);
   line-height: func.toRem(1);
 }
+
+@mixin micro {
+  @include _font;
+  font-size: func.toRem(0.75);
+  line-height: func.toRem(1);
+}

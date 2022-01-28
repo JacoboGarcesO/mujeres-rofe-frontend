@@ -1,3 +1,25 @@
-<div [formGroup]="form.formGroup">
-  <input type="text" [formControlName]="form.formControlNames.value" />
+<div class="sub-form-input" [formGroup]="form.formGroup">
+  <label
+    class="sub-form-input__label"
+    [for]="uniqueId"
+  >
+    <i *ngIf="!!icon" class="sub-form-input__icon fas {{icon}}"></i>
+    <div class="sub-form-input__text">
+      <mr-text
+        [type]="'line'"
+        [size]="'small'"
+        [weight]="'bold'"
+        [text]="label"
+      ></mr-text>
+      <input 
+        class="sub-form-input__input" 
+        [formControlName]="form.formControlNames.value" 
+        [type]="type"
+        [placeholder]="placeholder ?? ''" 
+        (keypress)="handleKeypress($event.key)"
+        (focus)="handleFocus($event.target)"
+        (blur)="handleBlur()"
+      >
+    </div>
+  </label>
 </div>

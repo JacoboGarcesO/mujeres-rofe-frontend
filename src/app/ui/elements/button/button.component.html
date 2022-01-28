@@ -1,1 +1,13 @@
-<p>button works!</p>
+<button
+  class="button button--{{display}}"
+  type="button"
+  [ngClass]="{'button--disabled': isDisabled}"
+  [disabled]="isDisabled"
+  (click)="handleClick()"
+>
+  <mr-text 
+    [type]="'line'"  
+    [weight]="'bold'" 
+    [text]="label"
+  ></mr-text>
+</button>

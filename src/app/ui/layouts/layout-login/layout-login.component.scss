@@ -2,12 +2,21 @@
 
 .layout-login {
   display: grid;
-  gap: styles.$box-pad-base;
+  padding: styles.$box-pad-onehalf;
 }
 
 @media (min-width: styles.$bkp-desktop) {
   .layout-login {
     display: grid;
-    grid-template-columns: 60% min-content;
+    grid-template-columns: 60% 40%;
+
+    &__form {
+      display: grid;
+      align-items: center;
+      grid-template-rows: 0 100%;
+      margin: styles.$box-mrg-none auto;
+      min-height: 100vh;
+      width: 70%;
+    }
   }
 }

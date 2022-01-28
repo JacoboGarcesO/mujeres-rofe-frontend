@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormUserLoginComponent } from './form-user-login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SubFormInputModule } from '../sub-form-input/sub-form-input.module';
+import { ButtonModule } from '../../elements/button/button.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { SubFormInputModule } from '../sub-form-input/sub-form-input.module';
     CommonModule,
     ReactiveFormsModule,
     SubFormInputModule,
+    ButtonModule,
   ],
   exports: [
     FormUserLoginComponent,

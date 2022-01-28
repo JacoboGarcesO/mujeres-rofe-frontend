@@ -2,17 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TextComponent } from './text.component';
 
-
-
 @NgModule({
   declarations: [
-    TextComponent
+    TextComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ],
   exports: [
-    TextComponent
-  ]
+    TextComponent,
+  ],
 })
 export class TextModule { }

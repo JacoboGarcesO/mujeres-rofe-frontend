@@ -1,0 +1,46 @@
+@use '../../_styles/index.scss' as styles;
+
+.button {
+  border-radius: styles.$box-rad-medium;
+  border: styles.$box-bor-solid transparent;
+  gap: styles.$box-pad-half;
+  padding: styles.$box-pad-half;
+  transition: styles.$animation-ease;
+  background-color: styles.$color-primary-color-alt;
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+
+  .text {
+    text-transform: uppercase !important;
+    color: styles.$color-typo-contrast !important;
+  }
+
+  &:hover {
+    background-color: styles.$color-primary-color;
+  }
+
+  &--disabled {
+    background-color: styles.$color-bg-dark;
+    border-color: transparent;
+    cursor: not-allowed;
+
+    .text {
+      color: styles.$color-typo-base !important;
+    }
+
+    &:hover {
+      background-color: styles.$color-bg-dark;
+      border-color: transparent;
+
+      .text {
+        color: styles.$color-typo-base;
+      }
+    }
+  }
+
+  &--block {
+    width: 100%;
+  }
+}

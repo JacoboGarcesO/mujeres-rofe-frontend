@@ -1,4 +1,5 @@
-$_red-10: #F93548;
+$_red-20: #F93548;
+$_red-10: #ff6675;
 $_red-0: #F5CAD8;
 
 $_green-10: #4BAC3C;
@@ -13,14 +14,20 @@ $_orange-0: #F0C280;
 $_yellow-10: #FFCF00;
 $_yellow-0: #FBE69C;
 
-$_neutral-20: #111010;
-$_neutral-10: #727272;
+$_neutral-40: #111010;
+$_neutral-30: #727272;
+$_neutral-20: #BFBFBF;
+$_neutral-10: #EEEEEE;
+$_neutral-5: #F7F7FA;
 $_neutral-0: #FFFFFF;
 
-$primary-color: $_red-10;
+$primary-color: $_red-20;
+$primary-color-alt: $_red-10;
 $primary-color-light: $_red-0;
 
 $bg-white: $_neutral-0;
+$bg-lighter: $_neutral-5;
+$bg-dark: $_neutral-20;
 
 $status-info: $_blue-0;
 $status-info-dark: $_blue-10;
@@ -34,6 +41,8 @@ $status-warning-dark: $_yellow-10;
 $status-error: $_orange-0;
 $status-error-dark: $_orange-10;
 
-$typo-base: $_neutral-20;
-$typo-light: $_neutral-10;
+$bor-light: $_neutral-10;
+
+$typo-base: $_neutral-40;
+$typo-light: $_neutral-30;
 $typo-contrast: $_neutral-0;
