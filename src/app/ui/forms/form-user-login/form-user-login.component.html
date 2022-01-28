@@ -1,0 +1,9 @@
+<form [formGroup]="form.formGroup">
+  <mr-sub-form-input [formControlName]="form.formControlNames.email"></mr-sub-form-input>
+
+  <mr-sub-form-input [formControlName]="form.formControlNames.password"></mr-sub-form-input>
+
+  <button color="primary" (click)="manualSave$.next()" [disabled]="form.formGroup.invalid || form.formGroup.disabled">
+    Upsert
+  </button>
+</form>
