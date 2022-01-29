@@ -1,7 +1,9 @@
 @use '../../_styles/index.scss' as styles;
 
 .form-user-login {
-
+  padding: styles.$box-pad-onehalf;
+  background-color: styles.$color-primary-color;
+  border-radius: styles.$box-rad-large;
 
   &__section {
     gap: styles.$box-pad-base;
@@ -10,5 +12,15 @@
     padding: 0;
     margin: 0;
     border: 0;
+  }
+
+  &__text {
+    display: block;
+    margin-bottom: styles.$box-mrg-onehalf;
+
+    .text {
+      color: styles.$color-primary-color !important;
+      text-align: center !important;
+    }
   }
 }

@@ -1,11 +1,11 @@
 @use '../../_styles/index.scss' as styles;
 
-.ui-image {
+.image {
   $self: &;
 
   width: styles.$box-wth-block;
-  object-fit: cover;
   height: styles.$box-hht-block;
+  object-fit: cover;
 
   &--none {
     border-radius: styles.$box-rad-none;

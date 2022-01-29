@@ -1,4 +1,4 @@
-import { Component,ChangeDetectionStrategy, Input, Output } from '@angular/core';
+import { Component,ChangeDetectionStrategy, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
@@ -10,6 +10,7 @@ import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
   templateUrl: './form-user-login.component.html',
   styleUrls: ['./form-user-login.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class FormUserLoginComponent {
   public manualSave$: Subject<void> = new Subject();

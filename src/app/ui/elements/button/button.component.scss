@@ -19,6 +19,7 @@
 
   &:hover {
     background-color: styles.$color-primary-color;
+    border: styles.$box-bor-solid styles.$color-bg-white;
   }
 
   &--disabled {

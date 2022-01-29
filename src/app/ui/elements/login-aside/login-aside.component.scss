@@ -1,0 +1,71 @@
+@use '../../_styles/index.scss' as styles;
+
+.login-aside {
+  &__background {
+    position: relative;
+  
+    &::before {
+      content: "";
+      position: absolute;
+      height: 600px;
+      width: 600px;
+      top: -10%;
+      right: 10%;
+      transform: translateY(100%);
+      background-color: styles.$color-primary-color;
+      border-radius: styles.$box-rad-rounded;
+      z-index: -1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      height: 600px;
+      width: 600px;
+      top: -10%;
+      right: -30%;
+      transform: translateY(-65%);
+      background-color: styles.$color-primary-color;
+      border-radius: styles.$box-rad-rounded;
+      z-index: -1;
+    }
+  }
+
+  &__mujeres {
+    display: none;
+  }
+}
+@media (min-width: styles.$bkp-desktop) {
+  .login-aside {
+    &__background {
+      position: relative;
+    
+      &::before {
+        content: "";
+        position: absolute;
+        height: 1600px;
+        width: 2000px;
+        top: -10%;
+        right: 10%;
+        transform: translateY(-40%);
+        background-color: styles.$color-primary-color;
+        border-radius: styles.$box-rad-rounded;
+      }
+
+      &::after {
+        display: none;
+      }
+    }
+  
+    &__image {
+      position: relative;
+    }
+    
+    &__mujeres {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 65vh;
+    }
+  }
+}

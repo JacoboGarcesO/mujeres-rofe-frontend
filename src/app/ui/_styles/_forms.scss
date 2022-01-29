@@ -49,7 +49,7 @@
     }
 
     &__input {
-      @include font.micro;
+      @include font.small;
       display: inline-grid;
       border: none;
       outline: none;

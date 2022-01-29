@@ -4,6 +4,7 @@ import { FormUserLoginComponent } from './form-user-login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SubFormInputModule } from '../sub-form-input/sub-form-input.module';
 import { ButtonModule } from '../../elements/button/button.module';
+import { TextModule } from '../../elements/text/text.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { ButtonModule } from '../../elements/button/button.module';
     ReactiveFormsModule,
     SubFormInputModule,
     ButtonModule,
+    TextModule,
   ],
   exports: [
     FormUserLoginComponent,

@@ -3,12 +3,15 @@
 .layout-login {
   display: grid;
   padding: styles.$box-pad-onehalf;
+  overflow: hidden;
+  min-height: 100vh;
 }
 
 @media (min-width: styles.$bkp-desktop) {
   .layout-login {
     display: grid;
     grid-template-columns: 60% 40%;
+    padding: styles.$box-pad-none;
 
     &__form {
       display: grid;
