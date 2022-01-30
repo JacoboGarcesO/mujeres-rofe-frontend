@@ -1,3 +1,8 @@
-<mr-form-user-login
-  (dataOutput)="handleLogin($event)"
-></mr-form-user-login>
+<ng-container *ngIf="{
+  currentUser: (currentUser$ | async)
+} as data">
+  <mr-form-user-login
+    [currentUser]="data.currentUser ?? undefined"
+    (dataOutput)="handleLogin($event)"
+  ></mr-form-user-login>
+</ng-container>

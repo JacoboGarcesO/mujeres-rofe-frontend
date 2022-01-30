@@ -7,6 +7,12 @@
 ></mr-text>
 
 <form class="form-user-login" [formGroup]="form.formGroup">
+  <mr-alert
+    *ngIf="!currentUser?.id && currentUser?.message"
+    [text]="currentUser?.message"
+    [type]="notificationsEnum.warning"
+    [icon]="'fa-exclamation-triangle'"
+  ></mr-alert>
   <fieldset class="form-user-login__section">
     <mr-sub-form-input 
       [type]="'input'"

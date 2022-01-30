@@ -5,4 +5,5 @@ export interface CurrentUserModel {
   email: string;
   rol: RolsEnum;
   token: string;
+  message: string;
 }

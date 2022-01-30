@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
@@ -15,7 +16,14 @@ export class UserLoginContainerFacade {
   constructor(
     private state: AppState,
     private service: CurrentUserService,
+    private router: Router,
   ) { }
+
+  //#region Observables 
+  currentUser$(): Observable<CurrentUserModel> {
+    return this.state.users.currentUser.$();
+  }
+  //#endregion
 
   //#region Public methods
   initSubscriptions(): void {
@@ -29,14 +37,18 @@ export class UserLoginContainerFacade {
   handleLogin(userCredentials: UserCredentialsModel): void {
     this.subscriptions?.add(
       this.service.loginUser(userCredentials).pipe(
-        tap(this.storeCurrentUser.bind(this)),
+        tap(this.manageLogin.bind(this)),
       ).subscribe(),
     );
   }
   //#endregion
 
-  //#region
-  private storeCurrentUser(currentUser: CurrentUserModel) :void {
+  //#region Private methods
+  private manageLogin(currentUser: CurrentUserModel) :void {
+    if (currentUser?.id) {
+      this.router.navigateByUrl('/');
+    }
+  
     this.state.users.currentUser.set(currentUser);
   }
   //#endregion

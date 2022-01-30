@@ -2,6 +2,8 @@ import { Component,ChangeDetectionStrategy, Input, Output, ViewEncapsulation } f
 import { FormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
+import { NotificationsEnum } from 'src/app/core/enums/notifications.enum';
+import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { UserCredentialsModel } from 'src/app/core/models/user-credentials.model';
 import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
 
@@ -13,6 +15,9 @@ import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
   encapsulation: ViewEncapsulation.None,
 })
 export class FormUserLoginComponent {
+  @Input() currentUser: CurrentUserModel | undefined;
+  public notificationsEnum: typeof NotificationsEnum = NotificationsEnum;
+
   public manualSave$: Subject<void> = new Subject();
   private input$: Subject<UserCredentialsModel | undefined> = new Subject();
   @Input() set dataInput(value: UserCredentialsModel | undefined) {

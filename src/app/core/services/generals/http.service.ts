@@ -32,30 +32,26 @@ export class HttpService {
       .append('Authorization', `Bearer ${this.token}`);
   }
 
-  get getHeadersAuthless(): HttpHeaders {
-    return new HttpHeaders();
-  }
-
-  get<T>(url: string, params?: HttpParams, auth = true): Observable<T> {
-    return this.http.get<T>(url, { headers: this.headers(auth), params}).pipe(
+  get<T>(url: string, params?: HttpParams): Observable<T> {
+    return this.http.get<T>(url, { headers: this.getHeaders, params}).pipe(
       catchError((error) => this.handleError(error)),
     );
   }
 
-  post<T>(url: string, body: string, auth = true): Observable<T> {
-    return this.http.post<T>(url, body, { headers: this.headers(auth) }).pipe(
+  post<T>(url: string, body: string): Observable<T> {
+    return this.http.post<T>(url, body, { headers: this.getHeaders }).pipe(
       catchError((error) => this.handleError(error)),
     );
   }
 
-  put<T>(url: string, body: string, auth = true): Observable<T> {
-    return this.http.put<T>(url, body, { headers: this.headers(auth) }).pipe(
+  put<T>(url: string, body: string): Observable<T> {
+    return this.http.put<T>(url, body, { headers: this.getHeaders }).pipe(
       catchError((error) => this.handleError(error)),
     );
   }
 
-  delete<T>(url: string, params?: HttpParams, auth = true, body = null): Observable<T> {
-    return this.http.request<T>('delete', url, { body, headers: this.headers(auth), params }).pipe(
+  delete<T>(url: string, params?: HttpParams, body = null): Observable<T> {
+    return this.http.request<T>('delete', url, { body, headers: this.getHeaders, params }).pipe(
       catchError((error) => this.handleError(error)),
     );
   }
@@ -72,9 +68,6 @@ export class HttpService {
     );
   }
 
-  private headers(auth: boolean): HttpHeaders {
-    return auth ? this.getHeaders : this.getHeadersAuthless;
-  }
 
   private handleError(error: HttpErrorResponse): Observable<never> {
     const extractError = this.errorsService.extract(error);

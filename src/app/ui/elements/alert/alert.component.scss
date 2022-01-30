@@ -1,0 +1,52 @@
+@use '../../_styles/index.scss' as styles;
+
+.alert {
+  $self: &;
+  border-radius: styles.$box-rad-medium;
+  gap: styles.$box-pad-base;
+  padding: styles.$box-pad-base;
+  margin: styles.$box-mrg-base styles.$box-mrg-none;
+  align-items: center;
+  display: grid;
+  grid-template-columns: min-content auto;
+
+  &__icon {
+    font-size: styles.$box-pad-base;
+  }
+
+  &--error {
+    border: styles.$box-bor-solid styles.$color-status-error-dark;
+    background-color: styles.$color-status-error;
+
+    #{$self}__icon {
+      color: styles.$color-status-error-dark;
+    }
+  }
+
+  &--warning {
+    border: styles.$box-bor-solid styles.$color-status-warning-dark;
+    background-color: styles.$color-status-warning;
+
+    #{$self}__icon {
+      color: styles.$color-status-warning-dark;
+    }
+  }
+
+  &--success {
+    border: styles.$box-bor-solid styles.$color-status-success-dark;
+    background-color: styles.$color-status-success;
+
+    #{$self}__icon {
+      color: styles.$color-status-success-dark;
+    }
+  }
+
+  &--info {
+    border: styles.$box-bor-solid styles.$color-status-info-dark;
+    background-color: styles.$color-status-info;
+
+    #{$self}__icon {
+      color: styles.$color-status-info-dark;
+    }
+  }
+}
