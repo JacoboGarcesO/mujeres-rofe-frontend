@@ -13,6 +13,7 @@ export class PublicGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return new Observable((observer: Observer<boolean>) => {
       observer.next(true);
+      observer.complete();
     });
   }
 }

@@ -24,7 +24,7 @@ export class CurrentUserService {
     const url = URL_RESOURCE.userLogin;
     const credentials = this.toApiCredentialsMapper.map(userCredentials);
     const body = JSON.stringify(credentials);
-    return this.httpService.post(url, body).pipe(
+    return this.httpService.post(url, body, false).pipe(
       map((currentUser) => this.apiToCurrentUserMapper.map(currentUser)),
       tap((currentUser) => this.storageService.set<CurrentUserModel>('CURRENT_USER', currentUser)),
     );
