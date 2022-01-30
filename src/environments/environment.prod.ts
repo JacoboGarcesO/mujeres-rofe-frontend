@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://localhost:7007/api',
+  apiUrl: 'https://mujeres-rofe-back-test-2.azurewebsites.net/api',
 };
