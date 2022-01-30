@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { from, Observable, of } from 'rxjs';
-import { concatMap, map, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import { HttpService } from './generals/http.service';
 import { StorageService } from './generals/storage.service';
 import { ApiToCurrentUserMapper } from '../mappers/api-to-current-user.mapper';
@@ -19,6 +19,11 @@ export class CurrentUserService {
     private apiToCurrentUserMapper: ApiToCurrentUserMapper,
     private toApiCredentialsMapper: ToApiCredentialsMapper,
   ) { }
+
+  getCurrentUser(): Observable<CurrentUserModel> {
+    const currentUser = this.storageService.get<CurrentUserModel>('CURRENT_USER');   
+    return of(currentUser);
+  }
 
   loginUser(userCredentials: UserCredentialsModel): Observable<CurrentUserModel> {
     const url = URL_RESOURCE.userLogin;
