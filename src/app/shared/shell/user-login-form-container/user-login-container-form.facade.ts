@@ -44,7 +44,7 @@ export class UserLoginContainerFacade {
   //#endregion
 
   //#region Private methods
-  private manageLogin(currentUser: CurrentUserModel) :void {
+  private manageLogin(currentUser: CurrentUserModel): void {
     if (currentUser?.id) {
       this.router.navigateByUrl('/');
     }

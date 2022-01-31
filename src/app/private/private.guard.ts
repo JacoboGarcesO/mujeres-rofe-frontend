@@ -18,8 +18,8 @@ export class PrivateGuard implements CanActivate {
     state: RouterStateSnapshot,
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return new Observable((observer: Observer<boolean>) => {
-      this.appState.users.currentUser.$().subscribe((user) => {
-        user ? this.approvedVisit(observer) : this.rejectedVisit(observer);
+      this.appState.users.currentUser.$().subscribe((user) => {       
+        user?.id ? this.approvedVisit(observer) : this.rejectedVisit(observer);
       });
     });
   }

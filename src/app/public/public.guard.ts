@@ -19,7 +19,7 @@ export class PublicGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return new Observable((observer: Observer<boolean>) => {
       this.appState.users.currentUser.$().subscribe((user) => {
-        user ? this.rejectedVisit(observer) : this.approvedVisit(observer);
+        user?.id ? this.rejectedVisit(observer) : this.approvedVisit(observer);
       });
     });
   }
