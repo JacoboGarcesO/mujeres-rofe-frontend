@@ -1,0 +1,12 @@
+@use '../../_styles/index.scss' as styles;
+
+.navbar {
+  &__container,
+  &__content {
+    width: styles.$box-wth-block;
+  }
+
+  &__content {
+    background-color: styles.$color-primary-color;
+  }
+}

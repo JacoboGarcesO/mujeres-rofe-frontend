@@ -1,0 +1,22 @@
+@use '../../_styles/index.scss' as styles;
+
+.aside-menu {
+  @include styles.animation-scale-up-top;
+  position: relative;
+
+  &__content {
+    background-color: styles.$color-primary-color-light;
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-height: calc(100vh - 64px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    width: styles.func-toRem(17);
+    margin-bottom: styles.$box-mrg-base;
+  }
+}

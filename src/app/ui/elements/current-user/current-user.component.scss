@@ -1,0 +1,19 @@
+@use '../../_styles/index.scss' as styles;
+
+.current-user {
+  display: grid;
+  grid-template-columns: min-content auto min-content;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: styles.$box-pad-half styles.$box-pad-none;
+  background-color: styles.$color-primary-color;
+
+  &__image {
+    width: styles.func-toRem(3);
+  }
+
+  &__icon {
+    color: styles.$color-bg-white;
+    font-size: styles.$box-pad-onehalf;
+  }
+}

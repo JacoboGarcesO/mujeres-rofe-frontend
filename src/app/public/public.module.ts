@@ -10,9 +10,6 @@ import { PublicRoutingModule } from './public-routing.module';
   imports: [
     CommonModule,
     PublicRoutingModule,
-    UserLoginFormContainerModule,
-    UserLoginAsideContainerModule,
-    LayoutLoginModule,
   ],
 })
 export class PublicModule { }

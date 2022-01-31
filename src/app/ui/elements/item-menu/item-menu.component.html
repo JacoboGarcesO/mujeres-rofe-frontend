@@ -1,0 +1,21 @@
+<div class="item-menu">
+  <figure class="item-menu__image">
+    <mr-image
+      [image]="item?.image"
+      [alt]="'logo-item'"
+    ></mr-image>
+  </figure>
+  <div>
+    <mr-text
+      [text]="item?.title"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+
+    <mr-text
+      [text]="item?.description"
+      [size]="'small'"
+      [type]="'line'"
+    ></mr-text>
+  </div>
+</div>

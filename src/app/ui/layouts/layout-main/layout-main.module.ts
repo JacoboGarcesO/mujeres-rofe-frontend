@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LayoutMainComponent } from './layout-main.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -8,6 +9,7 @@ import { LayoutMainComponent } from './layout-main.component';
   ],
   imports: [
     CommonModule,
+    RouterModule,
   ],
   exports: [
     LayoutMainComponent,

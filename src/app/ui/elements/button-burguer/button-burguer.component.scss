@@ -1,0 +1,15 @@
+@use '../../_styles/index.scss' as styles;
+
+.button-burger {
+  background-color: transparent;
+  padding: styles.$box-pad-base;
+  border: none;
+  cursor: pointer;
+  outline: none;
+
+  &__icon {
+    font-size: styles.$box-pad-double;
+    color: styles.$color-bg-white;
+  }
+}
+

@@ -5,6 +5,8 @@ import { PrivateGuard } from './private.guard';
 const routes: Routes = [
   {
     path: '',
+    loadChildren: () => import('./home/home.module')
+      .then((module) => module.HomeModule),
     canActivate: [PrivateGuard],
   },
 ];

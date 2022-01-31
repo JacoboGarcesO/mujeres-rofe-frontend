@@ -1,0 +1,12 @@
+@use '../../_styles/index.scss' as styles;
+
+.item-menu {
+  display: grid;
+  padding-right: styles.$box-pad-onehalf;
+  grid-template-columns: min-content auto;
+  align-items: center;
+
+  &__image {
+    width: styles.func-toRem(5);
+  }
+}
