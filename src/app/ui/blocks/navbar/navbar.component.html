@@ -1,6 +1,10 @@
 <header class="navbar__container">
   <nav class="navbar__content">
-    <mr-button-burguer (clicked)="handleClick($event)"></mr-button-burguer>
+    <mr-button-burguer 
+      class="navbar__button" 
+      [ngClass]="{ 'navbar__button--active': isOpen }"
+      (clicked)="handleClick($event)"
+    ></mr-button-burguer>
     <mr-aside-menu [isVisible]="isOpen"></mr-aside-menu>
   </nav>
 </header>

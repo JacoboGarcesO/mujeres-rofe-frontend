@@ -59,13 +59,14 @@
   
     &__image {
       position: relative;
+      min-height: 100vh;
     }
     
     &__mujeres {
       display: block;
       position: absolute;
       left: 0;
-      top: 65vh;
+      bottom: -4px;
     }
   }
 }

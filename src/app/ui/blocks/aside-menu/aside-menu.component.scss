@@ -3,8 +3,10 @@
 .aside-menu {
   @include styles.animation-scale-up-top;
   position: relative;
+  z-index: 1;
 
   &__content {
+    box-shadow: 1px 7px 20px 2px rgba(0,0,0,0.52);
     background-color: styles.$color-primary-color-light;
     position: absolute;
     left: 0;

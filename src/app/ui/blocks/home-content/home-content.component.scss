@@ -1,0 +1,25 @@
+@use '../../_styles/index.scss' as styles;
+
+.home-content {
+  position: relative;
+
+  &__background {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 64px);
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  &__logo {
+    width: 40%;
+  }
+}

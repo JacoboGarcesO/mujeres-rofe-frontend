@@ -8,5 +8,16 @@
 
   &__content {
     background-color: styles.$color-primary-color;
+    box-shadow: 0px 4px 15px 0px rgba(0,0,0,0.41);
+  }
+
+  &__button {
+    @include styles.animation-scale-up-top;
+    display: block;
+    transition: .3s;
+
+    &--active {
+      margin-left: styles.func-toRem(17);
+    }
   }
 }
