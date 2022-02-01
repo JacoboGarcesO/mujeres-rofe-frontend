@@ -1,14 +1,14 @@
 @use './break-points' as bkp;
 @use './functions' as func;
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
 
 $weight-bold: 700;
 $weight-regular: 400;
-$weight-light: 300;
+$weight-light: 200;
 
 @mixin _font {
-  font-family: 'Roboto', sans-serif;
   font-weight: $weight-regular;
+  font-family: 'Poppins', sans-serif;
 }
 
 @mixin large {
