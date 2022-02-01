@@ -35,7 +35,7 @@ export class CurrentUserService {
     );
   }
 
-  // logoutUser() {
-
-  // }
+  logoutUser(): void {
+    this.storageService.remove('CURRENT_USER');
+  }
 }

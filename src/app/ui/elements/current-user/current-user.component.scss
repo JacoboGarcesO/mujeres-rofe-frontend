@@ -9,11 +9,18 @@
   background-color: styles.$color-primary-color;
 
   &__image {
-    width: styles.func-toRem(3);
+    width: styles.func-toRem(2.5);
   }
 
   &__icon {
+    cursor: pointer;
     color: styles.$color-bg-white;
     font-size: styles.$box-pad-onehalf;
+    transition: .3s;
+
+    &:hover {
+      color: styles.$color-primary-color-light;
+      transform: scale(1.1);
+    }
   }
 }

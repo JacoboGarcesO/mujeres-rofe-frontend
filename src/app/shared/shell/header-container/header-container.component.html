@@ -1,1 +1,8 @@
-<mr-navbar></mr-navbar>
+<ng-container *ngIf="{
+  currentUser: (currentUser$ | async) 
+} as data">
+  <mr-navbar
+    [currentUser]="data.currentUser ?? undefined"
+    (clickedLogout)="handleLogout()"
+  ></mr-navbar>
+</ng-container>

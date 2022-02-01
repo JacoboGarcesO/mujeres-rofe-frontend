@@ -12,6 +12,9 @@
         [item]="item"
       ></mr-item-menu>
     </div>
-    <mr-current-user></mr-current-user>
+    <mr-current-user
+      [currentUser]="currentUser"
+      (clickedLogout)="handleLogout()"
+    ></mr-current-user>
   </div>
 </div>

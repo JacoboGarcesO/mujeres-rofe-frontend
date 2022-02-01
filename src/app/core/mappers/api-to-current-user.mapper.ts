@@ -11,8 +11,15 @@ export class ApiToCurrentUserMapper {
     return {
       email: response?.user?.email,
       id: response?.user?._id,
+      nameComplete: `${response?.user?.firstName} ${response?.user?.lastName}`,
+      firstName: response?.user?.firstName,
+      lastName: response?.user?.lastName,
       rol: toRolEnum(response?.user?.rol),
       token: response?.token,
+      image: {
+        id: response?.user?.image?._id,
+        url: response?.user?.image?.url,
+      },
       message: MessageUtil.trasnformToMessage(response?.message),
     };
   }

@@ -18,6 +18,7 @@ export class UserLoginFormContainerComponent implements OnInit, OnDestroy{
     this.facade.initSubscriptions();
     this.initializeSubscriptions();
   }
+
   ngOnDestroy(): void {
     this.facade.destroySubscriptions();
   }

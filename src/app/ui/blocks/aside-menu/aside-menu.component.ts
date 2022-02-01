@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output } from '@angular/core';
+import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 
 @Component({
   selector: 'mr-aside-menu',
@@ -8,6 +9,8 @@ import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 })
 export class AsideMenuComponent {
   @Input() isVisible = false;
+  @Input() currentUser: CurrentUserModel | undefined;
+  @Output() clickedLogout: EventEmitter<void> = new EventEmitter();
 
   public items = [
     {
@@ -36,4 +39,8 @@ export class AsideMenuComponent {
       image: 'assets/img/test.png',
     },
   ];
+
+  handleLogout(): void {
+    this.clickedLogout.emit();
+  }
 }

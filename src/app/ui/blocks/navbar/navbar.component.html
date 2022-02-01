@@ -5,6 +5,10 @@
       [ngClass]="{ 'navbar__button--active': isOpen }"
       (clicked)="handleClick($event)"
     ></mr-button-burguer>
-    <mr-aside-menu [isVisible]="isOpen"></mr-aside-menu>
+    <mr-aside-menu 
+      [isVisible]="isOpen"
+      [currentUser]="currentUser"
+      (clickedLogout)="handleLogout()"
+    ></mr-aside-menu>
   </nav>
 </header>

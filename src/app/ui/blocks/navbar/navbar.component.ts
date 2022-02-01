@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 
 @Component({
   selector: 'mr-navbar',
@@ -7,9 +8,16 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NavbarComponent { 
+  @Input() currentUser: CurrentUserModel | undefined;
+  @Output() clickedLogout: EventEmitter<void> = new EventEmitter();
+
   public isOpen = false;
 
   handleClick(isOpen: boolean): void {
     this.isOpen = isOpen;
+  }
+
+  handleLogout(): void {
+    this.clickedLogout.emit();
   }
 }
