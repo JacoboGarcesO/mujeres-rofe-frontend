@@ -4,7 +4,7 @@
 
 $weight-bold: 700;
 $weight-regular: 400;
-$weight-light: 200;
+$weight-light: 300;
 
 @mixin _font {
   font-weight: $weight-regular;
@@ -13,35 +13,35 @@ $weight-light: 200;
 
 @mixin large {
   @include _font;
-  font-size: func.toRem(1.25);
-  line-height: func.toRem(1.25);
+  font-size: func.toRem(1.125);
+  line-height: func.toRem(1.125);
 
   @media (min-width: bkp.$desktop) {
-    font-size: func.toRem(1.35);
-    line-height: func.toRem(1.5);
+    font-size: func.toRem(1.25);
+    line-height: func.toRem(1.25);
   }
 }
 
 @mixin medium {
   @include _font;
-  font-size: func.toRem(1.125);
-  line-height: func.toRem(1.25);
+  font-size: func.toRem(1.05);
+  line-height: func.toRem(1.05);
 
   @media (min-width: bkp.$desktop) {
-    font-size: func.toRem(1.25);
-    line-height: func.toRem(1.5);
+    font-size: func.toRem(1.15);
+    line-height: func.toRem(1.15);
   }
 }
 
 @mixin base {
   @include _font;
-  font-size: func.toRem(1);
-  line-height: func.toRem(1.25);
+  font-size: func.toRem(0.95);
+  line-height: func.toRem(1);
 }
 
 @mixin small {
   @include _font;
-  font-size: func.toRem(0.875);
+  font-size: func.toRem(0.85);
   line-height: func.toRem(1);
 }
 
