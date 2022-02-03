@@ -1,0 +1,13 @@
+@use '../../_styles/index.scss' as styles;
+
+.button-icon {
+  border-radius: styles.$box-rad-rounded;
+  border: styles.$box-bor-solid transparent;
+  height: styles.$box-hht-btn-small;
+  width: styles.$box-wth-btn-small;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: styles.$box-pad-none;
+}

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from './modal.component';
-import { ButtonModule } from '../button/button.module';
 import { CardModule } from '../card/card.module';
+import { ButtonIconModule } from '../button-icon/button-icon.module';
 
 
 @NgModule({
@@ -11,7 +11,7 @@ import { CardModule } from '../card/card.module';
   ],
   imports: [
     CommonModule,
-    ButtonModule,
+    ButtonIconModule,
     CardModule,
   ],
   exports: [

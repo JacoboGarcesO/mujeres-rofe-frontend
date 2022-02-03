@@ -19,6 +19,7 @@ $pad-double: $_pad-base * 2;
 $wth-block: 100%;
 
 $hht-block: 100%;
+$hht-base: $_pad-base;
 $hht-onehalf: $_pad-base*1.5;
 
 $bor-solid: $_pad-base * 0.0625 solid;
@@ -41,3 +42,7 @@ $wth-modal-mobile: calc(100vw - #{$_pad-base*3});
 $hht-modal: calc(100vh - #{$_pad-base*6});
 $hht-modal-inner: calc(100vh - #{$_pad-base*11});
 $wth-modal: $_pad-base*50;
+
+//Button icon
+$hht-btn-small: $hht-base*1.875;
+$wth-btn-small: $hht-base*1.875;
