@@ -1,0 +1,12 @@
+<section *ngIf="isOpen" class="modal">
+  <mr-card class="modal__card">
+    <mr-button
+      class="modal__close"
+      [label]="'cerrar'"
+      (click)="toggle()"
+    ></mr-button>
+    <div class="modal__content" [ngClass]="{'modal__content--auto': auto}">
+      <ng-content></ng-content>
+    </div>
+  </mr-card>
+</section>

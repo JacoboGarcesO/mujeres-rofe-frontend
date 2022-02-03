@@ -1,0 +1,61 @@
+@use '../../_styles/index.scss' as styles;
+
+.modal {
+  background-color: styles.$color-opacity-dark;
+  z-index: styles.$box-z-13;
+  display: grid;
+  inset: 0;
+  place-items: center;
+  position: fixed;
+
+  &__card {
+    @include styles.animation-scale-up-top;
+    max-width: styles.$box-wth-modal-mobile;
+    max-height: styles.$box-hht-modal;
+    position: relative;
+  }
+
+  &__close {
+    right: 0;
+    position: absolute;
+    top: 0;
+    padding: styles.$box-pad-base;
+  }
+
+  &__content {
+    height: styles.$box-hht-modal-inner;
+    margin-top: styles.$box-mrg-onehalf;
+    overflow-y: auto;
+    position: relative;
+
+    &::before,
+    &::after {
+      height: styles.$box-hht-onehalf;
+      content: "";
+      display: block;
+      position: sticky;
+      width: 100%;
+    }
+
+    &::before {
+      top: 0;
+    }
+
+    &::after {
+      bottom: 0;
+      transform: rotate(180deg);
+    }
+
+    &--auto {
+      height: auto;
+    }
+  }
+}
+
+@media (min-width: styles.$bkp-desktop) {
+  .ui-modal {
+    &__card {
+      max-width: styles.$box-wth-modal;
+    }
+  }
+}
