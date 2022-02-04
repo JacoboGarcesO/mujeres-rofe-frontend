@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { UserCredentialsModel } from 'src/app/core/models/user-credentials.model';
 import { CurrentUserService } from 'src/app/core/services/current-user.service';

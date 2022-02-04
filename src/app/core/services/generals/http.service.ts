@@ -23,13 +23,13 @@ export class HttpService {
   get getHeaders(): HttpHeaders {
     return new HttpHeaders()
       .append('Content-Type', 'application/json')
-      .append('Authorization', `Bearer ${this.token}`);
+      .append('Authorization', this.token);
   }
 
   get getHeadersFile(): HttpHeaders {
     return new HttpHeaders()
       .append('Access-Control-Allow-Origin', '*')
-      .append('Authorization', `Bearer ${this.token}`);
+      .append('Authorization', this.token);
   }
 
   get<T>(url: string, params?: HttpParams): Observable<T> {

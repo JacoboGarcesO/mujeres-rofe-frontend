@@ -1,0 +1,24 @@
+@use '../../_styles/index.scss' as styles;
+
+@include styles.form-input($name: 'dropdown');
+@include styles.form-floating($name: 'dropdown');
+
+.dropdown {
+  &__input {
+    height: styles.$box-hht-base;
+  }
+
+  &__caret {
+    &--reverse {
+      @include styles.animation-reverse;
+    }
+  }
+
+  &__times {
+    cursor: pointer;
+  }
+
+  &__floating {
+    min-width: 100%;
+  }
+}

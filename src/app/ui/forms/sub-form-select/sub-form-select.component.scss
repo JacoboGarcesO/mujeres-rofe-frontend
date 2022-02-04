@@ -1,0 +1,29 @@
+@use '../../_styles/index.scss' as styles;
+
+@include styles.form-searcheable($name: 'sub-form-select');
+
+.sub-form-select {
+  &__options {
+    row-gap: styles.$box-pad-half;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__option {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    background-color: styles.$color-bg-white;
+    border: none;
+    border-radius: styles.$box-rad-large;
+    padding: styles.$box-pad-half;
+    transition: styles.$animation-ease;
+    cursor: pointer;
+    display: block;
+    text-align: left;
+
+    &:hover {
+      background-color: styles.$color-primary-color-light;
+    }
+  }
+}

@@ -2,6 +2,7 @@
 @use './colors' as color;
 @use './animations' as animation;
 @use './fonts' as font;
+@use './break-points' as bkp;
 
 @mixin input($name) {
   .#{$name} {
@@ -59,6 +60,50 @@
     &__icon {
       color: color.$primary-color;
       font-size: 0.75rem;
+    }
+  }
+}
+
+@mixin floating($name) {
+  .#{$name} {
+    &__floating {
+      left: box.$pad-none;
+      top: calc(100% + #{box.$pad-half});
+      transition: animation.$ease;
+      position: absolute;
+    }
+  }
+}
+
+@mixin searcheable($name) {
+  .#{$name} {
+    &__searchbox {
+      border-bottom: box.$bor-solid color.$bor-light;
+      padding: box.$pad-none box.$pad-half box.$pad-half;
+    }
+
+    &__search {
+      margin: 0;
+      padding: 0;
+      background-color: color.$bg-lighter;
+      border-radius: box.$rad-rounded;
+      border: box.$bor-solid color.$bor-light;
+      padding: box.$pad-base;
+      width: box.$wth-block;
+      display: block;
+      outline: none;
+    }
+  }
+
+  @media (min-width: bkp.$tablet) {
+    .#{$name} {
+      &__searchbox {
+        padding: box.$pad-half;
+      }
+
+      &__search {
+        padding: box.$pad-half box.$pad-base;
+      }
     }
   }
 }
