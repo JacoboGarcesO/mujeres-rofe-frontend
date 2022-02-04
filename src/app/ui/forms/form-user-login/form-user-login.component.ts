@@ -1,4 +1,4 @@
-import { Component,ChangeDetectionStrategy, Input, Output, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';

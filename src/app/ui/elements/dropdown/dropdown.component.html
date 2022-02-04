@@ -1,0 +1,43 @@
+<div class="dropdown closest__{{uniqueId}}">
+  <label
+    class="dropdown__label"
+    tabindex="0"
+    [ngClass]="{'dropdown__label--focus': isVisible}"
+    [attr.data-form]="tabid"
+    (click)="toggleVisible()"
+    (keydown.space)="handleKeydown($event?.target)"
+  >
+    <i *ngIf="!!icon" class="dropdown__icon fas {{icon}}"></i>
+
+    <div class="dropdown__text">
+      <mr-text
+        [type]="'line'"
+        [size]="'micro'"
+        [weight]="'bold'"
+        [color]="'light'"
+        [text]="label"
+      ></mr-text>
+      <mr-text
+        class="dropdown__input"
+        [type]="'line'"
+        [size]="'small'"
+        [style]="!!text ? 'none' : 'italic'"
+        [color]="!!text ? 'initial' : 'light'"
+        [text]="text || placeholder"
+      ></mr-text>
+    </div>
+
+    <i *ngIf="canDeleteText && text" class="dropdown__times fas fa-times" (click)="handleDeleteText()"></i>
+
+    <i *ngIf="!(canDeleteText && text)" class="dropdown__caret fas fa-chevron-down" [ngClass]="{'dropdown__caret--reverse': isVisible}" (click)="handleDeleteText()"></i>
+  </label>
+
+  <mr-floating-card
+    class="dropdown__floating"
+    [isVisible]="isVisible"
+    (closed)="handleClose()"
+  >
+    <ng-content select="[header]" header></ng-content>
+    <ng-content></ng-content>
+  </mr-floating-card>
+</div>

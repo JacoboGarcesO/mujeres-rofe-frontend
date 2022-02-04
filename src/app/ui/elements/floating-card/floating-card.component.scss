@@ -1,0 +1,38 @@
+@use '../../_styles/index.scss' as styles;
+
+.floating-card {
+  @include styles.animation-scale-up-top;
+  @include styles.font-small;
+  background-color: styles.$color-bg-white;
+  z-index: styles.$box-z-13;
+  display: grid;
+  grid-template-rows: min-content auto;
+  inset: 0;
+  position: fixed;
+  box-shadow: 0px 3px 4px rgba(9, 30, 66, 0.2);
+
+  &__content {
+    padding: styles.$box-pad-base;
+    flex: 1;
+    overflow-y: auto;
+  }
+}
+
+@media (min-width: styles.$bkp-tablet) {
+  .floating-card {
+    @include styles.animation-scale-up-tl;
+    border-radius: styles.$box-rad-large;
+    z-index: styles.$box-z-1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    &__close {
+      display: none;
+    }
+
+    &__content {
+      max-height: styles.$box-hht-floating-card;
+    }
+  }
+}
