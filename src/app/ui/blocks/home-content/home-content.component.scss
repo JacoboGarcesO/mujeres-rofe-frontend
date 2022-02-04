@@ -2,6 +2,7 @@
 
 .home-content {
   position: relative;
+  padding-top: styles.$box-pad-home-content;
 
   &__background {
     position: absolute;
@@ -12,14 +13,83 @@
     height: calc(100vh - 64px);
   }
 
-  &__content {
+  &__channels {
+    display: grid;
+    gap: styles.$box-pad-double;
+  }
+
+  &__channel {
     display: flex;
-    align-items: center;
-    justify-content: center;
     flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+
+    &--red {
+      .text--initial {
+        color: styles.$color-status-info-dark !important;
+      }
+    }
+
+    &--oportunidades {
+      .text--initial {
+        color: styles.$color-status-success-dark !important;
+      }
+    }
+
+    &--formacion {
+      .text--initial {
+        color: styles.$color-status-warning-dark !important;
+      }
+    }
+
+    &--emprendimiento {
+      .text--initial {
+        color: styles.$color-status-error-dark !important;
+      }
+    }
   }
 
   &__logo {
-    width: 40%;
+    height: styles.$box-hht-home-content-logo
+  }
+
+  &__description {
+    @include styles.font-extra-large;
+    margin: 0 auto;
+    width: 70%;
+    text-align: center;
+    padding: styles.$box-pad-triple styles.$box-pad-none;
+
+    p {
+      color: styles.$color-primary-color !important;
+    }
+  }
+}
+
+@media (min-width: styles.$bkp-tablet) {
+  .home-content {
+    padding-top: styles.$box-pad-home-content-dkp;
+
+    &__channels {
+      display: flex;
+      align-items: center;
+    }
+
+    &__description {
+      padding: styles.$box-pad-home-content-description styles.$box-pad-none;
+    }
+
+    &__logo {
+      height: styles.$box-hht-home-content-logo-tbl
+    }
+  }
+}
+
+@media (min-width: styles.$bkp-desktop) {
+  .home-content {
+
+    &__logo {
+      height: styles.$box-hht-home-content-logo
+    }
   }
 }

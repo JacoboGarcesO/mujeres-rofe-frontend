@@ -15,6 +15,7 @@ $pad-half: $_pad-base * 0.5;
 $pad-base: $_pad-base; 
 $pad-onehalf: $_pad-base * 1.5;
 $pad-double: $_pad-base * 2;
+$pad-triple: $_pad-base * 3;
 
 $wth-block: 100%;
 
@@ -46,3 +47,10 @@ $wth-modal: $_pad-base*50;
 //Button icon
 $hht-btn-small: $hht-base*1.875;
 $wth-btn-small: $hht-base*1.875;
+
+//Home
+$pad-home-content: $_pad-base*5;
+$pad-home-content-dkp: $_pad-base*8;
+$hht-home-content-logo: $_pad-base*20;
+$hht-home-content-logo-tbl: $_pad-base*16;
+$pad-home-content-description: $_pad-base*5;

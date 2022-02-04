@@ -40,6 +40,10 @@
     @include styles.font-medium;
   }
 
+  &--extra-large {
+    @include styles.font-extra-large;
+  }
+
   // weight
   &--regular {
     font-weight:  styles.$font-weight-regular;

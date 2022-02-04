@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeContentComponent } from './home-content.component';
 import { ImageModule } from '../../elements/image/image.module';
 import { HomeBackgroundModule } from '../../elements/home-background/home-background.module';
+import { TextModule } from '../../elements/text/text.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { HomeBackgroundModule } from '../../elements/home-background/home-backgr
     CommonModule,
     ImageModule,
     HomeBackgroundModule,
+    TextModule,
   ],
   exports: [
     HomeContentComponent,
