@@ -1,9 +1,33 @@
 <div class="home-content">
   <mr-home-background class="home-content__background"></mr-home-background>
-
-  <div class="home-content__content">
-    <figure class="home-content__logo">
-      <mr-image [image]="'assets/img/logo.png'" [alt]="'logo'"></mr-image>
-    </figure>
+  <div class="home-content__channels">
+    <div class="home-content__channel home-content__channel--red">
+      <figure class="home-content__logo">
+        <mr-image [image]="'assets/img/red.png'" [alt]="'red'"></mr-image>
+      </figure>
+      <mr-text [text]="'Red'" [size]="'extra-large'" [weight]="'bold'"></mr-text>
+    </div>
+    <div class="home-content__channel home-content__channel--oportunidades">
+      <figure class="home-content__logo">
+        <mr-image [image]="'assets/img/oportunidades.png'" [alt]="'oportunidades'"></mr-image>
+      </figure>
+      <mr-text [text]="'oportunidades'" [size]="'extra-large'" [weight]="'bold'"></mr-text>
+    </div>    
+    <div class="home-content__channel home-content__channel--formacion">
+      <figure class="home-content__logo">
+        <mr-image [image]="'assets/img/formacion.png'" [alt]="'formacion'"></mr-image>
+      </figure>
+      <mr-text [text]="'Formación'" [size]="'extra-large'" [weight]="'bold'"></mr-text>
+    </div>  
+    <div class="home-content__channel home-content__channel--emprendimiento">
+      <figure class="home-content__logo">
+        <mr-image [image]="'assets/img/emprendimiento.png'" [alt]="'emprendimiento'"></mr-image>
+      </figure>
+      <mr-text [text]="'Emprendimiento'" [size]="'extra-large'" [weight]="'bold'"></mr-text>
+    </div>
+  </div>
+  <div class="home-content__description">
+    <p>El programa Mujeres ROFÉ surgió en el marco de la estrategia para contrarrestar los efectos económicos y emocionales del COVID-19
+    en mujeres cabeza de hogar en Colombia.</p>
   </div>
 </div>

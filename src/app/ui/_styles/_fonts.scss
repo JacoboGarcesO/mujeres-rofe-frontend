@@ -11,6 +11,17 @@ $weight-light: 300;
   font-family: 'Poppins', sans-serif;
 }
 
+@mixin extra-large {
+  @include _font;
+  font-size: func.toRem(1.15);
+  line-height: func.toRem(2);
+
+  @media (min-width: bkp.$desktop) {
+    font-size: func.toRem(1.5);
+    line-height: func.toRem(3);
+  }
+}
+
 @mixin large {
   @include _font;
   font-size: func.toRem(1.125);
