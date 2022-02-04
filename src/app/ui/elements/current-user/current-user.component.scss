@@ -8,6 +8,12 @@
   padding: styles.$box-pad-half styles.$box-pad-none;
   background-color: styles.$color-primary-color;
 
+  &__user {
+    display: flex;
+    align-items: center;
+    gap: styles.func-toRem(0.75);
+  }
+
   &__image {
     width: styles.func-toRem(2.5);
     height: styles.func-toRem(2.5);

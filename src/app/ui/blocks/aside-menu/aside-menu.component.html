@@ -7,10 +7,12 @@
           [alt]="'logo-rofe'"
         ></mr-image>
       </figure>
-      <mr-item-menu 
-        *ngFor="let item of items"
-        [item]="item"
-      ></mr-item-menu>
+      <div class="aside-menu__menu">
+        <mr-item-menu
+          *ngFor="let item of items"
+          [item]="item"
+        ></mr-item-menu>
+      </div>
     </div>
     <mr-current-user
       [currentUser]="currentUser"

@@ -9,4 +9,9 @@
   &__image {
     width: styles.func-toRem(5);
   }
+
+  &__label {
+    display: grid;
+    gap: styles.$box-pad-quarter;
+  }
 }

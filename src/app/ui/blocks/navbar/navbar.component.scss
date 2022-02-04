@@ -15,9 +15,5 @@
     @include styles.animation-scale-up-top;
     display: block;
     transition: .3s;
-
-    &--active {
-      margin-left: styles.func-toRem(17);
-    }
   }
 }

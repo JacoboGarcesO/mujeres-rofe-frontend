@@ -1,7 +1,9 @@
 <div class="current-user">
-  <figure class="current-user__image">
-    <mr-image [image]="currentUser?.image?.url" [rounded]="'circle'"></mr-image>
-  </figure>
-  <mr-text [type]="'line'" [weight]="'bold'" [text]="currentUser?.nameComplete"></mr-text>
+  <div class="current-user__user">
+    <figure class="current-user__image">
+      <mr-image [image]="currentUser?.image?.url" [rounded]="'circle'"></mr-image>
+    </figure>
+    <mr-text [type]="'line'" [weight]="'bold'" [text]="currentUser?.nameComplete"></mr-text>
+  </div>
   <i class="current-user__icon fas fa-sign-in-alt" (click)="handleLogout()"></i>
 </div>

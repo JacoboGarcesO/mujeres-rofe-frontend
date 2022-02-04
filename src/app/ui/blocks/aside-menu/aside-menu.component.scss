@@ -21,4 +21,9 @@
     width: styles.func-toRem(17);
     margin-bottom: styles.$box-mrg-base;
   }
+
+  &__menu {
+    display: grid;
+    gap: styles.$box-pad-onehalf;
+  }
 }
