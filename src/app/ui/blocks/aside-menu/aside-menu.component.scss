@@ -19,7 +19,7 @@
 
   &__logo {
     width: styles.func-toRem(17);
-    margin-bottom: styles.$box-mrg-base;
+    margin: 0 auto styles.$box-mrg-base;
   }
 
   &__menu {
