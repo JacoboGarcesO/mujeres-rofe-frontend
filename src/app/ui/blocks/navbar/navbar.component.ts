@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 
 @Component({
@@ -6,6 +6,7 @@ import { CurrentUserModel } from 'src/app/core/models/current-user.model';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class NavbarComponent { 
   @Input() currentUser: CurrentUserModel | undefined;
