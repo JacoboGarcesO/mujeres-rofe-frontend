@@ -1,11 +1,10 @@
 @use '../../_styles/index.scss' as styles;
 
 .current-user {
-  display: grid;
-  grid-template-columns: min-content auto min-content;
+  display: flex;
   align-items: center;
-  justify-content: space-evenly;
-  padding: styles.$box-pad-half styles.$box-pad-none;
+  justify-content: space-between;
+  padding: styles.$box-pad-half styles.$box-pad-base;
   background-color: styles.$color-primary-color;
 
   &__user {

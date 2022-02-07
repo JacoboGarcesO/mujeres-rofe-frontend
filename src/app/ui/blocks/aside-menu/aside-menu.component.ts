@@ -16,22 +16,22 @@ export class AsideMenuComponent {
     {
       title: 'Red',
       description: 'Espacio de conexión y apoyo',
-      image: 'assets/img/test.png',
+      image: 'assets/img/red.png',
     },
     {
       title: 'Oportunidades',
       description: 'Acceso a información para mujeres',
-      image: 'assets/img/test.png',
+      image: 'assets/img/oportunidades.png',
     },
     {
       title: 'Formación',
       description: 'Cursos, talleres y charlas',
-      image: 'assets/img/test.png',
+      image: 'assets/img/formacion.png',
     },
     {
       title: 'Emprendimiento',
       description: 'Acceso a asesorías y capital semilla',
-      image: 'assets/img/test.png',
+      image: 'assets/img/emprendimiento.png',
     },
     {
       title: 'Contáctanos',
