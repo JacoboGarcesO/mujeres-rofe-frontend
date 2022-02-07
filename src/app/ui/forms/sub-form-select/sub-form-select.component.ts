@@ -66,7 +66,7 @@ export class SubFormSelectComponent implements OnInit, OnDestroy {
   public form = createForm<string, { value: string }>(this, {
     formType: FormType.SUB,
     formControls: {
-      value: new FormControl(null, Validators.required),
+      value: new FormControl(null),
     },
     toFormGroup: (value: string): { value: string } => {
       return { value };

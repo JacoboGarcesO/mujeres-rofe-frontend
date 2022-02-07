@@ -7,6 +7,7 @@ import { Component, ChangeDetectionStrategy, Input, ChangeDetectorRef } from '@a
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ModalComponent {
+  @Input() canClose = true;
   @Input() auto = false;
   public isOpen = false;
 

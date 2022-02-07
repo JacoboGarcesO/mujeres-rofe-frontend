@@ -7,22 +7,19 @@
     (click)="toggleVisible()"
     (keydown.space)="handleKeydown($event?.target)"
   >
-    <i *ngIf="!!icon" class="dropdown__icon fas {{icon}}"></i>
+    <i *ngIf="!!icon" class="dropdown__icon {{icon}}"></i>
 
     <div class="dropdown__text">
       <mr-text
         [type]="'line'"
-        [size]="'micro'"
+        [size]="'small'"
         [weight]="'bold'"
-        [color]="'light'"
         [text]="label"
       ></mr-text>
       <mr-text
         class="dropdown__input"
         [type]="'line'"
         [size]="'small'"
-        [style]="!!text ? 'none' : 'italic'"
-        [color]="!!text ? 'initial' : 'light'"
         [text]="text || placeholder"
       ></mr-text>
     </div>

@@ -44,4 +44,20 @@
   &--block {
     width: 100%;
   }
+
+  &--blank {
+    border-radius: styles.$box-rad-rounded;
+    background-color: transparent;
+    border: styles.$box-bor-solid transparent;
+
+    .text {
+      text-transform: uppercase !important;
+      color: styles.$color-typo-base !important;
+    }
+  
+    &:hover {
+      background-color: transparent;
+      border: styles.$box-bor-solid transparent;
+    }
+  }
 }

@@ -1,1 +1,8 @@
-<mr-home-content></mr-home-content>
+<ng-container *ngIf="{
+  currentUser: (currentUser$ | async)
+} as data">
+  <mr-home-content
+    [currentUser]="data.currentUser"
+    (userUpdated)="handleUpdateUser($event)"
+  ></mr-home-content>
+</ng-container>

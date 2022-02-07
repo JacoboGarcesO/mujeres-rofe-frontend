@@ -1,4 +1,5 @@
 import { RolsEnum } from '../enums/rols.enum';
+import { UserLocationModel } from './locations.model';
 import { MediaModel } from './media.model';
 
 export interface CurrentUserModel {
@@ -9,6 +10,12 @@ export interface CurrentUserModel {
   nameComplete: string;
   rol: RolsEnum;
   token: string;
-  image: MediaModel;
   message: string;
+  isPending: boolean;
+  image?: MediaModel | File;
+  description?: string;
+  location?: UserLocationModel;
+  instagram?: string; 
+  hobbies?: string[];
+  phoneNumber?: number;
 }

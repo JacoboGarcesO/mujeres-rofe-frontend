@@ -1,0 +1,78 @@
+<form class="form-user" [formGroup]="form.formGroup">
+  <div>
+    <fieldset class="form-user__section">
+      <mr-sub-form-input 
+        [type]="'input'"
+        [label]="'Nombres'"
+        [icon]="'fas fa-user'"
+        [placeholder]="'Jacobo...'"
+        [formControlName]="form.formControlNames.firstName"
+      ></mr-sub-form-input>
+  
+      <mr-sub-form-input 
+        [type]="'input'"
+        [label]="'Apellidos'"
+        [icon]="'fas fa-user'"
+        [placeholder]="'Garcés Oquendo...'"
+        [formControlName]="form.formControlNames.lastName"
+      ></mr-sub-form-input>
+  
+      <mr-sub-form-input 
+        [type]="'input'"
+        [label]="'Correo'"
+        [icon]="'fas fa-envelope'"
+        [placeholder]="'mujer@email.com...'"
+        [formControlName]="form.formControlNames.email"
+      ></mr-sub-form-input>
+  
+      <mr-sub-form-input 
+        [type]="'number'"
+        [label]="'Celular'"
+        [icon]="'fas fa-phone-alt'"
+        [placeholder]="'3116657131...'"
+        [formControlName]="form.formControlNames.phoneNumber"
+      ></mr-sub-form-input>
+  
+      <mr-sub-form-select 
+        [label]="'Hobbies'"
+        [icon]="'fas fa-microphone'"
+        [placeholder]="'Cantar...'"
+        [formControlName]="form.formControlNames.hobbies"
+      ></mr-sub-form-select>
+  
+      <mr-sub-form-input 
+        [type]="'input'"
+        [label]="'Instagram'"
+        [icon]="'fab fa-instagram'"
+        [placeholder]="'@js_jsjs...'"
+        [formControlName]="form.formControlNames.instagram"
+      ></mr-sub-form-input>
+    </fieldset>
+  
+    <fieldset class="form-user__location">
+      <mr-sub-form-location
+        [formControlName]="form.formControlNames.location"
+      ></mr-sub-form-location>
+    </fieldset>
+  
+    <fieldset class="form-user__description">
+      <mr-sub-form-textarea 
+        [text]="'Presentación personal'"
+        [placeholder]="'Yo soy...'"
+        [formControlName]="form.formControlNames.description"
+      ></mr-sub-form-textarea>
+    </fieldset>
+  </div>
+
+  <fieldset class="form-user__file">
+    <mr-sub-form-file
+      [formControlName]="form.formControlNames.image"
+    ></mr-sub-form-file>
+  </fieldset>
+
+  <mr-button 
+    [label]="'Guardar'"
+    [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
+    (clicked)="manualSave$.next()"
+  ></mr-button>
+</form>

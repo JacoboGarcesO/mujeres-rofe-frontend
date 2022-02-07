@@ -1,0 +1,21 @@
+@use '../../_styles/index.scss' as styles;
+
+.sub-form-location {
+  &__section {
+    gap: styles.$box-pad-base;
+    display: grid;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+}
+
+@media (min-width: styles.$bkp-tablet) {
+  .sub-form-location {
+    &__section {
+      grid-template-columns: repeat(2, styles.$box-fr-base);
+    }
+  }
+  
+}

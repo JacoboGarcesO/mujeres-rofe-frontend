@@ -49,17 +49,19 @@
       flex: 1;
     }
 
-    &__input {
+    &__input,
+    &__textarea {
       @include font.small;
       display: inline-grid;
       border: none;
       outline: none;
       background-color: transparent;
+      color: color.$typo-base;
     }
 
     &__icon {
       color: color.$primary-color;
-      font-size: 0.75rem;
+      font-size: 0.95rem;
     }
   }
 }

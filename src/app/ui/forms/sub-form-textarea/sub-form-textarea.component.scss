@@ -1,0 +1,9 @@
+@use '../../_styles/index.scss' as styles;
+
+@include styles.form-input($name: 'sub-form-textarea');
+
+.sub-form-textarea {
+  &__label {
+    border-radius: styles.$box-rad-medium;
+  }
+}

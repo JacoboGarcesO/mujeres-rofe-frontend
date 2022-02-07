@@ -1,6 +1,7 @@
 <section *ngIf="isOpen" class="modal">
   <mr-card class="modal__card">
     <mr-button-icon
+      *ngIf="canClose"
       class="modal__close"
       [icon]="'times'"
       (click)="toggle()"

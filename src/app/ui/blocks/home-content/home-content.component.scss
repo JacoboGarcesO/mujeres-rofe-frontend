@@ -3,6 +3,8 @@
 .home-content {
   position: relative;
   padding-top: styles.$box-pad-home-content;
+  display: flex;
+  flex-direction: column-reverse;
 
   &__background {
     position: absolute;
@@ -55,7 +57,7 @@
   &__description {
     @include styles.font-extra-large;
     margin: 0 auto;
-    width: 60%;
+    width: 85%;
     text-align: center;
     padding: styles.$box-pad-double styles.$box-pad-none;
 
@@ -67,6 +69,7 @@
 
 @media (min-width: styles.$bkp-tablet) {
   .home-content {
+    flex-direction: column;
     padding-top: styles.$box-pad-home-content-dkp;
 
     &__channels {
@@ -76,6 +79,7 @@
     }
 
     &__description {
+      width: 60%;
       padding: styles.$box-pad-home-content-description styles.$box-pad-none;
     }
 

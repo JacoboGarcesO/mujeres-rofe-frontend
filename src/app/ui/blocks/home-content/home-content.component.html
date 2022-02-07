@@ -35,3 +35,12 @@
     </mr-card>
   </div>
 </div>
+
+<mr-modal #modalRef [canClose]="false">
+  <ng-container>
+    <mr-form-user 
+      [dataInput]="currentUser" 
+      (dataOutput)="handleUpdateUser($event)"
+    ></mr-form-user>
+  </ng-container>
+</mr-modal>
