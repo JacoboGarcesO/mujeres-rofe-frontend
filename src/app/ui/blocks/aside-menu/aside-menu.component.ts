@@ -36,7 +36,7 @@ export class AsideMenuComponent {
     {
       title: 'Contáctanos',
       description: 'Apoyo y soporte',
-      image: 'assets/img/test.png',
+      image: 'assets/img/logo-2.png',
     },
   ];
 

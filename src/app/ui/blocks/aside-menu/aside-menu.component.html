@@ -1,18 +1,10 @@
 <div class="aside-menu" [hidden]="!isVisible">
   <div class="aside-menu__content">
-    <div>
-      <figure class="aside-menu__logo">
-        <mr-image
-          [image]="'assets/img/logo.png'"
-          [alt]="'logo-rofe'"
-        ></mr-image>
-      </figure>
-      <div class="aside-menu__menu">
-        <mr-item-menu
-          *ngFor="let item of items"
-          [item]="item"
-        ></mr-item-menu>
-      </div>
+    <div class="aside-menu__menu">
+      <mr-item-menu
+        *ngFor="let item of items"
+        [item]="item"
+      ></mr-item-menu>
     </div>
     <mr-current-user
       [currentUser]="currentUser"

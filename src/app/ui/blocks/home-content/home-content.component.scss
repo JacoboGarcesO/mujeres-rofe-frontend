@@ -10,7 +10,6 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - 64px);
   }
 
   &__channels {
@@ -56,9 +55,9 @@
   &__description {
     @include styles.font-extra-large;
     margin: 0 auto;
-    width: 70%;
+    width: 60%;
     text-align: center;
-    padding: styles.$box-pad-triple styles.$box-pad-none;
+    padding: styles.$box-pad-double styles.$box-pad-none;
 
     p {
       color: styles.$color-primary-color !important;

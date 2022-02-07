@@ -3,19 +3,18 @@
 .home-content {
   &__bg {
     position: relative;
-    min-height: calc(100vh - 64px);
   }
 
   &__image-top {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 50%;
   }
 
   &__image-bottom {
-    position: absolute;
-    bottom: 0;
+    position: fixed;
+    bottom: -5px;
     right: 0;
     width: 50%;
   }

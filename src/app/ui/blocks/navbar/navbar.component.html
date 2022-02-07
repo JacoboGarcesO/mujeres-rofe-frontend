@@ -1,10 +1,15 @@
 <header class="navbar__container">
   <nav class="navbar__content">
-    <mr-button-burguer 
-      class="navbar__button" 
-      [ngClass]="{ 'navbar__button--active': isOpen }"
-      (clicked)="handleClick($event)"
-    ></mr-button-burguer>
+    <div class="navbar__branding">
+      <mr-button-burguer 
+        class="navbar__button" 
+        [ngClass]="{ 'navbar__button--active': isOpen }"
+        (clicked)="handleClick($event)"
+      ></mr-button-burguer>
+      <figure class="navbar__logo">
+        <mr-image [image]="'assets/img/logo-3.png'" [alt]="'logo'"></mr-image>
+      </figure>
+    </div>
     <mr-aside-menu 
       [isVisible]="isOpen"
       [currentUser]="currentUser"
