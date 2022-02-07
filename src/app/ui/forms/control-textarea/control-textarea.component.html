@@ -1,0 +1,25 @@
+<div class="control-textarea" [formGroup]="form.formGroup">
+  <label
+    class="control-textarea__label"
+    [for]="uniqueId"
+  >
+    <div class="control-textarea__text">
+      <mr-text
+        [type]="'line'"
+        [size]="'base'"
+        [text]="text"
+      ></mr-text>
+      <textarea
+        class="control-textarea"
+        type="textarea"
+        [formControlName]="form.formControlNames.value"
+        [id]="uniqueId"
+        [placeholder]="placeholder ?? ''"
+        [rows]="rows"
+        (keypress)="handleKeypress($event.key)"
+        (focus)="handleFocus($event.target)"
+        (blur)="handleBlur()"
+      ></textarea>
+    </div>
+  </label>
+</div>
