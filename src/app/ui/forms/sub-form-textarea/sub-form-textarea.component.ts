@@ -50,12 +50,12 @@ export class SubFormTextareaComponent {
   }
 
   private toggleLabelFocus(toggle: boolean): void {
-    const classes = 'control-textarea__label--focus';
+    const classes = 'sub-form-textarea__label--focus';
     this.toggleLabelClass(toggle, classes);
   }
 
   private toggleLabelClass(toggle: boolean, classes: string): void {
-    const label = this.el?.nativeElement?.querySelector('.control-textarea__label');
+    const label = this.el?.nativeElement?.querySelector('.sub-form-textarea__label');
 
     if (!label) { return; }
 

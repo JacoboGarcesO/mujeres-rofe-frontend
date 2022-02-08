@@ -12,9 +12,9 @@ import { MiscUtil } from 'src/app/core/utils/misc.util';
 })
 export class SubFormInputComponent {
   @Input() type: 'input' | 'email' | 'password' = 'input';
-  @Input() icon: string | undefined;
-  @Input() label: string | undefined;
-  @Input() placeholder: string | undefined;
+  @Input() icon: string;
+  @Input() label: string;
+  @Input() placeholder: string;
   @Input() patternKey = '';
   public uniqueId = MiscUtil.uuid();
   public form = createForm<string, { value: string }>(this, {

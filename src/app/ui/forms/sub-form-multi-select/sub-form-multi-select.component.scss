@@ -1,0 +1,27 @@
+@use '../../_styles/index.scss' as styles;
+
+@include styles.form-input($name: 'sub-form-multi-select');
+
+.sub-form-multi-select {
+  &__label {
+    .multiselect-dropdown {
+      .dropdown-btn {
+        border: none !important;
+        padding: 0 !important;
+        line-height: 0 !important;
+        @include styles.font-small;
+        display: inline-grid;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        color: styles.$color-typo-base;
+        
+        .dropdown-multiselect {
+          &__caret {
+            display: none !important;
+          }          
+        }
+      }      
+    }
+  }
+}

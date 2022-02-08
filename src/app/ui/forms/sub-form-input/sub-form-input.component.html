@@ -11,8 +11,9 @@
         [weight]="'bold'"
         [text]="label"
       ></mr-text>
-      <input 
-        class="sub-form-input__input" 
+      <input
+        class="sub-form-input__input"
+        [id]="uniqueId"
         [formControlName]="form.formControlNames.value" 
         [type]="type"
         [placeholder]="placeholder ?? ''" 

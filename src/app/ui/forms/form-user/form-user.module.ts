@@ -8,6 +8,7 @@ import { SubFormLocationModule } from '../sub-form-location/sub-form-location.mo
 import { SubFormSelectModule } from '../sub-form-select/sub-form-select.module';
 import { SubFormFileModule } from '../sub-form-file/sub-form-file.module';
 import { SubFormTextareaModule } from '../sub-form-textarea/sub-form-textarea.module';
+import { SubFormMultiSelectModule } from '../sub-form-multi-select/sub-form-multi-select.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { SubFormTextareaModule } from '../sub-form-textarea/sub-form-textarea.mo
     SubFormSelectModule,
     SubFormFileModule,
     SubFormTextareaModule,
+    SubFormMultiSelectModule,
   ],
   exports: [
     FormUserComponent,

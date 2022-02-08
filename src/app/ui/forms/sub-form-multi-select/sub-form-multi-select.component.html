@@ -1,0 +1,27 @@
+<div class="sub-form-multi-select" [formGroup]="form.formGroup">
+  <label 
+    class="sub-form-multi-select__label"
+    [for]="uniqueId"
+  >
+    <i *ngIf="!!icon" class="sub-form-multi-select__icon {{icon}}"></i>
+    <div class="sub-form-multi-select__text">
+      <mr-text
+        [type]="'line'"
+        [size]="'base'"
+        [weight]="'bold'"
+        [text]="label"
+      ></mr-text>
+      <ng-multiselect-dropdown
+        [id]="uniqueId"
+        [placeholder]="placeholder"
+        [settings]="dropdownSettings"
+        [data]="options"
+        [(ngModel)]="selectedOptions"
+        [formControlName]="form.formControlNames.value"
+        (onSelect)="onItemSelect($event)"
+        (onSelectAll)="onSelectAll()"
+        (onDeSelect)="onItemDeselect($event)"
+      ></ng-multiselect-dropdown>
+    </div>
+  </label>
+</div>
