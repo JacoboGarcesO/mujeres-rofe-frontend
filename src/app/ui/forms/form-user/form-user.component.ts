@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
+import { OptionModel } from 'src/app/core/models/option.model';
 import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
 
 @Component({
@@ -12,7 +13,10 @@ import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormUserComponent  {
-  @Input() currentUser: CurrentUserModel | undefined;
+  @Input() currentUser: CurrentUserModel ;
+  @Input() hobbies: OptionModel[];
+  @Input() states: OptionModel[];
+  @Input() cities: OptionModel[];
 
   public manualSave$: Subject<void> = new Subject();
   private input$: Subject<CurrentUserModel> = new Subject();
@@ -40,8 +44,9 @@ export class FormUserComponent  {
       instagram: new FormControl(null, Validators.required),
       description: new FormControl(null, Validators.required),
       phoneNumber: new FormControl(null, Validators.required),
+      hobbies: new FormControl(null, Validators.required),
+      document: new FormControl(null, Validators.required),
       location:new FormControl(null),
-      hobbies: new FormControl(null),
       // --------------------
       id: new FormControl(null),
       rol: new FormControl(null),
@@ -49,6 +54,7 @@ export class FormUserComponent  {
       message: new FormControl(null),
       isPending: new FormControl(null),
       nameComplete: new FormControl(null),
+      password: new FormControl(null),
     },
   });
 }

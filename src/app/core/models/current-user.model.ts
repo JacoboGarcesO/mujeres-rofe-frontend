@@ -12,10 +12,12 @@ export interface CurrentUserModel {
   token: string;
   message: string;
   isPending: boolean;
+  document?: string;
   image?: MediaModel | File;
   description?: string;
   location?: UserLocationModel;
   instagram?: string; 
   hobbies?: string[];
   phoneNumber?: number;
+  password?: string;
 }

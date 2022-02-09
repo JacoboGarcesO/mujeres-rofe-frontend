@@ -1,7 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ViewEncapsulation, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, ViewEncapsulation, Renderer2, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
+import { debounceTime, distinctUntilChanged, Subject, Subscription, tap } from 'rxjs';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { MiscUtil } from 'src/app/core/utils/misc.util';
 
@@ -13,81 +13,118 @@ import { MiscUtil } from 'src/app/core/utils/misc.util';
   providers: subformComponentProviders(SubFormMultiSelectComponent),
   encapsulation: ViewEncapsulation.None,
 })
-export class SubFormMultiSelectComponent implements OnInit {
-  @Input() placeholder: string;
-  @Input() isDisabled: boolean;
-  @Input() options: OptionModel[];
-  @Input() selectedOptions: OptionModel[];
-  @Input() icon: string;
-  @Input() label: string;
-  public uniqueId = MiscUtil.uuid();
-  public dropdownSettings: IDropdownSettings;
-  public isVisible = false;
-  public form = createForm<OptionModel[], { value: OptionModel[]}>(this, {
+export class SubFormMultiSelectComponent implements OnInit, OnDestroy {
+  @Input() icon!: string;
+  @Input() label!: string;
+  @Input() placeholder!: string;
+  @Input() options!: OptionModel[];
+  @Input() tabid!: string;
+  @Input() isSearchable = false;
+  private termSubject: Subject<string> = new Subject();
+  private subscriptions: Subscription = new Subscription();
+  private optionsListValue: OptionModel[] = [];
+  private uniqueId = MiscUtil.uuid();
+  private globalListenFunc: () => void;
+  public form = createForm<string[], { value: string[] }>(this, {
     formType: FormType.SUB,
     formControls: {
-      value: new FormControl(null, Validators.required),
+      value: new FormControl([]),
     },
-    toFormGroup: (value: OptionModel[]): { value: OptionModel[] } => {
+    toFormGroup: (value: string[]): { value: string[] } => {
       return { value };
     },
-    fromFormGroup: (formValue: { value: OptionModel[] }): OptionModel[] => {
+    fromFormGroup: (formValue: { value: string[] }): string[] => {
       return formValue.value;
     },
   });
 
-  constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
-  ) { }
+  constructor(    
+    private renderer: Renderer2, 
+    private cdRef: ChangeDetectorRef,
+  ) { 
+    this.bindClosest();
+  }
+
+  get showSearchable(): boolean {
+    return this.isSearchable && this.options?.length > 10;
+  }
+
+  get optionsSelected(): OptionModel[] {
+    return this.options?.filter((option) => this.form.formGroup.controls.value.value.includes(option.id));
+  }
+
+  get optionsList(): OptionModel[] {
+    const options = this.optionsListValue?.length ? this.optionsListValue : this.options;
+    return this.showSearchable ? options?.slice(0, 10) : options;
+  }
 
   ngOnInit(): void {
-    this.dropdownSettings = {
-      singleSelection: false,
-      idField: 'id',
-      textField: 'label',
-      itemsShowLimit: 2,
-      enableCheckAll: false,
-    };
+    this.listenTerm();
   }
 
-  toggle(): void {
-    this.toggleLabelFocus(!this.isVisible);
-    this.isVisible = !this.isVisible;
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
+    this.destroyClosest();
   }
 
-  onItemSelect(selectedOption: OptionModel) {
-    this.selectedOptions?.filter((option) => option?.id !== selectedOption?.id)?.push(selectedOption);
-    this.form.formGroup.controls.value.setValue(this.selectedOptions);
-    this.toggleLabelFocus(false);
+  handleClick(event: Event, optionId: string): void {
+    event.stopPropagation();    
+    const options = this.form.formGroup.controls.value.value;
+
+    if (!options.includes(optionId)) {
+      options.push(optionId);
+    }
+
+    this.form.formGroup.controls.value.setValue(options);
   }
 
-  onItemDeselect(deselectedOption: OptionModel) {
-    this.selectedOptions = this.selectedOptions?.filter((option) => option?.id !== deselectedOption?.id);
-    this.form.formGroup.controls.value.setValue(this.selectedOptions);
+  handleDeselected(optionId: string): void {
+    const options = this.form.formGroup.controls.value.value.filter((option) => option !== optionId);
+    this.form.formGroup.controls.value.setValue(options);
   }
 
-  handleBlur(): void {
-    this.toggleLabelFocus(false);
+  handleInput(term: any): void {
+    this.termSubject.next(term.value);
   }
 
-  private toggleLabelFocus(toggle: boolean): void {
-    const classes = 'sub-form-multi-select__label--focus';
-    this.toggleLabelClass(toggle, classes);
+  trackIndex(index: number): number {
+    return index;
   }
 
-  private toggleLabelError(toggle: boolean): void {
-    const classes = 'sub-form-multi-select__label--error';
-    this.toggleLabelClass(toggle, classes);
+  private listenTerm(): void {
+    this.subscriptions.add(
+      this.termSubject.pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        tap(this.filterOptions.bind(this)),
+      ).subscribe(),
+    );
   }
 
-  private toggleLabelClass(toggle: boolean, classes: string): void {
-    const label = this.el?.nativeElement?.querySelector('.sub-form-multi-select__label');
+  private filterOptions(term: string): void {
+    const filteredOptions = this.options.filter(
+      (option) => (option.label?.toLowerCase().includes(term?.toLowerCase())));
 
-    if (!label) { return; }
+    this.optionsListValue = filteredOptions.length ? filteredOptions : this.options;
+    this.cdRef.markForCheck();
+  }
 
-    toggle
-      ? this.renderer.addClass(label, classes)
-      : this.renderer.removeClass(label, classes);
+  private closeOptions(): void {
+    this.optionsListValue = [];
+    this.cdRef.markForCheck();
+  }
+
+  private bindClosest(): void {
+    this.globalListenFunc = this.renderer.listen('window', 'click', this.closest.bind(this));
+  }
+
+  private destroyClosest(): void {
+    this.globalListenFunc();
+  }
+
+  private closest(event: MouseEvent): void {
+    const target = event.target as unknown as HTMLElement;
+    const closest = target.closest(`.closest__form-multiselect__${this.uniqueId}`);
+    if (!closest) { this.closeOptions(); }
   }
 }

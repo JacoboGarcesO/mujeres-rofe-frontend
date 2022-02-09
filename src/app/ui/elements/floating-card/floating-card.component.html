@@ -1,10 +1,10 @@
 <div *ngIf="isVisible" class="floating-card">
   <div class="floating-card__top">
-    <mr-button
+    <mr-button-icon
       class="floating-card__close"
-      [label]="'Cerrar' | uppercase"
+      [icon]="'times'"
       (click)="handleClick()"
-    ></mr-button>
+    ></mr-button-icon>
     <div class="floating-card__header">
       <ng-content select="[header]"></ng-content>
     </div>

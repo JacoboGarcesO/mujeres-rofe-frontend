@@ -18,6 +18,46 @@
     cursor: pointer;
   }
 
+  &__times-circle {
+    cursor: pointer;
+    font-size: 0.75rem;
+  }
+
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: styles.$box-pad-half;
+    row-gap: 3px;
+    width: 200px;
+
+    &--active {
+      position: relative;
+      height: 20px;
+      overflow: hidden;
+      z-index: styles.$box-z-2;
+
+      &:hover {
+        overflow: visible;
+      }
+    }
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: styles.$box-pad-half;
+    border-radius: styles.$box-rad-large;
+    background-color: styles.$color-primary-color;
+    width: fit-content;
+    color: styles.$color-bg-white;
+    padding: 0 0.25rem;
+
+    .text {
+      color: styles.$color-bg-white !important;
+    }
+  }
+
   &__floating {
     min-width: 100%;
   }

@@ -10,4 +10,9 @@
   align-items: center;
   cursor: pointer;
   padding: styles.$box-pad-none;
+  transition: styles.$animation-ease;
+
+  &:hover {
+    background-color: styles.$color-bg-dark;
+  }
 }

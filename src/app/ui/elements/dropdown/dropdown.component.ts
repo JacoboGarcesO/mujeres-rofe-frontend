@@ -1,5 +1,6 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, Inject, ElementRef, ChangeDetectorRef, Renderer2, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter, Inject, ElementRef, ChangeDetectorRef, Renderer2, OnDestroy, ViewEncapsulation } from '@angular/core';
+import { OptionModel } from 'src/app/core/models/option.model';
 import { MiscUtil } from 'src/app/core/utils/misc.util';
 
 @Component({
@@ -7,15 +8,18 @@ import { MiscUtil } from 'src/app/core/utils/misc.util';
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class DropdownComponent implements OnInit, OnDestroy {
   @Input() icon!: string;
   @Input() label!: string;
   @Input() placeholder!: string;
-  @Input() text: string | undefined;
+  @Input() text: string;
+  @Input() options: OptionModel[];
   @Input() tabid!: string;
   @Input() canDeleteText!: boolean;
   @Output() deletedText: EventEmitter<void> = new EventEmitter();
+  @Output() deselectedOption: EventEmitter<string> = new EventEmitter();
   public isVisible!: boolean;
   public uniqueId =  MiscUtil.uuid();
   private globalListenFunc!: () => void;
@@ -51,6 +55,10 @@ export class DropdownComponent implements OnInit, OnDestroy {
 
   handleDeleteText(): void {
     this.deletedText.emit();
+  }
+
+  handleDeselect(optionId: string): void {
+    this.deselectedOption.emit(optionId);
   }
 
   private animateCard(): void {

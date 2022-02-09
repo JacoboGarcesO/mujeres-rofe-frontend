@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ViewChild, AfterViewInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
+import { OptionModel } from 'src/app/core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
 
 @Component({
@@ -12,6 +13,9 @@ import { ModalComponent } from '../../elements/modal/modal.component';
 export class HomeContentComponent implements AfterViewInit {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @Input() currentUser: CurrentUserModel;
+  @Input() states: OptionModel[];
+  @Input() cities: OptionModel[];
+  @Input() hobbies: OptionModel[];
   @Output() userUpdated: EventEmitter<CurrentUserModel> = new EventEmitter();
 
   constructor(private cdRef: ChangeDetectorRef) { }

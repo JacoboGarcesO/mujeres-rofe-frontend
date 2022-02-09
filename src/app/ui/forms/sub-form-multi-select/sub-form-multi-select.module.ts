@@ -4,6 +4,7 @@ import { SubFormMultiSelectComponent } from './sub-form-multi-select.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TextModule } from '../../elements/text/text.module';
+import { DropdownModule } from '../../elements/dropdown/dropdown.module';
 
 
 @NgModule({
@@ -12,9 +13,8 @@ import { TextModule } from '../../elements/text/text.module';
   ],
   imports: [
     CommonModule,
-    NgMultiSelectDropDownModule.forRoot(),
-    FormsModule,
     ReactiveFormsModule,
+    DropdownModule,
     TextModule,
   ],
   exports: [

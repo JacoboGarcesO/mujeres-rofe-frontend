@@ -2,17 +2,21 @@
   <fieldset class="sub-form-location__section">
     <mr-sub-form-select
       [canDeleteText]="true"
+      [isSearchable]="true"
       [icon]="'fas fa-compass'"
       [label]="'Departamento'"
       [placeholder]="'Seleccionar...'"
+      [options]="states"
       [formControlName]="form.formControlNames.state"
     ></mr-sub-form-select>
 
     <mr-sub-form-select
       [canDeleteText]="true"
+      [isSearchable]="true"
       [icon]="'fas fa-city'"
       [label]="'Ciudad'"
       [placeholder]="'Seleccionar...'"
+      [options]="cities"
       [formControlName]="form.formControlNames.city"
     ></mr-sub-form-select>
   </fieldset>

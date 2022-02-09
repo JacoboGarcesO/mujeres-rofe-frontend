@@ -39,7 +39,10 @@
 <mr-modal #modalRef [canClose]="false">
   <ng-container>
     <mr-form-user 
-      [dataInput]="currentUser" 
+      [dataInput]="currentUser"
+      [cities]="cities"
+      [states]="states"
+      [hobbies]="hobbies"
       (dataOutput)="handleUpdateUser($event)"
     ></mr-form-user>
   </ng-container>

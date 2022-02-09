@@ -37,7 +37,8 @@
         [label]="'Hobbies'"
         [placeholder]="'Seleccionar...'"
         [icon]="'fas fa-skating'"
-        [options]="[{id: '1', label: 'cantar'}, {id: '2', label: 'follar'}, {id: '3', label: 'follar'}, {id: '5', label: 'follar'}, {id: '4', label: 'follar'}]"
+        [options]="hobbies"
+        [isSearchable]="true"
         [formControlName]="form.formControlNames.hobbies"
       ></mr-sub-form-multi-select>
   
@@ -52,11 +53,21 @@
   
     <fieldset class="form-user__location">
       <mr-sub-form-location
+        [cities]="cities"
+        [states]="states"
         [formControlName]="form.formControlNames.location"
       ></mr-sub-form-location>
     </fieldset>
   
     <fieldset class="form-user__description">
+      <mr-sub-form-input 
+        [type]="'number'"
+        [label]="'Documento'"
+        [icon]="'fab fa-document'"
+        [placeholder]="'11111111...'"
+        [formControlName]="form.formControlNames.document"
+      ></mr-sub-form-input>
+
       <mr-sub-form-textarea 
         [text]="'Presentación personal'"
         [placeholder]="'Yo soy...'"

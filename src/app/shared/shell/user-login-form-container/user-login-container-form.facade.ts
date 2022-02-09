@@ -11,7 +11,7 @@ import { AppState } from 'src/app/core/state/app.state';
   providedIn: 'root',
 })
 export class UserLoginContainerFacade {
-  private subscriptions: Subscription | undefined;
+  private subscriptions: Subscription;
 
   constructor(
     private state: AppState,

@@ -17,6 +17,7 @@ export class ApiToCurrentUserMapper {
       rol: toRolEnum(response?.user?.rol),
       token: response?.token,
       isPending: response?.user?.isPending,
+      password: response?.user?.password,
       image: {
         id: response?.user?.image?._id,
         url: response?.user?.image?.url,

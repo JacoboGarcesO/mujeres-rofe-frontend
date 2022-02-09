@@ -17,11 +17,22 @@
         [text]="label"
       ></mr-text>
       <mr-text
+        *ngIf="!options?.length"
         class="dropdown__input"
         [type]="'line'"
         [size]="'small'"
         [text]="text || placeholder"
       ></mr-text>
+      <div *ngIf="options" class="dropdown__options" [ngClass]="{ 'dropdown__options--active': options?.length > 2 }">
+        <span *ngFor="let option of options" class="dropdown__option">
+          <mr-text
+            [type]="'line'"
+            [size]="'small'"
+            [text]="option?.label"
+          ></mr-text>
+          <i class="dropdown__times-circle fas fa-times-circle" (click)="handleDeselect(option?.id)"></i>
+        </span>
+      </div>
     </div>
 
     <i *ngIf="canDeleteText && text" class="dropdown__times fas fa-times" (click)="handleDeleteText()"></i>

@@ -16,6 +16,15 @@
     flex: 1;
     overflow-y: auto;
   }
+
+  &__close {
+    display: flex;
+    justify-content: flex-end;
+
+    .button-icon {
+      border-radius: 0 !important;
+    }
+  }
 }
 
 @media (min-width: styles.$bkp-tablet) {

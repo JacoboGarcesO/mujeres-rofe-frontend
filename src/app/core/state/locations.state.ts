@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CurrentUserModel } from '../models/current-user.model';
 import { OptionModel } from '../models/option.model';
 import { StateFactory } from './factory.state';
 

@@ -1,11 +1,12 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, ChangeDetectionStrategy, OnChanges, Input, Output, EventEmitter, ElementRef, Renderer2, Inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, OnChanges, Input, Output, EventEmitter, ElementRef, Renderer2, Inject, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'mr-floating-card',
   templateUrl: './floating-card.component.html',
   styleUrls: ['./floating-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class FloatingCardComponent implements OnChanges {
   @Input() isVisible = false;

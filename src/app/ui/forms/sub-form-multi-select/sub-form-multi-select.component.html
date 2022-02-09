@@ -1,28 +1,30 @@
-<div class="sub-form-multi-select" [formGroup]="form.formGroup">
-  <label 
-    class="sub-form-multi-select__label"
-    [for]="uniqueId"
-  >
-    <i *ngIf="!!icon" class="sub-form-multi-select__icon {{icon}}"></i>
-    <div class="sub-form-multi-select__text">
-      <mr-text
-        [type]="'line'"
-        [size]="'base'"
-        [weight]="'bold'"
-        [text]="label"
-      ></mr-text>
-      <ng-multiselect-dropdown
-        [formControlName]="form.formControlNames.value"
-        [id]="uniqueId"
-        [placeholder]="placeholder"
-        [settings]="dropdownSettings"
-        [data]="options"
-        [(ngModel)]="selectedOptions"
-        (onSelect)="onItemSelect($event)"
-        (onDeSelect)="onItemDeselect($event)"
-        (click)="toggle()"
-      ></ng-multiselect-dropdown>
-    </div>
-    <i class="sub-form-multi-select__caret fas fa-chevron-down" [ngClass]="{'sub-form-multi-select__caret--reverse': isVisible}"></i>
-  </label>
-</div>
+<mr-dropdown
+  #dropdown
+  [icon]="icon"
+  [label]="label"
+  [placeholder]="placeholder"
+  [options]="optionsSelected"
+  [tabid]="tabid"
+  [canDeleteText]="false"
+  (deselectedOption)="handleDeselected($event)"
+>
+  <div *ngIf="showSearchable" class="sub-form-multi-select__searchbox" header>
+    <input
+      class="sub-form-multi-select__search"
+      type="search"
+      [placeholder]="'Buscar...'"
+      (input)="handleInput($event.target)"
+    >
+  </div>
+
+  <div class="sub-form-multi-select__options">
+    <button
+      *ngFor="let option of optionsList; trackBy: trackIndex"
+      class="sub-form-multi-select__option"
+      type="button"
+      (click)="handleClick($event, option?.id); dropdown.handleClose()"
+    >
+      <mr-text [type]="'line'" [size]="'small'" [text]="option?.label"></mr-text>
+    </button>
+  </div>
+</mr-dropdown>
