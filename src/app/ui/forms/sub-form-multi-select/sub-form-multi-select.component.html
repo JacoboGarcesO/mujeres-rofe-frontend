@@ -12,16 +12,17 @@
         [text]="label"
       ></mr-text>
       <ng-multiselect-dropdown
+        [formControlName]="form.formControlNames.value"
         [id]="uniqueId"
         [placeholder]="placeholder"
         [settings]="dropdownSettings"
         [data]="options"
         [(ngModel)]="selectedOptions"
-        [formControlName]="form.formControlNames.value"
         (onSelect)="onItemSelect($event)"
-        (onSelectAll)="onSelectAll()"
         (onDeSelect)="onItemDeselect($event)"
+        (click)="toggle()"
       ></ng-multiselect-dropdown>
     </div>
+    <i class="sub-form-multi-select__caret fas fa-chevron-down" [ngClass]="{'sub-form-multi-select__caret--reverse': isVisible}"></i>
   </label>
 </div>

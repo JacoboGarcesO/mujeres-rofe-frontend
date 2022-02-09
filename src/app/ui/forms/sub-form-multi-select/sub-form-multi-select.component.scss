@@ -3,25 +3,85 @@
 @include styles.form-input($name: 'sub-form-multi-select');
 
 .sub-form-multi-select {
+  &__caret {
+    &--reverse {
+      @include styles.animation-reverse;
+    }
+  }
   &__label {
     .multiselect-dropdown {
+    
+      .dropdown-list {
+        padding: 1rem !important;
+        border: none !important;
+        margin-top: 10px !important;
+        width: 200px !important;
+        left: -20px;
+        border-radius: 1rem;
+        @include styles.animation-scale-up-top;
+        background-color: styles.$color-bg-white;
+        z-index: styles.$box-z-13;
+        box-shadow: 0px 3px 4px rgba(9, 30, 66, 0.2);
+
+        .multiselect-item-checkbox input[type=checkbox]:checked + div {
+          &::before {
+            background-color: styles.$color-primary-color-light !important;
+          }
+        }
+
+        li {
+          border-radius: styles.$box-rad-large;
+          padding: styles.$box-pad-half;
+          transition: styles.$animation-ease;
+  
+          &:hover {
+            background-color: styles.$color-primary-color-light !important;
+          }
+        }
+      }
+  
       .dropdown-btn {
         border: none !important;
         padding: 0 !important;
         line-height: 0 !important;
         @include styles.font-small;
-        display: inline-grid;
-        border: none;
-        outline: none;
-        background-color: transparent;
-        color: styles.$color-typo-base;
+        display: inline-flex !important;
+        gap: 1rem;
+        border: none !important;
+        outline: none !important;
         
         .dropdown-multiselect {
           &__caret {
             display: none !important;
           }          
         }
-      }      
+
+        .selected-item-container {
+          border-radius: 0.5rem !important;
+          background-color: styles.$color-primary-color-light !important;
+        }
+
+        .selected-item {
+          border: none !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          color: styles.$color-typo-base !important;
+
+          a {
+            color: styles.$color-typo-base !important;
+          }
+        }
+      }
+      
+      li.multiselect-item-checkbox div {
+        padding-left: 1.5rem !important;
+
+        &::before, &::after {
+          border: 1px solid styles.$color-primary-color !important;
+          color: styles.$color-primary-color !important;
+          border-radius: styles.$box-rad-rounded;
+        }
+      }
     }
   }
 }
