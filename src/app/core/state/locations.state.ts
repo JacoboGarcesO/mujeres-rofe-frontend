@@ -7,8 +7,8 @@ import { StateFactory } from './factory.state';
   providedIn: 'root',
 })
 export class LocationsState {
-  private states$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null as unknown as OptionModel[]);
-  private cities$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null as unknown as OptionModel[]);
+  private states$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
+  private cities$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) { }
 

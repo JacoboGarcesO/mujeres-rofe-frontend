@@ -33,3 +33,28 @@ $ease: all .25s ease 0s;
     transform-origin: 0% 0%;
   }
 }
+
+@mixin jumping {
+  animation: 1.25s ease-in-out 0s infinite normal none running jumping;
+}
+@keyframes jumping {
+  0% {
+    opacity: 0.3;
+    transform: translateY(0px);
+  }
+
+  20% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+
+  40% {
+    opacity: 0.3;
+    transform: translateY(0px);
+  }
+
+  100% {
+    opacity: 0.3;
+    transform: translateY(0px);
+  }
+}

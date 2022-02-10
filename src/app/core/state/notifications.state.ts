@@ -6,14 +6,14 @@ import { StateFactory } from './factory.state';
 @Injectable({
   providedIn: 'root',
 })
-export class UsersState {
-  private currentUser$: BehaviorSubject<CurrentUserModel> = new BehaviorSubject(null);
+export class NotificationsState {
+  private notification$: BehaviorSubject<string> = new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) { }
 
   store() {
     return {
-      currentUser: this.factory.state(this.currentUser$),
+      notification: this.factory.state(this.notification$),
     };
   }
 

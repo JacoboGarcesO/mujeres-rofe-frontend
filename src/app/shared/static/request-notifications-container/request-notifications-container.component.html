@@ -1,0 +1,9 @@
+<ng-container *ngIf="{
+  notification: (notification$ | async)
+} as data">
+  <mr-request-notifications
+    *ngIf="data.notification"
+    [message]="data.notification"
+    (closeClicked)="handleClose()"
+  ></mr-request-notifications>
+</ng-container>

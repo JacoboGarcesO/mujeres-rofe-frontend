@@ -4,6 +4,7 @@ import { LayoutMainModule } from 'src/app/ui/layouts/layout-main/layout-main.mod
 import { HeaderContainerModule } from 'src/app/shared/shell/header-container/header-container.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeContentContainerModule } from 'src/app/shared/shell/home-content-container/home-content-container.module';
+import { RequestNotificationsContainerModule } from 'src/app/shared/static/request-notifications-container/request-notifications-container.module';
 
 @NgModule({
   declarations: [],
@@ -13,6 +14,7 @@ import { HomeContentContainerModule } from 'src/app/shared/shell/home-content-co
     LayoutMainModule,
     HeaderContainerModule,
     HomeContentContainerModule,
+    RequestNotificationsContainerModule,
   ],
 })
 export class HomeModule { }

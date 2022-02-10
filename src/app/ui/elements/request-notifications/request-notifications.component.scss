@@ -1,0 +1,40 @@
+@use '../../_styles/index.scss' as styles;
+
+.request-notification {
+  &__container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparentize(styles.$color-bg-white, 0.125);
+  }
+
+  &__dialog {
+    padding: styles.$box-pad-double styles.$box-pad-triple;
+    background-color: styles.$color-primary-color-light;
+    border-radius: styles.$box-rad-medium;
+    max-width: styles.func-toRem(40);
+  }
+
+  &__loader {
+    display: block;
+    margin-bottom:  styles.$box-mrg-base;
+  }
+
+  &__text {
+    @include styles.font-medium;
+    text-align: center;
+  }
+
+  &__close {
+    display: block;
+    margin: styles.$box-mrg-double auto 0;
+    text-align: center;
+    width: 50%;
+  }
+}

@@ -1,0 +1,15 @@
+<div class="request-notification__container">
+  <div class="request-notification__dialog">
+    <mr-loader class="request-notification__loader"></mr-loader>
+    <div class="request-notification__text">
+      {{message}}
+    </div>
+    <mr-button
+      *ngIf="showClose"
+      class="request-notification__close"
+      [type]="'button'"
+      [label]="'Cerrar'"
+      (clicked)="handleClose()"
+    ></mr-button>
+  </div>
+</div>
