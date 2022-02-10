@@ -44,6 +44,7 @@
       [states]="states"
       [hobbies]="hobbies"
       (dataOutput)="handleUpdateUser($event)"
+      (stateSelected)="handleLoadCities($event)"
     ></mr-form-user>
   </ng-container>
 </mr-modal>

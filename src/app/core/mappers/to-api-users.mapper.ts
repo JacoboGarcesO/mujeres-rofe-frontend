@@ -22,7 +22,8 @@ export class ToApiUsersMapper {
     formData.append('hobbies', hobbies);
     formData.append('phoneNumber', `${user.phoneNumber}`);
     formData.append('socialsNetworks', socialNetworks);
-    formData.append('password', user.password);
+    formData.append('image', image);
+    formData.append('location', JSON.stringify(user.location));
 
     return formData;
   }
@@ -32,9 +33,8 @@ export class ToApiUsersMapper {
     return JSON.stringify(socialNetwork);
   }
 
-  private getImage(image: MediaModel | File): any {
-    console.log(image);
-    
+  private getImage(image: any): File {
+    return image.file as File;
   }
 
   private getHobbies(hobbies: string[]): any {

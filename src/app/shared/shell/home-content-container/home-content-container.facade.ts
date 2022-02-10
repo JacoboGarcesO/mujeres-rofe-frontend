@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, Subscription, tap } from 'rxjs';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { OptionModel } from 'src/app/core/models/option.model';
+import { CurrentUserService } from 'src/app/core/services/current-user.service';
 import { HobbiesService } from 'src/app/core/services/hobbies.service';
 import { LocationsService } from 'src/app/core/services/locations.service';
 import { UsersService } from 'src/app/core/services/users.service';
@@ -17,7 +18,7 @@ export class HomeContentContainerFacade {
     private state: AppState,
     private locationsService: LocationsService,
     private habbiesService: HobbiesService,
-    private usersService: UsersService,
+    private currentUserService: CurrentUserService,
     // private userService: any,
   ) { }
 
@@ -85,20 +86,24 @@ export class HomeContentContainerFacade {
 
   updateUser(user: CurrentUserModel): void {
     this.subscriptions.add(
-      this.usersService.updateUser(user).pipe(
-
+      this.currentUserService.updateUser(user, user.token).pipe(
+        tap(this.storeCurrentUser.bind(this)),
       ).subscribe(),
     );
   }
   //#endregion
 
   //#region Private Methods 
-  private store(entity: string, states: OptionModel[]): void {
-    this.state.locations?.[entity].set(states);
+  private store(entity: string, options: OptionModel[]): void {
+    this.state.locations?.[entity].set(options);
   }
 
   private storeHobbies(hobbies: OptionModel[]): void {
     this.state.hobbies.hobbies.set(hobbies);
+  }
+
+  private storeCurrentUser(currentUser: CurrentUserModel): void {  
+    this.state.users.currentUser.set(currentUser);
   }
   //#endregion
 }

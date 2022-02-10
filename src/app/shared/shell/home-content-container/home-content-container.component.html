@@ -10,5 +10,6 @@
     [states]="data.states"
     [hobbies]="data.hobbies"
     (userUpdated)="handleUpdateUser($event)"
+    (stateSelected)="handleLoadCitiesByState($event)"
   ></mr-home-content>
 </ng-container>

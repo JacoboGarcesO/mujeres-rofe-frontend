@@ -9,7 +9,7 @@ export interface CurrentUserModel {
   lastName: string;
   nameComplete: string;
   rol: RolsEnum;
-  token: string;
+  token?: string;
   message: string;
   isPending: boolean;
   document?: string;
@@ -19,5 +19,4 @@ export interface CurrentUserModel {
   instagram?: string; 
   hobbies?: string[];
   phoneNumber?: number;
-  password?: string;
 }

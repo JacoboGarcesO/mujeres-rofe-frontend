@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ViewChild, AfterViewInit, ChangeDetectorRef, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input, ViewChild, AfterViewInit, ChangeDetectorRef, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
@@ -10,24 +10,36 @@ import { ModalComponent } from '../../elements/modal/modal.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class HomeContentComponent implements AfterViewInit {
+export class HomeContentComponent implements AfterViewInit, OnChanges {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @Input() currentUser: CurrentUserModel;
   @Input() states: OptionModel[];
   @Input() cities: OptionModel[];
   @Input() hobbies: OptionModel[];
   @Output() userUpdated: EventEmitter<CurrentUserModel> = new EventEmitter();
+  @Output() stateSelected: EventEmitter<string> = new EventEmitter();
 
   constructor(private cdRef: ChangeDetectorRef) { }
 
+  ngOnChanges(): void {
+    if (!this.currentUser?.isPending) {
+      this.modalRef?.close();  
+      this.cdRef.detectChanges();
+    }
+  }
+
   ngAfterViewInit(): void {  
     if (this.currentUser?.isPending) {
-      this.modalRef.toggle();  
+      this.modalRef.open();  
       this.cdRef.detectChanges();   
     }
   }
 
   handleUpdateUser(user: CurrentUserModel): void {
     this.userUpdated.emit(user);
+  }
+
+  handleLoadCities(stateId: string): void {
+    this.stateSelected.emit(stateId);
   }
 }

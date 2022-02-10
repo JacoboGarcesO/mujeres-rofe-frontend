@@ -17,4 +17,14 @@ export class ModalComponent {
     this.isOpen = !this.isOpen;
     this.cdRef.markForCheck();
   }
+
+  open(): void {
+    this.isOpen = true;
+    this.cdRef.markForCheck();
+  }
+
+  close(): void {
+    this.isOpen = false;
+    this.cdRef.markForCheck();
+  }
 }
