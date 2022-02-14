@@ -1,15 +1,1 @@
-<ng-container *ngIf="{
-  currentUser: (currentUser$ | async),
-  states: (states$ | async),
-  hobbies: (hobbies$ | async),
-  cities: (cities$ | async)
-} as data">
-  <mr-home-content
-    [currentUser]="data.currentUser"
-    [cities]="data.cities"
-    [states]="data.states"
-    [hobbies]="data.hobbies"
-    (userUpdated)="handleUpdateUser($event)"
-    (stateSelected)="handleLoadCitiesByState($event)"
-  ></mr-home-content>
-</ng-container>
+<mr-home-content></mr-home-content>

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { ApiToOptionMapper } from '../mappers/api-to-option.mapper';
+import { ApiToUserMapper } from '../mappers/api-to-user.mapper';
 import { ToApiUsersMapper } from '../mappers/to-api-users.mapper';
 import { CurrentUserModel } from '../models/current-user.model';
-import { OptionModel } from '../models/option.model';
 import { URL_RESOURCE } from '../resources/url.resource';
 import { HttpService } from './generals/http.service';
 
@@ -15,11 +14,14 @@ export class UsersService {
   constructor(
     private httpService: HttpService,
     private toApiUsersMapper: ToApiUsersMapper,
+    private apiToUserMapper: ApiToUserMapper,
   ) { }
 
-  updateUser(user: CurrentUserModel): Observable<any> {
+  create(user: CurrentUserModel): Observable<any> {
     const url =  URL_RESOURCE.users;
     const formData = this.toApiUsersMapper.map(user);
-    return this.httpService.putFile(url, formData);
+    return this.httpService.postFile(url, formData).pipe(
+      map((response: any) => this.apiToUserMapper.map(response)),
+    );
   }
 }

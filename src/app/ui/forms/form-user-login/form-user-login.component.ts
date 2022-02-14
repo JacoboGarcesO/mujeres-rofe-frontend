@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
 import { NotificationsEnum } from 'src/app/core/enums/notifications.enum';
@@ -41,4 +42,10 @@ export class FormUserLoginComponent {
       password: new FormControl(null, Validators.required),
     },
   });
+
+  constructor(private router: Router) { }
+
+  navigateToRegister(): void {
+    this.router.navigateByUrl('auth/register');
+  }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RequestNotificacionsContainerFacade } from './request-notifications-container.facade';
+import { RequestNotificationsContainerFacade } from './request-notifications-container.facade';
 
 @Component({
   selector: 'mr-request-notifications-container',
@@ -10,7 +10,7 @@ import { RequestNotificacionsContainerFacade } from './request-notifications-con
 export class RequestNotificationsContainerComponent implements OnInit {
   public notification$: Observable<string>;
 
-  constructor(private facade: RequestNotificacionsContainerFacade) { }
+  constructor(private facade: RequestNotificationsContainerFacade) { }
 
   ngOnInit(): void {
     this.initializeSubscriptions();

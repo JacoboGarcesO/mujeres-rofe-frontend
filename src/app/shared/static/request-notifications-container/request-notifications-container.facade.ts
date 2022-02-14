@@ -5,7 +5,7 @@ import { AppState } from 'src/app/core/state/app.state';
 @Injectable({
   providedIn: 'root',
 })
-export class RequestNotificacionsContainerFacade {
+export class RequestNotificationsContainerFacade {
 
   constructor(
     private state: AppState,

@@ -14,7 +14,7 @@ export class ToApiUsersMapper {
 
     formData.append('firstName', user.firstName);
     formData.append('lastName', user.lastName);
-    formData.append('rol', user.rol);
+    formData.append('rol', 'user');
     formData.append('isPending', 'false');
     formData.append('email', user.email);
     formData.append('description', user.description);

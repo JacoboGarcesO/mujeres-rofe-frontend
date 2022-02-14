@@ -23,4 +23,12 @@
       text-align: center !important;
     }
   }
-}
+
+  &__link {
+    display: flex;
+    justify-content: flex-end;
+    color: styles.$color-primary-color-light;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+} 

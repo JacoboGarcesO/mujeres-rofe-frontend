@@ -36,5 +36,7 @@
       [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
       (clicked)="manualSave$.next()"
     ></mr-button>
+
+    <a class="form-user-login__link" (click)="navigateToRegister()">¿No tienes cuenta? Creala desde aquí.</a>
   </fieldset>
 </form>

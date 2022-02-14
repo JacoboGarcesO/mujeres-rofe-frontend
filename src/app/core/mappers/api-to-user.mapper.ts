@@ -6,8 +6,8 @@ import { MessageUtil } from '../utils/message.util';
 @Injectable({
   providedIn: 'root',
 })
-export class ApiToCurrentUserUpdatedMapper {
-  map(response: any, token: string): CurrentUserModel {
+export class ApiToUserMapper {
+  map(response: any, token?: string): CurrentUserModel {
     return {
       email: response?.users?.[0]?.email,
       id: response?.users?.[0]?._id,

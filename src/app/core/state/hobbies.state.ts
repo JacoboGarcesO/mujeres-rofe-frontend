@@ -7,13 +7,13 @@ import { StateFactory } from './factory.state';
   providedIn: 'root',
 })
 export class HobbiesState {
-  private hobbies: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
+  private hobbies$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) { }
 
   store() {
     return {
-      hobbies: this.factory.state(this.hobbies),
+      hobbies: this.factory.state(this.hobbies$),
     };
   }
 

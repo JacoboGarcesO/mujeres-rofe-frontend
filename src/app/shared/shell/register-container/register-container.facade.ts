@@ -1,9 +1,8 @@
-import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, EMPTY, finalize, Observable, Subscription, tap } from 'rxjs';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { OptionModel } from 'src/app/core/models/option.model';
-import { CurrentUserService } from 'src/app/core/services/current-user.service';
 import { HobbiesService } from 'src/app/core/services/hobbies.service';
 import { LocationsService } from 'src/app/core/services/locations.service';
 import { UsersService } from 'src/app/core/services/users.service';
@@ -12,22 +11,18 @@ import { AppState } from 'src/app/core/state/app.state';
 @Injectable({
   providedIn: 'root',
 })
-export class HomeContentContainerFacade {
+export class RegisterContainerFacade {
   private subscriptions: Subscription;
 
   constructor(
     private state: AppState,
     private locationsService: LocationsService,
     private habbiesService: HobbiesService,
-    private currentUserService: CurrentUserService,
-    // private userService: any,
+    private userService: UsersService,
+    private router: Router,
   ) { }
 
-  //#region Observables 
-  currentUser$(): Observable<CurrentUserModel> {
-    return this.state.users.currentUser.$();
-  }
-
+  //#region Observables
   cities$(): Observable<OptionModel[]> {
     return this.state.locations.cities.$();
   }
@@ -46,6 +41,10 @@ export class HomeContentContainerFacade {
     this.subscriptions = new Subscription();
   }
 
+  destroySubscriptions(): void {
+    this.subscriptions.unsubscribe();
+  }
+
   loadStates(): void {
     this.destroyStates();
     this.subscriptions.add(
@@ -60,6 +59,7 @@ export class HomeContentContainerFacade {
   }
 
   loadCitiesByState(stateId: string): void {
+    
     this.destroyCitiesByState();
     this.subscriptions.add(
       this.locationsService.getCitiesByState(stateId).pipe(
@@ -85,12 +85,14 @@ export class HomeContentContainerFacade {
     this.state.hobbies.hobbies.set(null);
   }
 
-  updateUser(user: CurrentUserModel): void {
+  createUser(user: CurrentUserModel): void {
+    const callback = this.navigateToLogin();
+
     this.notify('init');
     this.subscriptions.add(
-      this.currentUserService.updateUser(user, user.token).pipe(
+      this.userService.create(user).pipe(
         tap(this.storeCurrentUser.bind(this)),
-        tap(this.notify.bind(this, 'complete')),
+        tap(this.notify.bind(this, 'complete', callback)),
         catchError(this.notify.bind(this, 'error', null)),
         finalize(this.notifyClose.bind(this)),
       ).subscribe(),
@@ -118,7 +120,7 @@ export class HomeContentContainerFacade {
     const messages = {
       init: 'Estamos procesando su solicitud',
       complete: 'Su solicitud se completó con éxito',
-      error: 'La solicitud falló',
+      error: 'El proceso que solicitaste falló, inténtalo de nuevo más tarde',
     };
 
     this.state.notifications.notification.set(messages[key]);
@@ -142,6 +144,10 @@ export class HomeContentContainerFacade {
     const lastMessage = this.state.notifications.notification.snapshot();
     const errorMessage = 'La solicitud falló';
     return !lastMessage?.startsWith(errorMessage);
+  }
+
+  private navigateToLogin(): void {
+    this.router.navigateByUrl('/auth/login');
   }
   //#endregion
 }
