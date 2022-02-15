@@ -6,7 +6,39 @@ import { ChannelsContentContainerComponent } from '../../shared/channels/channel
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'contact',
+    component: LayoutMainComponent,
+    children: [
+      { path: '', component: HeaderContainerComponent, outlet: 'header' },
+      { path: '', component: ChannelsContentContainerComponent },
+    ],
+  },
+  {
+    path: 'training',
+    component: LayoutMainComponent,
+    children: [
+      { path: '', component: HeaderContainerComponent, outlet: 'header' },
+      { path: '', component: ChannelsContentContainerComponent },
+    ],
+  },
+  {
+    path: 'opportunities',
+    component: LayoutMainComponent,
+    children: [
+      { path: '', component: HeaderContainerComponent, outlet: 'header' },
+      { path: '', component: ChannelsContentContainerComponent },
+    ],
+  },
+  {
+    path: 'business',
+    component: LayoutMainComponent,
+    children: [
+      { path: '', component: HeaderContainerComponent, outlet: 'header' },
+      { path: '', component: ChannelsContentContainerComponent },
+    ],
+  },
+  {
+    path: 'netword',
     component: LayoutMainComponent,
     children: [
       { path: '', component: HeaderContainerComponent, outlet: 'header' },

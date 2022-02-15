@@ -1,0 +1,59 @@
+@use '../../_styles/index.scss' as styles;
+
+.channels-content {
+    &__notice {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: styles.func-toRem(3.12);
+
+        .text {
+            color: styles.$color-primary-color !important;
+        }
+    }
+
+    &__image {
+        position: relative;
+        width: styles.func-toRem(12.5);
+
+        &--shadow {
+            position: relative;
+            width: styles.func-toRem(12.5);
+            background: styles.$color-primary-color-light !important;
+            border-radius: styles.$box-rad-rounded;
+            padding: styles.$box-pad-base;
+        }
+    }
+}
+
+@media (max-width: styles.$bkp-mobile) {
+    .channels-content {
+        &__image {
+            width: styles.func-toRem(8) !important;
+        }
+    }
+}
+
+@media (max-width: styles.$bkp-tablet) {
+    .channels-content {
+      &__notice {
+        flex-direction: column;
+      }
+    }
+}
+
+@media (max-width: styles.$bkp-desktop) {
+    .channels-content {
+      &__image {
+        width: styles.func-toRem(9.5);
+        
+        .image {
+          object-fit: contain !important;
+        }
+      }
+  
+      &__notice {
+        gap: styles.func-toRem(1.25);
+      }
+    }
+}

@@ -6,3 +6,11 @@
     margin-top: 80px;
   }
 }
+
+@media (max-width: styles.$bkp-mobile) {
+  .channels-background {
+    &__image {
+      height: 200px !important;
+    }
+  }
+}
