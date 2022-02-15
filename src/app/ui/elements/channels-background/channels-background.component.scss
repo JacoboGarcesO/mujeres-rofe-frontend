@@ -1,0 +1,8 @@
+@use '../../_styles/index.scss' as styles;
+
+.channels-background {
+  &__bg {
+    width: 100%;
+    margin-top: 80px;
+  }
+}

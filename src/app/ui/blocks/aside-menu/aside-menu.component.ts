@@ -38,6 +38,10 @@ export class AsideMenuComponent {
       description: 'Apoyo y soporte',
       image: 'assets/img/logo-2.png',
     },
+    {
+      title: 'Administrador',
+      image: 'assets/img/logo-2.png',
+    },
   ];
 
   handleLogout(): void {

@@ -9,6 +9,12 @@ const routes: Routes = [
       .then((module) => module.HomeModule),
     canActivate: [PrivateGuard],
   },
+  {
+    path: 'channels',
+    loadChildren: () => import('./channels/channels.module')
+      .then((module) => module.ChannelsModule),
+    canActivate: [PrivateGuard],
+  },
 ];
 
 @NgModule({
