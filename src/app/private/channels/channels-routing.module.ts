@@ -38,7 +38,7 @@ const routes: Routes = [
     ],
   },
   {
-    path: 'netword',
+    path: 'network',
     component: LayoutMainComponent,
     children: [
       { path: '', component: HeaderContainerComponent, outlet: 'header' },

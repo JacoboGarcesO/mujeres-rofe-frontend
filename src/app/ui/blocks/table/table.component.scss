@@ -1,0 +1,95 @@
+@import '/src/tokens.scss';
+
+.table {
+  &__container {
+    background-color: $backgroundLightyear;
+    border-radius: $radiusSoft;
+
+    &--tableless {
+      background-color: transparent;
+      border-radius: 0;
+    }
+  }
+
+  &__scroll {
+    overflow-x: auto;
+  }
+
+  &__table {
+    width: 100%;
+  }
+
+  &__thead {
+    border-bottom: $pix solid $colorBorderBase;
+  }
+
+  &__trh {
+    border-left: $pix*4 solid transparent;
+  }
+
+  &__th {
+    padding: $pad;
+  }
+
+  &__tbody {
+    td {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  &__tr {
+    border-left: $pix*4 solid transparent;
+    border-top: $pix solid $colorBorderLight;
+    transition: $transitionBezier;
+
+    &:first-child {
+      border-top: none;
+    }
+    
+    &:hover {
+      border-left-color: $colorBorderBrand;
+    }
+
+    &--tableless {
+      border-top: 0;
+      border-left: 0;
+    }
+  }
+
+  &__trchild {
+    border-left: $pix*4 solid transparent;
+    border-top: $pix dashed darken($colorBorderLight, 5%);
+
+    &:hover {
+      border-left-color: $colorBrandLight;
+    }
+  }
+
+  &__pagination {
+    border-top: $pix solid $colorBorderBase;
+    padding: $pad;
+    position: sticky;
+    left: 0;
+
+    &--tableless {
+      border-top: 0;
+      padding: $pad 0 0;
+    }
+  }
+
+  &__notfound {
+    @include fontHeadLight5;
+    padding: $pad*3;
+    text-align: center;
+  }
+}
+
+@media(min-width: $bpDesktop) {
+  .table {
+    &__table {
+      table-layout: fixed;
+    }
+  }
+}

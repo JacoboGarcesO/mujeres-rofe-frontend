@@ -1,0 +1,38 @@
+<div class="table__container table__container--{{factor || 'full'}}">
+  <div class="table__scroll">
+    <table class="table__table" aria-describedby="List of items">
+      <thead *ngIf="showHeader" class="table__thead">
+        <tr class="table__trh">
+          <th
+            *ngFor="let label of headers"
+            class="table__th"
+            scope="col"
+            [style.width]="label[1]"
+          >{{label[0]}}</th>
+        </tr>
+      </thead>
+      <tbody class="table__tbody">
+        <ng-container *ngFor="let item of items; index as i">
+          <tr class="table__tr table__tr--{{factor || 'full'}}">
+            <ng-container
+              [ngTemplateOutlet]="itemTemplateRef"
+              [ngTemplateOutletContext]="{item: item, index: i}"
+            ></ng-container>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <ng-container *ngIf="isLoading" [ngTemplateOutlet]="loading"></ng-container>
+    <ng-container *ngIf="items?.length === 0" [ngTemplateOutlet]="notFound"></ng-container>
+  </div>
+</div>
+
+<ng-template #loading>
+  <mr-loader></mr-loader>
+</ng-template>
+
+<ng-template #notFound>
+  <div class="table__notfound">
+    No se encontraron resultados.
+  </div>
+</ng-template>

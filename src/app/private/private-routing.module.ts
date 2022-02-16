@@ -15,6 +15,12 @@ const routes: Routes = [
       .then((module) => module.ChannelsModule),
     canActivate: [PrivateGuard],
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module')
+      .then((module) => module.AdminModule),
+    canActivate: [PrivateGuard],
+  },
 ];
 
 @NgModule({

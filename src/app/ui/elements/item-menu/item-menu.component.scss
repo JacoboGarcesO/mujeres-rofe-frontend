@@ -5,6 +5,11 @@
   padding-right: styles.$box-pad-onehalf;
   grid-template-columns: min-content auto;
   align-items: center;
+  text-decoration: none;
+
+  &__link {
+    text-decoration: none;
+  }
 
   &__image {
     width: styles.func-toRem(5);
