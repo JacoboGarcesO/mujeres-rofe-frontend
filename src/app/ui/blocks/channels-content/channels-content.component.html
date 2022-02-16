@@ -1,14 +1,14 @@
 <div class="channels-content">
-    <mr-channels-background class="channels-content__background" [bannerImage]="'assets/img/contactanos-banner.png'"></mr-channels-background>
+    <mr-channels-background class="channels-content__background" [bannerImage]="channel.banner"></mr-channels-background>
     
     <div class="channels-content__info">
         <figure class="channels-content__image">
-            <mr-image [image]="'assets/img/logo-2.png'" [alt]="'bg-channels'"></mr-image>
+            <mr-image [image]="channel.icon" [alt]="'bg-channels'"></mr-image>
         </figure>
 
         <div class="channels-content__text">
-            <mr-text [type]="'line'" [text]="'Contáctanos'" [size]="'extra-large'" [weight]="'bold'" class="channels-content__text--large"></mr-text>
-            <mr-text [text]="'Ayuda y soporte'" [size]="'extra-large'"></mr-text>
+            <mr-text [type]="'line'" [text]="channel.name" [size]="'extra-large'" [weight]="'bold'" class="channels-content__text--large"></mr-text>
+            <mr-text [text]="channel.description" [size]="'extra-large'"></mr-text>
         </div>
     </div>
 

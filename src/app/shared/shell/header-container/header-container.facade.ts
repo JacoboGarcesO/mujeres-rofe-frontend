@@ -1,5 +1,7 @@
+import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { Observable, Subscription, tap } from 'rxjs';
+import { Observable, of, Subscription, tap } from 'rxjs';
+import { toChannelEnum } from 'src/app/core/enums/channel.enum';
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { ChannelsService } from 'src/app/core/services/channels.service';
@@ -16,6 +18,7 @@ export class HeaderContainerFacade {
     private state: AppState,
     private service: CurrentUserService,
     private channelsService: ChannelsService,
+    private location: Location,
   ) { }
 
   //#region Observables 
@@ -25,6 +28,12 @@ export class HeaderContainerFacade {
 
   channels$(): Observable<ChannelModel[]> {
     return this.state.channels.channels.$();
+  }
+
+  channel$(): Observable<ChannelModel> {
+    const url = this.location.path().split('/');
+    const channels = this.state.channels.channels.snapshot();
+    return of(channels.find((channel)=> channel.type === toChannelEnum(url[2])));
   }
   //#endregion
 

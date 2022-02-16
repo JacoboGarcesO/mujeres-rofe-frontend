@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { ChannelModel } from 'src/app/core/models/channel.model';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 
 @Component({
@@ -8,7 +9,8 @@ import { CurrentUserModel } from 'src/app/core/models/current-user.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrentUserComponent {
-  @Input() currentUser: CurrentUserModel | undefined;
+  @Input() currentUser: CurrentUserModel;
+  @Input() channel: ChannelModel;
   @Output() clickedLogout: EventEmitter<void> = new EventEmitter();
 
   handleLogout(): void {

@@ -1,1 +1,5 @@
-<mr-channels-content></mr-channels-content>
+<ng-container *ngIf="{
+  channel: (channel$ | async)
+} as data">
+  <mr-channels-content [channel]="data.channel"></mr-channels-content>
+</ng-container>

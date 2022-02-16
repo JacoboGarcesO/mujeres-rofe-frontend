@@ -13,6 +13,22 @@
     top: 0;
     left: 0;
     z-index: styles.$box-z-1;
+
+    &--network {
+      background-color: styles.$color-status-info-dark;
+    }
+
+    &--business {
+      background-color: styles.$color-status-error-dark;
+    }
+
+    &--opportunities {
+      background-color: styles.$color-status-success-dark;
+    }
+
+    &--training {
+      background-color: styles.$color-status-warning-dark;
+    }
   }
 
   &__button {

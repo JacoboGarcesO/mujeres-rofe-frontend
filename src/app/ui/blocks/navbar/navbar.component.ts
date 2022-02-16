@@ -12,6 +12,7 @@ import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 export class NavbarComponent { 
   @Input() currentUser: CurrentUserModel;
   @Input() channels: ChannelModel[];
+  @Input() channel: ChannelModel;
   @Output() clickedLogout: EventEmitter<void> = new EventEmitter();
 
   public isOpen = false;

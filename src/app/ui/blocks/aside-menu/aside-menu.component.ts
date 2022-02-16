@@ -11,6 +11,7 @@ import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 export class AsideMenuComponent {
   @Input() isVisible = false;
   @Input() channels: ChannelModel[];
+  @Input() channel: ChannelModel;
   @Input() currentUser: CurrentUserModel | undefined;
   @Output() clickedLogout: EventEmitter<void> = new EventEmitter();
 

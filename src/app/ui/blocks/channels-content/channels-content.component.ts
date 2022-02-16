@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@angular/core';
+import { ChannelModel } from 'src/app/core/models/channel.model';
 
 @Component({
   selector: 'mr-channels-content',
@@ -7,4 +8,6 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation } from '@angular/
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class ChannelsContentComponent { }
+export class ChannelsContentComponent {
+  @Input() channel: ChannelModel;
+}

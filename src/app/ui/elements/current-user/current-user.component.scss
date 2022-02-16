@@ -7,6 +7,22 @@
   padding: styles.$box-pad-half styles.$box-pad-base;
   background-color: styles.$color-primary-color;
 
+  &--network {
+    background-color: styles.$color-status-info-dark;
+  }
+
+  &--business {
+    background-color: styles.$color-status-error-dark;
+  }
+
+  &--opportunities {
+    background-color: styles.$color-status-success-dark;
+  }
+
+  &--training {
+    background-color: styles.$color-status-warning-dark;
+  }
+
   &__user {
     display: flex;
     align-items: center;

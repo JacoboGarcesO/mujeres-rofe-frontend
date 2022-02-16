@@ -1,5 +1,7 @@
+import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
-import { Observable, Subscription, tap } from 'rxjs';
+import { Observable, of, Subscription, tap } from 'rxjs';
+import { toChannelEnum } from 'src/app/core/enums/channel.enum';
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { ChannelsService } from 'src/app/core/services/channels.service';
 import { AppState } from 'src/app/core/state/app.state';
@@ -13,11 +15,18 @@ export class ChannelsContentContainerFacade {
   constructor(
     private state: AppState,
     private channelsService: ChannelsService,
+    private location: Location,
   ) { }
 
   //#region Observables
   channels$(): Observable<ChannelModel[]> {
     return this.state.channels.channels.$();
+  }
+
+  channel$(): Observable<ChannelModel> {
+    const url = this.location.path().split('/');
+    const channels = this.state.channels.channels.snapshot();
+    return of(channels.find((channel)=> channel.type === toChannelEnum(url[2])));
   }
   //#endregion
 

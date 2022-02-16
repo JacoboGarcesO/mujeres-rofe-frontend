@@ -9,7 +9,7 @@ import { ChannelsContentContainerFacade } from './channels-content-container.fac
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ChannelsContentContainerComponent implements OnInit, OnDestroy {
-  public channels$: Observable<ChannelModel[]>;
+  public channel$: Observable<ChannelModel>;
 
   constructor(private facade: ChannelsContentContainerFacade) { }
 
@@ -25,6 +25,6 @@ export class ChannelsContentContainerComponent implements OnInit, OnDestroy {
   }
 
   private initializeSubscriptions(): void {
-    this.channels$ = this.facade.channels$();
+    this.channel$ = this.facade.channel$();
   }
 }

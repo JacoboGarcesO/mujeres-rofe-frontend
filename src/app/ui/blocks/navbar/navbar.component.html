@@ -1,5 +1,5 @@
 <header class="navbar__container">
-  <nav class="navbar__content">
+  <nav class="navbar__content navbar__content--{{channel.type}}">
     <div class="navbar__branding">
       <mr-button-burguer 
         class="navbar__button" 
@@ -7,12 +7,13 @@
         (clicked)="handleClick($event)"
       ></mr-button-burguer>
       <figure class="navbar__logo">
-        <mr-image [image]="'assets/img/logo-3.png'" [alt]="'logo'"></mr-image>
+        <mr-image [image]="'assets/img/logo.png'" [alt]="'logo'"></mr-image>
       </figure>
     </div>
     <mr-aside-menu 
       [isVisible]="isOpen"
       [channels]="channels"
+      [channel]="channel"
       [currentUser]="currentUser"
       (clickedLogout)="handleLogout()"
     ></mr-aside-menu>

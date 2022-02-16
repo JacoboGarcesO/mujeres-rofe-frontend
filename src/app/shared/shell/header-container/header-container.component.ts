@@ -12,6 +12,7 @@ import { HeaderContainerFacade } from './header-container.facade';
 export class HeaderContainerComponent implements OnInit, OnDestroy {
   public currentUser$: Observable<CurrentUserModel>;
   public channels$: Observable<ChannelModel[]>;
+  public channel$: Observable<ChannelModel>;
 
   constructor(private facade: HeaderContainerFacade) { }
   
@@ -33,6 +34,7 @@ export class HeaderContainerComponent implements OnInit, OnDestroy {
   private initializeSubscriptions(): void {
     this.currentUser$ = this.facade.currentUser$();
     this.channels$ = this.facade.channels$();
+    this.channel$ = this.facade.channel$();
   }
 }
 
