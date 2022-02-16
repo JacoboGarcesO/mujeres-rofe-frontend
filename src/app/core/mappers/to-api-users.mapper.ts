@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CurrentUserModel } from '../models/current-user.model';
-import { MediaModel } from '../models/media.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToApiUsersMapper {
-  map(user: CurrentUserModel): any {
+  map(user: CurrentUserModel): any {    
     const formData = new FormData();
     const socialNetworks = this.getSocialNetworks(user.instagram);
     const image = this.getImage(user.image);
@@ -22,6 +21,7 @@ export class ToApiUsersMapper {
     formData.append('hobbies', hobbies);
     formData.append('phoneNumber', `${user.phoneNumber}`);
     formData.append('socialsNetworks', socialNetworks);
+    formData.append('document', user?.document);
     formData.append('image', image);
     formData.append('location', JSON.stringify(user.location));
 

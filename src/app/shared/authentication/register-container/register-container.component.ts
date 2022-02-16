@@ -30,7 +30,7 @@ export class RegisterContainerComponent implements OnInit, OnDestroy {
   }
 
   handleCreateUser(user: CurrentUserModel): void {
-    this.facade.createUser(user);
+    this.facade.createUser(user); 
   }
 
   handleLoadCities(stateId: string): void {

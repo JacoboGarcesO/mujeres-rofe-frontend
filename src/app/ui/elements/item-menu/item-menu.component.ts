@@ -1,4 +1,5 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mr-item-menu',
@@ -8,4 +9,10 @@ import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 })
 export class ItemMenuComponent {
   @Input() item: any;
+
+  constructor(private router: Router) { }
+
+  navigateToChannel(url: string): void {
+    this.router.navigateByUrl(url);
+  }
 }

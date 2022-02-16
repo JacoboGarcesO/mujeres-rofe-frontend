@@ -7,7 +7,7 @@ import { MessageUtil } from '../utils/message.util';
   providedIn: 'root',
 })
 export class ApiToUserMapper {
-  map(response: any, token?: string): CurrentUserModel {
+  map(response: any, token?: string): CurrentUserModel {    
     return {
       email: response?.users?.[0]?.email,
       id: response?.users?.[0]?._id,

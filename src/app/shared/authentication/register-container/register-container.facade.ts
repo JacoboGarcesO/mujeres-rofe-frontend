@@ -86,12 +86,11 @@ export class RegisterContainerFacade {
   }
 
   createUser(user: CurrentUserModel): void {
-    const callback = this.navigateToLogin();
+    const callback = this.navigateToLogin.bind(this);
 
     this.notify('init');
     this.subscriptions.add(
       this.userService.create(user).pipe(
-        tap(this.storeCurrentUser.bind(this)),
         tap(this.notify.bind(this, 'complete', callback)),
         catchError(this.notify.bind(this, 'error', null)),
         finalize(this.notifyClose.bind(this)),
@@ -107,10 +106,6 @@ export class RegisterContainerFacade {
 
   private storeHobbies(hobbies: OptionModel[]): void {
     this.state.hobbies.hobbies.set(hobbies);
-  }
-
-  private storeCurrentUser(currentUser: CurrentUserModel): void {  
-    this.state.users.currentUser.set(currentUser);
   }
 
   private notify(

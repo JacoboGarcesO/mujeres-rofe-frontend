@@ -1,4 +1,4 @@
-<a [routerLink]="item.link" class="item-menu">
+<div (click)="navigateToChannel(item.link)" class="item-menu">
   <figure class="item-menu__image">
     <mr-image [image]="item?.image | noimage" [alt]="'logo-item'"></mr-image>
   </figure>
@@ -10,4 +10,4 @@
       [type]="'line'"
     ></mr-text>
   </div>
-</a>
+</div>
