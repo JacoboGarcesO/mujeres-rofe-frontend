@@ -1,9 +1,8 @@
-@import '/src/tokens.scss';
+@use "../../_styles/index.scss" as styles;
 
 .table {
   &__container {
-    background-color: $backgroundLightyear;
-    border-radius: $radiusSoft;
+    padding-top: styles.$box-pad-home-content;
 
     &--tableless {
       background-color: transparent;
@@ -20,15 +19,15 @@
   }
 
   &__thead {
-    border-bottom: $pix solid $colorBorderBase;
+    border-bottom: 1px solid rgb(141, 133, 133);
   }
 
   &__trh {
-    border-left: $pix*4 solid transparent;
+    border-left: 1px solid rgb(141, 133, 133);
   }
 
   &__th {
-    padding: $pad;
+    padding: styles.$box-pad-onehalf;
   }
 
   &__tbody {
@@ -40,16 +39,16 @@
   }
 
   &__tr {
-    border-left: $pix*4 solid transparent;
-    border-top: $pix solid $colorBorderLight;
-    transition: $transitionBezier;
+    border-left: 1px solid rgb(141, 133, 133);
+    border-top: 1px solid rgb(141, 133, 133);
+    transition: 0.5 ease-in;
 
     &:first-child {
       border-top: none;
     }
     
     &:hover {
-      border-left-color: $colorBorderBrand;
+      border-left-color: pink;
     }
 
     &--tableless {
@@ -59,37 +58,36 @@
   }
 
   &__trchild {
-    border-left: $pix*4 solid transparent;
-    border-top: $pix dashed darken($colorBorderLight, 5%);
+    border-left: 1px solid rgb(141, 133, 133);
+    border-top: 1px solid rgb(141, 133, 133);
 
     &:hover {
-      border-left-color: $colorBrandLight;
+      border-left-color: black;
     }
   }
 
   &__pagination {
-    border-top: $pix solid $colorBorderBase;
-    padding: $pad;
+    border-top: 1px solid rgb(141, 133, 133);
+    padding: 7px;
     position: sticky;
     left: 0;
 
     &--tableless {
       border-top: 0;
-      padding: $pad 0 0;
+      padding: 7px 0 0;
     }
   }
 
   &__notfound {
-    @include fontHeadLight5;
-    padding: $pad*3;
+    padding: 10px;
     text-align: center;
   }
 }
 
-@media(min-width: $bpDesktop) {
-  .table {
-    &__table {
-      table-layout: fixed;
-    }
-  }
-}
+// @media(min-width: $bpDesktop) {
+//   .table {
+//     &__table {
+//       table-layout: fixed;
+//     }
+//   }
+// }

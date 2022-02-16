@@ -53,7 +53,7 @@ export class ChannelsService {
       { 
         link: 'admin', 
         name: 'Administrador', 
-        icon: 'assets/img/logo-4.png', 
+        icon: 'assets/img/admin.png', 
         banner: 'assets/img/contactanos-banner.png',
         type: ChannelEnum.admin,
       },

@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LayoutMainComponent } from '../../ui/layouts/layout-main/layout-main.component';
 import { RequestNotificationsContainerComponent } from '../../shared/static/request-notifications-container/request-notifications-container.component';
 import { HeaderContainerComponent } from '../../shared/shell/header-container/header-container.component';
+import { AdminContentContainerComponent } from '../../shared/admin/admin-content-container/admin-content-container.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,7 @@ const routes: Routes = [
     children: [
       { path: '', component: RequestNotificationsContainerComponent, outlet: 'notifications'},
       { path: '', component: HeaderContainerComponent, outlet: 'header' },
+      { path: '', component: AdminContentContainerComponent },
     ],
   },
 ];
