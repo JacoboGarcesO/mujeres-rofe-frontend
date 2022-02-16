@@ -4,6 +4,7 @@ import { HobbiesState } from './hobbies.state';
 import { LocationsState } from './locations.state';
 import { NotificationsState } from './notifications.state';
 import { UsersState } from './users.state';
+import { NoticesState } from './notices.state';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class AppState {
     private hobbiesState: HobbiesState,
     private notificationsState: NotificationsState,
     private channelsState: ChannelsState,
+    private noticesState: NoticesState,
   ) { }
 
   get users() { return this.usersState.store(); }
@@ -22,4 +24,5 @@ export class AppState {
   get hobbies() { return this.hobbiesState.store(); }
   get notifications() { return this.notificationsState.store(); }
   get channels() { return this.channelsState.store(); }
+  get notices() { return this.noticesState.store(); }
 }
