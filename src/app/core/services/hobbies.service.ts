@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { OptionModel } from '../models/option.model';
-import { MiscUtil } from '../utils/misc.util';
 
 @Injectable({
   providedIn: 'root',

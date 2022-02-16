@@ -1,9 +1,9 @@
 <div (click)="navigateToChannel(item.link)" class="item-menu">
   <figure class="item-menu__image">
-    <mr-image [image]="item?.image | noimage" [alt]="'logo-item'"></mr-image>
+    <mr-image [image]="item?.icon | noimage" [alt]="'logo-item'"></mr-image>
   </figure>
   <div class="item-menu__label">
-    <mr-text [text]="item?.title" [weight]="'bold'" [size]="'medium'"></mr-text>
+    <mr-text [text]="item?.name" [weight]="'bold'" [size]="'medium'"></mr-text>
     <mr-text
       [text]="item?.description"
       [size]="'small'"

@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { ChannelModel } from 'src/app/core/models/channel.model';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 
 @Component({
@@ -9,7 +10,8 @@ import { CurrentUserModel } from 'src/app/core/models/current-user.model';
   encapsulation: ViewEncapsulation.None,
 })
 export class NavbarComponent { 
-  @Input() currentUser: CurrentUserModel | undefined;
+  @Input() currentUser: CurrentUserModel;
+  @Input() channels: ChannelModel[];
   @Output() clickedLogout: EventEmitter<void> = new EventEmitter();
 
   public isOpen = false;

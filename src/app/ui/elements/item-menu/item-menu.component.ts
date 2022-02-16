@@ -1,5 +1,6 @@
 import { Component, Input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
+import { ChannelModel } from 'src/app/core/models/channel.model';
 
 @Component({
   selector: 'mr-item-menu',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ItemMenuComponent {
-  @Input() item: any;
+  @Input() item: ChannelModel;
 
   constructor(private router: Router) { }
 

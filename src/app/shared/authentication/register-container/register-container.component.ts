@@ -26,6 +26,7 @@ export class RegisterContainerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.facade.destroyStates();
     this.facade.destroyCitiesByState();
+    this.facade.destroyHobbies();
     this.facade.destroySubscriptions();
   }
 
