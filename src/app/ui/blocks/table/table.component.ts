@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, TemplateRef, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, TemplateRef, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'mr-table',
@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, Templa
   encapsulation: ViewEncapsulation.None,
 })
 export class TableComponent {
-  @Input() public factor: 'full' | 'tableless';
+  @Input() public factor: 'full' | 'tableless' = 'full';
   @Input() public isLoading: boolean;
   @Input() public loadingText: string;
   @Input() public headers: string[][];

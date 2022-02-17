@@ -1,4 +1,6 @@
+@use "../../_styles/index.scss" as styles;
+
 .tabs {
-    display: block;
-    margin-top: 80px;
+  @include styles.columns-container-grid;
+  margin-top: 100px;
 }

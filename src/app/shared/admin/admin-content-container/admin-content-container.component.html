@@ -1,13 +1,26 @@
 <ng-container *ngIf="{
-  tabs: (tabs$ | async)
+  tabs: (tabs$ | async),
+  notices: (notices$ | async)
 } as data">
-  <mr-tabs [items]="data.tabs"></mr-tabs>
-
-  <mr-card>
+  <mr-tabs [items]="data.tabs">
     <ng-container>
-      <mr-table></mr-table>
+      <mr-table
+        [headers]="[
+          ['Pito',''],
+          ['Pitazo',''],
+        ]"
+        [items]="data.notices.notices || []"
+        [itemTemplateRef]="noticeTemplate"
+      ></mr-table>
     </ng-container>
-  </mr-card>
+  </mr-tabs>
 </ng-container>
 
-
+<ng-template #noticeTemplate let-notice="item" let-index="index">
+  <td class="agencies-back-office-tmpl__td">
+    {{notice.title}}
+  </td>
+  <td class="agencies-back-office-tmpl__td">
+    {{notice.description}}
+  </td>
+</ng-template>

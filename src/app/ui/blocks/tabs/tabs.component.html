@@ -1,1 +1,7 @@
-<mr-tab-buttons class="tabs" [items]="items"></mr-tab-buttons>
+<div class="tabs">
+  <mr-tab-buttons [items]="items"></mr-tab-buttons>
+
+  <mr-card>
+    <ng-content></ng-content>
+  </mr-card>
+</div>
