@@ -12,6 +12,11 @@
   display: flex;
   justify-content: center;
 
+  &__icon {
+    color: styles.$color-bg-white;
+    font-size: styles.$box-pad-base;
+  }
+
   .text {
     text-transform: uppercase !important;
     color: styles.$color-typo-contrast !important;

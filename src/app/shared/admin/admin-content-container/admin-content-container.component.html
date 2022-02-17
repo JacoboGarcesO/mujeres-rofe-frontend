@@ -1,5 +1,13 @@
-<mr-card>
-  <<ng-container>
-    <mr-table></mr-table>
-  </ng-container>
-</mr-card>
+<ng-container *ngIf="{
+  tabs: (tabs$ | async)
+} as data">
+  <mr-tabs [items]="data.tabs"></mr-tabs>
+
+  <mr-card>
+    <ng-container>
+      <mr-table></mr-table>
+    </ng-container>
+  </mr-card>
+</ng-container>
+
+

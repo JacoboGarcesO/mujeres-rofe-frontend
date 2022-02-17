@@ -5,6 +5,7 @@
   [disabled]="isDisabled"
   (click)="handleClick()"
 >
+  <i *ngIf="icon" class="button__icon {{icon}}"></i>
   <mr-text 
     [type]="'line'"  
     [weight]="'bold'" 

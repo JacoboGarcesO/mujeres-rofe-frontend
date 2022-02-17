@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/
 import { Observable } from 'rxjs';
 import { NoticeModel } from '../../../core/models/notice.model';
 import { AdminContentContainerFacade } from './admin-content-container.facade';
+import { TabModel } from '../../../core/models/tab.model';
 
 @Component({
   selector: 'mr-admin-content-container',
@@ -10,22 +11,26 @@ import { AdminContentContainerFacade } from './admin-content-container.facade';
 })
 export class AdminContentContainerComponent implements OnInit, OnDestroy {
   public notices$: Observable<NoticeModel[]>;
+  public tabs$: Observable<TabModel[]>;
 
-  constructor( private facade: AdminContentContainerFacade ) {}
+  constructor(private facade: AdminContentContainerFacade) {}
   
   ngOnInit(): void {
     this.facade.initSubscriptions();
     this.facade.loadNotices();
+    this.facade.loadTabs();
     this.initializeSubscriptions();
-    console.log(this.notices$);
+    
   }
 
   ngOnDestroy(): void {
     this.facade.destroyNotices();
+    this.facade.destroyTabs();
     this.facade.destroySubscriptions();
   }
 
   private initializeSubscriptions(): void {
     this.notices$ = this.facade.notices$();
+    this.tabs$ = this.facade.tabs$();
   }
 }

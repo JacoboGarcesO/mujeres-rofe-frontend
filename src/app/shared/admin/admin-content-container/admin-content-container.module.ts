@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AdminContentContainerComponent } from './admin-content-container.component';
 import { TableModule } from 'src/app/ui/blocks/table/table.module';
 import { CardModule } from 'src/app/ui/elements/card/card.module';
+import { TabsModule } from '../../../ui/blocks/tabs/tabs.module';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { CardModule } from 'src/app/ui/elements/card/card.module';
     CommonModule,
     TableModule,
     CardModule,
+    TabsModule,
   ],
   exports: [
     AdminContentContainerComponent,

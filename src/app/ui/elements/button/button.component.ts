@@ -10,6 +10,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEn
 export class ButtonComponent {
   @Input() display: 'block' | 'inline' = 'inline';
   @Input() type: 'default' | 'blank' = 'default';
+  @Input() icon: string;
   @Input() isDisabled = false;
   @Input() label: string | undefined;
   @Output() clicked: EventEmitter<void> = new EventEmitter();
