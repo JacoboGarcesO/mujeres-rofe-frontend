@@ -4,6 +4,7 @@
 } as data">
   <mr-tabs [items]="data.tabs">
     <ng-container>
+      <mr-button [display]="'inline'" [icon]="'fas fa-plus'" [label]="'Crear'"></mr-button>
       <mr-table
         [headers]="[
           ['','2rem'],
@@ -35,3 +36,5 @@
     <mr-button [display]="'block'" [icon]="'fas fa-trash'" [label]="'Eliminar'"></mr-button>
   </td>
 </ng-template> 
+
+<mr-modal []></mr-modal>

@@ -7,6 +7,7 @@ import { TabsModule } from '../../../ui/blocks/tabs/tabs.module';
 import { ImageModule } from '../../../ui/elements/image/image.module';
 import { ButtonModule } from '../../../ui/elements/button/button.module';
 import { TextModule } from '../../../ui/elements/text/text.module';
+import { ModalModule } from '../../../ui/elements/modal/modal.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TextModule } from '../../../ui/elements/text/text.module';
     ImageModule,
     ButtonModule,
     TextModule,
+    ModalModule,
   ],
   exports: [
     AdminContentContainerComponent,
