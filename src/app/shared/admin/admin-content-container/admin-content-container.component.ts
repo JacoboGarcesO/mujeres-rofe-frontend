@@ -20,7 +20,6 @@ export class AdminContentContainerComponent implements OnInit, OnDestroy {
     this.facade.loadNotices();
     this.facade.loadTabs();
     this.initializeSubscriptions();
-    
   }
 
   ngOnDestroy(): void {
