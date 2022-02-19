@@ -1,0 +1,7 @@
+<ng-container *ngIf="{
+  users: (users$ | async)
+} as data">
+    <mr-admin-users-list 
+      [users]="data.users"
+    ></mr-admin-users-list>
+</ng-container>

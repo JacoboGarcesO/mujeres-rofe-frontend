@@ -8,12 +8,14 @@ import { StateFactory } from './factory.state';
 })
 export class UsersState {
   private currentUser$: BehaviorSubject<CurrentUserModel> = new BehaviorSubject(null);
+  private users$: BehaviorSubject<CurrentUserModel[]> = new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) { }
 
   store() {
     return {
       currentUser: this.factory.state(this.currentUser$),
+      users: this.factory.state(this.users$),
     };
   }
 

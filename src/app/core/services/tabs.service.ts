@@ -10,8 +10,8 @@ export class TabsService {
   
   getTabs(): Observable<TabModel[]> {
     const tabs = [
-      { label: 'Comunicados', icon: 'fas fa-newspaper', target: TabEnum.notices },
       { label: 'Usuarias', icon: 'fas fa-female', target: TabEnum.users },
+      { label: 'Comunicados', icon: 'fas fa-newspaper', target: TabEnum.notices },
     ];
 
     return of(tabs);
