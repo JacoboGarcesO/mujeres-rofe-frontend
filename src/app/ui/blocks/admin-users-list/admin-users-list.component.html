@@ -2,13 +2,16 @@
   [display]="'inline'"
   [icon]="'fas fa-plus'"
   [label]="'Crear'"
+  (clicked)="modalRef.toggle()"
 ></mr-button>
 <mr-table
   [headers]="[
     ['', '0.5rem'],
-    ['Nombre', '7rem'],
-    ['Apellido', '10rem'],
-    ['Correo', '10rem'],
+    ['Nombre', '3rem'],
+    ['Apellido', '3rem'],
+    ['Contacto', '3rem'],
+    ['Descripción', '10rem'],
+    ['Correo', '7rem'],
     ['Acciones', '3rem']
   ]"
   [items]="users || []"
@@ -47,6 +50,24 @@
     <mr-text
       [color]="'initial'"
       [type]="'line'"
+      [text]="user?.phoneNumber"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-users-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="user?.description"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-users-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
       [text]="user?.email"
       [size]="'base'"
       [weight]="'regular'"
@@ -57,3 +78,7 @@
     <mr-button [display]="'block'" [icon]="'fas fa-trash'"></mr-button>
   </td>
 </ng-template>
+
+<mr-modal #modalRef>
+  <mr-register-container></mr-register-container>
+</mr-modal>

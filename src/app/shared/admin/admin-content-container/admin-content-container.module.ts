@@ -4,7 +4,6 @@ import { AdminContentContainerComponent } from './admin-content-container.compon
 import { TabsModule } from '../../../ui/blocks/tabs/tabs.module';
 import { AdminNoticesListContainerModule } from '../admin-notices-list-container/admin-notices-list-container.module';
 import { AdminUsersListContainerModule } from '../admin-users-list-container/admin-users-list-container.module';
-import { RegisterContainerModule } from '../../authentication/register-container/register-container.module';
 
 @NgModule({
   declarations: [
@@ -15,7 +14,6 @@ import { RegisterContainerModule } from '../../authentication/register-container
     TabsModule,
     AdminNoticesListContainerModule,
     AdminUsersListContainerModule,
-    RegisterContainerModule,
   ],
   exports: [
     AdminContentContainerComponent,
