@@ -31,11 +31,13 @@
   <fieldset class="form-notice__file">
     <mr-sub-form-file
       [label]="'Adjuntar icono'"
+      [canResetImage]="canResetForm"
       [formControlName]="form.formControlNames.icon"
     ></mr-sub-form-file>
 
     <mr-sub-form-file
       [label]="'Adjuntar contenido'"
+      [canResetImage]="canResetForm"
       [formControlName]="form.formControlNames.content"
     ></mr-sub-form-file>
   </fieldset>

@@ -47,17 +47,17 @@ $weight-light: 300;
 @mixin base {
   @include _font;
   font-size: func.toRem(0.95);
-  line-height: func.toRem(1);
+  line-height: func.toRem(1.1);
 }
 
 @mixin small {
   @include _font;
   font-size: func.toRem(0.85);
-  line-height: func.toRem(1);
+  line-height: func.toRem(1.1);
 }
 
 @mixin micro {
   @include _font;
   font-size: func.toRem(0.75);
-  line-height: func.toRem(1);
+  line-height: func.toRem(1.1);
 }

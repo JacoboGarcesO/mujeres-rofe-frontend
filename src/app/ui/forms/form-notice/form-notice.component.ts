@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
@@ -10,7 +10,9 @@ import { NoticeModel } from 'src/app/core/models/notice.model';
   styleUrls: ['./form-notice.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormNoticeComponent {
+export class FormNoticeComponent implements OnChanges {
+  @Input() canResetForm: boolean;
+
   public manualSave$: Subject<void> = new Subject();
   private input$: Subject<NoticeModel> = new Subject();
   @Input() set dataInput(value: NoticeModel) {
@@ -40,4 +42,12 @@ export class FormNoticeComponent {
       id: new FormControl(null),
     },
   });
+
+  ngOnChanges(): void {
+    if (!this.canResetForm) { return; }
+
+    Object.keys(
+      this.form.formGroup.controls,
+    ).forEach((control) => this.form.formGroup.controls[control].setValue(null));
+  }
 }

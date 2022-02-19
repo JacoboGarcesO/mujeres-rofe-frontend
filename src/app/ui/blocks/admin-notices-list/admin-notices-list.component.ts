@@ -17,10 +17,10 @@ export class AdminNoticesListComponent implements OnChanges {
   constructor(private cdRef: ChangeDetectorRef) { }
 
   ngOnChanges(): void {
-    if (this.canCloseModal) {
-      this.modalRef.close();
-      this.cdRef.detectChanges();
-    }
+    if (!this.canCloseModal) { return; }
+
+    this.modalRef.close();
+    this.cdRef.detectChanges();
   }
 
   handleCreateNotice(notice: NoticeModel): void {

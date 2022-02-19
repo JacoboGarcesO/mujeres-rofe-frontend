@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, ElementRef, Renderer2, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, ElementRef, Renderer2, ChangeDetectorRef, OnChanges } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { MediaModel } from 'src/app/core/models/media.model';
@@ -12,9 +12,10 @@ import { MiscUtil } from 'src/app/core/utils/misc.util';
   encapsulation: ViewEncapsulation.None,
   providers: subformComponentProviders(SubFormFileComponent),
 })
-export class SubFormFileComponent {
+export class SubFormFileComponent implements OnChanges {
   @Input() label: string;
   @Input() isImage = true;
+  @Input() canResetImage = false;
   public uniqueId = MiscUtil.uuid();
   public fileSelected: string | ArrayBuffer;
 
@@ -33,13 +34,19 @@ export class SubFormFileComponent {
     private cdRef: ChangeDetectorRef,
   ) { }
 
+  ngOnChanges(): void {
+    if (!this.canResetImage) { return; }
+
+    this.fileSelected = null;
+  }
+
   handleChange(event: any) {
     if (event.target.files?.[0]) {
       this.form.formGroup.controls.file.setValue(event.target.files[0]);
       this.toggleLabelFocus(false);
 
-      if (event.target.files[0].type === 'application/pdf') { 
-        this.fileSelected = 'assets/img/pdf.svg'; 
+      if (event.target.files[0].type === 'application/pdf') {
+        this.fileSelected = 'assets/img/pdf.svg';
         return;
       }
 
@@ -47,7 +54,7 @@ export class SubFormFileComponent {
       reader.onload = (e) => (this.fileSelected = reader.result);
       reader.readAsDataURL(this.form.formGroup.controls.file.value);
       this.cdRef.detectChanges();
-    }    
+    }
   }
 
   toggleLabelFocus(toggle: boolean): void {
