@@ -34,8 +34,8 @@ export class FormNoticeComponent {
       description: new FormControl(null, Validators.required),
       icon: new FormControl(null, Validators.required),
       content: new FormControl(null, Validators.required),
-      links: new FormControl(null, Validators.required),
       order: new FormControl(null, Validators.required),
+      links: new FormControl(null),
       //---
       id: new FormControl(null),
     },

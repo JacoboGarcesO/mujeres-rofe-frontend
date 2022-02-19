@@ -5,5 +5,5 @@ export const URL_RESOURCE = {
   getStates: `${environment.apiUrl}/locations`,
   getCitiesByState: (stateId: string) =>`${environment.apiUrl}/locations/${stateId}`,
   users: `${environment.apiUrl}/users`,
-  getNotices: `${environment.apiUrl}/notices`,
+  notices: `${environment.apiUrl}/notices`,
 };

@@ -1,0 +1,10 @@
+@use '../../../_styles/index.scss' as styles;
+
+.form-links {
+  gap: styles.$box-pad-base;
+  display: grid;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+}

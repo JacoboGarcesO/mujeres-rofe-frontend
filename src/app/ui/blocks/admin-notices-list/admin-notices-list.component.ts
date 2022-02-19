@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { NoticeModel } from 'src/app/core/models/notice.model';
 
 @Component({
@@ -9,4 +9,9 @@ import { NoticeModel } from 'src/app/core/models/notice.model';
 })
 export class AdminNoticesListComponent {
   @Input() notices: NoticeModel[];
+  @Output() createNotice: EventEmitter<NoticeModel> = new EventEmitter();
+
+  handleCreateNotice(notice: NoticeModel): void {
+    this.createNotice.emit(notice);
+  }
 }

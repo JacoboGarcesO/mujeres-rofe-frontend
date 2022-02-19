@@ -24,6 +24,10 @@ export class AdminNoticesListContainerComponent implements OnInit, OnDestroy {
     this.facade.destroySubscriptions();
   }
 
+  handleCreateNotice(notice: NoticeModel): void {
+    this.facade.createNotice(notice);
+  }
+
   private initializeSubscriptions(): void {
     this.notices$ = this.facade.notices$();
   }

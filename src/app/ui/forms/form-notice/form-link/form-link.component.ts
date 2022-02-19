@@ -1,16 +1,26 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
+import { LinkNoticeModel } from 'src/app/core/models/notice.model';
 
 @Component({
   selector: 'mr-form-link',
   templateUrl: './form-link.component.html',
   styleUrls: ['./form-link.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: subformComponentProviders(FormLinkComponent),
 })
-export class FormLinkComponent implements OnInit {
+export class FormLinkComponent {
+  @Output() deleteControl: EventEmitter<void> = new EventEmitter();
+  public form = createForm<LinkNoticeModel>(this, {
+    formType: FormType.SUB,
+    formControls: {
+      name: new FormControl(null, Validators.required),
+      url: new FormControl(null, Validators.required),
+    },
+  });
 
-  constructor() { }
-
-  ngOnInit(): void {
+  handleDeleteControl(): void {
+    this.deleteControl.emit();
   }
-
 }

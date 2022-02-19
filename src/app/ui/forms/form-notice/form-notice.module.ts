@@ -6,10 +6,16 @@ import { ButtonModule } from '../../elements/button/button.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SubFormInputModule } from '../sub-form-input/sub-form-input.module';
 import { SubFormTextareaModule } from '../sub-form-textarea/sub-form-textarea.module';
+import { FormLinksComponent } from './form-links/form-links.component';
+import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
+import { FormLinkComponent } from './form-link/form-link.component';
+import { TextModule } from '../../elements/text/text.module';
 
 @NgModule({
   declarations: [
     FormNoticeComponent,
+    FormLinksComponent,
+    FormLinkComponent,
   ],
   imports: [
     CommonModule,
@@ -17,7 +23,9 @@ import { SubFormTextareaModule } from '../sub-form-textarea/sub-form-textarea.mo
     ReactiveFormsModule,
     ButtonModule,
     SubFormFileModule,
+    TextModule,
     SubFormTextareaModule,
+    ButtonIconModule,
   ],
   exports: [
     FormNoticeComponent,

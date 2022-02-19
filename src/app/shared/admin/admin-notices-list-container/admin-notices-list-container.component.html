@@ -3,5 +3,6 @@
 } as data">
   <mr-admin-notices-list 
     [notices]="data.notices"
+    (createNotice)="handleCreateNotice($event)"
   ></mr-admin-notices-list>
 </ng-container>

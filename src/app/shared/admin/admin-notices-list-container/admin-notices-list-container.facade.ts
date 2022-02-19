@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subscription, tap } from 'rxjs';
+import { catchError, EMPTY, finalize, Observable, Subscription, tap } from 'rxjs';
 import { NoticesService } from 'src/app/core/services/notices.service';
 import { AppState } from 'src/app/core/state/app.state';
 import { NoticeModel } from '../../../core/models/notice.model';
@@ -41,11 +41,57 @@ export class AdminNoticesListContainerFacade {
   destroyNotices(): void {
     this.state.notices.notices.set(null);
   }
+
+  createNotice(notice: NoticeModel): void {
+    const callback = this.loadNotices.bind(this);
+
+    this.notify('init');
+    this.subscriptions.add(
+      this.noticesService.createNotice(notice).pipe(
+        tap(this.notify.bind(this, 'complete', callback)),
+        catchError(this.notify.bind(this, 'error', null)),
+        finalize(this.notifyClose.bind(this)),
+      ).subscribe(),
+    );
+  }
   //#endregion
 
   //#region Private Methods
   private storeNotices(notices: NoticeModel[]): void {
     this.state.notices.notices.set(notices);
+  }
+
+  private notify(
+    key: 'init' | 'complete' | 'error',
+    callback: () => void = null,
+  ): Observable<never> {
+    const messages = {
+      init: 'Estamos procesando su solicitud',
+      complete: 'Su solicitud se completó con éxito',
+      error: 'El proceso que solicitaste falló, inténtalo de nuevo más tarde',
+    };
+
+    this.state.notifications.notification.set(messages[key]);
+
+    // eslint-disable-next-line angular/timeout-service
+    if (!!callback && !(callback instanceof Observable)) { setTimeout(() => callback(), 500); }
+    return EMPTY;
+  }
+
+  private notifyClose(callback: () => void = null): void {
+    if (this.canClose()) {
+      // eslint-disable-next-line angular/timeout-service
+      setTimeout(() => {
+        this.state.notifications.notification.set(null);
+        if (callback) { callback(); }
+      }, 1000);
+    }
+  }
+
+  private canClose(): boolean {
+    const lastMessage = this.state.notifications.notification.snapshot();
+    const errorMessage = 'La solicitud falló';
+    return !lastMessage?.startsWith(errorMessage);
   }
   //#endregion
 }

@@ -3,14 +3,14 @@
     <mr-sub-form-input 
       [type]="'input'"
       [label]="'Título'"
-      [icon]="'fas fa-user'"
+      [icon]="'fas fa-file-signature'"
       [formControlName]="form.formControlNames.title"
     ></mr-sub-form-input>
 
     <mr-sub-form-input 
       [type]="'number'"
       [label]="'Orden'"
-      [icon]="'fas fa-user'"
+      [icon]="'fas fa-sort'"
       [formControlName]="form.formControlNames.order"
     ></mr-sub-form-input>
   </fieldset>
@@ -20,6 +20,12 @@
       [text]="'Descripción'"
       [formControlName]="form.formControlNames.description"
     ></mr-sub-form-textarea>
+  </fieldset>
+
+  <fieldset class="form-notice__description">
+    <mr-form-links 
+      [formControlName]="form.formControlNames.links"
+    ></mr-form-links>
   </fieldset>
 
   <fieldset class="form-notice__file">

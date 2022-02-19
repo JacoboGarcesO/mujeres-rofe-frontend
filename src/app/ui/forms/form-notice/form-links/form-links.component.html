@@ -1,1 +1,19 @@
-<p>form-links works!</p>
+<fieldset class="form-links" [formGroup]="form.formGroup">
+  <mr-text [text]="'Enlaces'" [weight]="'bold'" [size]="'medium'"></mr-text>
+  <ng-container
+    *ngFor="let linkControl of form.formGroup.controls.value.controls; trackBy: trackIndex; index as i"
+    [formArrayName]="form.formControlNames.value"
+  >
+    <div class="form-links__link">
+      <mr-form-link 
+        [formControl]="linkControl" 
+        (deleteControl)="formManager.delete(i)"
+      ></mr-form-link>
+    </div>
+  </ng-container>
+
+  <mr-button-icon
+    [icon]="'plus'"
+    (clicked)="formManager.add()"
+  ></mr-button-icon>
+</fieldset>

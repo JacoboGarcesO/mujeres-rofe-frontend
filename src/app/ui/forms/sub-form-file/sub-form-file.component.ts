@@ -30,16 +30,23 @@ export class SubFormFileComponent {
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
+    private cdRef: ChangeDetectorRef,
   ) { }
 
   handleChange(event: any) {
     if (event.target.files?.[0]) {
       this.form.formGroup.controls.file.setValue(event.target.files[0]);
-      
+      this.toggleLabelFocus(false);
+
+      if (event.target.files[0].type === 'application/pdf') { 
+        this.fileSelected = 'assets/img/pdf.svg'; 
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (e) => (this.fileSelected = reader.result);
       reader.readAsDataURL(this.form.formGroup.controls.file.value);
-      this.toggleLabelFocus(false);
+      this.cdRef.detectChanges();
     }    
   }
 
