@@ -39,23 +39,6 @@
     &:nth-child(even) {
       background: styles.$color-primary-color-light;
     }
-
-    & td:nth-child(1) {
-      padding: styles.func-toRem(0.6);
-
-      & .figure__notice {
-        width: styles.func-toRem(3.12);
-        height: styles.func-toRem(3.12);
-      }
-    }
-
-    & td:nth-child(4) {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: styles.$box-pad-base;
-      transform: translateY(50%);
-    }
     
     &:hover {
       background: styles.$color-primary-color-light;
@@ -73,7 +56,6 @@
       overflow: hidden;
       white-space: nowrap;
       text-align: center;
-      padding: 0 styles.func-toRem(0.6);
     }
   }
 

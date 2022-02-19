@@ -1,5 +1,5 @@
 <div class="tabs">
-  <mr-tab-buttons [items]="items"></mr-tab-buttons>
+  <mr-tab-buttons [items]="items" (clicked)="toggleTab($event)"></mr-tab-buttons>
 
   <mr-card>
     <ng-content></ng-content>

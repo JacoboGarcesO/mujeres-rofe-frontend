@@ -1,0 +1,7 @@
+<ng-container *ngIf="{
+  notices: (notices$ | async)
+} as data">
+  <mr-admin-notices-list 
+    [notices]="data.notices"
+  ></mr-admin-notices-list>
+</ng-container>

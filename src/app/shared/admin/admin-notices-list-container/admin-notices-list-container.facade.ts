@@ -1,23 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subscription, tap } from 'rxjs';
+import { NoticesService } from 'src/app/core/services/notices.service';
 import { AppState } from 'src/app/core/state/app.state';
-import { TabModel } from '../../../core/models/tab.model';
-import { TabsService } from '../../../core/services/tabs.service';
+import { NoticeModel } from '../../../core/models/notice.model';
 
 @Injectable({
   providedIn: 'root',
 })
-export class AdminContentContainerFacade {
+export class AdminNoticesListContainerFacade {
   private subscriptions: Subscription;
 
   constructor(
     private state: AppState,
-    private tabsService: TabsService,
+    private noticesService: NoticesService,
   ) { }
 
   //#region Observables
-  tabs$(): Observable<TabModel[]> {
-    return this.state.tabs.tabs.$();
+  notices$(): Observable<NoticeModel[]> {
+    return this.state.notices.notices.$();
   }
   //#endregion
 
@@ -30,22 +30,22 @@ export class AdminContentContainerFacade {
     this.subscriptions.unsubscribe();
   }
 
-  loadTabs(): void {
+  loadNotices(): void {
     this.subscriptions.add(
-      this.tabsService.getTabs().pipe(
-        tap(this.storeTabs.bind(this)),
+      this.noticesService.getNotices().pipe(
+        tap(this.storeNotices.bind(this)),
       ).subscribe(),
     );
   }
 
-  destroyTabs(): void {
-    this.state.tabs.tabs.set(null);
+  destroyNotices(): void {
+    this.state.notices.notices.set(null);
   }
   //#endregion
 
   //#region Private Methods
-  private storeTabs(tabs: TabModel[]): void {
-    this.state.tabs.tabs.set(tabs);
-  } 
+  private storeNotices(notices: NoticeModel[]): void {
+    this.state.notices.notices.set(notices);
+  }
   //#endregion
 }

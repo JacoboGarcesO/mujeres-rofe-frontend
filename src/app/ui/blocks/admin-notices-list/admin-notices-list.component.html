@@ -1,0 +1,55 @@
+<mr-button
+  [display]="'inline'" 
+  [icon]="'fas fa-plus'" 
+  [label]="'Crear'"
+></mr-button>
+<mr-table
+  [headers]="[
+    ['','0.5rem'],
+    ['Título','7rem'],
+    ['Descripción','10rem'],
+    ['Acciones','3rem'],
+  ]"
+  [items]="notices || []"
+  [itemTemplateRef]="noticeTemplate"
+></mr-table>
+
+<ng-template #noticeTemplate let-notice="item" let-index="index">
+  <td class="admin-notices-list-tmpl__td">
+    <figure class="admin-notices-list-tmpl__image">
+      <mr-image 
+        [image]="notice?.icon?.url" 
+        [rounded]="'circle'" 
+        [alt]="'icon-notice'"
+      ></mr-image>
+    </figure>
+  </td>
+  <td class="admin-notices-list-tmpl__td">
+    <mr-text 
+      [color]="'initial'" 
+      [type]="'line'" 
+      [text]="notice?.title" 
+      [size]="'base'" 
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-notices-list-tmpl__td">
+    <mr-text 
+      [color]="'initial'" 
+      [type]="'line'" 
+      [text]="notice?.description" 
+      [size]="'base'" 
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-notices-list-tmpl__td admin-notices-list-tmpl__td--buttons">
+    <mr-button 
+      [display]="'block'" 
+      [icon]="'fas fa-pen'" 
+    ></mr-button>
+    <mr-button 
+      [display]="'block'" 
+      [icon]="'fas fa-trash'" 
+    ></mr-button>
+  </td>
+</ng-template> 

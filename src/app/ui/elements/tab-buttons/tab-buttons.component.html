@@ -1,3 +1,10 @@
 <div class="tab-buttons">
-    <mr-button *ngFor="let item of items" [label]="item.label" [display]="'block'" [icon]="item.icon"></mr-button>
+  <mr-button 
+    *ngFor="let item of items" 
+    [label]="item.label" 
+    [display]="'block'" 
+    [icon]="item.icon"
+    [isActive]="item.target === tabActive"
+    (clicked)="handleClick(item.target)"
+  ></mr-button>
 </div>

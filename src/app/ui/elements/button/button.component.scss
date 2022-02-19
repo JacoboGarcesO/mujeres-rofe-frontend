@@ -21,7 +21,7 @@
     text-transform: uppercase !important;
     color: styles.$color-typo-contrast !important;
   }
-
+  &--active,
   &:hover {
     background-color: styles.$color-primary-color;
     border: styles.$box-bor-solid styles.$color-bg-white;

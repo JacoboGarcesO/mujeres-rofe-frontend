@@ -1,0 +1,20 @@
+@use '../../_styles/index.scss' as styles;
+
+.admin-notices-list-tmpl {
+  &__td {
+    padding: styles.$box-pad-half;
+    max-width: styles.$box-wth-column-list;
+
+    &--buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: styles.$box-pad-base;
+    }
+  }
+
+  &__image {
+    width: styles.$box-wth-double;
+    height: styles.$box-hht-double;
+  }
+}

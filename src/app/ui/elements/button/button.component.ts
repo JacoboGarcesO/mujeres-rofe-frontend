@@ -12,7 +12,8 @@ export class ButtonComponent {
   @Input() type: 'default' | 'blank' = 'default';
   @Input() icon: string;
   @Input() isDisabled = false;
-  @Input() label: string | undefined;
+  @Input() label: string;
+  @Input() isActive: boolean;
   @Output() clicked: EventEmitter<void> = new EventEmitter();
 
   handleClick(): void {

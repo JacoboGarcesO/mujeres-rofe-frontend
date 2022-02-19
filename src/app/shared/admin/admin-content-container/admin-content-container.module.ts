@@ -8,6 +8,7 @@ import { ImageModule } from '../../../ui/elements/image/image.module';
 import { ButtonModule } from '../../../ui/elements/button/button.module';
 import { TextModule } from '../../../ui/elements/text/text.module';
 import { ModalModule } from '../../../ui/elements/modal/modal.module';
+import { AdminNoticesListContainerModule } from '../admin-notices-list-container/admin-notices-list-container.module';
 
 @NgModule({
   declarations: [
@@ -15,13 +16,8 @@ import { ModalModule } from '../../../ui/elements/modal/modal.module';
   ],
   imports: [
     CommonModule,
-    TableModule,
-    CardModule,
     TabsModule,
-    ImageModule,
-    ButtonModule,
-    TextModule,
-    ModalModule,
+    AdminNoticesListContainerModule,
   ],
   exports: [
     AdminContentContainerComponent,

@@ -1,40 +1,9 @@
 <ng-container *ngIf="{
-  tabs: (tabs$ | async),
-  notices: (notices$ | async)
+  tabs: (tabs$ | async)
 } as data">
-  <mr-tabs [items]="data.tabs">
-    <ng-container>
-      <mr-button [display]="'inline'" [icon]="'fas fa-plus'" [label]="'Crear'"></mr-button>
-      <mr-table
-        [headers]="[
-          ['','2rem'],
-          ['Título','10rem'],
-          ['Descripción','10rem'],
-          ['Acciones','10rem'],
-        ]"
-        [items]="data.notices?.notices || []"
-        [itemTemplateRef]="noticeTemplate"
-      ></mr-table>
-    </ng-container>
+  <mr-tabs #tabs [items]="data.tabs">
+    <mr-admin-notices-list-container 
+      *ngIf="tabs.active === tabEnum.notices"
+    ></mr-admin-notices-list-container>
   </mr-tabs>
 </ng-container>
-
-<ng-template #noticeTemplate let-notice="item" let-index="index">
-  <td class="td__notice">
-    <figure class="figure__notice">
-      <mr-image [image]="notice.icon.url" [rounded]="'circle'" [alt]="'icon-notice'"></mr-image>
-    </figure>
-  </td>
-  <td class="td__notice">
-    <mr-text [color]="'initial'" [type]="'line'" [text]="notice.title" [size]="'base'" [weight]="'regular'"></mr-text>
-  </td>
-  <td class="td__notice">
-    <mr-text [color]="'initial'" [type]="'line'" [text]="notice.description" [size]="'base'" [weight]="'regular'"></mr-text>
-  </td>
-  <td class="td__notice">
-    <mr-button [display]="'block'" [icon]="'fas fa-pen'" [label]="'Editar'"></mr-button>
-    <mr-button [display]="'block'" [icon]="'fas fa-trash'" [label]="'Eliminar'"></mr-button>
-  </td>
-</ng-template> 
-
-<mr-modal []></mr-modal>

@@ -1,12 +1,15 @@
-interface linkNoticeModel {
-  name:  string,
-  url: string,
+import { MediaModel } from './media.model';
+
+export interface LinkNoticeModel {
+  name:  string;
+  url: string;
 }
 
 export interface NoticeModel {
+  id: string;
   title: string;
-  description?: string;
-  icon: string;
-  content: string;
-  link: linkNoticeModel[];
+  description: string;
+  icon: MediaModel;
+  content: MediaModel
+  link: LinkNoticeModel[];
 }

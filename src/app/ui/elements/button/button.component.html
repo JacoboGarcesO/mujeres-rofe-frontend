@@ -1,12 +1,13 @@
 <button
   class="button button--{{display}} button--{{type}}"
   type="button"
-  [ngClass]="{'button--disabled': isDisabled}"
+  [ngClass]="{'button--disabled': isDisabled, 'button--active': isActive}"
   [disabled]="isDisabled"
   (click)="handleClick()"
 >
   <i *ngIf="icon" class="button__icon {{icon}}"></i>
-  <mr-text 
+  <mr-text
+    *ngIf="label"
     [type]="'line'"  
     [weight]="'bold'" 
     [text]="label"
