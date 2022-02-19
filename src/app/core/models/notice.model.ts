@@ -10,6 +10,6 @@ export interface NoticeModel {
   title: string;
   description: string;
   icon: MediaModel;
-  content: MediaModel
-  link: LinkNoticeModel[];
+  content: MediaModel;
+  links: LinkNoticeModel[];
 }

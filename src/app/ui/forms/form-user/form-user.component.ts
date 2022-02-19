@@ -13,7 +13,6 @@ import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormUserComponent implements OnInit, OnDestroy {
-  @Input() currentUser: CurrentUserModel;
   @Input() hobbies: OptionModel[];
   @Input() states: OptionModel[];
   @Input() cities: OptionModel[];

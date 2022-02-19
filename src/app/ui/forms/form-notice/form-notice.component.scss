@@ -1,0 +1,32 @@
+@use '../../_styles/index.scss' as styles;
+
+.form-notice {
+  display: grid;
+  gap: styles.$box-pad-base;
+  align-items: center;
+
+  &__section,
+  &__file {
+    gap: styles.$box-pad-base;
+    display: grid;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+
+  &__file {
+    display: block;
+  }
+}
+
+// @media (min-width: styles.$bkp-tablet) {
+//   .form-notice {
+//     grid-template-columns: repeat(2, styles.$box-fr-base);
+
+//     &__section,
+//     &__file {
+//       grid-template-columns: repeat(2, styles.$box-fr-base);
+//     }
+//   }
+// }

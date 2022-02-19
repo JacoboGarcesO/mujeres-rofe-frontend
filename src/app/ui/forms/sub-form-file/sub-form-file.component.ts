@@ -14,7 +14,6 @@ import { MiscUtil } from 'src/app/core/utils/misc.util';
 })
 export class SubFormFileComponent {
   @Input() label: string;
-  @Input() placeholder: string;
   @Input() isImage = true;
   public uniqueId = MiscUtil.uuid();
   public fileSelected: string | ArrayBuffer;

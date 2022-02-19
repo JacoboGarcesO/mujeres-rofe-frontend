@@ -13,14 +13,8 @@
   >
     <i  class="sub-form-file__icon fas fa-upload"></i>
     <div class="sub-form-file__text">
-      <mr-text
-        [type]="'line'"
-        [size]="'base'"
-        [weight]="'bold'"
-        [text]="label"
-      ></mr-text>
       <mr-button
-        [label]="'Adjuntar imagen'"
+        [label]="label"
         [type]="'blank'"
         (clicked)="inputRef.click(); toggleLabelFocus(true)"
       ></mr-button>

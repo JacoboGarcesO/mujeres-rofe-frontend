@@ -1,0 +1,30 @@
+<form class="form-notice" [formGroup]="form.formGroup">
+  <div>
+    <fieldset class="form-notice__section">
+      <mr-sub-form-input 
+        [type]="'input'"
+        [label]="'Título'"
+        [icon]="'fas fa-user'"
+        [formControlName]="form.formControlNames.title"
+      ></mr-sub-form-input>
+  
+      <mr-sub-form-textarea 
+        [text]="'Descripción'"
+        [formControlName]="form.formControlNames.description"
+      ></mr-sub-form-textarea>
+    </fieldset>
+  </div>
+
+  <fieldset class="form-notice__file">
+    <mr-sub-form-file
+      [label]="'Adjuntar icono'"
+      [formControlName]="form.formControlNames.icon"
+    ></mr-sub-form-file>
+  </fieldset>
+
+  <mr-button 
+    [label]="'Guardar'"
+    [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
+    (clicked)="manualSave$.next()"
+  ></mr-button>
+</form>

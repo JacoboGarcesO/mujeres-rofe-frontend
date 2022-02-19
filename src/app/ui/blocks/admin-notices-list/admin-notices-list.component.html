@@ -2,6 +2,7 @@
   [display]="'inline'" 
   [icon]="'fas fa-plus'" 
   [label]="'Crear'"
+  (clicked)="modalRef.toggle()"
 ></mr-button>
 <mr-table
   [headers]="[
@@ -52,4 +53,10 @@
       [icon]="'fas fa-trash'" 
     ></mr-button>
   </td>
-</ng-template> 
+</ng-template>
+
+<mr-modal #modalRef>
+  <ng-container>
+    <mr-form-notice></mr-form-notice>
+  </ng-container>
+</mr-modal>
