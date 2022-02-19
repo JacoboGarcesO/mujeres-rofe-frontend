@@ -19,6 +19,10 @@ export class AdminNoticesListContainerFacade {
   notices$(): Observable<NoticeModel[]> {
     return this.state.notices.notices.$();
   }
+
+  canCloseModal$(): Observable<boolean> {
+    return this.state.resources.canCloseModal.$();
+  }
   //#endregion
 
   //#region Public methods
@@ -42,6 +46,10 @@ export class AdminNoticesListContainerFacade {
     this.state.notices.notices.set(null);
   }
 
+  destroyCanCloseModal(): void {
+    this.state.resources.canCloseModal.set(null);
+  }
+
   createNotice(notice: NoticeModel): void {
     const callback = this.loadNotices.bind(this);
 
@@ -49,6 +57,7 @@ export class AdminNoticesListContainerFacade {
     this.subscriptions.add(
       this.noticesService.createNotice(notice).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
+        tap(this.storeCanCloseModal.bind(this, true)),
         catchError(this.notify.bind(this, 'error', null)),
         finalize(this.notifyClose.bind(this)),
       ).subscribe(),
@@ -59,6 +68,10 @@ export class AdminNoticesListContainerFacade {
   //#region Private Methods
   private storeNotices(notices: NoticeModel[]): void {
     this.state.notices.notices.set(notices);
+  }
+
+  private storeCanCloseModal(value: boolean): void {
+    this.state.resources.canCloseModal.set(value);
   }
 
   private notify(

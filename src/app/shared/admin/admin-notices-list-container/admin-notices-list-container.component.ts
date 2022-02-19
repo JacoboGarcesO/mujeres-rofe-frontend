@@ -10,6 +10,7 @@ import { AdminNoticesListContainerFacade } from './admin-notices-list-container.
 })
 export class AdminNoticesListContainerComponent implements OnInit, OnDestroy {
   public notices$: Observable<NoticeModel[]>;
+  public canCloseModal$: Observable<boolean>;
 
   constructor(private facade: AdminNoticesListContainerFacade) {}
   
@@ -21,6 +22,7 @@ export class AdminNoticesListContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.facade.destroyNotices();
+    this.facade.destroyCanCloseModal();
     this.facade.destroySubscriptions();
   }
 
@@ -30,5 +32,6 @@ export class AdminNoticesListContainerComponent implements OnInit, OnDestroy {
 
   private initializeSubscriptions(): void {
     this.notices$ = this.facade.notices$();
+    this.canCloseModal$ = this.facade.canCloseModal$();
   }
 }

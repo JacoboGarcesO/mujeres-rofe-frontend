@@ -1,8 +1,10 @@
 <ng-container *ngIf="{
-  notices: (notices$ | async)
+  notices: (notices$ | async),
+  canCloseModal: (canCloseModal$ | async)
 } as data">
   <mr-admin-notices-list 
     [notices]="data.notices"
+    [canCloseModal]="data.canCloseModal"
     (createNotice)="handleCreateNotice($event)"
   ></mr-admin-notices-list>
 </ng-container>
