@@ -22,6 +22,7 @@ export class ApiToNoticesMapper {
         id: notice?.icon?._id,
         url: notice?.icon?.url,
       },
+      order: notice?.order,
       links: this.getLinks(notice?.links),
     };
   }

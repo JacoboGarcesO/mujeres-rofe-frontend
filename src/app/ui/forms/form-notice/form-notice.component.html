@@ -1,24 +1,36 @@
 <form class="form-notice" [formGroup]="form.formGroup">
-  <div>
-    <fieldset class="form-notice__section">
-      <mr-sub-form-input 
-        [type]="'input'"
-        [label]="'Título'"
-        [icon]="'fas fa-user'"
-        [formControlName]="form.formControlNames.title"
-      ></mr-sub-form-input>
-  
-      <mr-sub-form-textarea 
-        [text]="'Descripción'"
-        [formControlName]="form.formControlNames.description"
-      ></mr-sub-form-textarea>
-    </fieldset>
-  </div>
+  <fieldset class="form-notice__section">
+    <mr-sub-form-input 
+      [type]="'input'"
+      [label]="'Título'"
+      [icon]="'fas fa-user'"
+      [formControlName]="form.formControlNames.title"
+    ></mr-sub-form-input>
+
+    <mr-sub-form-input 
+      [type]="'number'"
+      [label]="'Orden'"
+      [icon]="'fas fa-user'"
+      [formControlName]="form.formControlNames.order"
+    ></mr-sub-form-input>
+  </fieldset>
+
+  <fieldset class="form-notice__description">
+    <mr-sub-form-textarea 
+      [text]="'Descripción'"
+      [formControlName]="form.formControlNames.description"
+    ></mr-sub-form-textarea>
+  </fieldset>
 
   <fieldset class="form-notice__file">
     <mr-sub-form-file
       [label]="'Adjuntar icono'"
       [formControlName]="form.formControlNames.icon"
+    ></mr-sub-form-file>
+
+    <mr-sub-form-file
+      [label]="'Adjuntar contenido'"
+      [formControlName]="form.formControlNames.content"
     ></mr-sub-form-file>
   </fieldset>
 

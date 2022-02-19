@@ -11,5 +11,6 @@ export interface NoticeModel {
   description: string;
   icon: MediaModel;
   content: MediaModel;
+  order: string;
   links: LinkNoticeModel[];
 }

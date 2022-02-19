@@ -6,6 +6,7 @@
   align-items: center;
 
   &__section,
+  &__description,
   &__file {
     gap: styles.$box-pad-base;
     display: grid;
@@ -16,17 +17,14 @@
   }
 
   &__file {
-    display: block;
+    row-gap: styles.$box-pad-base;
   }
 }
 
-// @media (min-width: styles.$bkp-tablet) {
-//   .form-notice {
-//     grid-template-columns: repeat(2, styles.$box-fr-base);
-
-//     &__section,
-//     &__file {
-//       grid-template-columns: repeat(2, styles.$box-fr-base);
-//     }
-//   }
-// }
+@media (min-width: styles.$bkp-tablet) {
+  .form-notice {
+    &__section {
+      grid-template-columns: repeat(2, styles.$box-fr-base);
+    }
+  }
+}
