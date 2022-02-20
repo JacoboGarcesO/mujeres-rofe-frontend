@@ -29,8 +29,8 @@ export class NoticesService {
     return this.httpService.postFile(url, request);
   }
 
-  deleteNotice(id: string): Observable<any> {
-    const url = `${URL_RESOURCE.notices}/${id}`;
+  deleteNotice(noticeId: string): Observable<any> {
+    const url = URL_RESOURCE.deleteNotice(noticeId);
     return this.httpService.delete(url);
   }
 }

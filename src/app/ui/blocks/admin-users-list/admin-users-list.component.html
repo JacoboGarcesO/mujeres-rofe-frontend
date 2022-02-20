@@ -81,7 +81,7 @@
     <mr-button 
       [display]="'block'" 
       [icon]="'fas fa-trash'" 
-      (clicked)="handleDeleteUser(user)"
+      (clicked)="modalDeleteRef.toggle(); setUserId(user.id)"
     ></mr-button>
   </td>
 </ng-template>
@@ -96,5 +96,17 @@
       (dataOutput)="handleCreateUser($event)"
       (stateSelected)="handleSelectState($event)"
     ></mr-form-user>
+  </ng-container>
+</mr-modal>
+
+
+<mr-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <mr-text [text]="'¿Estás seguro de que deseas eliminar este usuario?'" [weight]="'bold'" [size]="'medium'"></mr-text>
+    <mr-button 
+      class="admin-users-list__button"
+      [label]="'Eliminar'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteUser()"
+    ></mr-button>
   </ng-container>
 </mr-modal>

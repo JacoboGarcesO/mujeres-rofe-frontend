@@ -34,8 +34,8 @@ export class UsersService {
     );
   }
 
-  delete(id: string): Observable<any> {
-    const url = `${URL_RESOURCE.users}/${id}`;
+  delete(userId: string): Observable<any> {
+    const url = URL_RESOURCE.deleteUser(userId);
     return this.httpService.delete(url);
   }
 }

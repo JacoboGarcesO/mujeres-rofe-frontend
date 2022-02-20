@@ -44,8 +44,8 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
     this.facade.createUser(user);
   }
 
-  handleDeleteUser(user: CurrentUserModel): void {
-    this.facade.deleteUser(user);
+  handleDeleteUser(userId: string): void {
+    this.facade.deleteUser(userId);
   }
 
   private initializeSubscriptions(): void {

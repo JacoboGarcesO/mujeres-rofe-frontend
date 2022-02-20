@@ -18,3 +18,11 @@
     height: styles.$box-hht-double;
   }
 }
+
+.admin-notices-list {
+  &__button {
+    display: flex;
+    justify-content: center;
+    margin-top: styles.$box-mrg-base;
+  }
+}

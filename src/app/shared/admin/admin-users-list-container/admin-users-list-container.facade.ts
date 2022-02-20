@@ -120,12 +120,12 @@ export class AdminUsersListContainerFacade {
     );
   }
 
-  deleteUser(user: CurrentUserModel): void {
+  deleteUser(userId: string): void {
     const callback = this.loadUsers.bind(this);
 
     this.notify('init');
     this.subscriptions.add(
-      this.usersService.delete(user.id).pipe(
+      this.usersService.delete(userId).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
         catchError(this.notify.bind(this, 'error', null)),
         finalize(this.notifyClose.bind(this)),

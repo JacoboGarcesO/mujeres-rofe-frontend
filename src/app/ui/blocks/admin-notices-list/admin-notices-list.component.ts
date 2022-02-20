@@ -11,11 +11,13 @@ import { ModalComponent } from '../../elements/modal/modal.component';
 })
 export class AdminNoticesListComponent implements OnChanges {
   @ViewChild('modalRef') modalRef: ModalComponent;
+  @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
   @Input() notices: NoticeModel[];
   @Input() channelOptions: OptionModel[];
   @Input() canCloseModal: boolean;
   @Output() createNotice: EventEmitter<NoticeModel> = new EventEmitter();
-  @Output() deleteNotice: EventEmitter<NoticeModel> = new EventEmitter();
+  @Output() deleteNotice: EventEmitter<string> = new EventEmitter();
+  private noticeId: string;
 
   constructor(private cdRef: ChangeDetectorRef) { }
 
@@ -23,6 +25,7 @@ export class AdminNoticesListComponent implements OnChanges {
     if (!this.canCloseModal) { return; }
 
     this.modalRef.close();
+    this.modalDeleteRef.close();
     this.cdRef.detectChanges();
   }
 
@@ -30,7 +33,11 @@ export class AdminNoticesListComponent implements OnChanges {
     this.createNotice.emit(notice);
   }
 
-  handleDeleteNotice(notice: NoticeModel): void {
-    this.deleteNotice.emit(notice);
+  handleDeleteNotice(): void {
+    this.deleteNotice.emit(this.noticeId);
+  }
+
+  setNoticeId(noticeId: string): void {
+    this.noticeId = noticeId;
   }
 }

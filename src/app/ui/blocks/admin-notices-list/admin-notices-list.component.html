@@ -51,7 +51,7 @@
     <mr-button 
       [display]="'block'" 
       [icon]="'fas fa-trash'" 
-      (clicked)="handleDeleteNotice(notice)"
+      (clicked)="modalDeleteRef.toggle(); setNoticeId(notice.id)"
     ></mr-button>
   </td>
 </ng-template>
@@ -63,5 +63,16 @@
       [canResetForm]="canCloseModal"
       (dataOutput)="handleCreateNotice($event)"
     ></mr-form-notice>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <mr-text [text]="'¿Estás seguro de que deseas eliminar este comunicado?'" [weight]="'bold'" [size]="'medium'"></mr-text>
+    <mr-button 
+      class="admin-notices-list__button"
+      [label]="'Eliminar'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteNotice()"
+    ></mr-button>
   </ng-container>
 </mr-modal>

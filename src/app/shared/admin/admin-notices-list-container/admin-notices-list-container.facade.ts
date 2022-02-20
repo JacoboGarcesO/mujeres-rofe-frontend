@@ -83,12 +83,12 @@ export class AdminNoticesListContainerFacade {
     );
   }
 
-  deleteNotice(notice: NoticeModel): void {
+  deleteNotice(noticeId: string): void {
     const callback = this.loadNotices.bind(this);
 
     this.notify('init');
     this.subscriptions.add(
-      this.noticesService.deleteNotice(notice.id).pipe(
+      this.noticesService.deleteNotice(noticeId).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
         catchError(this.notify.bind(this, 'error', null)),
         finalize(this.notifyClose.bind(this)),

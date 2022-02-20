@@ -11,6 +11,7 @@ import { ModalComponent } from '../../elements/modal/modal.component';
 })
 export class AdminUsersListComponent implements OnChanges{
   @ViewChild('modalRef') modalRef: ModalComponent;
+  @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
   @Input() users: CurrentUserModel[];
   @Input() hobbies: OptionModel[];
   @Input() states: OptionModel[];
@@ -18,7 +19,8 @@ export class AdminUsersListComponent implements OnChanges{
   @Input() canCloseModal: boolean;
   @Output() stateSelected: EventEmitter<string> = new EventEmitter();
   @Output() createUser: EventEmitter<CurrentUserModel> = new EventEmitter();
-  @Output() deleteUser: EventEmitter<CurrentUserModel> = new EventEmitter();
+  @Output() deleteUser: EventEmitter<string> = new EventEmitter();
+  private userId: string;
 
   constructor(private cdRef: ChangeDetectorRef) { }
 
@@ -26,6 +28,7 @@ export class AdminUsersListComponent implements OnChanges{
     if (!this.canCloseModal) { return; }
     
     this.modalRef.close();
+    this.modalDeleteRef.close();
     this.cdRef.detectChanges();
   } 
 
@@ -33,11 +36,15 @@ export class AdminUsersListComponent implements OnChanges{
     this.createUser.emit(user);
   }
 
-  handleDeleteUser(user: CurrentUserModel): void {
-    this.deleteUser.emit(user);
+  handleDeleteUser(): void {
+    this.deleteUser.emit(this.userId);
   }
 
   handleSelectState(stateId: string): void {
     this.stateSelected.emit(stateId);
+  }
+
+  setUserId(userId: string): void {
+    this.userId = userId;
   }
 }
