@@ -11,6 +11,7 @@ import { NoticeModel } from 'src/app/core/models/notice.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormNoticeComponent implements OnChanges {
+  @Input() notices: NoticeModel[];
   @Input() canResetForm: boolean;
 
   public manualSave$: Subject<void> = new Subject();

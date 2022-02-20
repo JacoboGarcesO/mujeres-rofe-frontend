@@ -10,6 +10,7 @@ import { FormLinksComponent } from './form-links/form-links.component';
 import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
 import { FormLinkComponent } from './form-link/form-link.component';
 import { TextModule } from '../../elements/text/text.module';
+import { SubFormSelectModule } from '../sub-form-select/sub-form-select.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { TextModule } from '../../elements/text/text.module';
     TextModule,
     SubFormTextareaModule,
     ButtonIconModule,
+    SubFormSelectModule,
   ],
   exports: [
     FormNoticeComponent,
