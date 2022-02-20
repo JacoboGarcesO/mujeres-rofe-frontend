@@ -15,13 +15,30 @@
     &__image {
         position: relative;
         width: styles.func-toRem(12.5);
+        height: styles.func-toRem(12.5);
 
         &--shadow {
             position: relative;
             width: styles.func-toRem(12.5);
-            background: styles.$color-primary-color-light !important;
+            background: styles.$color-primary-color-light;
             border-radius: styles.$box-rad-rounded;
             padding: styles.$box-pad-base;
+
+            &--network {
+              background-color: styles.$color-status-info-dark;
+            }
+        
+            &--business {
+              background-color: styles.$color-status-error-dark;
+            }
+        
+            &--opportunities {
+              background-color: styles.$color-status-success-dark;
+            }
+        
+            &--training {
+              background-color: styles.$color-status-warning-dark;
+            }
         }
     }
 }

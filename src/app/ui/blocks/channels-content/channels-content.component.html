@@ -15,14 +15,12 @@
     <mr-card class="channels-content__notices-container">
         <ng-container>
             <div class="channels-content__notices">
-                <mr-notice></mr-notice>
-                <mr-notice></mr-notice> 
-                <mr-notice></mr-notice> 
-                <mr-notice></mr-notice> 
-                <mr-notice></mr-notice> 
-                <mr-notice></mr-notice> 
-                <mr-notice></mr-notice> 
-                <mr-notice></mr-notice> 
+                <mr-notice 
+                  *ngFor="let notice of notices"
+                  [image]="notice?.icon?.url"
+                  [title]="notice?.title"
+                  [channel]="notice?.channel"
+                ></mr-notice>
             </div>
         </ng-container>
     </mr-card>

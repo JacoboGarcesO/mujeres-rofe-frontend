@@ -9,6 +9,7 @@
     ['','0.5rem'],
     ['Título','7rem'],
     ['Descripción','10rem'],
+    ['Canal','4rem'],
     ['Acciones','3rem'],
   ]"
   [items]="notices || []"
@@ -39,6 +40,15 @@
       [color]="'initial'" 
       [type]="'line'" 
       [text]="notice?.description" 
+      [size]="'base'" 
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-notices-list-tmpl__td">
+    <mr-text 
+      [color]="'initial'" 
+      [type]="'line'" 
+      [text]="notice?.channel" 
       [size]="'base'" 
       [weight]="'regular'"
     ></mr-text>

@@ -25,7 +25,7 @@ export class ApiToNoticesMapper {
         url: notice?.icon?.url,
       },
       order: notice?.order,
-      channel: notice?.chanel,
+      channel: notice?.channel,
       links: this.getLinks(notice?.links),
     };
   }

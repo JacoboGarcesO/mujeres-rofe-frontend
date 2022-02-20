@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@angular/core';
 import { ChannelModel } from 'src/app/core/models/channel.model';
+import { NoticeModel } from 'src/app/core/models/notice.model';
 
 @Component({
   selector: 'mr-channels-content',
@@ -10,4 +11,5 @@ import { ChannelModel } from 'src/app/core/models/channel.model';
 })
 export class ChannelsContentComponent {
   @Input() channel: ChannelModel;
+  @Input() notices: NoticeModel[];
 }

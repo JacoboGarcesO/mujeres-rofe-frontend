@@ -7,5 +7,6 @@ export const URL_RESOURCE = {
   users: `${environment.apiUrl}/users`,
   deleteUser: (userId: string) =>`${environment.apiUrl}/users/${userId}`,
   notices: `${environment.apiUrl}/notices`,
+  noticesByChannel: (channel: string) => `${environment.apiUrl}/notices/channel/${channel}`,
   deleteNotice: (noticeId: string) =>`${environment.apiUrl}/notices/${noticeId}`,
 };

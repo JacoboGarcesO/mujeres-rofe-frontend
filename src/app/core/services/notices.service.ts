@@ -23,6 +23,13 @@ export class NoticesService {
     );
   }
 
+  getNoticesByChannel(channel: string): Observable<NoticeModel[]> {
+    const url = URL_RESOURCE.noticesByChannel(channel);
+    return this.httpService.get(url).pipe(
+      map((response) => this.apiToNoticesMapper.map(response)),
+    );
+  }
+
   createNotice(notice: NoticeModel): Observable<unknown> {
     const url = URL_RESOURCE.notices;
     const request = this.toApiNoticeMapper.map(notice);
