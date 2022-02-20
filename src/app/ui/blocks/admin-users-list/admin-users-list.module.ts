@@ -6,7 +6,7 @@ import { ButtonModule } from '../../elements/button/button.module';
 import { TextModule } from '../../elements/text/text.module';
 import { ImageModule } from '../../elements/image/image.module';
 import { ModalModule } from '../../elements/modal/modal.module';
-import { RegisterContainerModule } from '../../../shared/authentication/register-container/register-container.module';
+import { FormUserModule } from '../../forms/form-user/form-user.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { RegisterContainerModule } from '../../../shared/authentication/register
     TextModule,
     ImageModule,
     ModalModule,
-    RegisterContainerModule,
+    FormUserModule,
   ],
   exports: [
     AdminUsersListComponent,

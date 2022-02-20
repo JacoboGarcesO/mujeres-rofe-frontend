@@ -87,5 +87,14 @@
 </ng-template>
 
 <mr-modal #modalRef>
-  <mr-register-container></mr-register-container>
+  <ng-container>
+    <mr-form-user 
+      [hobbies]="hobbies"
+      [states]="states"
+      [cities]="cities"
+      [canResetForm]="canCloseModal"
+      (dataOutput)="handleCreateUser($event)"
+      (stateSelected)="handleSelectState($event)"
+    ></mr-form-user>
+  </ng-container>
 </mr-modal>

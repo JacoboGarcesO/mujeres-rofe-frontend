@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, OnDestroy, EventEmitter } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, Output, OnDestroy, EventEmitter, OnChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject, Subscription, tap } from 'rxjs';
@@ -12,10 +12,11 @@ import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
   styleUrls: ['./form-user.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormUserComponent implements OnInit, OnDestroy {
+export class FormUserComponent implements OnInit, OnDestroy, OnChanges {
   @Input() hobbies: OptionModel[];
   @Input() states: OptionModel[];
   @Input() cities: OptionModel[];
+  @Input() canResetForm: boolean;
   @Output() stateSelected: EventEmitter<string> = new EventEmitter();
   private subscriptions: Subscription;
 
@@ -58,6 +59,14 @@ export class FormUserComponent implements OnInit, OnDestroy {
     },
   });
 
+  ngOnChanges(): void {
+    if (!this.canResetForm) { return; }
+
+    Object.keys(
+      this.form.formGroup.controls,
+    ).forEach((control) => this.form.formGroup.controls[control].setValue(null));
+  }
+  
   ngOnInit(): void {
     this.init();
     this.initChangesListener();
