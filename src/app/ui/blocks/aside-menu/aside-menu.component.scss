@@ -20,7 +20,7 @@
 
   &__menu {
     display: grid;
-    gap: styles.$box-pad-onehalf;
-    margin-top: styles.$box-mrg-base;
+    gap: styles.$box-pad-base;
+    margin-top: styles.$box-mrg-half;
   }
 }

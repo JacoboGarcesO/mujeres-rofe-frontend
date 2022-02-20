@@ -1,8 +1,7 @@
-@use '../../_styles/index.scss' as styles;
+@use "../../_styles/index.scss" as styles;
 
 .item-menu {
   display: grid;
-  padding-right: styles.$box-pad-onehalf;
   grid-template-columns: min-content auto;
   align-items: center;
   text-decoration: none;
@@ -13,12 +12,14 @@
   }
 
   &__image {
-    width: styles.func-toRem(3.5);
+    width: styles.func-toRem(3);
     height: styles.func-toRem(3);
   }
 
   &__label {
     display: grid;
     gap: styles.$box-pad-quarter;
+    margin-left: styles.$box-mrg-half;
+    padding-right: styles.$box-pad-base;
   }
 }
