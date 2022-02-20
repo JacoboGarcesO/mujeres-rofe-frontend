@@ -1,4 +1,5 @@
 export enum ChannelEnum {
+  home = 'home',
   network = 'network',
   business = 'business',
   opportunities = 'opportunities',
@@ -9,6 +10,7 @@ export enum ChannelEnum {
 
 export const toChannelEnum = (key: string): ChannelEnum => {
   const options = new Map();
+  options.set('home', ChannelEnum.home);
   options.set('network', ChannelEnum.network);
   options.set('business', ChannelEnum.business);
   options.set('opportunities', ChannelEnum.opportunities);
@@ -21,6 +23,7 @@ export const toChannelEnum = (key: string): ChannelEnum => {
 
 export const fromChannelEnum = (key: ChannelEnum): string => {
   const options = new Map();
+  options.set(ChannelEnum.home, 'home');
   options.set(ChannelEnum.network, 'network');
   options.set(ChannelEnum.business, 'business');
   options.set(ChannelEnum.opportunities, 'opportunities');

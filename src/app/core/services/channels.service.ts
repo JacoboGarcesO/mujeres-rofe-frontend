@@ -9,7 +9,15 @@ import { ChannelModel } from '../models/channel.model';
 export class ChannelsService {
   
   getChannels(): Observable<ChannelModel[]> {
-    const hobbies = [
+    const channels = [
+      { 
+        link: '', 
+        name: 'Inicio',  
+        description: 'Volver a la página de inicio', 
+        icon: 'assets/img/home.png', 
+        banner: 'assets/img/contactanos-banner.png',
+        type: ChannelEnum.home,
+      },
       { 
         link: 'channels/network', 
         name: 'Red', 
@@ -59,6 +67,6 @@ export class ChannelsService {
       },
     ];
 
-    return of(hobbies);
+    return of(channels);
   }
 }
