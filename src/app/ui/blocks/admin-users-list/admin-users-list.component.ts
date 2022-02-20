@@ -24,8 +24,6 @@ export class AdminUsersListComponent implements OnChanges{
 
   ngOnChanges(): void {
     if (!this.canCloseModal) { return; }
-
-    console.log(this.canCloseModal);
     
     this.modalRef.close();
     this.cdRef.detectChanges();

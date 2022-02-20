@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, ViewEncapsulation, Renderer2, ChangeDetectorRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, Input, ViewEncapsulation, Renderer2, ChangeDetectorRef, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { debounceTime, distinctUntilChanged, Subject, Subscription, tap } from 'rxjs';
@@ -13,13 +13,14 @@ import { MiscUtil } from 'src/app/core/utils/misc.util';
   providers: subformComponentProviders(SubFormMultiSelectComponent),
   encapsulation: ViewEncapsulation.None,
 })
-export class SubFormMultiSelectComponent implements OnInit, OnDestroy {
+export class SubFormMultiSelectComponent implements OnInit, OnDestroy, OnChanges {
   @Input() icon!: string;
   @Input() label!: string;
   @Input() placeholder!: string;
   @Input() options!: OptionModel[];
   @Input() tabid!: string;
   @Input() isSearchable = false;
+  @Input() canResetForm: boolean;
   private termSubject: Subject<string> = new Subject();
   private subscriptions: Subscription = new Subscription();
   private optionsListValue: OptionModel[] = [];
@@ -38,10 +39,10 @@ export class SubFormMultiSelectComponent implements OnInit, OnDestroy {
     },
   });
 
-  constructor(    
-    private renderer: Renderer2, 
+  constructor(
+    private renderer: Renderer2,
     private cdRef: ChangeDetectorRef,
-  ) { 
+  ) {
     this.bindClosest();
   }
 
@@ -58,6 +59,11 @@ export class SubFormMultiSelectComponent implements OnInit, OnDestroy {
     return this.showSearchable ? options?.slice(0, 10) : options;
   }
 
+  ngOnChanges(): void {
+    if (!this.canResetForm) { return; }
+    this.form.formGroup.controls.value.setValue([]);    
+  }
+
   ngOnInit(): void {
     this.listenTerm();
   }
@@ -68,7 +74,7 @@ export class SubFormMultiSelectComponent implements OnInit, OnDestroy {
   }
 
   handleClick(event: Event, optionId: string): void {
-    event.stopPropagation();    
+    event.stopPropagation();
     const options = this.form.formGroup.controls.value.value;
 
     if (!options.includes(optionId)) {
