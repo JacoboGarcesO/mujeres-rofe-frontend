@@ -6,6 +6,8 @@ import { CurrentUserModel } from '../models/current-user.model';
 })
 export class ApiToUsersMapper {
   map(response: any): CurrentUserModel[] {
+    if (!response?.users) { return []; }
+  
     return response?.users?.map(this.getUser.bind(this)); 
   }
 

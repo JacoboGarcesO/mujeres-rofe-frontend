@@ -16,6 +16,16 @@
   </fieldset>
 
   <fieldset class="form-notice__description">
+    <mr-sub-form-select
+      [placeholder]="'Seleccione un canal'"
+      [options]="channelOptions"
+      [label]="'Canal'"
+      [icon]="'fas fa-sort'"
+      [formControlName]="form.formControlNames.channel"
+    ></mr-sub-form-select>
+  </fieldset>
+
+  <fieldset class="form-notice__description">
     <mr-sub-form-textarea 
       [text]="'Descripción'"
       [formControlName]="form.formControlNames.description"
@@ -26,15 +36,6 @@
     <mr-form-links 
       [formControlName]="form.formControlNames.links"
     ></mr-form-links>
-  </fieldset>
-
-  <fieldset class="form-notice__description">
-    <mr-sub-form-select
-      [placeholder]="'Seleccione un canal'"
-      [options]="notices"
-      [label]="'Canal'"
-      [icon]="'fas fa-sort'"
-    ></mr-sub-form-select>
   </fieldset>
 
   <fieldset class="form-notice__file">

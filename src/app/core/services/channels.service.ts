@@ -70,31 +70,4 @@ export class ChannelsService {
 
     return of(channels);
   }
-
-  getChannelsOptions(): Observable<OptionModel[]> {
-    const channelsOptions = [
-      { 
-        label: 'Red',
-        id: fromChannelEnum(ChannelEnum.network),
-      },
-      {  
-        label: 'Oportunidades',
-        id: fromChannelEnum(ChannelEnum.opportunities),
-      },
-      {  
-        label: 'Formación',
-        id: fromChannelEnum(ChannelEnum.training),
-      },
-      {  
-        label: 'Emprendimiento', 
-        id: fromChannelEnum(ChannelEnum.business),
-      },
-      { 
-        label: 'Contacto', 
-        id: fromChannelEnum(ChannelEnum.contact),
-      },
-    ];
-
-    return of(channelsOptions);
-  }
 }

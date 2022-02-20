@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ChannelModel } from '../models/channel.model';
+import { OptionModel } from '../models/option.model';
 import { StateFactory } from './factory.state';
 
 @Injectable({
   providedIn: 'root',
 })
-export class channelsResourcesState {
+export class ChannelsState {
   private channels$: BehaviorSubject<ChannelModel[]> = new BehaviorSubject(null);
-  private channelsResources$: BehaviorSubject<ChannelModel[]> = new BehaviorSubject(null);
+  private channelsResource$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) { }
 
   store() {
     return {
       channels: this.factory.state(this.channels$),
-      channelsResources: this.factory.state(this.channelsResources$),
+      channelsResource: this.factory.state(this.channelsResource$),
     };
   }
 

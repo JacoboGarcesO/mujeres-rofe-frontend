@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { catchError, EMPTY, finalize, Observable, Subscription, tap } from 'rxjs';
+import { OptionModel } from 'src/app/core/models/option.model';
+import { ChannelsOptionsService } from 'src/app/core/services/channels-options.service';
 import { NoticesService } from 'src/app/core/services/notices.service';
 import { AppState } from 'src/app/core/state/app.state';
 import { NoticeModel } from '../../../core/models/notice.model';
@@ -13,6 +15,7 @@ export class AdminNoticesListContainerFacade {
   constructor(
     private state: AppState,
     private noticesService: NoticesService,
+    private channelsOptionsService: ChannelsOptionsService,
   ) { }
 
   //#region Observables
@@ -22,6 +25,10 @@ export class AdminNoticesListContainerFacade {
 
   canCloseModal$(): Observable<boolean> {
     return this.state.resources.canCloseModal.$();
+  }
+
+  channelOptions$(): Observable<OptionModel[]> {
+    return this.state.channels.channelsResource.$();
   }
   //#endregion
 
@@ -44,6 +51,18 @@ export class AdminNoticesListContainerFacade {
 
   destroyNotices(): void {
     this.state.notices.notices.set(null);
+  }
+
+  loadChannelOptions(): void {
+    this.subscriptions.add(
+      this.channelsOptionsService.getChannels().pipe(
+        tap(this.storeChannelOptions.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyChannelOptions(): void {
+    this.state.channels.channelsResource.set(null);
   }
 
   destroyCanCloseModal(): void {
@@ -79,8 +98,12 @@ export class AdminNoticesListContainerFacade {
   //#endregion
 
   //#region Private Methods
-  private storeNotices(notices: NoticeModel[]): void {
+  private storeNotices(notices: NoticeModel[]): void {   
     this.state.notices.notices.set(notices);
+  }
+
+  private storeChannelOptions(channels: OptionModel[]): void {
+    this.state.channels.channelsResource.set(channels);
   }
 
   private storeCanCloseModal(value: boolean): void {

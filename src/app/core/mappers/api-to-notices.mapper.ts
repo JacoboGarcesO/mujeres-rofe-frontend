@@ -5,7 +5,9 @@ import { LinkNoticeModel, NoticeModel } from '../models/notice.model';
   providedIn: 'root',
 })
 export class ApiToNoticesMapper {
-  map(response: any): NoticeModel[] {  
+  map(response: any): NoticeModel[] {
+    if (!response?.notices) { return []; }
+
     return response?.notices?.map(this.getNotice.bind(this));
   }
 
@@ -23,6 +25,7 @@ export class ApiToNoticesMapper {
         url: notice?.icon?.url,
       },
       order: notice?.order,
+      channel: notice?.chanel,
       links: this.getLinks(notice?.links),
     };
   }

@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
 import { NoticeModel } from 'src/app/core/models/notice.model';
+import { OptionModel } from 'src/app/core/models/option.model';
 
 @Component({
   selector: 'mr-form-notice',
@@ -11,7 +12,7 @@ import { NoticeModel } from 'src/app/core/models/notice.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FormNoticeComponent implements OnChanges {
-  @Input() notices: NoticeModel[];
+  @Input() channelOptions: OptionModel[];
   @Input() canResetForm: boolean;
 
   public manualSave$: Subject<void> = new Subject();
@@ -38,6 +39,7 @@ export class FormNoticeComponent implements OnChanges {
       icon: new FormControl(null, Validators.required),
       content: new FormControl(null, Validators.required),
       order: new FormControl(null, Validators.required),
+      channel: new FormControl(null, Validators.required),
       links: new FormControl(null),
       //---
       id: new FormControl(null),

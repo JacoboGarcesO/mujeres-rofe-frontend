@@ -1,6 +1,6 @@
 <div class="table__container table__container--{{factor || 'full'}}">
   <div class="table__scroll">
-    <table class="table__table" aria-describedby="List of items">
+    <table *ngIf="items?.length !== 0" class="table__table" aria-describedby="List of items">
       <thead *ngIf="showHeader" class="table__thead">
         <tr class="table__trh">
           <th
@@ -35,6 +35,6 @@
 
 <ng-template #notFound>
   <div class="table__notfound">
-    No se encontraron resultados.
+    <mr-text [text]="'No se encontraron resultados.'"></mr-text>
   </div>
 </ng-template>

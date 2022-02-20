@@ -13,6 +13,7 @@ export class ToApiNoticeMapper {
     formData.append('links', JSON.stringify(notice.links));
     formData.append('icon', notice.icon.file);
     formData.append('content', notice.content.file);
+    formData.append('channel', notice.channel);
 
     return formData;
   }

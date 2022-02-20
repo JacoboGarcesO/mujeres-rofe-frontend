@@ -9,6 +9,7 @@ export interface NoticeModel {
   id: string;
   title: string;
   description: string;
+  channel: string;
   icon: MediaModel;
   content: MediaModel;
   order: string;

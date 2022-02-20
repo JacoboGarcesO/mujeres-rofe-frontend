@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, OnChanges, ChangeDetectorRef } from '@angular/core';
 import { NoticeModel } from 'src/app/core/models/notice.model';
+import { OptionModel } from 'src/app/core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
 
 @Component({
@@ -11,6 +12,7 @@ import { ModalComponent } from '../../elements/modal/modal.component';
 export class AdminNoticesListComponent implements OnChanges {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @Input() notices: NoticeModel[];
+  @Input() channelOptions: OptionModel[];
   @Input() canCloseModal: boolean;
   @Output() createNotice: EventEmitter<NoticeModel> = new EventEmitter();
   @Output() deleteNotice: EventEmitter<NoticeModel> = new EventEmitter();
