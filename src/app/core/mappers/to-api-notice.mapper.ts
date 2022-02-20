@@ -7,6 +7,7 @@ import { NoticeModel } from '../models/notice.model';
 export class ToApiNoticeMapper {
   map(notice: NoticeModel): any {    
     const formData = new FormData();
+    formData.append('id', notice.id);
     formData.append('title', notice.title);
     formData.append('description', notice.description);
     formData.append('order', notice.order);

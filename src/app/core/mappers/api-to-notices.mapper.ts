@@ -25,7 +25,7 @@ export class ApiToNoticesMapper {
         url: notice?.icon?.url,
       },
       order: notice?.order,
-      channel: this.getChannel(notice?.channel),
+      channel: notice?.channel,
       links: this.getLinks(notice?.links),
     };
   }
@@ -35,20 +35,5 @@ export class ApiToNoticesMapper {
       name: link?.name,
       url: link?.url,
     }));
-  }
-
-  private getChannel(channel: any): string {
-    switch (channel) {
-    case 'network':
-      return 'red';
-    case 'opportunities':
-      return 'oportunidades';
-    case 'training':
-      return 'formación';
-    case 'business':
-      return 'emprendimiento';
-    case 'contact':
-      return 'contacto';
-    }
   }
 }

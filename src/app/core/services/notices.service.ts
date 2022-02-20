@@ -36,6 +36,14 @@ export class NoticesService {
     return this.httpService.postFile(url, request);
   }
 
+  updateNotice(notice: NoticeModel): Observable<string> {
+    const url =  URL_RESOURCE.notices;
+    const formData = this.toApiNoticeMapper.map(notice);
+    return this.httpService.putFile(url, formData).pipe(
+      map((response: any) => response?.notices?.[0]?._id),
+    );
+  }
+
   deleteNotice(noticeId: string): Observable<any> {
     const url = URL_RESOURCE.deleteNotice(noticeId);
     return this.httpService.delete(url);

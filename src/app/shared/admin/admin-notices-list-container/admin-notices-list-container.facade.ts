@@ -30,6 +30,10 @@ export class AdminNoticesListContainerFacade {
   channelOptions$(): Observable<OptionModel[]> {
     return this.state.channels.channelsResource.$();
   }
+
+  currentNoticeToUpdate$(): Observable<NoticeModel> {
+    return this.state.notices.currentNoticeToUpdate.$();
+  }
   //#endregion
 
   //#region Public methods
@@ -51,6 +55,16 @@ export class AdminNoticesListContainerFacade {
 
   destroyNotices(): void {
     this.state.notices.notices.set(null);
+  }
+
+  loadNotice(noticeId: string): void {
+    this.destroyNotice();
+    const notice = this.state.notices.notices.snapshot().find((notice) => notice.id === noticeId);
+    this.state.notices.currentNoticeToUpdate.set(notice);
+  }
+
+  destroyNotice(): void {
+    this.state.notices.currentNoticeToUpdate.set(null);
   }
 
   loadChannelOptions(): void {
@@ -75,6 +89,20 @@ export class AdminNoticesListContainerFacade {
     this.notify('init');
     this.subscriptions.add(
       this.noticesService.createNotice(notice).pipe(
+        tap(this.notify.bind(this, 'complete', callback)),
+        tap(this.storeCanCloseModal.bind(this, true)),
+        catchError(this.notify.bind(this, 'error', null)),
+        finalize(this.notifyClose.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  updateNotice(notice: NoticeModel): void {
+    const callback = this.loadNotices.bind(this);
+
+    this.notify('init');
+    this.subscriptions.add(
+      this.noticesService.updateNotice(notice).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
         tap(this.storeCanCloseModal.bind(this, true)),
         catchError(this.notify.bind(this, 'error', null)),

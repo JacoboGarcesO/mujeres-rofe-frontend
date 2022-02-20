@@ -7,6 +7,7 @@ import { TextModule } from '../../elements/text/text.module';
 import { ImageModule } from '../../elements/image/image.module';
 import { ModalModule } from '../../elements/modal/modal.module';
 import { FormNoticeModule } from '../../forms/form-notice/form-notice.module';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormNoticeModule } from '../../forms/form-notice/form-notice.module';
     ImageModule,
     ModalModule,
     FormNoticeModule,
+    PipesModule,
   ],
   exports: [
     AdminNoticesListComponent,

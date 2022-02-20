@@ -8,12 +8,14 @@ import { NoticeModel } from '../models/notice.model';
 })
 export class NoticesState {
   private notices$: BehaviorSubject<NoticeModel[]> = new BehaviorSubject(null);
+  private currentNoticeToUpdate$: BehaviorSubject<NoticeModel> = new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) { }
 
   store() {
     return {
       notices: this.factory.state(this.notices$),
+      currentNoticeToUpdate: this.factory.state(this.currentNoticeToUpdate$),
     };
   }
 }

@@ -12,11 +12,15 @@ import { ModalComponent } from '../../elements/modal/modal.component';
 export class AdminNoticesListComponent implements OnChanges {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
+  @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
   @Input() notices: NoticeModel[];
+  @Input() noticeToUpdate: NoticeModel;
   @Input() channelOptions: OptionModel[];
   @Input() canCloseModal: boolean;
   @Output() createNotice: EventEmitter<NoticeModel> = new EventEmitter();
+  @Output() updateNotice: EventEmitter<NoticeModel> = new EventEmitter();
   @Output() deleteNotice: EventEmitter<string> = new EventEmitter();
+  @Output() loadNoticeToUpdate: EventEmitter<string> = new EventEmitter();
   private noticeId: string;
 
   constructor(private cdRef: ChangeDetectorRef) { }
@@ -26,11 +30,16 @@ export class AdminNoticesListComponent implements OnChanges {
 
     this.modalRef.close();
     this.modalDeleteRef.close();
+    this.modalUpdateRef.close();
     this.cdRef.detectChanges();
   }
 
   handleCreateNotice(notice: NoticeModel): void {
     this.createNotice.emit(notice);
+  }
+
+  handleUpdateNotice(notice: NoticeModel): void {
+    this.updateNotice.emit(notice);
   }
 
   handleDeleteNotice(): void {
@@ -39,5 +48,9 @@ export class AdminNoticesListComponent implements OnChanges {
 
   setNoticeId(noticeId: string): void {
     this.noticeId = noticeId;
+  }
+
+  handleLoadNoticeToUpdate(noticeId: string): void {
+    this.loadNoticeToUpdate.emit(noticeId);
   }
 }

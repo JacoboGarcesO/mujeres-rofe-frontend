@@ -1,13 +1,17 @@
 <ng-container *ngIf="{
   notices: (notices$ | async),
   canCloseModal: (canCloseModal$ | async),
-  channelOptions: (channelOptions$ | async)
+  channelOptions: (channelOptions$ | async),
+  noticeToUpdate: (noticeToUpdate$ | async)
 } as data">
   <mr-admin-notices-list 
     [notices]="data.notices"
     [canCloseModal]="data.canCloseModal"
     [channelOptions]="data.channelOptions"
+    [noticeToUpdate]="data.noticeToUpdate"
     (createNotice)="handleCreateNotice($event)"
     (deleteNotice)="handleDeleteNotice($event)"
+    (loadNoticeToUpdate)="handleLoadNoticeToUpdate($event)"
+    (updateNotice)="handleUpdateNotice($event)"
   ></mr-admin-notices-list>
 </ng-container>

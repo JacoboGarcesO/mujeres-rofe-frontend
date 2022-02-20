@@ -48,7 +48,7 @@
     <mr-text 
       [color]="'initial'" 
       [type]="'line'" 
-      [text]="notice?.channel" 
+      [text]="notice?.channel | channel" 
       [size]="'base'" 
       [weight]="'regular'"
     ></mr-text>
@@ -56,7 +56,8 @@
   <td class="admin-notices-list-tmpl__td admin-notices-list-tmpl__td--buttons">
     <mr-button 
       [display]="'block'" 
-      [icon]="'fas fa-pen'" 
+      [icon]="'fas fa-pen'"
+      (clicked)="handleLoadNoticeToUpdate(notice.id); modalUpdateRef.toggle(); "
     ></mr-button>
     <mr-button 
       [display]="'block'" 
@@ -72,6 +73,17 @@
       [channelOptions]="channelOptions"
       [canResetForm]="canCloseModal"
       (dataOutput)="handleCreateNotice($event)"
+    ></mr-form-notice>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalUpdateRef>
+  <ng-container>
+    <mr-form-notice 
+      [dataInput]="noticeToUpdate"
+      [channelOptions]="channelOptions"
+      [canResetForm]="canCloseModal"
+      (dataOutput)="handleUpdateNotice($event)"
     ></mr-form-notice>
   </ng-container>
 </mr-modal>
