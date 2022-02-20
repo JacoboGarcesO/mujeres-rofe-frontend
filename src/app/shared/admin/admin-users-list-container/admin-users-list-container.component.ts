@@ -36,6 +36,7 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
   }
 
   handleSelectState(stateId: string): void {
+    this.facade.destroyCanCloseModal();
     this.facade.loadCitiesByState(stateId);
   }
 
