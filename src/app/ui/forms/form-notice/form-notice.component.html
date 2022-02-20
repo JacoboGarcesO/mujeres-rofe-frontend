@@ -28,6 +28,15 @@
     ></mr-form-links>
   </fieldset>
 
+  <fieldset class="form-notice__description">
+    <mr-sub-form-select
+      [placeholder]="'Seleccione un canal'"
+      [options]="notices"
+      [label]="'Canal'"
+      [icon]="'fas fa-sort'"
+    ></mr-sub-form-select>
+  </fieldset>
+
   <fieldset class="form-notice__file">
     <mr-sub-form-file
       [label]="'Adjuntar icono'"

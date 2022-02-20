@@ -59,6 +59,7 @@
 <mr-modal #modalRef>
   <ng-container>
     <mr-form-notice
+      [notices]="notices"
       [canResetForm]="canCloseModal"
       (dataOutput)="handleCreateNotice($event)"
     ></mr-form-notice>
