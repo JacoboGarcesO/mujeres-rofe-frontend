@@ -1,9 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, OnDestroy, EventEmitter, OnChanges } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, OnChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
-import { Subject, Subscription, tap } from 'rxjs';
-import { CurrentUserModel } from 'src/app/core/models/current-user.model';
+import { Subject } from 'rxjs';
 import { OptionModel } from 'src/app/core/models/option.model';
+import { UserModel } from 'src/app/core/models/user.model';
 import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
 
 @Component({
@@ -12,17 +12,15 @@ import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
   styleUrls: ['./form-user.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormUserComponent implements OnInit, OnDestroy, OnChanges {
+export class FormUserComponent implements OnChanges {
   @Input() hobbies: OptionModel[];
   @Input() states: OptionModel[];
   @Input() cities: OptionModel[];
   @Input() canResetForm: boolean;
-  @Output() stateSelected: EventEmitter<string> = new EventEmitter();
-  private subscriptions: Subscription;
 
   public manualSave$: Subject<void> = new Subject();
-  private input$: Subject<CurrentUserModel> = new Subject();
-  @Input() set dataInput(value: CurrentUserModel) {
+  private input$: Subject<UserModel> = new Subject();
+  @Input() set dataInput(value: UserModel) {
     this.input$.next(value);
   }
 
@@ -31,8 +29,8 @@ export class FormUserComponent implements OnInit, OnDestroy, OnChanges {
     this.disabled$.next(!!value);
   }
 
-  @Output() dataOutput: Subject<CurrentUserModel> = new Subject();
-  form = createForm<CurrentUserModel>(this, {
+  @Output() dataOutput: Subject<UserModel> = new Subject();
+  form = createForm<UserModel>(this, {
     formType: FormType.ROOT,
     input$: this.input$,
     disabled$: this.disabled$,
@@ -52,49 +50,19 @@ export class FormUserComponent implements OnInit, OnDestroy, OnChanges {
       // --------------------
       id: new FormControl(null),
       rol: new FormControl(null),
-      token: new FormControl(null),
-      message: new FormControl(null),
-      isPending: new FormControl(null),
-      nameComplete: new FormControl(null),
+      isPremium: new FormControl(null),
     },
   });
 
+  @Output() initForm = this.form.controlValue$;
+  @Output() formUpdate = this.form.formGroup.valueChanges;
+
+
   ngOnChanges(): void {
     if (!this.canResetForm) { return; }
-
+    
     Object.keys(
       this.form.formGroup.controls,
     ).forEach((control) => this.form.formGroup.controls[control].setValue(null));
-  }
-  
-  ngOnInit(): void {
-    this.init();
-    this.initChangesListener();
-  }
-
-  ngOnDestroy(): void {
-    this.destroy();
-  }
-
-  private init(): void {
-    this.subscriptions = new Subscription();
-  }
-
-  private destroy(): void {
-    this.subscriptions.unsubscribe();
-  }
-
-  private initChangesListener(): void {
-    this.subscriptions.add(
-      this.form.formGroup.valueChanges.pipe(
-        tap(this.queryStates.bind(this)),
-      ).subscribe(),
-    );
-  }
-
-  private queryStates(formUpdate: CurrentUserModel): void {
-    if (formUpdate?.location?.state && !formUpdate?.location?.city) {
-      this.stateSelected.emit(formUpdate.location.state);
-    }
   }
 }

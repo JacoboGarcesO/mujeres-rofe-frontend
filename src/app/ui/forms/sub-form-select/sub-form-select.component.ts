@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { debounceTime, distinctUntilChanged, Subject, Subscription, tap } from 'rxjs';
 import { OptionModel } from 'src/app/core/models/option.model';

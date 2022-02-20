@@ -1,34 +1,38 @@
 import { Injectable } from '@angular/core';
-import { CurrentUserModel } from '../models/current-user.model';
+import { UserModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiToUsersMapper {
-  map(response: any): CurrentUserModel[] {
+  map(response: any): UserModel[] {
     if (!response?.users) { return []; }
-  
-    return response?.users?.map(this.getUser.bind(this)); 
+
+    return response?.users?.map(this.getUser.bind(this));
   }
 
-  private getUser(user: any): CurrentUserModel {
+  private getUser(user: any): UserModel {
     return {
       id: user?._id,
       email: user?.email,
       firstName: user?.firstName,
       lastName: user?.lastName,
-      nameComplete: user?.nameComplete,
       rol: user?.rol,
-      token: user?.token,
-      message: user?.message,
-      isPending: user?.isPending,
+      isPremium: user?.isPremium,
       document: user?.document,
       image: user?.image,
       description: user?.description,
-      location: user?.location,
-      instagram: user?.instagram,
-      hobbies: user?.hobbies,
+      location:  {
+        city: user?.location?.city,
+        state: user?.location?.state,
+      },
+      instagram: user?.socialsNetworks?.[0]?.url,
+      hobbies: this.getHobbies(user?.hobbies),
       phoneNumber: user?.phoneNumber,
     };
+  }
+
+  private getHobbies(hobbies: any[]): string[] {
+    return hobbies.map((hobbie) => hobbie?.name);
   }
 }

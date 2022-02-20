@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { catchError, EMPTY, finalize, Observable, Subscription, tap } from 'rxjs';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { OptionModel } from 'src/app/core/models/option.model';
+import { UserModel } from 'src/app/core/models/user.model';
 import { HobbiesService } from 'src/app/core/services/hobbies.service';
 import { LocationsService } from 'src/app/core/services/locations.service';
 import { UsersService } from 'src/app/core/services/users.service';
@@ -85,7 +86,7 @@ export class RegisterContainerFacade {
     this.state.hobbies.hobbies.set(null);
   }
 
-  createUser(user: CurrentUserModel): void {
+  createUser(user: UserModel): void {
     const callback = this.navigateToLogin.bind(this);
 
     this.notify('init');

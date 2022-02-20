@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Subscription, Observable, tap, EMPTY, catchError, finalize } from 'rxjs';
 import { UsersService } from 'src/app/core/services/users.service';
 import { AppState } from '../../../core/state/app.state';
-import { CurrentUserModel } from '../../../core/models/current-user.model';
 import { LocationsService } from '../../../core/services/locations.service';
 import { HobbiesService } from '../../../core/services/hobbies.service';
 import { OptionModel } from '../../../core/models/option.model';
+import { UserModel } from 'src/app/core/models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class AdminUsersListContainerFacade {
   ) { }
 
   //#region Observables
-  users$(): Observable<CurrentUserModel[]> {
+  users$(): Observable<UserModel[]> {
     return this.state.users.users.$();
   }
 
@@ -39,6 +39,10 @@ export class AdminUsersListContainerFacade {
 
   canCloseModal$(): Observable<boolean> {
     return this.state.resources.canCloseModal.$();
+  }
+
+  currentUserToUpdate$(): Observable<UserModel> {
+    return this.state.users.currentUserToUpdate.$();
   }
   //#endregion
 
@@ -93,6 +97,16 @@ export class AdminUsersListContainerFacade {
     this.state.users.users.set(null);
   }
 
+  loadUser(userId: string): void {
+    this.destroyUser();
+    const user = this.state.users.users.snapshot().find((user) => user.id === userId);
+    this.state.users.currentUserToUpdate.set(user);
+  }
+
+  destroyUser(): void {
+    this.state.users.currentUserToUpdate.set(null);
+  }
+
   loadHobbies(): void {
     this.destroyHobbies();
     this.subscriptions.add(
@@ -106,12 +120,26 @@ export class AdminUsersListContainerFacade {
     this.state.hobbies.hobbies.set(null);
   }
 
-  createUser(user: CurrentUserModel): void {
+  createUser(user: UserModel): void {
     const callback = this.loadUsers.bind(this);
 
     this.notify('init');
     this.subscriptions.add(
       this.usersService.create(user).pipe(
+        tap(this.notify.bind(this, 'complete', callback)),
+        tap(this.storeCanCloseModal.bind(this, true)),
+        catchError(this.notify.bind(this, 'error', null)),
+        finalize(this.notifyClose.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  updateUser(user: UserModel): void {
+    const callback = this.loadUsers.bind(this);
+
+    this.notify('init');
+    this.subscriptions.add(
+      this.usersService.update(user).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
         tap(this.storeCanCloseModal.bind(this, true)),
         catchError(this.notify.bind(this, 'error', null)),
@@ -130,7 +158,7 @@ export class AdminUsersListContainerFacade {
         catchError(this.notify.bind(this, 'error', null)),
         finalize(this.notifyClose.bind(this)),
       ).subscribe(),
-    );    
+    );
   }
   //#endregion
 
@@ -139,7 +167,7 @@ export class AdminUsersListContainerFacade {
     this.state.locations?.[entity].set(options);
   }
 
-  private storeUsers(users: CurrentUserModel[]): void {
+  private storeUsers(users: UserModel[]): void {
     this.state.users.users.set(users);
   }
 

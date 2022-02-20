@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { CurrentUserModel } from '../../../core/models/current-user.model';
+import { UserModel } from 'src/app/core/models/user.model';
 import { OptionModel } from '../../../core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
 
@@ -9,42 +9,60 @@ import { ModalComponent } from '../../elements/modal/modal.component';
   styleUrls: ['./admin-users-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdminUsersListComponent implements OnChanges{
+export class AdminUsersListComponent implements OnChanges {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
-  @Input() users: CurrentUserModel[];
+  @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
+  @Input() users: UserModel[];
+  @Input() userToUpdate: UserModel;
   @Input() hobbies: OptionModel[];
   @Input() states: OptionModel[];
   @Input() cities: OptionModel[];
   @Input() canCloseModal: boolean;
   @Output() stateSelected: EventEmitter<string> = new EventEmitter();
-  @Output() createUser: EventEmitter<CurrentUserModel> = new EventEmitter();
+  @Output() createUser: EventEmitter<UserModel> = new EventEmitter();
+  @Output() updateUser: EventEmitter<UserModel> = new EventEmitter();
   @Output() deleteUser: EventEmitter<string> = new EventEmitter();
+  @Output() loadUserToUpdate: EventEmitter<string> = new EventEmitter();
+  private currentUser: UserModel;
   private userId: string;
 
   constructor(private cdRef: ChangeDetectorRef) { }
 
   ngOnChanges(): void {
     if (!this.canCloseModal) { return; }
-    
+
     this.modalRef.close();
     this.modalDeleteRef.close();
+    this.modalUpdateRef.close();
     this.cdRef.detectChanges();
-  } 
+  }
 
-  handleCreateUser(user: CurrentUserModel): void {
+  handleCreateUser(user: UserModel): void {
     this.createUser.emit(user);
+  }
+
+  handleUpdateUser(user: UserModel): void {
+    this.updateUser.emit(user);
   }
 
   handleDeleteUser(): void {
     this.deleteUser.emit(this.userId);
   }
 
-  handleSelectState(stateId: string): void {
-    this.stateSelected.emit(stateId);
+  handleSelectState(formUpdate: UserModel): void {
+    if (formUpdate?.location?.state && (formUpdate?.location?.state !== this.currentUser?.location?.state)) {
+      this.stateSelected.emit(formUpdate?.location?.state);
+    }
+
+    this.currentUser = { ...formUpdate };
   }
 
   setUserId(userId: string): void {
     this.userId = userId;
+  }
+
+  handleLoadUserToUpdate(userId: string): void {
+    this.loadUserToUpdate.emit(userId);
   }
 }

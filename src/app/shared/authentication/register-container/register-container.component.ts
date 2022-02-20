@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { OptionModel } from 'src/app/core/models/option.model';
+import { UserModel } from 'src/app/core/models/user.model';
 import { RegisterContainerFacade } from './register-container.facade';
 
 @Component({
@@ -30,7 +30,7 @@ export class RegisterContainerComponent implements OnInit, OnDestroy {
     this.facade.destroySubscriptions();
   }
 
-  handleCreateUser(user: CurrentUserModel): void {
+  handleCreateUser(user: UserModel): void {
     this.facade.createUser(user); 
   }
 

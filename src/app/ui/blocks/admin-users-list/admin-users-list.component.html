@@ -76,7 +76,8 @@
   <td class="admin-users-list-tmpl__td admin-users-list-tmpl__td--buttons">
     <mr-button 
       [display]="'block'" 
-      [icon]="'fas fa-pen'" 
+      [icon]="'fas fa-pen'"
+      (clicked)="handleLoadUserToUpdate(user.id); modalUpdateRef.toggle(); "
     ></mr-button>
     <mr-button 
       [display]="'block'" 
@@ -94,7 +95,22 @@
       [cities]="cities"
       [canResetForm]="canCloseModal"
       (dataOutput)="handleCreateUser($event)"
-      (stateSelected)="handleSelectState($event)"
+      (formUpdate)="handleSelectState($event)"
+    ></mr-form-user>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalUpdateRef>
+  <ng-container>
+    <mr-form-user 
+      [dataInput]="userToUpdate"
+      [hobbies]="hobbies"
+      [states]="states"
+      [cities]="cities"
+      [canResetForm]="canCloseModal"
+      (formUpdate)="handleSelectState($event)"
+      (initForm)="handleSelectState($event)"
+      (dataOutput)="handleUpdateUser($event)"
     ></mr-form-user>
   </ng-container>
 </mr-modal>

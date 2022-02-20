@@ -7,8 +7,8 @@ import { OptionModel } from '../models/option.model';
 export class ApiToOptionMapper {
   map(results: any[], idField = 'id', labelField = 'name'): OptionModel[] {
     return results.map((result)=> ({
-      id: result?.[idField],
-      label: result?.[labelField],
+      id: `${result?.[idField]}`,
+      label: `${result?.[labelField]}`,
     }));
     
   }

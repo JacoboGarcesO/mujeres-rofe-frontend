@@ -11,7 +11,7 @@ export interface CurrentUserModel {
   rol: RolsEnum;
   token?: string;
   message: string;
-  isPending: boolean;
+  isPremium: boolean;
   document?: string;
   image?: MediaModel | File;
   description?: string;

@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { OptionModel } from 'src/app/core/models/option.model';
+import { UserModel } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'mr-register-content',
@@ -12,15 +12,19 @@ export class RegisterContentComponent {
   @Input() hobbies: OptionModel[];
   @Input() cities: OptionModel[];
   @Input() states: OptionModel[];
-  @Output() createUser: EventEmitter<CurrentUserModel> = new EventEmitter();
+  @Output() createUser: EventEmitter<UserModel> = new EventEmitter();
   @Output() selectedState: EventEmitter<string> = new EventEmitter();
+  private currentUser: UserModel;
 
-  handleCreateUser(user: CurrentUserModel) {
+  handleCreateUser(user: UserModel) {
     this.createUser.emit(user);
   }
 
-  handleLoadCities(stateId: string) {
-    this.selectedState.emit(stateId);
-    
+  handleLoadCities(formUpdate: UserModel) {
+    if (formUpdate?.location?.state && (formUpdate?.location?.state !== this.currentUser?.location?.state)) {
+      this.selectedState.emit(formUpdate?.location?.state);
+    }
+
+    this.currentUser = { ...formUpdate };
   }
 }

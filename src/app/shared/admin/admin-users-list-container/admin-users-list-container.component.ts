@@ -1,8 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CurrentUserModel } from '../../../core/models/current-user.model';
 import { AdminUsersListContainerFacade } from './admin-users-list-container.facade';
 import { OptionModel } from '../../../core/models/option.model';
+import { UserModel } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'mr-admin-users-list-container',
@@ -10,10 +10,11 @@ import { OptionModel } from '../../../core/models/option.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
-  public users$: Observable<CurrentUserModel[]>;
+  public users$: Observable<UserModel[]>;
   public states$: Observable<OptionModel[]>;
   public cities$: Observable<OptionModel[]>;
   public hobbies$: Observable<OptionModel[]>;
+  public userToUpdate$: Observable<UserModel>;
   public canCloseModal$: Observable<boolean>;
 
   constructor(private facade: AdminUsersListContainerFacade) { }
@@ -32,6 +33,7 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
     this.facade.destroyStates();
     this.facade.destroyCanCloseModal();
     this.facade.destroyCitiesByState();
+    this.facade.destroyUser();
     this.facade.destroySubscriptions();
   }
 
@@ -40,12 +42,20 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
     this.facade.loadCitiesByState(stateId);
   }
 
-  handleCreateUser(user: CurrentUserModel): void {
+  handleCreateUser(user: UserModel): void {
     this.facade.createUser(user);
+  }
+
+  handleUpdateUser(user: UserModel): void {
+    this.facade.updateUser(user);
   }
 
   handleDeleteUser(userId: string): void {
     this.facade.deleteUser(userId);
+  }
+
+  handleLoadUserToUpdate(userId: string): void {
+    this.facade.loadUser(userId);
   }
 
   private initializeSubscriptions(): void {
@@ -54,5 +64,6 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
     this.cities$ = this.facade.cities$();
     this.hobbies$ = this.facade.hobbies$();
     this.canCloseModal$ = this.facade.canCloseModal$();
+    this.userToUpdate$ = this.facade.currentUserToUpdate$();
   }
 }
