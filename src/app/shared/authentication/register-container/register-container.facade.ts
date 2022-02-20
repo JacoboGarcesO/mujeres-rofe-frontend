@@ -122,7 +122,7 @@ export class RegisterContainerFacade {
     this.state.notifications.notification.set(messages[key]);
 
     // eslint-disable-next-line angular/timeout-service
-    if (!!callback && !(callback instanceof Observable)) { setTimeout(() => callback(), 500); }
+    if (!!callback && !(callback instanceof Observable)) { setTimeout(() => callback(), 2000); }
     return EMPTY;
   }
 
