@@ -28,4 +28,9 @@ export class NoticesService {
     const request = this.toApiNoticeMapper.map(notice);
     return this.httpService.postFile(url, request);
   }
+
+  deleteNotice(id: string): Observable<any> {
+    const url = `${URL_RESOURCE.notices}/${id}`;
+    return this.httpService.delete(url);
+  }
 }

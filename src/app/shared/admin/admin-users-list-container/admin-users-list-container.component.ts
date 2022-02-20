@@ -15,13 +15,17 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.facade.initSubscriptions();
-    this.facade.loadUsres();
+    this.facade.loadUsers();
     this.initializeSubscriptions();
   }
 
   ngOnDestroy(): void {
     this.facade.destroyUsers();
     this.facade.destroySubscriptions();
+  }
+
+  handleDeleteUser(user: CurrentUserModel): void {
+    this.facade.deleteUser(user);
   }
 
   private initializeSubscriptions(): void {

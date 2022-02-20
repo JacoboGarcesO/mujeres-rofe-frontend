@@ -74,8 +74,15 @@
     ></mr-text>
   </td>
   <td class="admin-users-list-tmpl__td admin-users-list-tmpl__td--buttons">
-    <mr-button [display]="'block'" [icon]="'fas fa-pen'"></mr-button>
-    <mr-button [display]="'block'" [icon]="'fas fa-trash'"></mr-button>
+    <mr-button 
+      [display]="'block'" 
+      [icon]="'fas fa-pen'" 
+    ></mr-button>
+    <mr-button 
+      [display]="'block'" 
+      [icon]="'fas fa-trash'" 
+      (clicked)="handleDeleteUser(user)"
+    ></mr-button>
   </td>
 </ng-template>
 

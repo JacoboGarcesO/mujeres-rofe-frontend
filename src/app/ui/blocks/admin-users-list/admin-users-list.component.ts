@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { CurrentUserModel } from '../../../core/models/current-user.model';
 
 @Component({
@@ -9,5 +9,9 @@ import { CurrentUserModel } from '../../../core/models/current-user.model';
 })
 export class AdminUsersListComponent { 
   @Input() users: CurrentUserModel[];
+  @Output() deleteUser: EventEmitter<CurrentUserModel> = new EventEmitter();
 
+  handleDeleteUser(user: CurrentUserModel): void {
+    this.deleteUser.emit(user);
+  }
 }

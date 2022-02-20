@@ -33,4 +33,9 @@ export class UsersService {
       map((response: any) => this.apiToUserMapper.map(response)),
     );
   }
+
+  delete(id: string): Observable<any> {
+    const url = `${URL_RESOURCE.users}/${id}`;
+    return this.httpService.delete(url);
+  }
 }

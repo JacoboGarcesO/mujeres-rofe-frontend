@@ -13,6 +13,7 @@ export class AdminNoticesListComponent implements OnChanges {
   @Input() notices: NoticeModel[];
   @Input() canCloseModal: boolean;
   @Output() createNotice: EventEmitter<NoticeModel> = new EventEmitter();
+  @Output() deleteNotice: EventEmitter<NoticeModel> = new EventEmitter();
 
   constructor(private cdRef: ChangeDetectorRef) { }
 
@@ -25,5 +26,9 @@ export class AdminNoticesListComponent implements OnChanges {
 
   handleCreateNotice(notice: NoticeModel): void {
     this.createNotice.emit(notice);
+  }
+
+  handleDeleteNotice(notice: NoticeModel): void {
+    this.deleteNotice.emit(notice);
   }
 }

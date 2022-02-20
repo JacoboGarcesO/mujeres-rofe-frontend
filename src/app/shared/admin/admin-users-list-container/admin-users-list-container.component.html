@@ -3,5 +3,6 @@
 } as data">
     <mr-admin-users-list 
       [users]="data.users"
+      (deleteUser)="handleDeleteUser($event)"
     ></mr-admin-users-list>
 </ng-container>

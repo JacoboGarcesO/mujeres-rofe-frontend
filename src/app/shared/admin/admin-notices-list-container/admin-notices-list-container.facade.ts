@@ -63,6 +63,19 @@ export class AdminNoticesListContainerFacade {
       ).subscribe(),
     );
   }
+
+  deleteNotice(notice: NoticeModel): void {
+    const callback = this.loadNotices.bind(this);
+
+    this.notify('init');
+    this.subscriptions.add(
+      this.noticesService.deleteNotice(notice.id).pipe(
+        tap(this.notify.bind(this, 'complete', callback)),
+        catchError(this.notify.bind(this, 'error', null)),
+        finalize(this.notifyClose.bind(this)),
+      ).subscribe(),
+    );    
+  }
   //#endregion
 
   //#region Private Methods
