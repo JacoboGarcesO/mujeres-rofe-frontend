@@ -4,6 +4,7 @@ import { LayoutMainComponent } from '../../ui/layouts/layout-main/layout-main.co
 import { RequestNotificationsContainerComponent } from '../../shared/static/request-notifications-container/request-notifications-container.component';
 import { HeaderContainerComponent } from '../../shared/shell/header-container/header-container.component';
 import { AdminContentContainerComponent } from '../../shared/admin/admin-content-container/admin-content-container.component';
+import { AdminGuard } from './admin.guard';
 
 const routes: Routes = [
   {
@@ -14,6 +15,7 @@ const routes: Routes = [
       { path: '', component: HeaderContainerComponent, outlet: 'header' },
       { path: '', component: AdminContentContainerComponent },
     ],
+    canActivate: [AdminGuard],
   },
 ];
 
