@@ -5,6 +5,8 @@ import { NoticeModel } from '../models/notice.model';
 import { URL_RESOURCE } from '../resources/url.resource';
 import { ApiToNoticesMapper } from '../mappers/api-to-notices.mapper';
 import { ToApiNoticeMapper } from '../mappers/to-api-notice.mapper';
+import { ApiToNoticeMapper } from '../mappers/api-to-notice.mapper';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +15,7 @@ export class NoticesService {
   constructor(
     private httpService: HttpService,
     private apiToNoticesMapper: ApiToNoticesMapper,
+    private apiToNoticeMapper: ApiToNoticeMapper,
     private toApiNoticeMapper: ToApiNoticeMapper,
   ) { }
 
@@ -20,6 +23,13 @@ export class NoticesService {
     const url = URL_RESOURCE.notices;
     return this.httpService.get(url).pipe(
       map((response) => this.apiToNoticesMapper.map(response)),
+    );
+  }
+
+  getNoticeById(id: string): Observable<NoticeModel> {
+    const url = URL_RESOURCE.noticeById(id);
+    return this.httpService.get(url).pipe(
+      map((response) => this.apiToNoticeMapper.map(response)),
     );
   }
 

@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@a
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { NoticeModel } from 'src/app/core/models/notice.model';
 import { UserModel } from 'src/app/core/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mr-channels-content',
@@ -14,4 +15,10 @@ export class ChannelsContentComponent {
   @Input() channel: ChannelModel;
   @Input() notices: NoticeModel[];
   @Input() users: UserModel[];
+
+  constructor(private router: Router) { }
+
+  navigateToNotice(url: string, id: string): void {
+    this.router.navigateByUrl(`${url}/${id}`);
+  }
 }
