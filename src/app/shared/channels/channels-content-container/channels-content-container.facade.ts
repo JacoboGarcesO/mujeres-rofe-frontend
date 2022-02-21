@@ -4,8 +4,10 @@ import { Observable, of, Subscription, tap } from 'rxjs';
 import { toChannelEnum } from 'src/app/core/enums/channel.enum';
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { NoticeModel } from 'src/app/core/models/notice.model';
+import { UserModel } from 'src/app/core/models/user.model';
 import { ChannelsService } from 'src/app/core/services/channels.service';
 import { NoticesService } from 'src/app/core/services/notices.service';
+import { UsersService } from 'src/app/core/services/users.service';
 import { AppState } from 'src/app/core/state/app.state';
 
 @Injectable({
@@ -18,6 +20,7 @@ export class ChannelsContentContainerFacade {
     private state: AppState,
     private channelsService: ChannelsService,
     private noticesService: NoticesService,
+    private usersService: UsersService,
     private location: Location,
   ) { }
 
@@ -34,6 +37,10 @@ export class ChannelsContentContainerFacade {
 
   notices$(): Observable<NoticeModel[]> {
     return this.state.notices.notices.$();
+  }
+
+  users$(): Observable<UserModel[]> {
+    return this.state.users.users.$();
   }
   //#endregion
 
@@ -71,6 +78,18 @@ export class ChannelsContentContainerFacade {
   destroyNotices(): void {
     this.state.notices.notices.set(null);
   }
+
+  loadUsers(): void {
+    this.subscriptions.add(
+      this.usersService.getUsers().pipe(
+        tap(this.storeUsers.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyUsers(): void {
+    this.state.users.users.set(null);
+  }
   //#endregion
 
   //#region Private Methods
@@ -80,6 +99,10 @@ export class ChannelsContentContainerFacade {
 
   private storeNotices(notices: NoticeModel[]): void {
     this.state.notices.notices.set(notices);
+  }
+
+  private storeUsers(users: UserModel[]): void {
+    this.state.users.users.set(users);
   }
   //#endregion
 }

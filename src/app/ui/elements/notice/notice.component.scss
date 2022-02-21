@@ -6,6 +6,7 @@
         justify-content: center;
         align-items: center;
         gap: styles.func-toRem(3.12);
+        cursor: pointer;
 
         .text {
             color: styles.$color-primary-color !important;

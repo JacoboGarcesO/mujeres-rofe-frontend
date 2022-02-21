@@ -1,9 +1,17 @@
 <ng-container *ngIf="{
   channel: (channel$ | async),
-  notices: (notices$ | async)
+  notices: (notices$ | async),
+  users: (users$ | async)
 } as data">
   <mr-channels-content 
+    *ngIf="data.channel.name !== chanelNetwork"
+    [channel]="data.channel" 
+    [notices]="data.notices"
+  ></mr-channels-content>
+  <mr-channels-content 
+    *ngIf="data.channel.name === chanelNetwork"
     [channel]="data.channel" 
     [notices]="data.notices" 
+    [users]="data.users"
   ></mr-channels-content>
 </ng-container>
