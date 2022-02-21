@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { MediaModel } from '../models/media.model';
 import { NoticeModel } from '../models/notice.model';
 
 @Injectable({
@@ -13,9 +14,20 @@ export class ToApiNoticeMapper {
     formData.append('order', notice.order);
     formData.append('links', JSON.stringify(notice.links));
     formData.append('icon', notice.icon.file);
+    formData.append('iconEncoded', this.getImage(notice.icon));
     formData.append('content', notice.content.file);
+    formData.append('contentEncoded', this.getImage(notice.content));
     formData.append('channel', notice.channel);
 
     return formData;
+  }
+
+  private getImage(image: MediaModel): string {
+    const media = {
+      _id: image.id,
+      url:image.url,
+    };
+
+    return JSON.stringify(media);
   }
 }
