@@ -4,6 +4,7 @@ import { ProfileCurrentUserComponent } from './profile-current-user.component';
 import { FormUserModule } from '../../forms/form-user/form-user.module';
 import { CardModule } from '../../elements/card/card.module';
 import { HomeBackgroundModule } from '../../elements/home-background/home-background.module';
+import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { HomeBackgroundModule } from '../../elements/home-background/home-backgr
     CommonModule,
     HomeBackgroundModule,
     CardModule,
+    ButtonIconModule,
     FormUserModule,
   ],
   exports: [

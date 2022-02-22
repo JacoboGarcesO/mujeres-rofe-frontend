@@ -1,6 +1,6 @@
-<div class="register-content">
-  <mr-home-background class="register-content__background"></mr-home-background>
-  <mr-card class="register-content__form">
+<div class="profile-current-user">
+  <mr-home-background class="profile-current-user__background"></mr-home-background>
+  <mr-card class="profile-current-user__form">
     <ng-container>
       <mr-form-user
         [dataInput]="user"
@@ -13,4 +13,9 @@
       ></mr-form-user>
     </ng-container>
   </mr-card>
+  <mr-button-icon
+    [icon]="'home'"
+    (clicked)="handleToBack()"
+    class="profile-current-user__back"
+  ></mr-button-icon>
 </div>

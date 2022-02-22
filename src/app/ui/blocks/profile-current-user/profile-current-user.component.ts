@@ -1,4 +1,5 @@
-import { Component, ChangeDetectionStrategy, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { UserModel } from 'src/app/core/models/user.model';
 
@@ -7,6 +8,7 @@ import { UserModel } from 'src/app/core/models/user.model';
   templateUrl: './profile-current-user.component.html',
   styleUrls: ['./profile-current-user.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class ProfileCurrentUserComponent {
   @Input() hobbies: OptionModel[];
@@ -16,6 +18,10 @@ export class ProfileCurrentUserComponent {
   @Output() createUser: EventEmitter<UserModel> = new EventEmitter();
   @Output() selectedState: EventEmitter<string> = new EventEmitter();
   private currentUser: UserModel;
+
+  constructor(
+    private router: Router,
+  ) { }
 
   handleCreateUser(user: UserModel) {    
     this.createUser.emit(user);
@@ -27,5 +33,9 @@ export class ProfileCurrentUserComponent {
     }
 
     this.currentUser = { ...formUpdate };
+  }
+
+  handleToBack(): void {
+    this.router.navigateByUrl('');
   }
 }
