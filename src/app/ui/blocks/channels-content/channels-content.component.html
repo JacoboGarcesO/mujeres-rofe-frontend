@@ -52,7 +52,7 @@
       
         <ng-template #userTemplate let-user="item" let-index="index">
             <td class="channels-content-users-list__td">
-              <figure class="channels-content-users-list__image">
+              <figure class="channels-content-users-list__image" (click)="navigateToUser(user.id)">
                 <mr-image
                   [image]="user?.image?.url"
                   [rounded]="'circle'"

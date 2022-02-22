@@ -11,7 +11,7 @@ export class ApiToUsersMapper {
     return response?.users?.map(this.getUser.bind(this));
   }
 
-  private getUser(user: any): UserModel {
+  getUser(user: any): UserModel {
     return {
       id: user?._id,
       email: user?.email,

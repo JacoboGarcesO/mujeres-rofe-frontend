@@ -27,6 +27,12 @@ const routes: Routes = [
       .then((module) => module.NoticesModule),
     canActivate: [PrivateGuard],
   },
+  {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module')
+      .then((module) => module.ProfileModule),
+    canActivate: [PrivateGuard],
+  },
 ];
 
 @NgModule({

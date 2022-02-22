@@ -44,4 +44,11 @@ export class UsersService {
     const url = URL_RESOURCE.deleteUser(userId);
     return this.httpService.delete(url);
   }
+
+  getById(userId: string): Observable<UserModel> {
+    const url = URL_RESOURCE.userById(userId);
+    return this.httpService.get(url).pipe(
+      map((response: any)=> this.apiToUsersMapper.getUser(response.users?.[0])),
+    );
+  }
 }

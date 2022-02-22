@@ -1,0 +1,36 @@
+<div class="profile-user">
+  <figure class="profile-user__background">
+    <mr-image [image]="'assets/img/profile.svg'"></mr-image>
+  </figure>
+  <mr-card class="profile-user__form">
+    <ng-container>
+      <div class="profile-user__container">
+        <div class="profile-user__data">
+          <mr-text class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'Correo electrónico:'"></mr-text>
+          <mr-text class="profile-user__name profile-user__name--content" [text]="user?.email"></mr-text>
+      
+          <mr-text class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'Ciudad:'"></mr-text>
+
+          <mr-text class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'Teléfono:'"></mr-text>
+          <mr-text class="profile-user__name profile-user__name--content" [text]="user?.phoneNumber"></mr-text>
+
+          <mr-text *ngIf="user?.instagram" class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'Instagram:'"></mr-text>
+          <mr-text *ngIf="user?.instagram" class="profile-user__name profile-user__name--content" [text]="user?.instagram"></mr-text>
+
+          <mr-text class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'WhatsApp:'"></mr-text>
+          <mr-text class="profile-user__name profile-user__name--content" [text]="'+57' + ' '+ user?.phoneNumber"></mr-text>
+
+          <mr-text class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'Descripción:'"></mr-text>
+          <mr-text [clamp]="5" class="profile-user__name profile-user__name--content profile-user__name--description" [text]="user?.description"></mr-text>
+        </div>
+        <div class="profile-user__data profile-user__data--right">
+          <figure class="profile-user__photo">
+            <mr-image [image]="user?.image?.url" [rounded]="'circle'"></mr-image>
+          </figure>
+
+          <mr-text class="profile-user__name" [size]="'medium'" [weight]="'bold'" [text]="user?.firstName + ' ' + user?.lastName"></mr-text>
+        </div>
+      </div>
+    </ng-container>
+  </mr-card>
+</div>

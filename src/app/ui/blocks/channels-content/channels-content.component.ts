@@ -21,4 +21,8 @@ export class ChannelsContentComponent {
   navigateToNotice(channel: string, id: string): void {
     this.router.navigateByUrl(`notices/${channel}/${id}`);
   }
+
+  navigateToUser(userId: string): void {
+    this.router.navigateByUrl(`profile/${userId}`);
+  }
 }

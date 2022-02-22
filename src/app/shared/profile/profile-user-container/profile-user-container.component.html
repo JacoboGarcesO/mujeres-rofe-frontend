@@ -1,0 +1,7 @@
+<ng-container *ngIf="{
+  user: (user$ | async)
+} as data">
+  <mr-profile-user
+    [user]="data.user"
+  ></mr-profile-user>
+</ng-container>

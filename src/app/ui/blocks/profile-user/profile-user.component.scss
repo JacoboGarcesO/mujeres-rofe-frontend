@@ -1,0 +1,98 @@
+@use "../../_styles/index.scss" as styles;
+
+.profile-user {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+
+  &__background {
+    position: absolute;
+    z-index: -1;
+    bottom: -4px;
+    left: 0;
+    width: 100%;
+  }
+
+  &__data {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: styles.$box-pad-half;
+
+    &--right {
+      align-items: center;
+      width: 100%;
+    }
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 80px;
+    height: 100vh;
+  }
+
+  &__photo {
+    width: styles.func-toRem(15);
+    height: styles.func-toRem(15);
+  }
+
+  &__name {
+    display: block;
+    text-align: center;
+    width: 100%;
+    padding: 15px 0;
+    background-color: styles.$color-primary-color;
+    border-radius: styles.$box-rad-medium;
+
+    &--content {
+      padding: 10px;
+      display: inline;
+      width: fit-content;
+      margin-top: styles.$box-mrg-none;
+      margin-bottom: styles.$box-mrg-base;
+    }
+
+    &--description {
+      max-width: styles.func-toRem(20);
+    }
+
+    .text {
+      color: styles.$color-bg-white;
+    }
+  }
+
+  &__text {
+    .text {
+      color: styles.$color-primary-color;
+    }
+  }
+
+  &__container {
+    padding: styles.$box-pad-onehalf;
+    display: grid;
+    gap: styles.$box-pad-double;
+  }
+}
+
+@media (min-width: styles.$bkp-mobile) {
+  .profile-user {
+    &__form {
+      margin-top: styles.$box-mrg-none;
+    }
+    &__container {
+      grid-template-columns: repeat(2, styles.$box-fr-base);
+    }
+  }
+}
+
+@media (min-width: styles.$bkp-tablet) {
+  .profile-user {
+    &__photo {
+      width: styles.func-toRem(20);
+      height: styles.func-toRem(20);
+    }
+  }
+}
