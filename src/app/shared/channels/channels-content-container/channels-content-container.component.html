@@ -4,12 +4,12 @@
   users: (users$ | async)
 } as data">
   <mr-channels-content 
-    *ngIf="data.channel.name !== chanelNetwork"
+    *ngIf="data.channel.name !== chanelNetwork && data.notices"
     [channel]="data.channel" 
     [notices]="data.notices"
   ></mr-channels-content>
   <mr-channels-content 
-    *ngIf="data.channel.name === chanelNetwork"
+    *ngIf="data.channel.name === chanelNetwork && data.notices"
     [channel]="data.channel" 
     [notices]="data.notices" 
     [users]="data.users"

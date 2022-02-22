@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, OnChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, OnChanges, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { NoticeModel } from 'src/app/core/models/notice.model';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './admin-notices-list.component.html',
   styleUrls: ['./admin-notices-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class AdminNoticesListComponent implements OnChanges {
   @ViewChild('modalRef') modalRef: ModalComponent;

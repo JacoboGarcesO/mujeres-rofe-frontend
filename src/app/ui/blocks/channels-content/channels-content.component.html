@@ -121,6 +121,6 @@
   <mr-button-icon
     [icon]="'arrow-left'"
     (clicked)="handleToBack()"
-    class="channels-content__back"
+    class="channels-content__back channels-content__back--{{ notices?.[0]?.channel }}"
   ></mr-button-icon>
 </div>
