@@ -1,77 +1,61 @@
-@use '../../_styles/index.scss' as styles;
+@use "../../_styles/index.scss" as styles;
 
 .channels-content {
-    &__notice {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: styles.func-toRem(3.12);
-        cursor: pointer;
+  &__notice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: styles.func-toRem(3.12);
+    cursor: pointer;
 
-        .text {
-            color: styles.$color-primary-color !important;
-        }
+    .text {
+      color: styles.$color-primary-color !important;
     }
+  }
 
-    &__image {
-        position: relative;
-        width: styles.func-toRem(12.5);
-        height: styles.func-toRem(12.5);
+  &__image {
+    position: relative;
+    width: styles.func-toRem(7);
+    height: styles.func-toRem(7);
 
-        &--shadow {
-            position: relative;
-            width: styles.func-toRem(12.5);
-            background: styles.$color-primary-color-light;
-            border-radius: styles.$box-rad-rounded;
-            padding: styles.$box-pad-base;
+    &--shadow {
+      position: relative;
+      width: styles.func-toRem(7);
+      background: styles.$color-primary-color-light;
+      border-radius: styles.$box-rad-rounded;
+      padding: styles.$box-pad-half;
 
-            &--network {
-              background-color: styles.$color-status-info-dark;
-            }
-        
-            &--business {
-              background-color: styles.$color-status-error-dark;
-            }
-        
-            &--opportunities {
-              background-color: styles.$color-status-success-dark;
-            }
-        
-            &--training {
-              background-color: styles.$color-status-warning-dark;
-            }
-        }
+      &--network {
+        background-color: styles.$color-status-info-dark;
+      }
+
+      &--business {
+        background-color: styles.$color-status-error-dark;
+      }
+
+      &--opportunities {
+        background-color: styles.$color-status-success-dark;
+      }
+
+      &--training {
+        background-color: styles.$color-status-warning-dark;
+      }
     }
-}
-
-@media (max-width: styles.$bkp-mobile) {
-    .channels-content {
-        &__image {
-            width: styles.func-toRem(8) !important;
-        }
-    }
+  }
 }
 
 @media (max-width: styles.$bkp-tablet) {
-    .channels-content {
-      &__notice {
-        flex-direction: column;
-      }
+  .channels-content {
+    &__notice {
+      flex-direction: column;
     }
+  }
 }
 
 @media (max-width: styles.$bkp-desktop) {
-    .channels-content {
-      &__image {
-        width: styles.func-toRem(9.5);
-        
-        .image {
-          object-fit: contain !important;
-        }
-      }
-  
-      &__notice {
-        gap: styles.func-toRem(1.25);
-      }
+  .channels-content {
+    &__notice {
+      gap: styles.func-toRem(1.25);
     }
+  }
 }

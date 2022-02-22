@@ -135,10 +135,7 @@
   .channels-content {
     &__image {
       width: styles.func-toRem(9.5);
-      
-      .image {
-        object-fit: contain !important;
-      }
+
     }
     
     &__info {
