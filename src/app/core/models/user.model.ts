@@ -14,6 +14,7 @@ export interface UserModel {
   description: string;
   location: UserLocationModel;
   instagram: string; 
+  facebook: string; 
   hobbies: string[];
   phoneNumber: number;
 }

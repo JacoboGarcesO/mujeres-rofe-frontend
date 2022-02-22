@@ -79,9 +79,6 @@
 
 @media (min-width: styles.$bkp-mobile) {
   .profile-user {
-    &__form {
-      margin-top: styles.$box-mrg-none;
-    }
     &__container {
       grid-template-columns: repeat(2, styles.$box-fr-base);
     }

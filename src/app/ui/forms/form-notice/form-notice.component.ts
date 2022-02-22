@@ -35,11 +35,11 @@ export class FormNoticeComponent implements OnChanges {
     manualSave$: this.manualSave$,
     formControls: {
       title: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required),
       icon: new FormControl(null, Validators.required),
       content: new FormControl(null, Validators.required),
       order: new FormControl(null, Validators.required),
       channel: new FormControl(null, Validators.required),
+      description: new FormControl(null),
       links: new FormControl(null),
       //---
       id: new FormControl(null),

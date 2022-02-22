@@ -6,9 +6,9 @@ import { UserModel } from '../models/user.model';
   providedIn: 'root',
 })
 export class ToApiUsersMapper {
-  map(user: UserModel): any {    
+  map(user: UserModel): any {
     const formData = new FormData();
-    const socialNetworks = this.getSocialNetworks(user.instagram);
+    const socialNetworks = this.getSocialNetworks(user?.instagram, user?.facebook);
     const image = this.getImage(user.image);
     const hobbies = this.getHobbies(user.hobbies);
 
@@ -29,8 +29,8 @@ export class ToApiUsersMapper {
     return formData;
   }
 
-  private getSocialNetworks(instagram: string): string {
-    const socialNetwork = [{ name: 'instagram', url: instagram }];
+  private getSocialNetworks(instagram: string, facebook: string): string {
+    const socialNetwork = [{ name: 'instagram', url: instagram }, { name: 'facebook', url: facebook }];
     return JSON.stringify(socialNetwork);
   }
 
@@ -39,6 +39,8 @@ export class ToApiUsersMapper {
   }
 
   private getHobbies(hobbies: string[]): any {
-    return JSON.stringify(hobbies.map((hobbie) => ({name: hobbie})));
+    if (!hobbies) { return '[]'; }
+
+    return JSON.stringify(hobbies.map((hobbie) => ({ name: hobbie })));
   }
 }

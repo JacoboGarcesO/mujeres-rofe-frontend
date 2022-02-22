@@ -161,7 +161,7 @@ export class AdminNoticesListContainerFacade {
       setTimeout(() => {
         this.state.notifications.notification.set(null);
         if (callback) { callback(); }
-      }, 1000);
+      }, 5000);
     }
   }
 

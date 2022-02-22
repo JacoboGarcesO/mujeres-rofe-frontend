@@ -5,7 +5,6 @@
         [type]="'input'"
         [label]="'Nombres'"
         [icon]="'fas fa-user'"
-        [placeholder]="'Jacobo...'"
         [formControlName]="form.formControlNames.firstName"
       ></mr-sub-form-input>
   
@@ -13,7 +12,6 @@
         [type]="'input'"
         [label]="'Apellidos'"
         [icon]="'fas fa-user'"
-        [placeholder]="'Garcés Oquendo...'"
         [formControlName]="form.formControlNames.lastName"
       ></mr-sub-form-input>
   
@@ -29,7 +27,6 @@
         [type]="'number'"
         [label]="'Celular'"
         [icon]="'fas fa-phone-alt'"
-        [placeholder]="'3116657131...'"
         [formControlName]="form.formControlNames.phoneNumber"
       ></mr-sub-form-input>
 
@@ -47,7 +44,13 @@
         [type]="'input'"
         [label]="'Instagram'"
         [icon]="'fab fa-instagram'"
-        [placeholder]="'@js_jsjs...'"
+        [formControlName]="form.formControlNames.instagram"
+      ></mr-sub-form-input>
+
+      <mr-sub-form-input 
+        [type]="'input'"
+        [label]="'Facebook'"
+        [icon]="'fab fa-facebook'"
         [formControlName]="form.formControlNames.instagram"
       ></mr-sub-form-input>
     </fieldset>
@@ -63,9 +66,8 @@
     <fieldset class="form-user__description">
       <mr-sub-form-input 
         [type]="'number'"
-        [label]="'Documento'"
+        [label]="'Número de identificación'"
         [icon]="'fab fa-document'"
-        [placeholder]="'000000000...'"
         [formControlName]="form.formControlNames.document"
       ></mr-sub-form-input>
 

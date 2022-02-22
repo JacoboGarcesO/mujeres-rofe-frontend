@@ -27,6 +27,7 @@ export class ApiToUsersMapper {
         state: user?.location?.state,
       },
       instagram: user?.socialsNetworks?.[0]?.url,
+      facebook: user?.socialsNetworks?.[1]?.url,
       hobbies: this.getHobbies(user?.hobbies),
       phoneNumber: user?.phoneNumber,
     };
