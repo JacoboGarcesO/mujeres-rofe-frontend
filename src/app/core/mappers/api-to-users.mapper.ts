@@ -26,8 +26,8 @@ export class ApiToUsersMapper {
         city: user?.location?.city,
         state: user?.location?.state,
       },
-      instagram: user?.socialsNetworks?.[0]?.url,
-      facebook: user?.socialsNetworks?.[1]?.url,
+      instagram: this.getSocialNetwork(user?.socialsNetworks, 'instagram'),
+      facebook: this.getSocialNetwork(user?.socialsNetworks, 'facebook'),
       hobbies: this.getHobbies(user?.hobbies),
       phoneNumber: user?.phoneNumber,
     };
@@ -35,5 +35,9 @@ export class ApiToUsersMapper {
 
   private getHobbies(hobbies: any[]): string[] {
     return hobbies.map((hobbie) => hobbie?.name);
+  }
+
+  private getSocialNetwork(socials: any[], social: string): string {
+    return socials.find((_)=> _.name === social).url;
   }
 }

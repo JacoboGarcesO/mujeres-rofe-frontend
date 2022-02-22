@@ -36,15 +36,28 @@
           ></mr-text>
 
           <a
+            *ngIf="user?.instagram"
             [href]="user?.instagram"
             target="_blank"
             class="profile-user__name profile-user__name--content"
           >
             <mr-text
-              *ngIf="user?.instagram"
               [size]="'medium'"
               [weight]="'bold'"
               [text]="'Instagram'"
+            ></mr-text>
+          </a>
+
+          <a
+            *ngIf="user?.facebook"
+            [href]="user?.facebook"
+            target="_blank"
+            class="profile-user__name profile-user__name--content"
+          >
+            <mr-text
+              [size]="'medium'"
+              [weight]="'bold'"
+              [text]="'Facebook'"
             ></mr-text>
           </a>
 
