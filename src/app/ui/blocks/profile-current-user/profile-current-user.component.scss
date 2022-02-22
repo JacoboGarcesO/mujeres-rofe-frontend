@@ -1,0 +1,29 @@
+@use "../../_styles/index.scss" as styles;
+
+.register-content {
+  position: relative;
+  display: flex;
+
+  &__background {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+@media (min-width: styles.$bkp-tablet) {
+  .register-content {
+    &__form {
+      height: 100vh;
+    }
+  }
+}

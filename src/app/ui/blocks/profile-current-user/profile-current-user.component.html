@@ -1,0 +1,16 @@
+<div class="register-content">
+  <mr-home-background class="register-content__background"></mr-home-background>
+  <mr-card class="register-content__form">
+    <ng-container>
+      <mr-form-user
+        [dataInput]="user"
+        [cities]="cities"
+        [states]="states"
+        [hobbies]="hobbies"
+        (dataOutput)="handleCreateUser($event)"
+        (formUpdate)="handleLoadCities($event)"
+        (initForm)="handleLoadCities($event)"
+      ></mr-form-user>
+    </ng-container>
+  </mr-card>
+</div>

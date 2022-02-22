@@ -1,4 +1,4 @@
-@use '../../_styles/index.scss' as styles;
+@use "../../_styles/index.scss" as styles;
 
 .current-user {
   display: flex;
@@ -32,13 +32,14 @@
   &__image {
     width: styles.func-toRem(2.5);
     height: styles.func-toRem(2.5);
+    cursor: pointer;
   }
 
   &__icon {
     cursor: pointer;
     color: styles.$color-bg-white;
     font-size: styles.$box-pad-onehalf;
-    transition: .3s;
+    transition: 0.3s;
 
     &:hover {
       color: styles.$color-primary-color-light;
