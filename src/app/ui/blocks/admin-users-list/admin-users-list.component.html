@@ -74,14 +74,14 @@
     ></mr-text>
   </td>
   <td class="admin-users-list-tmpl__td admin-users-list-tmpl__td--buttons">
-    <mr-button 
-      [display]="'block'" 
+    <mr-button
+      [display]="'block'"
       [icon]="'fas fa-pen'"
-      (clicked)="handleLoadUserToUpdate(user.id); modalUpdateRef.toggle(); "
+      (clicked)="handleLoadUserToUpdate(user.id); modalUpdateRef.toggle()"
     ></mr-button>
-    <mr-button 
-      [display]="'block'" 
-      [icon]="'fas fa-trash'" 
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-trash'"
       (clicked)="modalDeleteRef.toggle(); setUserId(user.id)"
     ></mr-button>
   </td>
@@ -89,7 +89,7 @@
 
 <mr-modal #modalRef>
   <ng-container>
-    <mr-form-user 
+    <mr-form-user
       [hobbies]="hobbies"
       [states]="states"
       [cities]="cities"
@@ -102,7 +102,7 @@
 
 <mr-modal #modalUpdateRef>
   <ng-container>
-    <mr-form-user 
+    <mr-form-user
       [dataInput]="userToUpdate"
       [hobbies]="hobbies"
       [states]="states"
@@ -115,14 +115,23 @@
   </ng-container>
 </mr-modal>
 
-
 <mr-modal #modalDeleteRef [auto]="true">
   <ng-container>
-    <mr-text [text]="'¿Estás seguro de que deseas eliminar este usuario?'" [weight]="'bold'" [size]="'medium'"></mr-text>
-    <mr-button 
+    <mr-text
+      [text]="'¿Estás seguro de que deseas eliminar este usuario?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+    <mr-button
       class="admin-users-list__button"
       [label]="'Eliminar'"
       (clicked)="modalDeleteRef.toggle(); handleDeleteUser()"
     ></mr-button>
   </ng-container>
 </mr-modal>
+
+<mr-button-icon
+  [icon]="'arrow-left'"
+  (clicked)="handleToBack()"
+  class="admin-users__back"
+></mr-button-icon>

@@ -30,8 +30,7 @@
           }}"
         >
           <mr-image
-            [image]="notice?.icon?.url"
-            [rounded]="'circle'"
+            [image]="notice?.content?.url"
             [alt]="'notice-img'"
           ></mr-image>
         </figure>
@@ -46,22 +45,24 @@
           <mr-text
             [text]="notice?.description"
             [size]="'extra-large'"
-            [weight]="'bold'"
+            [weight]="'regular'"
           ></mr-text>
-        </div>
 
-        <div class="notices-content__links">
-          <div
-            class="notices-content__links-item notices-content__links-item--{{
-              notice?.channel
-            }}"
-            *ngFor="let link of notice?.links"
-          >
-            <mr-text
-              [text]="link.name"
-              [size]="'extra-large'"
-              [weight]="'bold'"
-            ></mr-text>
+          <div class="notices-content__links">
+            <div
+              class="notices-content__links-item notices-content__links-item--{{
+                notice?.channel
+              }}"
+              *ngFor="let link of notice?.links"
+            >
+              <a [href]="link.url" target="_blank">
+                <mr-text
+                  [text]="link.name"
+                  [size]="'extra-large'"
+                  [weight]="'bold'"
+                ></mr-text>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -69,6 +70,15 @@
   </mr-card>
 
   <figure class="notices-content__wave">
-    <mr-image [image]="'assets/img/wave.svg'" [alt]="'bg-wave'"></mr-image>
+    <mr-image
+      [image]="'assets/img/wave-' + notice?.channel + '.svg'"
+      [alt]="'bg-wave'"
+    ></mr-image>
   </figure>
+
+  <mr-button-icon
+    [icon]="'arrow-left'"
+    (clicked)="handleToBack()"
+    class="notices-content__back"
+  ></mr-button-icon>
 </div>

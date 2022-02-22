@@ -1,111 +1,126 @@
 <div class="channels-content">
-    <mr-channels-background class="channels-content__background" [bannerImage]="channel.banner"></mr-channels-background>
-    
-    <div class="channels-content__info">
-        <figure class="channels-content__image">
-            <mr-image [image]="channel.icon" [alt]="'bg-channels'"></mr-image>
-        </figure>
+  <mr-channels-background
+    class="channels-content__background"
+    [bannerImage]="channel.banner"
+  ></mr-channels-background>
 
-        <div class="channels-content__text">
-            <mr-text 
-              [type]="'line'" 
-              [text]="channel.name" 
-              [size]="'extra-large'" 
-              [weight]="'bold'" 
-              class="channels-content__text--large"
-            ></mr-text>
-            <mr-text 
-              [text]="channel.description" 
-              [size]="'extra-large'"
-            ></mr-text>
-        </div>
+  <div class="channels-content__info">
+    <figure class="channels-content__image">
+      <mr-image [image]="channel.icon" [alt]="'bg-channels'"></mr-image>
+    </figure>
+
+    <div class="channels-content__text">
+      <mr-text
+        [type]="'line'"
+        [text]="channel.name"
+        [size]="'extra-large'"
+        [weight]="'bold'"
+        class="channels-content__text--large"
+      ></mr-text>
+      <mr-text [text]="channel.description" [size]="'extra-large'"></mr-text>
     </div>
+  </div>
 
-    <mr-card class="channels-content__notices-container" *ngIf="notices && notices.length >= 1">
-        <ng-container>
-            <div class="channels-content__notices">
-                <mr-notice 
-                  *ngFor="let notice of notices"
-                  [image]="notice?.icon?.url"
-                  [title]="notice?.title"
-                  [channel]="notice?.channel"
-                  (click)="navigateToNotice(notice.channel, notice.id)"
-                ></mr-notice>
-            </div>
-        </ng-container>
-    </mr-card>
+  <mr-card
+    class="channels-content__notices-container"
+    *ngIf="notices && notices.length >= 1"
+  >
+    <ng-container>
+      <div class="channels-content__notices">
+        <mr-notice
+          *ngFor="let notice of notices"
+          [image]="notice?.icon?.url"
+          [title]="notice?.title"
+          [channel]="notice?.channel"
+          (click)="navigateToNotice(notice.channel, notice.id)"
+        ></mr-notice>
+      </div>
+    </ng-container>
+  </mr-card>
 
-    <mr-card class="channels-content__users-container" *ngIf="users && users.length >= 1">
-      <ng-container>
-        <mr-table
-          [headers]="[
-            ['', '0.5rem'],
-            ['Nombre', '3rem'],
-            ['Apellido', '3rem'],
-            ['Contacto', '3rem'],
-            ['Descripción', '10rem'],
-            ['Correo', '7rem'],
-          ]"
-          [items]="users || []"
-          [itemTemplateRef]="userTemplate"
-        ></mr-table>
-      
-        <ng-template #userTemplate let-user="item" let-index="index">
-            <td class="channels-content-users-list__td">
-              <figure class="channels-content-users-list__image" (click)="navigateToUser(user.id)">
-                <mr-image
-                  [image]="user?.image?.url"
-                  [rounded]="'circle'"
-                  [alt]="'icon-user'"
-                ></mr-image>
-              </figure>
-            </td>
-            <td class="channels-content-users-list__td">
-              <mr-text
-                [color]="'initial'"
-                [type]="'line'"
-                [text]="user?.firstName"
-                [size]="'base'"
-                [weight]="'regular'"
-              ></mr-text>
-            </td>
-            <td class="channels-content-users-list__td">
-              <mr-text
-                [color]="'initial'"
-                [type]="'line'"
-                [text]="user?.lastName"
-                [size]="'base'"
-                [weight]="'regular'"
-              ></mr-text>
-            </td>
-            <td class="channels-content-users-list__td">
-              <mr-text
-                [color]="'initial'"
-                [type]="'line'"
-                [text]="user?.phoneNumber"
-                [size]="'base'"
-                [weight]="'regular'"
-              ></mr-text>
-            </td>
-            <td class="channels-content-users-list__td">
-              <mr-text
-                [color]="'initial'"
-                [type]="'line'"
-                [text]="user?.description"
-                [size]="'base'"
-                [weight]="'regular'"
-              ></mr-text>
-            </td>
-            <td class="channels-content-users-list__td">
-              <mr-text
-                [color]="'initial'"
-                [type]="'line'"
-                [text]="user?.email"
-                [size]="'base'"
-                [weight]="'regular'"
-              ></mr-text>
-            </td>
-        </ng-template>
-      </ng-container>
-    </mr-card>
+  <mr-card
+    class="channels-content__users-container"
+    *ngIf="users && users.length >= 1"
+  >
+    <ng-container>
+      <mr-table
+        [headers]="[
+          ['', '0.5rem'],
+          ['Nombre', '3rem'],
+          ['Apellido', '3rem'],
+          ['Contacto', '3rem'],
+          ['Descripción', '10rem'],
+          ['Correo', '7rem']
+        ]"
+        [items]="users || []"
+        [itemTemplateRef]="userTemplate"
+      ></mr-table>
+
+      <ng-template #userTemplate let-user="item" let-index="index">
+        <td class="channels-content-users-list__td">
+          <figure
+            class="channels-content-users-list__image"
+            (click)="navigateToUser(user.id)"
+          >
+            <mr-image
+              [image]="user?.image?.url"
+              [rounded]="'circle'"
+              [alt]="'icon-user'"
+            ></mr-image>
+          </figure>
+        </td>
+        <td class="channels-content-users-list__td">
+          <mr-text
+            [color]="'initial'"
+            [type]="'line'"
+            [text]="user?.firstName"
+            [size]="'base'"
+            [weight]="'regular'"
+          ></mr-text>
+        </td>
+        <td class="channels-content-users-list__td">
+          <mr-text
+            [color]="'initial'"
+            [type]="'line'"
+            [text]="user?.lastName"
+            [size]="'base'"
+            [weight]="'regular'"
+          ></mr-text>
+        </td>
+        <td class="channels-content-users-list__td">
+          <mr-text
+            [color]="'initial'"
+            [type]="'line'"
+            [text]="user?.phoneNumber"
+            [size]="'base'"
+            [weight]="'regular'"
+          ></mr-text>
+        </td>
+        <td class="channels-content-users-list__td">
+          <mr-text
+            [color]="'initial'"
+            [type]="'line'"
+            [text]="user?.description"
+            [size]="'base'"
+            [weight]="'regular'"
+          ></mr-text>
+        </td>
+        <td class="channels-content-users-list__td">
+          <mr-text
+            [color]="'initial'"
+            [type]="'line'"
+            [text]="user?.email"
+            [size]="'base'"
+            [weight]="'regular'"
+          ></mr-text>
+        </td>
+      </ng-template>
+    </ng-container>
+  </mr-card>
+
+  <mr-button-icon
+    [icon]="'arrow-left'"
+    (clicked)="handleToBack()"
+    class="channels-content__back"
+  ></mr-button-icon>
 </div>

@@ -8,6 +8,7 @@ import { ImageModule } from '../../elements/image/image.module';
 import { ModalModule } from '../../elements/modal/modal.module';
 import { FormNoticeModule } from '../../forms/form-notice/form-notice.module';
 import { PipesModule } from '../../pipes/pipes.module';
+import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PipesModule } from '../../pipes/pipes.module';
     ModalModule,
     FormNoticeModule,
     PipesModule,
+    ButtonIconModule,
   ],
   exports: [
     AdminNoticesListComponent,

@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnChan
 import { UserModel } from 'src/app/core/models/user.model';
 import { OptionModel } from '../../../core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mr-admin-users-list',
@@ -27,7 +28,10 @@ export class AdminUsersListComponent implements OnChanges {
   private currentUser: UserModel;
   private userId: string;
 
-  constructor(private cdRef: ChangeDetectorRef) { }
+  constructor(
+    private cdRef: ChangeDetectorRef,
+    private router: Router,
+  ) { }
 
   ngOnChanges(): void {
     if (!this.canCloseModal) { return; }
@@ -64,5 +68,9 @@ export class AdminUsersListComponent implements OnChanges {
 
   handleLoadUserToUpdate(userId: string): void {
     this.loadUserToUpdate.emit(userId);
+  }
+
+  handleToBack(): void {
+    this.router.navigateByUrl('');
   }
 }

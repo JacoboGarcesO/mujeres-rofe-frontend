@@ -1,4 +1,4 @@
-@use '../../_styles/index.scss' as styles;
+@use "../../_styles/index.scss" as styles;
 
 .admin-notices-list-tmpl {
   &__td {
@@ -25,4 +25,11 @@
     justify-content: center;
     margin-top: styles.$box-mrg-base;
   }
+}
+
+.admin-notices__back {
+  position: fixed;
+  bottom: 10px;
+  left: 10px;
+  z-index: 1;
 }
