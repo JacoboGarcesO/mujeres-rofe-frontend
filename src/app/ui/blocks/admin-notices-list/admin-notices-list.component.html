@@ -1,16 +1,16 @@
 <mr-button
-  [display]="'inline'" 
-  [icon]="'fas fa-plus'" 
+  [display]="'inline'"
+  [icon]="'fas fa-plus'"
   [label]="'Crear'"
   (clicked)="modalRef.toggle()"
 ></mr-button>
 <mr-table
   [headers]="[
-    ['','0.5rem'],
-    ['Título','7rem'],
-    ['Descripción','10rem'],
-    ['Canal','4rem'],
-    ['Acciones','3rem'],
+    ['', '0.5rem'],
+    ['Título', '7rem'],
+    ['Descripción', '10rem'],
+    ['Canal', '4rem'],
+    ['Acciones', '3rem']
   ]"
   [items]="notices || []"
   [itemTemplateRef]="noticeTemplate"
@@ -19,49 +19,49 @@
 <ng-template #noticeTemplate let-notice="item" let-index="index">
   <td class="admin-notices-list-tmpl__td">
     <figure class="admin-notices-list-tmpl__image">
-      <mr-image 
-        [image]="notice?.icon?.url" 
-        [rounded]="'circle'" 
+      <mr-image
+        [image]="notice?.icon?.url"
+        [rounded]="'circle'"
         [alt]="'icon-notice'"
       ></mr-image>
     </figure>
   </td>
   <td class="admin-notices-list-tmpl__td">
-    <mr-text 
-      [color]="'initial'" 
-      [type]="'line'" 
-      [text]="notice?.title" 
-      [size]="'base'" 
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="notice?.title"
+      [size]="'base'"
       [weight]="'regular'"
     ></mr-text>
   </td>
   <td class="admin-notices-list-tmpl__td">
-    <mr-text 
-      [color]="'initial'" 
-      [type]="'line'" 
-      [text]="notice?.description" 
-      [size]="'base'" 
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="notice?.description"
+      [size]="'base'"
       [weight]="'regular'"
     ></mr-text>
   </td>
   <td class="admin-notices-list-tmpl__td">
-    <mr-text 
-      [color]="'initial'" 
-      [type]="'line'" 
-      [text]="notice?.channel | channel" 
-      [size]="'base'" 
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="notice?.channel | channel"
+      [size]="'base'"
       [weight]="'regular'"
     ></mr-text>
   </td>
   <td class="admin-notices-list-tmpl__td admin-notices-list-tmpl__td--buttons">
-    <mr-button 
-      [display]="'block'" 
+    <mr-button
+      [display]="'block'"
       [icon]="'fas fa-pen'"
-      (clicked)="handleLoadNoticeToUpdate(notice.id); modalUpdateRef.toggle(); "
+      (clicked)="handleLoadNoticeToUpdate(notice.id); modalUpdateRef.toggle()"
     ></mr-button>
-    <mr-button 
-      [display]="'block'" 
-      [icon]="'fas fa-trash'" 
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-trash'"
       (clicked)="modalDeleteRef.toggle(); setNoticeId(notice.id)"
     ></mr-button>
   </td>
@@ -79,7 +79,7 @@
 
 <mr-modal #modalUpdateRef>
   <ng-container>
-    <mr-form-notice 
+    <mr-form-notice
       [dataInput]="noticeToUpdate"
       [channelOptions]="channelOptions"
       [canResetForm]="canCloseModal"
@@ -90,11 +90,21 @@
 
 <mr-modal #modalDeleteRef [auto]="true">
   <ng-container>
-    <mr-text [text]="'¿Estás seguro de que deseas eliminar este comunicado?'" [weight]="'bold'" [size]="'medium'"></mr-text>
-    <mr-button 
+    <mr-text
+      [text]="'¿Estás seguro de que deseas eliminar este comunicado?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+    <mr-button
       class="admin-notices-list__button"
       [label]="'Eliminar'"
       (clicked)="modalDeleteRef.toggle(); handleDeleteNotice()"
     ></mr-button>
   </ng-container>
 </mr-modal>
+
+<mr-button-icon
+  [icon]="'arrow-left'"
+  (clicked)="handleToBack()"
+  class="admin-notices__back"
+></mr-button-icon>

@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewCh
 import { NoticeModel } from 'src/app/core/models/notice.model';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mr-admin-notices-list',
@@ -23,7 +24,10 @@ export class AdminNoticesListComponent implements OnChanges {
   @Output() loadNoticeToUpdate: EventEmitter<string> = new EventEmitter();
   private noticeId: string;
 
-  constructor(private cdRef: ChangeDetectorRef) { }
+  constructor(
+    private cdRef: ChangeDetectorRef,
+    private router: Router,
+  ) { }
 
   ngOnChanges(): void {
     if (!this.canCloseModal) { return; }
@@ -52,5 +56,9 @@ export class AdminNoticesListComponent implements OnChanges {
 
   handleLoadNoticeToUpdate(noticeId: string): void {
     this.loadNoticeToUpdate.emit(noticeId);
+  }
+
+  handleToBack(): void {
+    this.router.navigateByUrl('');
   }
 }

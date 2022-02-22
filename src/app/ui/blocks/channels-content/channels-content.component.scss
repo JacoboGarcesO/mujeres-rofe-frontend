@@ -92,6 +92,13 @@
         height: styles.$box-hht-double;
       }
     }
+
+    &__back {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      z-index: 1;
+    }
 }
 
 @media (max-width: styles.$bkp-mobile) {
