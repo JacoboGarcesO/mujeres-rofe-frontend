@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, ViewEncapsulation, HostListener } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { createForm, FormType } from 'ngx-sub-form';
@@ -42,6 +42,11 @@ export class FormUserLoginComponent {
       password: new FormControl(null, Validators.required),
     },
   });
+
+  @HostListener('window:keydown.enter')
+  handleKeyDown() {
+    this.manualSave$.next();
+  }
 
   constructor(private router: Router) { }
 
