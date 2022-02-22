@@ -1,6 +1,6 @@
 @use "../../_styles/index.scss" as styles;
 
-.channels-content {
+.channels-content-container {
   &__notice {
     display: flex;
     justify-content: center;
@@ -22,7 +22,7 @@
       position: relative;
       width: styles.func-toRem(7);
       background: styles.$color-primary-color-light;
-      border-radius: styles.$box-rad-rounded;
+      border-radius: 50%;
       padding: styles.$box-pad-half;
 
       &--network {
@@ -45,7 +45,7 @@
 }
 
 @media (max-width: styles.$bkp-tablet) {
-  .channels-content {
+  .channels-content-container {
     &__notice {
       flex-direction: column;
     }
@@ -53,7 +53,7 @@
 }
 
 @media (max-width: styles.$bkp-desktop) {
-  .channels-content {
+  .channels-content-container {
     &__notice {
       gap: styles.func-toRem(1.25);
     }
