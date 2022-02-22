@@ -1,23 +1,23 @@
 <div class="notices-content">
   <mr-channels-background
     class="notices-content__background"
-    [bannerImage]="channel.banner"
+    [bannerImage]="channel?.banner"
   ></mr-channels-background>
 
   <div class="notices-content__info">
     <figure class="notices-content__image">
-      <mr-image [image]="channel.icon" [alt]="'bg-notices'"></mr-image>
+      <mr-image [image]="channel?.icon" [alt]="'bg-notices'"></mr-image>
     </figure>
 
     <div class="notices-content__text">
       <mr-text
         [type]="'line'"
-        [text]="channel.name"
+        [text]="channel?.name"
         [size]="'extra-large'"
         [weight]="'bold'"
         class="notices-content__text--large"
       ></mr-text>
-      <mr-text [text]="channel.description" [size]="'extra-large'"></mr-text>
+      <mr-text [text]="channel?.description" [size]="'extra-large'"></mr-text>
     </div>
   </div>
 
@@ -26,11 +26,11 @@
       <div class="notices-content__notice">
         <figure
           class="notices-content__image-notice notices-content__image-notice--shadow notices-content__image-notice--shadow--{{
-            notice.channel
+            notice?.channel
           }}"
         >
           <mr-image
-            [image]="notice.icon.url"
+            [image]="notice?.icon?.url"
             [rounded]="'circle'"
             [alt]="'notice-img'"
           ></mr-image>
@@ -38,13 +38,13 @@
 
         <div class="notices-content__info-notice">
           <mr-text
-            class="notices-content__text--{{ notice.channel }}"
-            [text]="notice.title"
+            class="notices-content__text--{{ notice?.channel }}"
+            [text]="notice?.title"
             [size]="'extra-large'"
             [weight]="'bold'"
           ></mr-text>
           <mr-text
-            [text]="notice.description"
+            [text]="notice?.description"
             [size]="'extra-large'"
             [weight]="'bold'"
           ></mr-text>
@@ -53,9 +53,9 @@
         <div class="notices-content__links">
           <div
             class="notices-content__links-item notices-content__links-item--{{
-              notice.channel
+              notice?.channel
             }}"
-            *ngFor="let link of notice.links"
+            *ngFor="let link of notice?.links"
           >
             <mr-text
               [text]="link.name"
