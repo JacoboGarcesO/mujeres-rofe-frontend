@@ -1,5 +1,9 @@
 @use "../../_styles/index.scss" as styles;
 
+a {
+  text-decoration: none !important;
+}
+
 .profile-user {
   position: relative;
   display: flex;
@@ -61,6 +65,13 @@
 
     .text {
       color: styles.$color-bg-white;
+    }
+  }
+
+  &__text {
+    .text {
+      color: styles.$color-bg-white;
+      line-height: 2rem;
     }
   }
 
