@@ -6,29 +6,86 @@
     <ng-container>
       <div class="profile-user__container">
         <div class="profile-user__data">
-          <mr-text class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'Correo electrónico:'"></mr-text>
-          <mr-text class="profile-user__name profile-user__name--content" [text]="user?.email"></mr-text>
-      
-          <mr-text class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'Ciudad:'"></mr-text>
+          <mr-text
+            class="profile-user__text"
+            [size]="'medium'"
+            [weight]="'bold'"
+            [text]="'Correo electrónico:'"
+          ></mr-text>
+          <mr-text
+            class="profile-user__name profile-user__name--content"
+            [text]="user?.email"
+          ></mr-text>
 
-          <mr-text class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'Teléfono:'"></mr-text>
-          <mr-text class="profile-user__name profile-user__name--content" [text]="user?.phoneNumber"></mr-text>
+          <mr-text
+            class="profile-user__text"
+            [size]="'medium'"
+            [weight]="'bold'"
+            [text]="'Ciudad:'"
+          ></mr-text>
 
-          <mr-text *ngIf="user?.instagram" class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'Instagram:'"></mr-text>
-          <mr-text *ngIf="user?.instagram" class="profile-user__name profile-user__name--content" [text]="user?.instagram"></mr-text>
+          <mr-text
+            class="profile-user__text"
+            [size]="'medium'"
+            [weight]="'bold'"
+            [text]="'Teléfono:'"
+          ></mr-text>
+          <mr-text
+            class="profile-user__name profile-user__name--content"
+            [text]="user?.phoneNumber"
+          ></mr-text>
 
-          <mr-text class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'WhatsApp:'"></mr-text>
-          <mr-text class="profile-user__name profile-user__name--content" [text]="'+57' + ' '+ user?.phoneNumber"></mr-text>
+          <a
+            [href]="user?.instagram"
+            target="_blank"
+            class="profile-user__name profile-user__name--content"
+          >
+            <mr-text
+              *ngIf="user?.instagram"
+              [size]="'medium'"
+              [weight]="'bold'"
+              [text]="'Instagram'"
+            ></mr-text>
+          </a>
 
-          <mr-text class="profile-user__text" [size]="'medium'" [weight]="'bold'" [text]="'Descripción:'"></mr-text>
-          <mr-text [clamp]="5" class="profile-user__name profile-user__name--content profile-user__name--description" [text]="user?.description"></mr-text>
+          <a
+            [href]="'https://api.whatsapp.com/send?phone=57' + user?.phoneNumber"
+            target="_blank"
+            class="profile-user__name profile-user__name--content"
+          >
+            <mr-text
+              [size]="'medium'"
+              [weight]="'bold'"
+              [text]="'Whatsapp'"
+            ></mr-text>
+          </a>
+
+          <mr-text
+            class="profile-user__text"
+            [size]="'medium'"
+            [weight]="'bold'"
+            [text]="'Descripción:'"
+          ></mr-text>
+          <mr-text
+            [clamp]="5"
+            class="profile-user__name profile-user__name--content profile-user__name--description"
+            [text]="user?.description"
+          ></mr-text>
         </div>
         <div class="profile-user__data profile-user__data--right">
           <figure class="profile-user__photo">
-            <mr-image [image]="user?.image?.url" [rounded]="'circle'"></mr-image>
+            <mr-image
+              [image]="user?.image?.url"
+              [rounded]="'circle'"
+            ></mr-image>
           </figure>
 
-          <mr-text class="profile-user__name" [size]="'medium'" [weight]="'bold'" [text]="user?.firstName + ' ' + user?.lastName"></mr-text>
+          <mr-text
+            class="profile-user__name"
+            [size]="'medium'"
+            [weight]="'bold'"
+            [text]="user?.firstName + ' ' + user?.lastName"
+          ></mr-text>
         </div>
       </div>
     </ng-container>
