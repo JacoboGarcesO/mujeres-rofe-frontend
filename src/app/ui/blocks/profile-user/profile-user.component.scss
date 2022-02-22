@@ -86,6 +86,13 @@ a {
     display: grid;
     gap: styles.$box-pad-double;
   }
+
+  &__back {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1;
+  }
 }
 
 @media (min-width: styles.$bkp-mobile) {
