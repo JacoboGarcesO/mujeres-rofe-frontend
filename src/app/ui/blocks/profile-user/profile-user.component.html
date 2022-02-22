@@ -49,7 +49,9 @@
           </a>
 
           <a
-            [href]="'https://api.whatsapp.com/send?phone=57' + user?.phoneNumber"
+            [href]="
+              'https://api.whatsapp.com/send?phone=57' + user?.phoneNumber
+            "
             target="_blank"
             class="profile-user__name profile-user__name--content"
           >
@@ -90,4 +92,10 @@
       </div>
     </ng-container>
   </mr-card>
+
+  <mr-button-icon
+    [icon]="'arrow-left'"
+    (clicked)="handleToBack()"
+    class="profile-user__back"
+  ></mr-button-icon>
 </div>

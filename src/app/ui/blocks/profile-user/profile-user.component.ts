@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, ViewEncapsulation, Input } from '@angular/core';
 import { UserModel } from 'src/app/core/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mr-profile-user',
@@ -10,4 +11,12 @@ import { UserModel } from 'src/app/core/models/user.model';
 })
 export class ProfileUserComponent {
   @Input() user: UserModel;  
+
+  constructor(
+    private router: Router,
+  ) { }
+
+  handleToBack(): void {
+    this.router.navigateByUrl('');
+  }
 }
