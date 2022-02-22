@@ -1,12 +1,16 @@
 @use "../../_styles/index.scss" as styles;
 
+a {
+  text-decoration: none;
+}
+
 .notices-content {
   position: relative;
   padding-top: styles.$box-pad-home-content;
 
   &__background {
     position: absolute;
-    z-index: styles.func-toNeg(1);
+    z-index: styles.func-toNeg(3);
     top: styles.$box-pad-none;
     left: styles.$box-pad-none;
     width: styles.$box-wth-block;
@@ -19,15 +23,13 @@
 
   &__image-notice {
     position: relative;
-    width: styles.func-toRem(12.5);
-    height: styles.func-toRem(12.5);
-    margin: 0 auto;
+    width: 50%;
+    height: styles.func-toRem(34.25);
 
     &--shadow {
       position: relative;
-      width: styles.func-toRem(12.5);
+      width: 100%;
       background: styles.$color-primary-color-light;
-      border-radius: styles.$box-rad-rounded;
       padding: styles.$box-pad-base;
 
       &--network {
@@ -120,7 +122,8 @@
     position: relative;
     display: flex;
     justify-content: flex-start;
-    margin: 20px 0;
+    gap: styles.func-toRem(2);
+    margin-top: styles.func-toRem(2);
     flex-wrap: wrap;
 
     &-item {
@@ -193,6 +196,10 @@
           font-size: styles.func-toRem(1.5) !important;
         }
       }
+    }
+
+    &__image-notice {
+      height: styles.func-toRem(20.25);
     }
   }
 }
