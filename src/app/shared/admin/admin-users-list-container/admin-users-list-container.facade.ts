@@ -121,11 +121,12 @@ export class AdminUsersListContainerFacade {
   }
 
   createUser(user: UserModel): void {
+    const cities = this.state.locations.cities.snapshot();
     const callback = this.loadUsers.bind(this);
 
     this.notify('init');
     this.subscriptions.add(
-      this.usersService.create(user).pipe(
+      this.usersService.create(user, cities).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
         tap(this.storeCanCloseModal.bind(this, true)),
         catchError(this.notify.bind(this, 'error', null)),
@@ -135,11 +136,12 @@ export class AdminUsersListContainerFacade {
   }
 
   updateUser(user: UserModel): void {
+    const cities = this.state.locations.cities.snapshot();
     const callback = this.loadUsers.bind(this);
 
     this.notify('init');
     this.subscriptions.add(
-      this.usersService.update(user).pipe(
+      this.usersService.update(user, cities).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
         tap(this.storeCanCloseModal.bind(this, true)),
         catchError(this.notify.bind(this, 'error', null)),

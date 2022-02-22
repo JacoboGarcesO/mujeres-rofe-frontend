@@ -23,15 +23,22 @@
             [weight]="'bold'"
             [text]="'Ciudad:'"
           ></mr-text>
+        
+          <mr-text
+            class="profile-user__name profile-user__name--content"
+            [text]="user?.location?.cityName"
+          ></mr-text>
 
           <mr-text
             class="profile-user__text"
             [size]="'medium'"
             [weight]="'bold'"
-            [text]="'Teléfono:'"
+            [text]="'Contácto:'"
           ></mr-text>
           <mr-text
             class="profile-user__name profile-user__name--content"
+            [weight]="'bold'"
+
             [text]="user?.phoneNumber"
           ></mr-text>
 
@@ -42,7 +49,6 @@
             class="profile-user__name profile-user__name--content"
           >
             <mr-text
-              [size]="'medium'"
               [weight]="'bold'"
               [text]="'Instagram'"
             ></mr-text>
@@ -55,7 +61,6 @@
             class="profile-user__name profile-user__name--content"
           >
             <mr-text
-              [size]="'medium'"
               [weight]="'bold'"
               [text]="'Facebook'"
             ></mr-text>
@@ -67,7 +72,6 @@
             class="profile-user__name profile-user__name--content"
           >
             <mr-text
-              [size]="'medium'"
               [weight]="'bold'"
               [text]="'Whatsapp'"
             ></mr-text>

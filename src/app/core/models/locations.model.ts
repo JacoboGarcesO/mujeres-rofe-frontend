@@ -6,4 +6,5 @@ export interface LocationModel {
 export interface UserLocationModel {
   city: string;
   state: string;
+  cityName: string;
 }

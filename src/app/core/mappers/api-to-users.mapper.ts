@@ -25,6 +25,7 @@ export class ApiToUsersMapper {
       location:  {
         city: user?.location?.city,
         state: user?.location?.state,
+        cityName: user?.location?.cityName,
       },
       instagram: this.getSocialNetwork(user?.socialsNetworks, 'instagram'),
       facebook: this.getSocialNetwork(user?.socialsNetworks, 'facebook'),

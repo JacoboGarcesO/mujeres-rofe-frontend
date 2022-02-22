@@ -5,6 +5,7 @@ import { ApiToUsersMapper } from '../mappers/api-to-users.mapper';
 import { URL_RESOURCE } from '../resources/url.resource';
 import { HttpService } from './generals/http.service';
 import { UserModel } from '../models/user.model';
+import { OptionModel } from '../models/option.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,17 +25,17 @@ export class UsersService {
     );
   }
 
-  create(user: UserModel): Observable<string> {
+  create(user: UserModel, cities: OptionModel[]): Observable<string> {
     const url =  URL_RESOURCE.users;
-    const formData = this.toApiUsersMapper.map(user);
+    const formData = this.toApiUsersMapper.map(user, cities);
     return this.httpService.postFile(url, formData).pipe(
       map((response: any) => response?.users?.[0]?._id),
     );
   }
 
-  update(user: UserModel): Observable<string> {
+  update(user: UserModel, cities: OptionModel[]): Observable<string> {
     const url =  URL_RESOURCE.users;
-    const formData = this.toApiUsersMapper.map(user);
+    const formData = this.toApiUsersMapper.map(user, cities);
     return this.httpService.putFile(url, formData).pipe(
       map((response: any) => response?.users?.[0]?._id),
     );
