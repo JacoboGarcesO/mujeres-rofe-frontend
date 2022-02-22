@@ -19,6 +19,7 @@ export class SubFormLocationComponent {
     formControls: {
       city: new FormControl(null),
       state: new FormControl(null),
+      cityName: new FormControl(null),
     },
   });
 }

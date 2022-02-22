@@ -87,11 +87,12 @@ export class RegisterContainerFacade {
   }
 
   createUser(user: UserModel): void {
+    const cities = this.state.locations.cities.snapshot();
     const callback = this.navigateToLogin.bind(this);
 
     this.notify('init');
     this.subscriptions.add(
-      this.userService.create(user).pipe(
+      this.userService.create(user, cities).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
         catchError(this.notify.bind(this, 'error', null)),
         finalize(this.notifyClose.bind(this)),

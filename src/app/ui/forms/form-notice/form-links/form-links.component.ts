@@ -45,6 +45,6 @@ export class FormLinksComponent implements AfterViewInit {
   }
 
   private add(): void {
-    this.form.formGroup.controls.value.push(new FormControl({ name: null, url: null }));
+    this.form.formGroup.controls.value.push(new FormControl({ name: null, url: 'https://' }));
   }
 }

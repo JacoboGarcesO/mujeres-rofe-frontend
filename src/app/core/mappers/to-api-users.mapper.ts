@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
-import { CurrentUserModel } from '../models/current-user.model';
+import { UserLocationModel } from '../models/locations.model';
+import { OptionModel } from '../models/option.model';
 import { UserModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToApiUsersMapper {
-  map(user: UserModel): any {
+  map(user: UserModel, cities: OptionModel[]): any {
     const formData = new FormData();
     const socialNetworks = this.getSocialNetworks(user?.instagram, user?.facebook);
     const image = this.getImage(user.image);
     const hobbies = this.getHobbies(user.hobbies);
+    const location = this.getLocation(user.location, cities);
 
     formData.append('id', user.id);
     formData.append('firstName', user.firstName);
@@ -24,7 +26,7 @@ export class ToApiUsersMapper {
     formData.append('socialsNetworks', socialNetworks);
     formData.append('document', user?.document);
     formData.append('image', image);
-    formData.append('location', JSON.stringify(user.location));
+    formData.append('location', JSON.stringify(location));
 
     return formData;
   }
@@ -42,5 +44,10 @@ export class ToApiUsersMapper {
     if (!hobbies) { return '[]'; }
 
     return JSON.stringify(hobbies.map((hobbie) => ({ name: hobbie })));
+  }
+
+  private getLocation(location: UserLocationModel, cities: OptionModel[]): any {
+    const cityName = cities.find((city) => city.id === location.city).label;    
+    return { ...location, cityName };
   }
 }

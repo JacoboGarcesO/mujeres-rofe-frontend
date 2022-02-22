@@ -23,40 +23,55 @@
             [weight]="'bold'"
             [text]="'Ciudad:'"
           ></mr-text>
+        
+          <mr-text
+            class="profile-user__name profile-user__name--content"
+            [text]="user?.location?.cityName"
+          ></mr-text>
 
           <mr-text
             class="profile-user__text"
             [size]="'medium'"
             [weight]="'bold'"
-            [text]="'Teléfono:'"
+            [text]="'Contácto:'"
           ></mr-text>
           <mr-text
             class="profile-user__name profile-user__name--content"
+            [weight]="'bold'"
+
             [text]="user?.phoneNumber"
           ></mr-text>
 
           <a
+            *ngIf="user?.instagram"
             [href]="user?.instagram"
             target="_blank"
             class="profile-user__name profile-user__name--content"
           >
             <mr-text
-              *ngIf="user?.instagram"
-              [size]="'medium'"
               [weight]="'bold'"
               [text]="'Instagram'"
             ></mr-text>
           </a>
 
           <a
-            [href]="
-              'https://api.whatsapp.com/send?phone=57' + user?.phoneNumber
-            "
+            *ngIf="user?.facebook"
+            [href]="user?.facebook"
             target="_blank"
             class="profile-user__name profile-user__name--content"
           >
             <mr-text
-              [size]="'medium'"
+              [weight]="'bold'"
+              [text]="'Facebook'"
+            ></mr-text>
+          </a>
+
+          <a
+            [href]="'https://api.whatsapp.com/send?phone=57' + user?.phoneNumber"
+            target="_blank"
+            class="profile-user__name profile-user__name--content"
+          >
+            <mr-text
               [weight]="'bold'"
               [text]="'Whatsapp'"
             ></mr-text>

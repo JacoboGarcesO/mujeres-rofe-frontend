@@ -3,6 +3,7 @@
   channel: (channel$ | async)
 } as data">
     <mr-notices-content
+      *ngIf="data.notice"
       [notice]="data.notice"
       [channel]="data.channel"
     ></mr-notices-content>
