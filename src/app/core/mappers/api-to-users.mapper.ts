@@ -38,6 +38,6 @@ export class ApiToUsersMapper {
   }
 
   private getSocialNetwork(socials: any[], social: string): string {
-    return socials.find((_)=> _.name === social).url;
+    return socials.find((_)=> _.name === social)?.url;
   }
 }
