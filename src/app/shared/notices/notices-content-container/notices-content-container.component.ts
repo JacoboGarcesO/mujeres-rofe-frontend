@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NoticeModel } from '../../../core/models/notice.model';
+import { ChannelModel } from 'src/app/core/models/channel.model';
+import { NoticeModel } from 'src/app/core/models/notice.model';
 import { NoticesContentContainerFacade } from './notices-content-container.facade.';
 
 @Component({
@@ -10,6 +11,7 @@ import { NoticesContentContainerFacade } from './notices-content-container.facad
 })
 export class NoticesContentContainerComponent implements OnInit, OnDestroy {
   public notice$: Observable<NoticeModel>;
+  public channel$: Observable<ChannelModel>;
 
   constructor(private facade: NoticesContentContainerFacade) { }
 
@@ -26,5 +28,6 @@ export class NoticesContentContainerComponent implements OnInit, OnDestroy {
 
   private initializeSubscriptions(): void {
     this.notice$ = this.facade.notice$();
+    this.channel$ = this.facade.channel$();
   }
 }

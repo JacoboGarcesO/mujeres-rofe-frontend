@@ -1,1 +1,74 @@
-<p style="margin-top: 200px;">{{notice | json}}</p>
+<div class="notices-content">
+  <mr-channels-background
+    class="notices-content__background"
+    [bannerImage]="channel.banner"
+  ></mr-channels-background>
+
+  <div class="notices-content__info">
+    <figure class="notices-content__image">
+      <mr-image [image]="channel.icon" [alt]="'bg-notices'"></mr-image>
+    </figure>
+
+    <div class="notices-content__text">
+      <mr-text
+        [type]="'line'"
+        [text]="channel.name"
+        [size]="'extra-large'"
+        [weight]="'bold'"
+        class="notices-content__text--large"
+      ></mr-text>
+      <mr-text [text]="channel.description" [size]="'extra-large'"></mr-text>
+    </div>
+  </div>
+
+  <mr-card class="notices-content__notice-container">
+    <ng-container>
+      <div class="notices-content__notice">
+        <figure
+          class="notices-content__image-notice notices-content__image-notice--shadow notices-content__image-notice--shadow--{{
+            notice.channel
+          }}"
+        >
+          <mr-image
+            [image]="notice.icon.url"
+            [rounded]="'circle'"
+            [alt]="'notice-img'"
+          ></mr-image>
+        </figure>
+
+        <div class="notices-content__info-notice">
+          <mr-text
+            class="notices-content__text--{{ notice.channel }}"
+            [text]="notice.title"
+            [size]="'extra-large'"
+            [weight]="'bold'"
+          ></mr-text>
+          <mr-text
+            [text]="notice.description"
+            [size]="'extra-large'"
+            [weight]="'bold'"
+          ></mr-text>
+        </div>
+
+        <div class="notices-content__links">
+          <div
+            class="notices-content__links-item notices-content__links-item--{{
+              notice.channel
+            }}"
+            *ngFor="let link of notice.links"
+          >
+            <mr-text
+              [text]="link.name"
+              [size]="'extra-large'"
+              [weight]="'bold'"
+            ></mr-text>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </mr-card>
+
+  <figure class="notices-content__wave">
+    <mr-image [image]="'assets/img/wave.svg'" [alt]="'bg-wave'"></mr-image>
+  </figure>
+</div>

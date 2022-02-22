@@ -18,7 +18,7 @@ export class ChannelsContentComponent {
 
   constructor(private router: Router) { }
 
-  navigateToNotice(url: string, id: string): void {
-    this.router.navigateByUrl(`${url}/${id}`);
+  navigateToNotice(channel: string, id: string): void {
+    this.router.navigateByUrl(`notices/${channel}/${id}`);
   }
 }

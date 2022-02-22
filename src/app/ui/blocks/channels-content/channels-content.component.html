@@ -29,7 +29,7 @@
                   [image]="notice?.icon?.url"
                   [title]="notice?.title"
                   [channel]="notice?.channel"
-                  (click)="navigateToNotice('notices', notice.id)"
+                  (click)="navigateToNotice(notice.channel, notice.id)"
                 ></mr-notice>
             </div>
         </ng-container>

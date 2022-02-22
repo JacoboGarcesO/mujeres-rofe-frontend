@@ -6,7 +6,39 @@ import { LayoutMainComponent } from 'src/app/ui/layouts/layout-main/layout-main.
 
 const routes: Routes = [
   {
-    path: ':id',
+    path: 'contact/:id',
+    component: LayoutMainComponent,
+    children: [
+      { path: '', component: HeaderContainerComponent, outlet: 'header' },
+      { path: '', component: NoticesContentContainerComponent },
+    ],
+  },
+  {
+    path: 'training/:id',
+    component: LayoutMainComponent,
+    children: [
+      { path: '', component: HeaderContainerComponent, outlet: 'header' },
+      { path: '', component: NoticesContentContainerComponent },
+    ],
+  },
+  {
+    path: 'opportunities/:id',
+    component: LayoutMainComponent,
+    children: [
+      { path: '', component: HeaderContainerComponent, outlet: 'header' },
+      { path: '', component: NoticesContentContainerComponent },
+    ],
+  },
+  {
+    path: 'business/:id',
+    component: LayoutMainComponent,
+    children: [
+      { path: '', component: HeaderContainerComponent, outlet: 'header' },
+      { path: '', component: NoticesContentContainerComponent },
+    ],
+  },
+  {
+    path: 'network/:id',
     component: LayoutMainComponent,
     children: [
       { path: '', component: HeaderContainerComponent, outlet: 'header' },

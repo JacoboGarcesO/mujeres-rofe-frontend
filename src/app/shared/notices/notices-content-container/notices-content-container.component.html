@@ -1,7 +1,9 @@
 <ng-container *ngIf="{
-    notice: (notice$ | async)
+  notice: (notice$ | async),
+  channel: (channel$ | async)
 } as data">
     <mr-notices-content
       [notice]="data.notice"
+      [channel]="data.channel"
     ></mr-notices-content>
 </ng-container>
