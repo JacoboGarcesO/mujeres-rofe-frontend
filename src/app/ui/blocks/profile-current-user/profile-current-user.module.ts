@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProfileCurrentUserComponent } from './profile-current-user.component';
+import { FormUserModule } from '../../forms/form-user/form-user.module';
+import { CardModule } from '../../elements/card/card.module';
+import { HomeBackgroundModule } from '../../elements/home-background/home-background.module';
 
 @NgModule({
   declarations: [
@@ -8,6 +11,9 @@ import { ProfileCurrentUserComponent } from './profile-current-user.component';
   ],
   imports: [
     CommonModule,
+    HomeBackgroundModule,
+    CardModule,
+    FormUserModule,
   ],
   exports: [
     ProfileCurrentUserComponent,

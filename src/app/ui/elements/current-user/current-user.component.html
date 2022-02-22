@@ -1,6 +1,6 @@
 <div class="current-user current-user--{{channel?.type}}">
   <div class="current-user__user">
-    <figure class="current-user__image">
+    <figure class="current-user__image" (click)="navigateProfile()">
       <mr-image [image]="currentUser?.image?.url" [rounded]="'circle'"></mr-image>
     </figure>
     <mr-text [type]="'line'" [weight]="'bold'" [text]="currentUser?.nameComplete"></mr-text>
