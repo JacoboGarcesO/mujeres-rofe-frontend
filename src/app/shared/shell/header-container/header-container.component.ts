@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/
 import { Observable } from 'rxjs';
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
+import { UserModel } from 'src/app/core/models/user.model';
 import { HeaderContainerFacade } from './header-container.facade';
 
 @Component({
@@ -10,7 +11,7 @@ import { HeaderContainerFacade } from './header-container.facade';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderContainerComponent implements OnInit, OnDestroy {
-  public currentUser$: Observable<CurrentUserModel>;
+  public currentUser$: Observable<UserModel>;
   public channels$: Observable<ChannelModel[]>;
   public channel$: Observable<ChannelModel>;
 

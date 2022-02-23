@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { ChannelModel } from 'src/app/core/models/channel.model';
-import { CurrentUserModel } from 'src/app/core/models/current-user.model';
+import { UserModel } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'mr-navbar',
@@ -10,7 +10,7 @@ import { CurrentUserModel } from 'src/app/core/models/current-user.model';
   encapsulation: ViewEncapsulation.None,
 })
 export class NavbarComponent { 
-  @Input() currentUser: CurrentUserModel;
+  @Input() currentUser: UserModel;
   @Input() channels: ChannelModel[];
   @Input() channel: ChannelModel;
   @Output() clickedLogout: EventEmitter<void> = new EventEmitter();

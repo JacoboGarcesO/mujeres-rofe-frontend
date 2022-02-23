@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChannelModel } from 'src/app/core/models/channel.model';
-import { CurrentUserModel } from 'src/app/core/models/current-user.model';
+import { UserModel } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'mr-current-user',
@@ -10,7 +10,7 @@ import { CurrentUserModel } from 'src/app/core/models/current-user.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CurrentUserComponent {
-  @Input() currentUser: CurrentUserModel;
+  @Input() currentUser: UserModel;
   @Input() channel: ChannelModel;
   @Output() clickedLogout: EventEmitter<void> = new EventEmitter();
 

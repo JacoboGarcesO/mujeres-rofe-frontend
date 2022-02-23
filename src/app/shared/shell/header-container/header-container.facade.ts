@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of, Subscription, tap } from 'rxjs';
 import { toChannelEnum } from 'src/app/core/enums/channel.enum';
 import { ChannelModel } from 'src/app/core/models/channel.model';
-import { CurrentUserModel } from 'src/app/core/models/current-user.model';
+import { UserModel } from 'src/app/core/models/user.model';
 import { ChannelsService } from 'src/app/core/services/channels.service';
 import { CurrentUserService } from 'src/app/core/services/current-user.service';
 import { AppState } from 'src/app/core/state/app.state';
@@ -22,7 +22,7 @@ export class HeaderContainerFacade {
   ) { }
 
   //#region Observables 
-  currentUser$(): Observable<CurrentUserModel> {
+  currentUser$(): Observable<UserModel> {
     return this.state.users.currentUser.$();
   }
 
@@ -39,7 +39,7 @@ export class HeaderContainerFacade {
 
   //#region Public methods
   logoutUser(): void {
-    this.state.users.currentUser.set(null as unknown as CurrentUserModel);
+    this.state.users.currentUser.set(null);
     this.service.logoutUser();
   }
 

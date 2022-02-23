@@ -8,6 +8,10 @@ import { ToApiCredentialsMapper } from '../mappers/to-api-credentials.mapper';
 import { CurrentUserModel } from '../models/current-user.model';
 import { UserCredentialsModel } from '../models/user-credentials.model';
 import { URL_RESOURCE } from '../resources/url.resource';
+import { UserModel } from '../models/user.model';
+import { ApiToUsersMapper } from '../mappers/api-to-users.mapper';
+import { ToApiUsersMapper } from '../mappers/to-api-users.mapper';
+import { OptionModel } from '../models/option.model';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +22,8 @@ export class CurrentUserService {
     private storageService: StorageService,
     private apiToCurrentUserMapper: ApiToCurrentUserMapper,
     private toApiCredentialsMapper: ToApiCredentialsMapper,
+    private toApiUsersMapper: ToApiUsersMapper,
+    private apiToUsersMapper: ApiToUsersMapper,
   ) { }
 
   getCurrentUser(): Observable<CurrentUserModel> {
@@ -31,7 +37,17 @@ export class CurrentUserService {
     const body = JSON.stringify(credentials);
     return this.httpService.post(url, body).pipe(
       map((currentUser) => this.apiToCurrentUserMapper.map(currentUser)),
-      tap((currentUser) => this.storageService.set<CurrentUserModel>('CURRENT_USER', currentUser)),
+      tap((currentUser) => this.storageService.set<UserModel>('CURRENT_USER', currentUser.user)),
+      tap((currentUser) => this.storageService.set<string>('TOKEN', currentUser.token)),
+    );
+  }
+
+  update(user: UserModel, cities: OptionModel[]): Observable<UserModel> {
+    const url =  URL_RESOURCE.users;
+    const formData = this.toApiUsersMapper.map(user, cities);
+    return this.httpService.putFile(url, formData).pipe(
+      map((response: any) => this.apiToUsersMapper.getUser(response?.users?.[0])),
+      tap((user) => this.storageService.set<UserModel>('CURRENT_USER', user)),
     );
   }
 

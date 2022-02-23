@@ -1,22 +1,7 @@
-import { RolsEnum } from '../enums/rols.enum';
-import { UserLocationModel } from './locations.model';
-import { MediaModel } from './media.model';
+import { UserModel } from './user.model';
 
 export interface CurrentUserModel {
-  id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
-  nameComplete: string;
-  rol: RolsEnum;
-  token?: string;
+  user: UserModel;
   message: string;
-  isPremium: boolean;
-  document?: string;
-  image?: MediaModel | File;
-  description?: string;
-  location?: UserLocationModel;
-  instagram?: string; 
-  hobbies?: string[];
-  phoneNumber?: number;
+  token: string;
 }

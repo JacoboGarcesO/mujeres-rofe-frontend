@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { catchError, EMPTY, finalize, Observable, Subscription, tap } from 'rxjs';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { UserModel } from 'src/app/core/models/user.model';
+import { CurrentUserService } from 'src/app/core/services/current-user.service';
 import { HobbiesService } from 'src/app/core/services/hobbies.service';
 import { LocationsService } from 'src/app/core/services/locations.service';
 import { UsersService } from 'src/app/core/services/users.service';
@@ -16,6 +17,7 @@ export class ProfileCurrentUserContainerFacade {
   constructor(
     private state: AppState,
     private userService: UsersService,
+    private currentUserService: CurrentUserService,
     private locationsService: LocationsService,
     private habbiesService: HobbiesService,
   ) { }
@@ -105,8 +107,9 @@ export class ProfileCurrentUserContainerFacade {
 
     this.notify('init');
     this.subscriptions.add(
-      this.userService.update(user, cities).pipe(
+      this.currentUserService.update(user, cities).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
+        tap(this.storeCurrentUser.bind(this)),
         catchError(this.notify.bind(this, 'error', null)),
         finalize(this.notifyClose.bind(this)),
       ).subscribe(),
@@ -125,6 +128,10 @@ export class ProfileCurrentUserContainerFacade {
 
   private storeHobbies(hobbies: OptionModel[]): void {
     this.state.hobbies.hobbies.set(hobbies);
+  }
+
+  private storeCurrentUser(user: UserModel): void {
+    this.state.users.currentUser.set(user);
   }
 
   private notify(

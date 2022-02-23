@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, tap } from 'rxjs';
-import { CurrentUserModel } from './core/models/current-user.model';
+import { tap } from 'rxjs';
+import { UserModel } from './core/models/user.model';
 import { CurrentUserService } from './core/services/current-user.service';
 import { AppState } from './core/state/app.state';
 
@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
     ).subscribe();
   }
 
-  private storeCurrentUser(currentUser: CurrentUserModel): void {   
+  private storeCurrentUser(currentUser: UserModel): void {   
     this.appState.users.currentUser.set(currentUser);
   }
 }

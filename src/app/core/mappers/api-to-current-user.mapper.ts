@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { toRolEnum } from '../enums/rols.enum';
 import { CurrentUserModel } from '../models/current-user.model';
+import { UserModel } from '../models/user.model';
 import { MessageUtil } from '../utils/message.util';
 
 @Injectable({
@@ -9,19 +10,42 @@ import { MessageUtil } from '../utils/message.util';
 export class ApiToCurrentUserMapper {
   map(response: any): CurrentUserModel {
     return {
-      email: response?.user?.email,
-      id: response?.user?._id,
-      nameComplete: `${response?.user?.firstName} ${response?.user?.lastName}`,
-      firstName: response?.user?.firstName,
-      lastName: response?.user?.lastName,
-      rol: toRolEnum(response?.user?.rol),
+      user: this.getUser(response?.user),
       token: response?.token,
-      isPremium: response?.user?.isPremium,
-      image: {
-        id: response?.user?.image?._id,
-        url: response?.user?.image?.url,
-      },
       message: MessageUtil.trasnformToMessage(response?.message),
     };
+  }
+
+  getUser(user: any): UserModel {
+    if (!user?._id) { return null; }
+
+    return {
+      id: user?._id,
+      email: user?.email,
+      firstName: user?.firstName,
+      lastName: user?.lastName,
+      rol: toRolEnum(user?.rol),
+      isPremium: user?.isPremium,
+      document: user?.document,
+      image: user?.image,
+      description: user?.description,
+      location: {
+        city: user?.location?.city,
+        state: user?.location?.state,
+        cityName: user?.location?.cityName,
+      },
+      instagram: this.getSocialNetwork(user?.socialsNetworks, 'instagram'),
+      facebook: this.getSocialNetwork(user?.socialsNetworks, 'facebook'),
+      hobbies: this.getHobbies(user?.hobbies),
+      phoneNumber: user?.phoneNumber,
+    };
+  }
+
+  private getHobbies(hobbies: any[]): string[] {
+    return hobbies?.map((hobbie) => hobbie?.name);
+  }
+
+  private getSocialNetwork(socials: any[], social: string): string {
+    return socials?.find((_) => _.name === social)?.url;
   }
 }

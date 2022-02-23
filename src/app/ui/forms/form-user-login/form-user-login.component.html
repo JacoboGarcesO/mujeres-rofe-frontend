@@ -8,8 +8,8 @@
 
 <form class="form-user-login" [formGroup]="form.formGroup">
   <mr-alert
-    *ngIf="!currentUser?.id && currentUser?.message"
-    [text]="currentUser?.message"
+    *ngIf="formNotification"
+    [text]="formNotification"
     [type]="notificationsEnum.warning"
     [icon]="'fa-exclamation-triangle'"
   ></mr-alert>

@@ -116,14 +116,14 @@ export class RegisterContainerFacade {
   ): Observable<never> {
     const messages = {
       init: 'Estamos procesando su solicitud',
-      complete: 'Su solicitud se completó con éxito',
+      complete: '¡Revisa tu correo, allí encontrarás tus credenciales de ingreso!',
       error: 'El proceso que solicitaste falló, inténtalo de nuevo más tarde',
     };
 
     this.state.notifications.notification.set(messages[key]);
 
     // eslint-disable-next-line angular/timeout-service
-    if (!!callback && !(callback instanceof Observable)) { setTimeout(() => callback(), 2000); }
+    if (!!callback && !(callback instanceof Observable)) { setTimeout(() => callback(), 5000); }
     return EMPTY;
   }
 

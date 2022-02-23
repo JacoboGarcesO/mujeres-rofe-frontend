@@ -5,7 +5,7 @@
   border-radius: styles.$box-rad-medium;
   gap: styles.$box-pad-base;
   padding: styles.$box-pad-base;
-  margin: styles.$box-mrg-base styles.$box-mrg-none;
+  margin: styles.$box-mrg-none styles.$box-mrg-none styles.$box-mrg-base;
   align-items: center;
   display: grid;
   grid-template-columns: min-content auto;

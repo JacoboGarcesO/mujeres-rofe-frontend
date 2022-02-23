@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CurrentUserModel } from '../models/current-user.model';
 import { UserModel } from '../models/user.model';
 import { StateFactory } from './factory.state';
 
@@ -8,7 +7,7 @@ import { StateFactory } from './factory.state';
   providedIn: 'root',
 })
 export class UsersState {
-  private currentUser$: BehaviorSubject<CurrentUserModel> = new BehaviorSubject(null);
+  private currentUser$: BehaviorSubject<UserModel> = new BehaviorSubject(null);
   private currentUserToUpdate$: BehaviorSubject<UserModel> = new BehaviorSubject(null);
   private users$: BehaviorSubject<UserModel[]> = new BehaviorSubject(null);
 

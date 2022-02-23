@@ -3,7 +3,7 @@
     <figure class="current-user__image" (click)="navigateProfile()">
       <mr-image [image]="currentUser?.image?.url" [rounded]="'circle'"></mr-image>
     </figure>
-    <mr-text [type]="'line'" [weight]="'bold'" [text]="currentUser?.nameComplete"></mr-text>
+    <mr-text [type]="'line'" [weight]="'bold'" [text]="currentUser?.firstName + ' ' + currentUser?.lastName"></mr-text>
   </div>
   <i class="current-user__icon fas fa-sign-in-alt" (click)="handleLogout()"></i>
 </div>

@@ -3,6 +3,7 @@ import { ChannelEnum } from 'src/app/core/enums/channel.enum';
 import { fromRolEnum } from 'src/app/core/enums/rols.enum';
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
+import { UserModel } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'mr-aside-menu',
@@ -14,11 +15,11 @@ export class AsideMenuComponent {
   @Input() isVisible = false;
   @Input() channels: ChannelModel[];
   @Input() channel: ChannelModel;
-  @Input() currentUser: CurrentUserModel;
+  @Input() currentUser: UserModel;
   @Output() clickedLogout: EventEmitter<void> = new EventEmitter();
 
   get channelsFiltered(): ChannelModel[] {
-    return fromRolEnum(this.currentUser.rol) === 'user' 
+    return fromRolEnum(this.currentUser?.rol) === 'user' 
       ? this.channels.filter((channel) => channel.type !== ChannelEnum.admin) 
       : this.channels;
   }

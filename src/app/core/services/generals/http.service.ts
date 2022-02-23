@@ -2,7 +2,6 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { CurrentUserModel } from '../../models/current-user.model';
 import { ErrorsService } from './errors.service';
 import { StorageService } from './storage.service';
 
@@ -17,7 +16,7 @@ export class HttpService {
   ) { }
 
   get token(): string {
-    return this.storageService.get<CurrentUserModel>('CURRENT_USER')?.token;
+    return this.storageService.get<string>('TOKEN');
   }
 
   get getHeaders(): HttpHeaders {
