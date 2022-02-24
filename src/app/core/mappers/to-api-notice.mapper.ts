@@ -10,7 +10,7 @@ export class ToApiNoticeMapper {
     const formData = new FormData();
     formData.append('id', notice.id);
     formData.append('title', notice.title);
-    formData.append('description', notice.description);
+    formData.append('description', notice?.description ?? '');
     formData.append('order', notice.order);
     formData.append('links', JSON.stringify(notice.links));
     formData.append('icon', notice.icon.file);
