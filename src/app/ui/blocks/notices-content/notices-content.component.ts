@@ -20,6 +20,10 @@ export class NoticesContentComponent {
     private router: Router,
   ) { }
 
+  get wave(): string {
+    return this.notice.channel === 'contact' ? 'profile': 'wave-' + this.notice.channel;
+  }
+
   handleToBack(): void {
     const pathUrl = this.location.path().split('/')[2];
     const urlBack = `/channels/${pathUrl}`;

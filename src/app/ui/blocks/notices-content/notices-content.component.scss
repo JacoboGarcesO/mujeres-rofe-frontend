@@ -149,6 +149,10 @@ a {
       &--training {
         background-color: styles.$color-status-warning-dark;
       }
+
+      &--contact {
+        background-color: styles.$color-primary-color;
+      }
     }
   }
 
