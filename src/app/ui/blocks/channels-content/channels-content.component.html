@@ -31,6 +31,7 @@
           *ngFor="let notice of notices"
           [image]="notice?.icon?.url"
           [title]="notice?.title"
+          [description]="notice?.description"
           [channel]="notice?.channel"
           (click)="navigateToNotice(notice.channel, notice.id)"
         ></mr-notice>

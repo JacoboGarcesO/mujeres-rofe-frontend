@@ -10,5 +10,6 @@ import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@a
 export class NoticeComponent { 
   @Input() image: string;
   @Input() title: string;
+  @Input() description: string;
   @Input() channel: string;
 }
