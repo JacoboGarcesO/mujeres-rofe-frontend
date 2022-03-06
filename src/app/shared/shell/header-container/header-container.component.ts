@@ -1,7 +1,6 @@
 import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ChannelModel } from 'src/app/core/models/channel.model';
-import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { UserModel } from 'src/app/core/models/user.model';
 import { HeaderContainerFacade } from './header-container.facade';
 
