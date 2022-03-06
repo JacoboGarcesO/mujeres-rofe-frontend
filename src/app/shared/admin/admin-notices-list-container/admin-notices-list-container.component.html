@@ -9,6 +9,7 @@
     [canCloseModal]="data.canCloseModal"
     [channelOptions]="data.channelOptions"
     [noticeToUpdate]="data.noticeToUpdate"
+    (noticesByChannel)="handleLoadNoticesByChannel($event)"
     (createNotice)="handleCreateNotice($event)"
     (deleteNotice)="handleDeleteNotice($event)"
     (loadNoticeToUpdate)="handleLoadNoticeToUpdate($event)"

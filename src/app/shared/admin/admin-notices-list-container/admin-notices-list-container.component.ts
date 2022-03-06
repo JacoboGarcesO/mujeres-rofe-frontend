@@ -27,9 +27,14 @@ export class AdminNoticesListContainerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.facade.destroyNotices();
     this.facade.destroyNotice();
+    this.facade.destroyNoticesByChannel();
     this.facade.destroyCanCloseModal();
     this.facade.destroyChannelOptions();
     this.facade.destroySubscriptions();
+  }
+
+  handleLoadNoticesByChannel(channel: string): void {
+    this.facade.loadNoticesByChannel(channel);
   }
 
   handleCreateNotice(notice: NoticeModel): void {

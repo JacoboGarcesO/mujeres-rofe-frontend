@@ -57,6 +57,18 @@ export class AdminNoticesListContainerFacade {
     this.state.notices.notices.set(null);
   }
 
+  loadNoticesByChannel(channel: string): void {
+    this.subscriptions.add(
+      this.noticesService.getNoticesByChannel(channel).pipe(
+        tap(this.storeNotices.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyNoticesByChannel(): void {
+    this.state.notices.notices.set(null);
+  }
+
   loadNotice(noticeId: string): void {
     this.destroyNotice();
     const notice = this.state.notices.notices.snapshot().find((notice) => notice.id === noticeId);

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, OnChanges, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, OnChanges, ChangeDetectorRef, ViewEncapsulation, OnInit } from '@angular/core';
 import { NoticeModel } from 'src/app/core/models/notice.model';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class AdminNoticesListComponent implements OnChanges {
+export class AdminNoticesListComponent implements OnChanges, OnInit {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
   @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
@@ -19,6 +19,7 @@ export class AdminNoticesListComponent implements OnChanges {
   @Input() noticeToUpdate: NoticeModel;
   @Input() channelOptions: OptionModel[];
   @Input() canCloseModal: boolean;
+  @Output() noticesByChannel: EventEmitter<string> = new EventEmitter();
   @Output() createNotice: EventEmitter<NoticeModel> = new EventEmitter();
   @Output() updateNotice: EventEmitter<NoticeModel> = new EventEmitter();
   @Output() deleteNotice: EventEmitter<string> = new EventEmitter();
@@ -29,6 +30,10 @@ export class AdminNoticesListComponent implements OnChanges {
     private cdRef: ChangeDetectorRef,
     private router: Router,
   ) { }
+
+  ngOnInit(): void {
+    this.noticesByChannel.emit('network');
+  }
 
   ngOnChanges(): void {
     if (!this.canCloseModal) { return; }
