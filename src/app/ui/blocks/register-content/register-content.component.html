@@ -2,7 +2,7 @@
   <mr-home-background class="register-content__background"></mr-home-background>
   <mr-card class="register-content__form">
     <ng-container>
-      <mr-form-user 
+      <mr-form-user
         [cities]="cities"
         [states]="states"
         [hobbies]="hobbies"
@@ -11,4 +11,10 @@
       ></mr-form-user>
     </ng-container>
   </mr-card>
+
+  <mr-button-icon
+    [icon]="'arrow-left'"
+    (clicked)="handleToBack()"
+    class="register-content__back"
+  ></mr-button-icon>
 </div>

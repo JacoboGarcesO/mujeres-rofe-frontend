@@ -4,6 +4,7 @@ import { RegisterContentComponent } from './register-content.component';
 import { HomeBackgroundModule } from '../../elements/home-background/home-background.module';
 import { CardModule } from '../../elements/card/card.module';
 import { FormUserModule } from '../../forms/form-user/form-user.module';
+import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { FormUserModule } from '../../forms/form-user/form-user.module';
     HomeBackgroundModule,
     CardModule,
     FormUserModule,
+    ButtonIconModule,
   ],
   exports: [
     RegisterContentComponent,

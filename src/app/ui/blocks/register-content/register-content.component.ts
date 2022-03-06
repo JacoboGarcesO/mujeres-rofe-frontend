@@ -1,12 +1,14 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { UserModel } from 'src/app/core/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mr-register-content',
   templateUrl: './register-content.component.html',
   styleUrls: ['./register-content.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class RegisterContentComponent {
   @Input() hobbies: OptionModel[];
@@ -15,6 +17,10 @@ export class RegisterContentComponent {
   @Output() createUser: EventEmitter<UserModel> = new EventEmitter();
   @Output() selectedState: EventEmitter<string> = new EventEmitter();
   private currentUser: UserModel;
+
+  constructor(
+    private router: Router,
+  ) { }
 
   handleCreateUser(user: UserModel) {
     this.createUser.emit(user);
@@ -26,5 +32,9 @@ export class RegisterContentComponent {
     }
 
     this.currentUser = { ...formUpdate };
+  }
+
+  handleToBack(): void {
+    this.router.navigateByUrl('login');
   }
 }
