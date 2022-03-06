@@ -8,6 +8,7 @@ import { CardModule } from '../../elements/card/card.module';
 import { NoticeModule } from '../../elements/notice/notice.module';
 import { TableModule } from '../table/table.module';
 import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
+import { ButtonModule } from '../../elements/button/button.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ButtonIconModule } from '../../elements/button-icon/button-icon.module'
     NoticeModule,
     TableModule,
     ButtonIconModule,
+    ButtonModule,
   ],
   exports: [
     ChannelsContentComponent,

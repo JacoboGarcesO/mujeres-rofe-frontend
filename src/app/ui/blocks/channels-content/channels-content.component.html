@@ -50,7 +50,8 @@
           ['Apellido', '3rem'],
           ['Contacto', '3rem'],
           ['Descripción', '10rem'],
-          ['Correo', '7rem']
+          ['Correo', '7rem'],
+          ['Ver perfil', '2rem']
         ]"
         [items]="users || []"
         [itemTemplateRef]="userTemplate"
@@ -58,10 +59,7 @@
 
       <ng-template #userTemplate let-user="item" let-index="index">
         <td class="channels-content-users-list__td">
-          <figure
-            class="channels-content-users-list__image"
-            (click)="navigateToUser(user.id)"
-          >
+          <figure class="channels-content-users-list__image">
             <mr-image
               [image]="user?.image?.url"
               [rounded]="'circle'"
@@ -113,6 +111,13 @@
             [size]="'base'"
             [weight]="'regular'"
           ></mr-text>
+        </td>
+        <td class="channels-content-users-list__td" (click)="navigateToUser(user.id)">
+          <mr-button
+            [display]="'block'"
+            [icon]="'fas fa-eye'"
+            (clicked)="navigateToUser(user.id)"
+          ></mr-button>
         </td>
       </ng-template>
     </ng-container>

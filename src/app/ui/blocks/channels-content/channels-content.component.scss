@@ -86,6 +86,10 @@
     &__td {
       padding: styles.$box-pad-half;
       max-width: styles.$box-wth-column-list;
+
+      .button {
+        background: styles.$color-status-info-dark !important;
+      }
     }
 
     &__image {
