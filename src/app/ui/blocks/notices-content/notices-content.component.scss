@@ -120,34 +120,57 @@ a {
 
   &__links {
     position: relative;
-    display: flex;
-    justify-content: flex-start;
-    gap: styles.func-toRem(2);
     margin-top: styles.func-toRem(2);
-    flex-wrap: wrap;
 
     &-item {
-      padding: 2px 10px;
-      cursor: pointer;
+      margin: styles.func-toRem(0.7) 0;
 
       .text {
         color: styles.$color-bg-white !important;
       }
       
       &--network {
-        background-color: styles.$color-status-info-dark;
+        .button {
+          background-color: styles.$color-status-info-dark;
+
+          &:hover {
+            background-color: styles.$color-status-info-dark !important;
+            transform: translateY(-5px) scale(1.05);
+          }
+        }
       }
 
       &--business {
-        background-color: styles.$color-status-error-dark;
+        .button {
+          background-color: styles.$color-status-error-dark;
+
+          &:hover {
+            background-color: styles.$color-status-error-dark !important;
+            transform: translateY(-5px) scale(1.05);
+          }
+        }
       }
 
       &--opportunities {
-        background-color: styles.$color-status-success-dark;
+        .button {
+          background-color: styles.$color-status-success-dark;
+
+          &:hover {
+            background-color: styles.$color-status-success-dark !important;
+            transform: translateY(-5px) scale(1.05);
+          }
+        }
       }
 
       &--training {
-        background-color: styles.$color-status-warning-dark;
+        .button {
+          background-color: styles.$color-status-warning-dark;
+
+          &:hover {
+            background-color: styles.$color-status-warning-dark !important;
+            transform: translateY(-5px) scale(1.05);
+          }
+        }
       }
     }
   }

@@ -56,11 +56,11 @@
               *ngFor="let link of notice?.links"
             >
               <a [href]="link.url" target="_blank">
-                <mr-text
-                  [text]="link.name"
-                  [size]="'extra-large'"
-                  [weight]="'bold'"
-                ></mr-text>
+                <mr-button
+                  [display]="'inline'"
+                  [icon]="'fas fa-external-link-alt'"
+                  [label]="link.name"
+                ></mr-button>
               </a>
             </div>
           </div>
