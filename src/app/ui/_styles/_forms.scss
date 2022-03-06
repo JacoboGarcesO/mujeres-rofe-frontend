@@ -63,6 +63,20 @@
       color: color.$primary-color;
       font-size: 0.95rem;
     }
+
+    &__iconLogin {
+      position: absolute;
+      right: 0.62rem;
+      color: color.$primary-color;
+      font-size: 0.95rem;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    &__input:valid ~ &__iconLogin{
+      visibility: visible;
+      opacity: 1;
+    }
   }
 }
 

@@ -1,4 +1,4 @@
-@use "../../_styles/index.scss" as styles;
+@use '../../_styles/index.scss' as styles;
 
 .home-content {
   position: relative;
@@ -52,7 +52,7 @@
   }
 
   &__logo {
-    height: styles.$box-hht-home-content-logo;
+    height: styles.$box-hht-home-content-logo
   }
 
   &__description,
@@ -92,7 +92,7 @@
     }
 
     &__logo {
-      height: styles.$box-hht-home-content-logo-tbl;
+      height: styles.$box-hht-home-content-logo-tbl
     }
   }
 }
@@ -100,7 +100,7 @@
 @media (min-width: styles.$bkp-desktop) {
   .home-content {
     &__logo {
-      height: styles.$box-hht-home-content-logo;
+      height: styles.$box-hht-home-content-logo
     }
   }
 }

@@ -77,7 +77,7 @@
   &__notices {
     display: grid;
     grid-template-columns: repeat(2, styles.$box-fr-base);
-    padding: 0 styles.func-toRem(2.5);
+    padding: 0 styles.func-toRem(2);
     gap: styles.func-toRem(3.12);
     row-gap: styles.func-toRem(1.8);
   }
