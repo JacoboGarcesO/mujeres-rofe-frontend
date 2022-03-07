@@ -192,6 +192,37 @@ a {
     z-index: -1;
   }
 
+  &__users-container {
+    .table {
+      &__tr {
+        &:nth-child(even) {
+          background: styles.$color-status-info !important;
+        }
+
+        &:hover {
+          background: styles.$color-status-info !important;
+        }
+      }
+    }
+  }
+  
+  &-users-list {
+    &__td {
+      padding: styles.$box-pad-half;
+      max-width: styles.$box-wth-column-list;
+
+      .button {
+        background: styles.$color-status-info-dark !important;
+      }
+    }
+
+    &__image {
+      cursor: pointer;
+      width: styles.$box-wth-double;
+      height: styles.$box-hht-double;
+    }
+  }
+
   &__back {
     position: fixed;
     bottom: 10px;

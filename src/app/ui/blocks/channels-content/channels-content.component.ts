@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 export class ChannelsContentComponent {
   @Input() channel: ChannelModel;
   @Input() notices: NoticeModel[];
-  @Input() users: UserModel[];
 
   constructor(
     private router: Router,
@@ -22,10 +21,6 @@ export class ChannelsContentComponent {
 
   navigateToNotice(channel: string, id: string): void {
     this.router.navigateByUrl(`notices/${channel}/${id}`);
-  }
-
-  navigateToUser(userId: string): void {
-    this.router.navigateByUrl(`profile/${userId}`);
   }
 
   handleToBack(): void {

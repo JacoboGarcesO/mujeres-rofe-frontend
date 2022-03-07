@@ -10,6 +10,5 @@ export class ApiToOptionMapper {
       id: `${result?.[idField]}`,
       label: `${result?.[labelField]}`,
     }));
-    
   }
 }

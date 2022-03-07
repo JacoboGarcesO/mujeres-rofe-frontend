@@ -4,7 +4,9 @@ import { Observable, of, Subscription, tap } from 'rxjs';
 import { toChannelEnum } from 'src/app/core/enums/channel.enum';
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { NoticeModel } from 'src/app/core/models/notice.model';
+import { UserModel } from 'src/app/core/models/user.model';
 import { NoticesService } from 'src/app/core/services/notices.service';
+import { UsersService } from 'src/app/core/services/users.service';
 import { AppState } from 'src/app/core/state/app.state';
 
 @Injectable({
@@ -16,6 +18,7 @@ export class NoticesContentContainerFacade {
   constructor(
     private state: AppState,
     private noticesService: NoticesService,
+    private usersService: UsersService,
     private location: Location,
   ) { }
 
@@ -28,6 +31,10 @@ export class NoticesContentContainerFacade {
     const url = this.location.path().split('/');
     const channels = this.state.channels.channels.snapshot();
     return of(channels.find((channel)=> channel.type === toChannelEnum(url[2])));
+  }
+
+  users$(): Observable<UserModel[]> {
+    return this.state.users.users.$();
   }
   //#endregion
 
@@ -53,11 +60,27 @@ export class NoticesContentContainerFacade {
   destroyNotice(): void {
     this.state.notices.notice.set(null);
   }
+
+  loadUsers(): void {
+    this.subscriptions.add(
+      this.usersService.getUsers().pipe(
+        tap(this.storeUsers.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyUsers(): void {
+    this.state.users.users.set(null);
+  }
   //#endregion
 
   //#region Private Methods
   private storeNotice(notice: NoticeModel): void {
     this.state.notices.notice.set(notice);
+  }
+
+  private storeUsers(users: UserModel[]): void {
+    this.state.users.users.set(users);
   }
   //#endregion
 }

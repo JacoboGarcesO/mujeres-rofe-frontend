@@ -7,6 +7,7 @@ import { TextModule } from '../../elements/text/text.module';
 import { CardModule } from '../../elements/card/card.module';
 import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
 import { ButtonModule } from '../../elements/button/button.module';
+import { TableModule } from '../table/table.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { ButtonModule } from '../../elements/button/button.module';
     CardModule,
     ButtonIconModule,
     ButtonModule,
+    TableModule,
   ],
   exports: [
     NoticesContentComponent,

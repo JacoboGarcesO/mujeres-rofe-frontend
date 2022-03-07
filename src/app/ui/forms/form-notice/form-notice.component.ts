@@ -41,6 +41,9 @@ export class FormNoticeComponent implements OnChanges {
       channel: new FormControl(null, Validators.required),
       description: new FormControl(null),
       links: new FormControl(null),
+      showUsersList: new FormControl(null),
+      isLink: new FormControl(null),
+      url: new FormControl(null),
       //---
       id: new FormControl(null),
     },
