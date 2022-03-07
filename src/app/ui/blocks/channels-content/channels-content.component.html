@@ -33,7 +33,9 @@
           [title]="notice?.title"
           [description]="notice?.description"
           [channel]="notice?.channel"
-          (click)="navigateToNotice(notice.channel, notice.id)"
+          [isLink]="notice?.isLink"
+          [url]="notice?.url"
+          [id]="notice?.id"
         ></mr-notice>
       </div>
     </ng-container>

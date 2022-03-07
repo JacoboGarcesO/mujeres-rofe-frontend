@@ -1,5 +1,9 @@
 @use "../../_styles/index.scss" as styles;
 
+a {
+  text-decoration: none !important;
+}
+
 .channels-content-container {
   &__notice {
     display: grid;

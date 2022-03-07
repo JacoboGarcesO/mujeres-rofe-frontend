@@ -19,10 +19,6 @@ export class ChannelsContentComponent {
     private router: Router,
   ) { }
 
-  navigateToNotice(channel: string, id: string): void {
-    this.router.navigateByUrl(`notices/${channel}/${id}`);
-  }
-
   handleToBack(): void {
     this.router.navigateByUrl('');
   }
