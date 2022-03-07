@@ -26,6 +26,9 @@ export class ApiToNoticesMapper {
       },
       order: notice?.order,
       channel: notice?.channel,
+      showUsersList: notice?.showUsersList,
+      isLink: notice?.isLink,
+      url: notice?.url,
       links: this.getLinks(notice?.links),
     };
   }

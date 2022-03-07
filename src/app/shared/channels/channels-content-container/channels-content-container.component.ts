@@ -22,20 +22,17 @@ export class ChannelsContentContainerComponent implements OnInit, OnDestroy {
     this.facade.initSubscriptions();
     this.facade.loadChannels();
     this.facade.loadNotices();
-    this.facade.loadUsers();
     this.initializeSubscriptions();
   }
 
   ngOnDestroy(): void {
     this.facade.destroyChannels();
     this.facade.destroyNotices();
-    this.facade.destroyUsers();
     this.facade.destroySubscriptions();
   }
 
   private initializeSubscriptions(): void {
     this.channel$ = this.facade.channel$();
     this.notices$ = this.facade.notices$();
-    this.users$ = this.facade.users$();
   }
 }

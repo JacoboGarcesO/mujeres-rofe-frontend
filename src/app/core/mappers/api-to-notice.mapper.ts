@@ -20,6 +20,9 @@ export class ApiToNoticeMapper {
       },
       order: response?.notices[0]?.order,
       channel: response?.notices[0]?.channel,
+      showUsersList: response?.notices[0]?.showUsersList,
+      isLink: response?.notices[0]?.isLink,
+      url: response?.notices[0]?.url,
       links: this.getLinks(response?.notices[0]?.links),
     };
   }

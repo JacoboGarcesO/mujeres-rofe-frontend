@@ -1,9 +1,57 @@
-<div class="channels-content-container__notice">
-    <figure class="channels-content-container__image channels-content-container__image--shadow channels-content-container__image--shadow--{{channel}}">
-        <mr-image [image]="image" [rounded]="'circle'" [alt]="'notice-item'"></mr-image>
+<div *ngIf="isLink">
+  <a [href]="url" target="_blank">
+    <div class="channels-content-container__notice">
+      <figure
+        class="channels-content-container__image channels-content-container__image--shadow channels-content-container__image--shadow--{{
+          channel
+        }}"
+      >
+        <mr-image
+          [image]="image"
+          [rounded]="'circle'"
+          [alt]="'notice-item'"
+        ></mr-image>
+      </figure>
+      <div class="channels-content-container__notice-info">
+        <mr-text
+          [text]="title"
+          [size]="'extra-large'"
+          [weight]="'bold'"
+        ></mr-text>
+        <mr-text
+          [text]="description"
+          [size]="'medium'"
+          [weight]="'light'"
+        ></mr-text>
+      </div>
+    </div>
+  </a>
+</div>
+
+<div *ngIf="!isLink" (click)="navigateToNotice(channel, id)">
+  <div class="channels-content-container__notice">
+    <figure
+      class="channels-content-container__image channels-content-container__image--shadow channels-content-container__image--shadow--{{
+        channel
+      }}"
+    >
+      <mr-image
+        [image]="image"
+        [rounded]="'circle'"
+        [alt]="'notice-item'"
+      ></mr-image>
     </figure>
     <div class="channels-content-container__notice-info">
-        <mr-text [text]="title" [size]="'extra-large'"  [weight]="'bold'"></mr-text>
-        <mr-text [text]="description" [size]="'medium'"  [weight]="'light'"></mr-text>
+      <mr-text
+        [text]="title"
+        [size]="'extra-large'"
+        [weight]="'bold'"
+      ></mr-text>
+      <mr-text
+        [text]="description"
+        [size]="'medium'"
+        [weight]="'light'"
+      ></mr-text>
     </div>
+  </div>
 </div>

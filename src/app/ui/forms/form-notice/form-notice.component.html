@@ -16,6 +16,15 @@
   </fieldset>
 
   <fieldset class="form-notice__description">
+    <mr-sub-form-input 
+      [type]="'input'"
+      [label]="'Enlace'"
+      [icon]="'fas fa-link'"
+      [formControlName]="form.formControlNames.url"
+    ></mr-sub-form-input>
+  </fieldset>
+
+  <fieldset class="form-notice__description">
     <mr-sub-form-select
       [placeholder]="'Seleccione un canal'"
       [options]="channelOptions"
