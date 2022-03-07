@@ -9,6 +9,7 @@ import { ModalModule } from '../../elements/modal/modal.module';
 import { FormNoticeModule } from '../../forms/form-notice/form-notice.module';
 import { PipesModule } from '../../pipes/pipes.module';
 import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
+import { FormNoticeFilterModule } from '../../forms/form-notice-filter/form-notice-filter.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { ButtonIconModule } from '../../elements/button-icon/button-icon.module'
     FormNoticeModule,
     PipesModule,
     ButtonIconModule,
+    FormNoticeFilterModule,
   ],
   exports: [
     AdminNoticesListComponent,

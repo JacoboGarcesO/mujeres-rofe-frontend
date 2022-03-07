@@ -25,6 +25,12 @@
     justify-content: center;
     margin-top: styles.$box-mrg-base;
   }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .admin-notices__back {

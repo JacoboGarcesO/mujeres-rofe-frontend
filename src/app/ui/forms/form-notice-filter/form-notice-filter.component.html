@@ -1,0 +1,12 @@
+<form class="form-user-filter" [formGroup]="form.formGroup">
+  <div>
+    <mr-sub-form-select
+      [placeholder]="'Seleccione un canal'"
+      [options]="channelOptions"
+      [label]="'Canal'"
+      [icon]="'fas fa-sort'"
+      [formControlName]="form.formControlNames.value"
+      [canDeleteText]="false"
+    ></mr-sub-form-select>
+  </div>
+</form>

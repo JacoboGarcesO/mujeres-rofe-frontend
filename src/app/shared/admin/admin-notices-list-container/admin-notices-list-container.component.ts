@@ -34,7 +34,11 @@ export class AdminNoticesListContainerComponent implements OnInit, OnDestroy {
   }
 
   handleLoadNoticesByChannel(channel: string): void {
-    this.facade.loadNoticesByChannel(channel);
+    if(channel) {
+      this.facade.loadNoticesByChannel(channel);
+    } else {
+      this.facade.loadNotices();
+    }
   }
 
   handleCreateNotice(notice: NoticeModel): void {

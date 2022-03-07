@@ -1,9 +1,18 @@
-<mr-button
-  [display]="'inline'"
-  [icon]="'fas fa-plus'"
-  [label]="'Crear'"
-  (clicked)="modalRef.toggle()"
-></mr-button>
+<div class="admin-notices-list__header">
+  <mr-button
+    [display]="'inline'"
+    [icon]="'fas fa-plus'"
+    [label]="'Crear'"
+    (clicked)="modalRef.toggle()"
+  ></mr-button>
+  
+  <mr-form-notice-filter 
+    [channelOptions]="channelOptionsAll"
+    (formUpdate)="handleFilterNotices($event)"
+  >
+  </mr-form-notice-filter>
+</div>
+
 <mr-table
   [headers]="[
     ['', '0.5rem'],

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, OnChanges, ChangeDetectorRef, ViewEncapsulation, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewChild, OnChanges, ChangeDetectorRef, ViewEncapsulation } from '@angular/core';
 import { NoticeModel } from 'src/app/core/models/notice.model';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class AdminNoticesListComponent implements OnChanges, OnInit {
+export class AdminNoticesListComponent implements OnChanges {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
   @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
@@ -31,8 +31,8 @@ export class AdminNoticesListComponent implements OnChanges, OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit(): void {
-    this.noticesByChannel.emit('network');
+  get channelOptionsAll (): OptionModel[] {
+    return [{ id: '', label: 'Todos' }, ...this.channelOptions];
   }
 
   ngOnChanges(): void {
@@ -62,6 +62,10 @@ export class AdminNoticesListComponent implements OnChanges, OnInit {
 
   handleLoadNoticeToUpdate(noticeId: string): void {
     this.loadNoticeToUpdate.emit(noticeId);
+  }
+
+  handleFilterNotices(channel: {value: string}): void {
+    this.noticesByChannel.emit(channel.value);
   }
 
   handleToBack(): void {
