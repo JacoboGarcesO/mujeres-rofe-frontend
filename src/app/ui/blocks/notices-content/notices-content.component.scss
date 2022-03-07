@@ -116,6 +116,14 @@ a {
     gap: styles.func-toRem(3.12);
     row-gap: styles.func-toRem(1.8);
     margin: 0 auto;
+
+    &--center{
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      text-align: center;
+      width: 50%;
+    }
   }
 
   &__links {
