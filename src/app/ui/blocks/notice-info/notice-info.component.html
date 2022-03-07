@@ -10,7 +10,10 @@
         notice?.channel
       }}"
     >
-      <mr-image [image]="notice?.content?.url" [alt]="'notice-img'"></mr-image>
+      <mr-image 
+        [image]="notice?.content?.type === 'pdf' ? 'assets/img/pdf.svg' : notice?.content?.url" 
+        [alt]="'notice-img'"
+      ></mr-image>
     </figure>
 
     <div class="notices-content__info-notice">
@@ -43,6 +46,17 @@
         </div>
       </div>
     </div>
+
+    <a 
+      [href]="notice?.content?.url" 
+      download="download" 
+      *ngIf="notice?.content?.type === 'pdf'">
+      <mr-text
+        [text]="'Descargar'"
+        [size]="'extra-large'"
+        [weight]="'regular'"
+      ></mr-text>
+    </a>
   </div>
 </ng-container>
 
@@ -73,7 +87,7 @@
         }}"
       >
         <mr-image
-          [image]="notice?.content?.url"
+          [image]="notice?.content?.type === 'pdf' ? 'assets/img/pdf.svg' : notice?.content?.url" 
           [alt]="'notice-img'"
         ></mr-image>
       </figure>
@@ -94,6 +108,17 @@
           </a>
         </div>
       </div>
+
+      <a 
+        [href]="notice?.content?.url" 
+        download="download" 
+        *ngIf="notice?.content?.type === 'pdf'">
+        <mr-text
+          [text]="'Descargar'"
+          [size]="'extra-large'"
+          [weight]="'regular'"
+        ></mr-text>
+      </a>
     </div>
   </div>
 </ng-container>

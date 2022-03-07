@@ -19,10 +19,12 @@ export class ApiToNoticesMapper {
       content: {
         id: notice?.content?._id,
         url: notice?.content?.url,
+        type: notice?.content?.type,
       },
       icon: {
         id: notice?.icon?._id,
         url: notice?.icon?.url,
+        type: notice?.icon?.type,
       },
       order: notice?.order,
       channel: notice?.channel,

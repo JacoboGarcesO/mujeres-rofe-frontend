@@ -13,10 +13,12 @@ export class ApiToNoticeMapper {
       content: {
         id: response?.notices[0]?.content?._id,
         url: response?.notices[0]?.content?.url,
+        type: response?.notices[0]?.content?.type,
       },
       icon: {
         id: response?.notices[0]?.icon?._id,
         url: response?.notices[0]?.icon?.url,
+        type: response?.notices[0]?.icon?.type,
       },
       order: response?.notices[0]?.order,
       channel: response?.notices[0]?.channel,

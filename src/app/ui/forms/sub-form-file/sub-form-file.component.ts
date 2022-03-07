@@ -25,6 +25,7 @@ export class SubFormFileComponent implements OnChanges {
       url: new FormControl(null),
       id: new FormControl(null),
       file: new FormControl(null),
+      type: new FormControl(null),
     },
   });
 
