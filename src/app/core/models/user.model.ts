@@ -17,4 +17,18 @@ export interface UserModel {
   facebook: string; 
   hobbies: string[];
   phoneNumber: number;
+  documentType: string,
+  maritalStatus: string,
+  address: string,
+  age: string,
+  familyCore: string,
+  familyIncome: string,
+  housingType: string,
+  education: string,
+  stratum: string,
+  promocionalCode: string,
+  disclosure: string,
+  ethnicGroup: string[],
+  sustaining: string[],
+  documentImage: MediaModel,
 }

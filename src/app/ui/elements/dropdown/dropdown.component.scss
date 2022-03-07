@@ -43,6 +43,10 @@
     }
   }
 
+  &__text-option {
+    max-width: 150px;
+  }
+
   &__option {
     display: flex;
     align-items: center;

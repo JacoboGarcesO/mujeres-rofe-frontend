@@ -39,7 +39,7 @@
 @media (min-width: styles.$bkp-tablet) {
   .register-content {
     &__form {
-      height: 100vh;
+      min-height: 100vh;
     }
   }
 }

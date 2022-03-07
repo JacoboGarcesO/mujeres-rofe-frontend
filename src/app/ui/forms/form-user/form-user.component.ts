@@ -16,6 +16,15 @@ export class FormUserComponent implements OnChanges {
   @Input() hobbies: OptionModel[];
   @Input() states: OptionModel[];
   @Input() cities: OptionModel[];
+  @Input() documents: OptionModel[];
+  @Input() education: OptionModel[];
+  @Input() ethnicGroups: OptionModel[];
+  @Input() familyCore: OptionModel[];
+  @Input() familyIncome: OptionModel[];
+  @Input() housingType: OptionModel[];
+  @Input() maritalStatus: OptionModel[];
+  @Input() stratum: OptionModel[];
+  @Input() sustenting: OptionModel[];
   @Input() canResetForm: boolean;
 
   public manualSave$: Subject<void> = new Subject();
@@ -48,6 +57,20 @@ export class FormUserComponent implements OnChanges {
       location: new FormControl(null),
       facebook: new FormControl(null),
       hobbies: new FormControl(null),
+      documentType: new FormControl(null),
+      maritalStatus: new FormControl(null),
+      address: new FormControl(null),
+      age: new FormControl(null),
+      familyCore: new FormControl(null),
+      familyIncome: new FormControl(null),
+      housingType: new FormControl(null),
+      education: new FormControl(null),
+      stratum: new FormControl(null),
+      promocionalCode: new FormControl(null),
+      disclosure: new FormControl(null),
+      ethnicGroup: new FormControl(null),
+      sustaining: new FormControl(null),
+      documentImage: new FormControl(null),
       // --------------------
       id: new FormControl(null),
       rol: new FormControl(null),
