@@ -1,0 +1,99 @@
+<ng-container
+  *ngIf="
+    (!notice?.showUsersList && notice?.links?.length > 2) ||
+    notice?.description?.length > 50
+  "
+>
+  <div class="notices-content__notice">
+    <figure
+      class="notices-content__image-notice notices-content__image-notice--shadow notices-content__image-notice--shadow--{{
+        notice?.channel
+      }}"
+    >
+      <mr-image [image]="notice?.content?.url" [alt]="'notice-img'"></mr-image>
+    </figure>
+
+    <div class="notices-content__info-notice">
+      <mr-text
+        class="notices-content__text--{{ notice?.channel }}"
+        [text]="notice?.title"
+        [size]="'extra-large'"
+        [weight]="'bold'"
+      ></mr-text>
+      <mr-text
+        [text]="notice?.description"
+        [size]="'extra-large'"
+        [weight]="'regular'"
+      ></mr-text>
+
+      <div class="notices-content__links">
+        <div
+          class="notices-content__links-item notices-content__links-item--{{
+            notice?.channel
+          }}"
+          *ngFor="let link of notice?.links"
+        >
+          <a [href]="link.url" target="_blank">
+            <mr-button
+              [display]="'inline'"
+              [icon]="'fas fa-external-link-alt'"
+              [label]="link.name"
+            ></mr-button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container
+  *ngIf="
+    !notice?.showUsersList &&
+    notice?.links?.length <= 2 &&
+    notice?.description?.length < 50
+  "
+>
+  <div class="notices-content__notice notices-content__notice--center">
+    <div class="notices-content__info-notice">
+      <mr-text
+        class="notices-content__text--{{ notice?.channel }}"
+        [text]="notice?.title"
+        [size]="'extra-large'"
+        [weight]="'bold'"
+      ></mr-text>
+      <mr-text
+        [text]="notice?.description"
+        [size]="'extra-large'"
+        [weight]="'regular'"
+      ></mr-text>
+
+      <figure
+        class="notices-content__image-notice notices-content__image-notice--shadow notices-content__image-notice--shadow--{{
+          notice?.channel
+        }}"
+      >
+        <mr-image
+          [image]="notice?.content?.url"
+          [alt]="'notice-img'"
+        ></mr-image>
+      </figure>
+
+      <div class="notices-content__links">
+        <div
+          class="notices-content__links-item notices-content__links-item--{{
+            notice?.channel
+          }}"
+          *ngFor="let link of notice?.links"
+        >
+          <a [href]="link.url" target="_blank">
+            <mr-button
+              [display]="'inline'"
+              [icon]="'fas fa-external-link-alt'"
+              [label]="link.name"
+            ></mr-button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>
