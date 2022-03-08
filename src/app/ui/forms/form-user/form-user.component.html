@@ -40,6 +40,20 @@
         [formControlName]="form.formControlNames.maritalStatus"
       ></mr-sub-form-select>
 
+      <mr-sub-form-input 
+        [type]="'input'"
+        [label]="'Dirección'"
+        [formControlName]="form.formControlNames.address"
+      ></mr-sub-form-input>
+
+      <mr-sub-form-select
+        [label]="'Tipo de documento'"
+        [placeholder]="'Seleccionar...'"
+        [options]="documents"
+        [isSearchable]="true"
+        [formControlName]="form.formControlNames.documentType"
+      ></mr-sub-form-select>
+
       <mr-sub-form-multi-select
         [label]="'Sostienes a:'"
         [placeholder]="'Seleccionar...'"
@@ -164,7 +178,7 @@
     <mr-sub-form-file
       [label]="'Adjuntar foto o scan de la cédula'"
       [canResetImage]="canResetForm"
-      [formControlName]="form.formControlNames.image"
+      [formControlName]="form.formControlNames.documentImage"
     ></mr-sub-form-file>
   </fieldset>
 

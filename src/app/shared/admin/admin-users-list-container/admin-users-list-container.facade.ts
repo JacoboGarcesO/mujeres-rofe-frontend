@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Subscription, Observable, tap, EMPTY, catchError, finalize } from 'rxjs';
+import { Subscription, Observable, tap, EMPTY, merge, catchError, finalize } from 'rxjs';
 import { UsersService } from 'src/app/core/services/users.service';
 import { AppState } from '../../../core/state/app.state';
 import { LocationsService } from '../../../core/services/locations.service';
 import { HobbiesService } from '../../../core/services/hobbies.service';
 import { OptionModel } from '../../../core/models/option.model';
 import { UserModel } from 'src/app/core/models/user.model';
+import { ResourcesService } from '../../../core/services/resources.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ export class AdminUsersListContainerFacade {
     private usersService: UsersService,
     private locationsService: LocationsService,
     private habbiesService: HobbiesService,
+    private resourcesService: ResourcesService,
   ) { }
 
   //#region Observables
@@ -37,6 +39,42 @@ export class AdminUsersListContainerFacade {
     return this.state.hobbies.hobbies.$();
   }
 
+  documents$(): Observable<OptionModel[]> {
+    return this.state.resources.documents.$();
+  }
+
+  education$(): Observable<OptionModel[]> {
+    return this.state.resources.education.$();
+  }
+
+  ethnicGroups$(): Observable<OptionModel[]> {
+    return this.state.resources.ethnicGroups.$();
+  }
+
+  familyCore$(): Observable<OptionModel[]> {
+    return this.state.resources.familyCore.$();
+  }
+
+  familyIncome$(): Observable<OptionModel[]> {
+    return this.state.resources.familyIncome.$();
+  }
+
+  housingType$(): Observable<OptionModel[]> {
+    return this.state.resources.housingType.$();
+  }
+
+  maritalStatus$(): Observable<OptionModel[]> {
+    return this.state.resources.maritalStatus.$();
+  }
+
+  stratum$(): Observable<OptionModel[]> {
+    return this.state.resources.stratum.$();
+  }
+
+  sustenting$(): Observable<OptionModel[]> {
+    return this.state.resources.sustenting.$();
+  }
+
   canCloseModal$(): Observable<boolean> {
     return this.state.resources.canCloseModal.$();
   }
@@ -53,6 +91,52 @@ export class AdminUsersListContainerFacade {
 
   destroySubscriptions(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  loadResources(): void {
+    this.subscriptions.add(
+      merge(
+        this.resourcesService.getDocuments().pipe(
+          tap(this.state.resources.documents.set.bind(this)),
+        ),
+        this.resourcesService.getEducation().pipe(
+          tap(this.state.resources.education.set.bind(this)),
+        ),
+        this.resourcesService.getEthnicGroups().pipe(
+          tap(this.state.resources.ethnicGroups.set.bind(this)),
+        ),
+        this.resourcesService.getFamilyCore().pipe(
+          tap(this.state.resources.familyCore.set.bind(this)),
+        ),
+        this.resourcesService.getFamilyIncome().pipe(
+          tap(this.state.resources.familyIncome.set.bind(this)),
+        ),
+        this.resourcesService.getHousingType().pipe(
+          tap(this.state.resources.housingType.set.bind(this)),
+        ),
+        this.resourcesService.getMaritalStatus().pipe(
+          tap(this.state.resources.maritalStatus.set.bind(this)),
+        ),
+        this.resourcesService.getStratum().pipe(
+          tap(this.state.resources.stratum.set.bind(this)),
+        ),
+        this.resourcesService.getSustenting().pipe(
+          tap(this.state.resources.sustenting.set.bind(this)),
+        ),
+      ).subscribe(),
+    );
+  }
+
+  destroyResources(): void {
+    this.state.resources.documents.set(null);
+    this.state.resources.education.set(null);
+    this.state.resources.ethnicGroups.set(null);
+    this.state.resources.familyCore.set(null);
+    this.state.resources.familyIncome.set(null);
+    this.state.resources.housingType.set(null);
+    this.state.resources.maritalStatus.set(null);
+    this.state.resources.stratum.set(null);
+    this.state.resources.sustenting.set(null);
   }
 
   loadStates(): void {
