@@ -1,4 +1,4 @@
-@use '../../_styles/index.scss' as styles;
+@use "../../_styles/index.scss" as styles;
 
 .form-user-login {
   padding: styles.$box-pad-onehalf;
@@ -15,13 +15,11 @@
   }
 
   &__text {
-    display: block;
+    @include styles.font-large;
+    font-weight: bold;
     margin-bottom: styles.$box-mrg-onehalf;
-
-    .text {
-      color: styles.$color-primary-color !important;
-      text-align: center !important;
-    }
+    color: styles.$color-primary-color;
+    text-align: center;
   }
 
   &__link {
@@ -31,4 +29,4 @@
     color: styles.$color-primary-color-light;
     cursor: pointer;
   }
-} 
+}

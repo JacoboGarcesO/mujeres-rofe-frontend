@@ -55,7 +55,8 @@
     height: styles.$box-hht-home-content-logo
   }
 
-  &__description {
+  &__description,
+  &__welcome {
     @include styles.font-extra-large;
     margin: 0 auto;
     width: 85%;
@@ -65,6 +66,12 @@
     p {
       color: styles.$color-primary-color !important;
     }
+  }
+
+  &__welcome {
+    text-align: left;
+    width: fit-content;
+    padding: styles.$box-pad-base styles.$box-pad-none;
   }
 }
 

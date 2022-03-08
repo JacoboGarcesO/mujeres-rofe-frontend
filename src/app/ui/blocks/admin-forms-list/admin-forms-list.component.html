@@ -1,0 +1,69 @@
+<mr-button
+  [display]="'inline'"
+  [icon]="'fas fa-plus'"
+  [label]="'Crear'"
+  (clicked)="modalRef.toggle()"
+></mr-button>
+<mr-table
+  [headers]="[
+    ['Titulo', '10rem'],
+    ['Asunto', '10rem'],
+    ['Plantilla', '10rem'],
+    ['Acciones', '3rem']
+  ]"
+  [items]="formRequests || []"
+  [itemTemplateRef]="userTemplate"
+></mr-table>
+
+<ng-template #userTemplate let-request="item" let-index="index">
+  <td class="admin-form-requests-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="request?.title"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-form-requests-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="request?.subject"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-form-requests-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="request?.plantilla"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-form-requests-list-tmpl__td admin-form-requests-list-tmpl__td--buttons">
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-trash'"
+      (clicked)="handleSetCurrentRequest(request)"
+    ></mr-button>
+  </td>
+</ng-template>
+
+<mr-modal #modalRef>
+  <ng-container>
+    <mr-form-forms-requests
+      [canResetForm]="canCloseModal"
+      (dataOutput)="handleCreateForm($event)"
+      (formUpdate)="handleUpdateForm($event)"
+    ></mr-form-forms-requests>
+  </ng-container>
+</mr-modal>
+
+<mr-button-icon
+  [icon]="'arrow-left'"
+  (clicked)="handleToBack()"
+  class="admin-form-requests__back"
+></mr-button-icon>

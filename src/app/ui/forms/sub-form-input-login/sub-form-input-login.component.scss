@@ -1,0 +1,3 @@
+@use '../../_styles/index.scss' as styles;
+
+@include styles.form-input($name: 'sub-form-input');

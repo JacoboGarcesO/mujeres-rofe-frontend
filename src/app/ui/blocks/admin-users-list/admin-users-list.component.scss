@@ -31,7 +31,7 @@
   position: fixed;
   bottom: 10px;
   left: 10px;
-  z-index: -1;
+  z-index: 1;
   animation: animate 1s linear infinite;
 
   & .button-icon {

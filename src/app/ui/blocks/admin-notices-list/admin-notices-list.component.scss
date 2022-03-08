@@ -25,13 +25,19 @@
     justify-content: center;
     margin-top: styles.$box-mrg-base;
   }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
 
 .admin-notices__back {
   position: fixed;
   bottom: 10px;
   left: 10px;
-  z-index: -1;
+  z-index: 1;
   animation: animate 1s linear infinite;
 
   & .button-icon {

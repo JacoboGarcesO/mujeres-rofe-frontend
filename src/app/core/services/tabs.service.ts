@@ -12,6 +12,8 @@ export class TabsService {
     const tabs = [
       { label: 'Usuarias', icon: 'fas fa-female', target: TabEnum.users },
       { label: 'Comunicados', icon: 'fas fa-newspaper', target: TabEnum.notices },
+      { label: 'Formularios', icon: 'fas fa-align-left', target: TabEnum.forms },
+      { label: 'Solicitudes', icon: 'fas fa-question', target: TabEnum.requests },
     ];
 
     return of(tabs);

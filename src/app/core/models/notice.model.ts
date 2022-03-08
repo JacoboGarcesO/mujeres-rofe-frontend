@@ -10,7 +10,11 @@ export interface NoticeModel {
   title: string;
   description: string;
   channel: string;
+  showUsersList: boolean;
+  isLink: boolean;
+  url: string;
   icon: MediaModel;
+  formId: string;
   content: MediaModel;
   order: string;
   links: LinkNoticeModel[];

@@ -26,6 +26,7 @@
       <div *ngIf="options" class="dropdown__options" [ngClass]="{ 'dropdown__options--active': options?.length > 2 }">
         <span *ngFor="let option of options" class="dropdown__option">
           <mr-text
+            class="dropdown__text-option"
             [type]="'line'"
             [size]="'small'"
             [text]="option?.label"

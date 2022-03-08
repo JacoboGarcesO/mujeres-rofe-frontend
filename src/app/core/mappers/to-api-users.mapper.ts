@@ -27,7 +27,22 @@ export class ToApiUsersMapper {
     formData.append('document', user?.document);
     formData.append('image', image);
     formData.append('location', JSON.stringify(location));
-
+  
+    formData.append('documentType', user.documentType);
+    formData.append('maritalStatus', user.maritalStatus);
+    formData.append('address', user.address);
+    formData.append('age', user.age);
+    formData.append('familyCore', user.familyCore);
+    formData.append('familyIncome', user.familyIncome);
+    formData.append('housingType', user.housingType);
+    formData.append('education', user.education);
+    formData.append('stratum', user.stratum);
+    formData.append('promocionalCode', user.promocionalCode);
+    formData.append('disclosure', user.disclosure);
+    formData.append('ethnicGroup', this.getHobbies(user.ethnicGroup));
+    formData.append('sustaining', this.getHobbies(user.sustaining));
+    formData.append('documentImage', this.getImage(user.documentImage));
+    
     return formData;
   }
 

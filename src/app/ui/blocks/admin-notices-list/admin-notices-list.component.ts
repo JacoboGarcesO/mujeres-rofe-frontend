@@ -18,7 +18,9 @@ export class AdminNoticesListComponent implements OnChanges {
   @Input() notices: NoticeModel[];
   @Input() noticeToUpdate: NoticeModel;
   @Input() channelOptions: OptionModel[];
+  @Input() forms: OptionModel[];
   @Input() canCloseModal: boolean;
+  @Output() noticesByChannel: EventEmitter<string> = new EventEmitter();
   @Output() createNotice: EventEmitter<NoticeModel> = new EventEmitter();
   @Output() updateNotice: EventEmitter<NoticeModel> = new EventEmitter();
   @Output() deleteNotice: EventEmitter<string> = new EventEmitter();
@@ -29,6 +31,10 @@ export class AdminNoticesListComponent implements OnChanges {
     private cdRef: ChangeDetectorRef,
     private router: Router,
   ) { }
+
+  get channelOptionsAll (): OptionModel[] {
+    return [{ id: '', label: 'Todos' }, ...this.channelOptions];
+  }
 
   ngOnChanges(): void {
     if (!this.canCloseModal) { return; }
@@ -57,6 +63,10 @@ export class AdminNoticesListComponent implements OnChanges {
 
   handleLoadNoticeToUpdate(noticeId: string): void {
     this.loadNoticeToUpdate.emit(noticeId);
+  }
+
+  handleFilterNotices(channel: {value: string}): void {
+    this.noticesByChannel.emit(channel.value);
   }
 
   handleToBack(): void {

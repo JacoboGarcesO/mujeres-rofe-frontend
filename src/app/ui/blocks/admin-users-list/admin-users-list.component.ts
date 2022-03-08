@@ -20,6 +20,15 @@ export class AdminUsersListComponent implements OnChanges {
   @Input() hobbies: OptionModel[];
   @Input() states: OptionModel[];
   @Input() cities: OptionModel[];
+  @Input() documents: OptionModel[];
+  @Input() education: OptionModel[];
+  @Input() ethnicGroups: OptionModel[];
+  @Input() familyCore: OptionModel[];
+  @Input() familyIncome: OptionModel[];
+  @Input() housingType: OptionModel[];
+  @Input() maritalStatus: OptionModel[];
+  @Input() stratum: OptionModel[];
+  @Input() sustenting: OptionModel[];
   @Input() canCloseModal: boolean;
   @Output() stateSelected: EventEmitter<string> = new EventEmitter();
   @Output() createUser: EventEmitter<UserModel> = new EventEmitter();

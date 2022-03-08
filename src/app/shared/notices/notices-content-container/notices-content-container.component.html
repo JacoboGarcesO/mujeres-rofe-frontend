@@ -1,10 +1,12 @@
 <ng-container *ngIf="{
   notice: (notice$ | async),
-  channel: (channel$ | async)
+  channel: (channel$ | async),
+  users: (users$ | async)
 } as data">
-    <mr-notices-content
-      *ngIf="data.notice"
-      [notice]="data.notice"
-      [channel]="data.channel"
-    ></mr-notices-content>
+  <mr-notices-content
+    *ngIf="data.notice"
+    [notice]="data.notice"
+    [channel]="data.channel"
+    [users]="data.users"
+  ></mr-notices-content>
 </ng-container>

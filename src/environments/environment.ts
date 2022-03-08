@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  // apiUrl: "https://mujeres-rofe-back-test-2.azurewebsites.net/api",
+  // apiUrl: 'https://mujeres-rofe-back-test-2.azurewebsites.net/api',
   apiUrl: 'http://localhost:7007/api',  
 };
 

@@ -3,6 +3,7 @@ import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@a
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { NoticeModel } from 'src/app/core/models/notice.model';
 import { Router } from '@angular/router';
+import { UserModel } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'mr-notices-content',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
 export class NoticesContentComponent {
   @Input() notice: NoticeModel;
   @Input() channel: ChannelModel;
+  @Input() users: UserModel[];
 
   constructor(
     private location: Location,
@@ -24,6 +26,10 @@ export class NoticesContentComponent {
     return this.notice.channel === 'contact' ? 'profile': 'wave-' + this.notice.channel;
   }
 
+  navigateToUser(userId: string): void {
+    this.router.navigateByUrl(`profile/${userId}`);
+  }
+  
   handleToBack(): void {
     const pathUrl = this.location.path().split('/')[2];
     const urlBack = `/channels/${pathUrl}`;

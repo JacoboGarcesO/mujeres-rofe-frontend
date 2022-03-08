@@ -18,6 +18,15 @@ export class ToApiNoticeMapper {
     formData.append('content', notice.content.file);
     formData.append('contentEncoded', this.getImage(notice.content));
     formData.append('channel', notice.channel);
+    formData.append('showUsersList', 'false');
+    formData.append('url', notice.url);
+    formData.append('formId', notice?.formId);
+
+    if (notice.url !== null) {
+      formData.append('isLink', 'true');
+    } else {
+      formData.append('isLink', 'false');
+    }
 
     return formData;
   }

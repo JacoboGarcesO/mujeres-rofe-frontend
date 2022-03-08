@@ -3,6 +3,15 @@
   hobbies: (hobbies$ | async),
   cities: (cities$ | async),
   states: (states$ | async),
+  documents: (documents$ | async),
+  education: (education$ | async),
+  ethnicGroups: (ethnicGroups$ | async),
+  familyCore: (familyCore$ | async),
+  familyIncome: (familyIncome$ | async),
+  housingType: (housingType$ | async),
+  maritalStatus: (maritalStatus$ | async),
+  stratum: (stratum$ | async),
+  sustenting: (sustenting$ | async),
   canCloseModal: (canCloseModal$ | async),
   userToUpdate: (userToUpdate$ | async)
 } as data">
@@ -11,6 +20,15 @@
       [hobbies]="data.hobbies"
       [cities]="data.cities" 
       [states]="data.states"
+      [documents]="data.documents"
+      [education]="data.education"
+      [ethnicGroups]="data.ethnicGroups"
+      [familyCore]="data.familyCore"
+      [familyIncome]="data.familyIncome"
+      [housingType]="data.housingType"
+      [maritalStatus]="data.maritalStatus"
+      [stratum]="data.stratum"
+      [sustenting]="data.sustenting"
       [userToUpdate]="data.userToUpdate"
       [canCloseModal]="data.canCloseModal"
       (stateSelected)="handleSelectState($event)"

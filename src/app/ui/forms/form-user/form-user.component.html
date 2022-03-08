@@ -4,55 +4,134 @@
       <mr-sub-form-input 
         [type]="'input'"
         [label]="'Nombres'"
-        [icon]="'fas fa-user'"
         [formControlName]="form.formControlNames.firstName"
       ></mr-sub-form-input>
   
       <mr-sub-form-input 
         [type]="'input'"
         [label]="'Apellidos'"
-        [icon]="'fas fa-user'"
         [formControlName]="form.formControlNames.lastName"
       ></mr-sub-form-input>
   
       <mr-sub-form-input 
         [type]="'input'"
         [label]="'Correo'"
-        [icon]="'fas fa-envelope'"
         [placeholder]="'mujer@email.com...'"
         [formControlName]="form.formControlNames.email"
+      ></mr-sub-form-input>
+
+      <mr-sub-form-input 
+        [type]="'input'"
+        [label]="'Edad'"
+        [formControlName]="form.formControlNames.age"
       ></mr-sub-form-input>
   
       <mr-sub-form-input 
         [type]="'number'"
         [label]="'Celular'"
-        [icon]="'fas fa-phone-alt'"
         [formControlName]="form.formControlNames.phoneNumber"
       ></mr-sub-form-input>
 
+      <mr-sub-form-select
+        [label]="'Estado civil'"
+        [placeholder]="'Seleccionar...'"
+        [options]="maritalStatus"
+        [isSearchable]="true"
+        [formControlName]="form.formControlNames.maritalStatus"
+      ></mr-sub-form-select>
+
+      <mr-sub-form-input 
+        [type]="'input'"
+        [label]="'Dirección'"
+        [formControlName]="form.formControlNames.address"
+      ></mr-sub-form-input>
+
+      <mr-sub-form-select
+        [label]="'Tipo de documento'"
+        [placeholder]="'Seleccionar...'"
+        [options]="documents"
+        [isSearchable]="true"
+        [formControlName]="form.formControlNames.documentType"
+      ></mr-sub-form-select>
+
+      <mr-sub-form-multi-select
+        [label]="'Sostienes a:'"
+        [placeholder]="'Seleccionar...'"
+        [options]="sustenting"
+        [isSearchable]="true"
+        [canResetForm]="canResetForm"
+        [formControlName]="form.formControlNames.sustaining"
+      ></mr-sub-form-multi-select>
+
+      <mr-sub-form-multi-select
+        [label]="'Grupo étnico'"
+        [placeholder]="'Seleccionar...'"
+        [options]="ethnicGroups"
+        [isSearchable]="true"
+        [canResetForm]="canResetForm"
+        [formControlName]="form.formControlNames.ethnicGroup"
+        ></mr-sub-form-multi-select>
+    
       <mr-sub-form-multi-select
         [label]="'Hobbies'"
         [placeholder]="'Seleccionar...'"
-        [icon]="'fas fa-skating'"
         [options]="hobbies"
         [isSearchable]="true"
         [canResetForm]="canResetForm"
         [formControlName]="form.formControlNames.hobbies"
       ></mr-sub-form-multi-select>
-  
+
       <mr-sub-form-input 
         [type]="'input'"
         [label]="'Instagram'"
-        [icon]="'fab fa-instagram'"
         [formControlName]="form.formControlNames.instagram"
       ></mr-sub-form-input>
 
       <mr-sub-form-input 
         [type]="'input'"
         [label]="'Facebook'"
-        [icon]="'fab fa-facebook'"
         [formControlName]="form.formControlNames.instagram"
       ></mr-sub-form-input>
+
+      <mr-sub-form-select
+        [label]="'Personas del núcleo'"
+        [placeholder]="'Seleccionar...'"
+        [options]="familyCore"
+        [isSearchable]="true"
+        [formControlName]="form.formControlNames.familyCore"
+      ></mr-sub-form-select>
+
+      <mr-sub-form-select
+        [label]="'Ingresos familiares'"
+        [placeholder]="'Seleccionar...'"
+        [options]="familyIncome"
+        [isSearchable]="true"
+        [formControlName]="form.formControlNames.familyIncome"
+      ></mr-sub-form-select>
+
+      <mr-sub-form-select
+        [label]="'Tipo de vivienda'"
+        [placeholder]="'Seleccionar...'"
+        [options]="housingType"
+        [isSearchable]="true"
+        [formControlName]="form.formControlNames.housingType"
+      ></mr-sub-form-select>
+
+      <mr-sub-form-select
+        [label]="'Nivel de estudios'"
+        [placeholder]="'Seleccionar...'"
+        [options]="education"
+        [isSearchable]="true"
+        [formControlName]="form.formControlNames.education"
+      ></mr-sub-form-select>
+
+      <mr-sub-form-select
+        [label]="'Estrato'"
+        [placeholder]="'Seleccionar...'"
+        [options]="stratum"
+        [isSearchable]="true"
+        [formControlName]="form.formControlNames.stratum"
+      ></mr-sub-form-select>
     </fieldset>
   
     <fieldset class="form-user__location">
@@ -67,14 +146,24 @@
       <mr-sub-form-input 
         [type]="'number'"
         [label]="'Número de identificación'"
-        [icon]="'fab fa-document'"
         [formControlName]="form.formControlNames.document"
+      ></mr-sub-form-input>
+
+      <mr-sub-form-input 
+        [type]="'input'"
+        [label]="'Código promocional'"
+        [formControlName]="form.formControlNames.promocionalCode"
       ></mr-sub-form-input>
 
       <mr-sub-form-textarea 
         [text]="'Presentación personal'"
         [placeholder]="'Yo soy...'"
         [formControlName]="form.formControlNames.description"
+      ></mr-sub-form-textarea>
+
+      <mr-sub-form-textarea 
+        [text]="'¿Por dónde conociste Mujeres Rofé?'"
+        [formControlName]="form.formControlNames.disclosure"
       ></mr-sub-form-textarea>
     </fieldset>
   </div>
@@ -84,6 +173,12 @@
       [label]="'Adjuntar imagen de perfil'"
       [canResetImage]="canResetForm"
       [formControlName]="form.formControlNames.image"
+    ></mr-sub-form-file>
+
+    <mr-sub-form-file
+      [label]="'Adjuntar foto o scan de la cédula'"
+      [canResetImage]="canResetForm"
+      [formControlName]="form.formControlNames.documentImage"
     ></mr-sub-form-file>
   </fieldset>
 

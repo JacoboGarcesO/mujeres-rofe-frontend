@@ -1,0 +1,10 @@
+<ng-container *ngIf="{
+  canCloseModal: (canCloseModal$ | async),
+  forms: (forms$ | async)
+} as data">
+  <mr-admin-forms-list
+    [canCloseModal]="data.canCloseModal"
+    [formRequests]="data.forms"
+    (createForm)="handleCreateForm($event)"
+  ></mr-admin-forms-list>
+</ng-container>

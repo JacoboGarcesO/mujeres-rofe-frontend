@@ -22,51 +22,92 @@
   </div>
 
   <mr-card class="notices-content__notice-container">
-    <ng-container>
-      <div class="notices-content__notice">
-        <figure
-          class="notices-content__image-notice notices-content__image-notice--shadow notices-content__image-notice--shadow--{{
-            notice?.channel
-          }}"
-        >
-          <mr-image
-            [image]="notice?.content?.url"
-            [alt]="'notice-img'"
-          ></mr-image>
-        </figure>
+    <mr-notice-info [notice]="notice"></mr-notice-info>
 
-        <div class="notices-content__info-notice">
-          <mr-text
-            class="notices-content__text--{{ notice?.channel }}"
-            [text]="notice?.title"
-            [size]="'extra-large'"
-            [weight]="'bold'"
-          ></mr-text>
-          <mr-text
-            [text]="notice?.description"
-            [size]="'extra-large'"
-            [weight]="'regular'"
-          ></mr-text>
-
-          <div class="notices-content__links">
-            <div
-              class="notices-content__links-item notices-content__links-item--{{
-                notice?.channel
-              }}"
-              *ngFor="let link of notice?.links"
-            >
-              <a [href]="link.url" target="_blank">
-                <mr-text
-                  [text]="link.name"
-                  [size]="'extra-large'"
-                  [weight]="'bold'"
-                ></mr-text>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </ng-container>
+    <div 
+      *ngIf="notice?.showUsersList"
+      class="notices-content__users-container"
+    >
+      <ng-container>
+        <mr-table
+          [headers]="[
+            ['', '0.5rem'],
+            ['Nombre', '3rem'],
+            ['Apellido', '3rem'],
+            ['Contacto', '3rem'],
+            ['Descripción', '10rem'],
+            ['Correo', '7rem'],
+            ['Ver perfil', '2.5rem']
+          ]"
+          [items]="users || []"
+          [itemTemplateRef]="userTemplate"
+        ></mr-table>
+  
+        <ng-template #userTemplate let-user="item" let-index="index">
+          <td class="notices-content-users-list__td">
+            <figure class="notices-content-users-list__image">
+              <mr-image
+                [image]="user?.image?.url"
+                [rounded]="'circle'"
+                [alt]="'icon-user'"
+              ></mr-image>
+            </figure>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-text
+              [color]="'initial'"
+              [type]="'line'"
+              [text]="user?.firstName"
+              [size]="'base'"
+              [weight]="'regular'"
+            ></mr-text>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-text
+              [color]="'initial'"
+              [type]="'line'"
+              [text]="user?.lastName"
+              [size]="'base'"
+              [weight]="'regular'"
+            ></mr-text>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-text
+              [color]="'initial'"
+              [type]="'line'"
+              [text]="user?.phoneNumber"
+              [size]="'base'"
+              [weight]="'regular'"
+            ></mr-text>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-text
+              [color]="'initial'"
+              [type]="'line'"
+              [text]="user?.description"
+              [size]="'base'"
+              [weight]="'regular'"
+            ></mr-text>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-text
+              [color]="'initial'"
+              [type]="'line'"
+              [text]="user?.email"
+              [size]="'base'"
+              [weight]="'regular'"
+            ></mr-text>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-button
+              [display]="'block'"
+              [icon]="'fas fa-eye'"
+              (clicked)="navigateToUser(user.id)"
+            ></mr-button>
+          </td>
+        </ng-template>
+      </ng-container>
+    </div>
   </mr-card>
 
   <figure class="notices-content__wave">

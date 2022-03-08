@@ -1,0 +1,5 @@
+<ng-container *ngIf="{
+  requests: (requests$ | async)
+} as data">
+  <mr-admin-request-list [requests]="data.requests"></mr-admin-request-list>
+</ng-container>

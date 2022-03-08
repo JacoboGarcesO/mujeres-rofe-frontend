@@ -6,6 +6,7 @@ import { SubFormInputModule } from '../sub-form-input/sub-form-input.module';
 import { ButtonModule } from '../../elements/button/button.module';
 import { TextModule } from '../../elements/text/text.module';
 import { AlertModule } from '../../elements/alert/alert.module';
+import { SubFormInputLoginModule } from '../sub-form-input-login/sub-form-input-login.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AlertModule } from '../../elements/alert/alert.module';
     CommonModule,
     ReactiveFormsModule,
     SubFormInputModule,
+    SubFormInputLoginModule,
     ButtonModule,
     TextModule,
     AlertModule,

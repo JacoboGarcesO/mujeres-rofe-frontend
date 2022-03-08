@@ -6,7 +6,6 @@ import { URL_RESOURCE } from '../resources/url.resource';
 import { ApiToNoticesMapper } from '../mappers/api-to-notices.mapper';
 import { ToApiNoticeMapper } from '../mappers/to-api-notice.mapper';
 import { ApiToNoticeMapper } from '../mappers/api-to-notice.mapper';
-import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',

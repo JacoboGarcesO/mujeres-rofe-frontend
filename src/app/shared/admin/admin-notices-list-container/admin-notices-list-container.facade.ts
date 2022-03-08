@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { catchError, EMPTY, finalize, Observable, Subscription, tap } from 'rxjs';
+import { FormRequestModel } from 'src/app/core/models/form-requests.model';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { ChannelsOptionsService } from 'src/app/core/services/channels-options.service';
+import { FormRequestsService } from 'src/app/core/services/form-requests.service';
 import { NoticesService } from 'src/app/core/services/notices.service';
+import { ResourcesService } from 'src/app/core/services/resources.service';
 import { AppState } from 'src/app/core/state/app.state';
 import { NoticeModel } from '../../../core/models/notice.model';
 
@@ -16,6 +19,7 @@ export class AdminNoticesListContainerFacade {
     private state: AppState,
     private noticesService: NoticesService,
     private channelsOptionsService: ChannelsOptionsService,
+    private formRequestsService: FormRequestsService,
   ) { }
 
   //#region Observables
@@ -33,6 +37,10 @@ export class AdminNoticesListContainerFacade {
 
   currentNoticeToUpdate$(): Observable<NoticeModel> {
     return this.state.notices.currentNoticeToUpdate.$();
+  }
+
+  forms$(): Observable<OptionModel[]> {
+    return this.state.resources.templates.$();
   }
   //#endregion
 
@@ -54,6 +62,30 @@ export class AdminNoticesListContainerFacade {
   }
 
   destroyNotices(): void {
+    this.state.notices.notices.set(null);
+  }
+
+  loadForms(): void {
+    this.subscriptions.add(
+      this.formRequestsService.getFormRequestsOptions().pipe(
+        tap(this.state.resources.templates.set.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyForms(): void {
+    this.state.formRequest.forms.set(null);
+  }
+
+  loadNoticesByChannel(channel: string): void {
+    this.subscriptions.add(
+      this.noticesService.getNoticesByChannel(channel).pipe(
+        tap(this.storeNotices.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyNoticesByChannel(): void {
     this.state.notices.notices.set(null);
   }
 

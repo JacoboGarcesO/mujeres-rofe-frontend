@@ -7,6 +7,7 @@ import { UsersState } from './users.state';
 import { NoticesState } from './notices.state';
 import { TabsState } from './tabs.state';
 import { ResourcesState } from './resources.state';
+import { FormRequestState } from './form-requests.state';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +22,7 @@ export class AppState {
     private noticesState: NoticesState,
     private tabsState: TabsState,
     private resourcesState: ResourcesState,
+    private formRequestState: FormRequestState,
   ) { }
 
   get users() { return this.usersState.store(); }
@@ -31,4 +33,5 @@ export class AppState {
   get notices() { return this.noticesState.store(); }
   get tabs() { return this.tabsState.store(); }
   get resources() { return this.resourcesState.store(); }
+  get formRequest() { return this.formRequestState.store(); }
 }

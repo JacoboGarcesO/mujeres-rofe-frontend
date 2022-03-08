@@ -21,35 +21,6 @@ a {
     width: styles.func-toRem(12.5);
   }
 
-  &__image-notice {
-    position: relative;
-    width: 50%;
-    height: styles.func-toRem(34.25);
-
-    &--shadow {
-      position: relative;
-      width: 100%;
-      background: styles.$color-primary-color-light;
-      padding: styles.$box-pad-base;
-
-      &--network {
-        background-color: styles.$color-status-info-dark;
-      }
-
-      &--business {
-        background-color: styles.$color-status-error-dark;
-      }
-
-      &--opportunities {
-        background-color: styles.$color-status-success-dark;
-      }
-
-      &--training {
-        background-color: styles.$color-status-warning-dark;
-      }
-    }
-  }
-
   &__info {
     position: relative;
     display: flex;
@@ -72,30 +43,6 @@ a {
         line-height: styles.func-toRem(4) !important;
       }
     }
-
-    &--network {
-      .text {
-        color: styles.$color-status-info-dark;
-      }
-    }
-
-    &--business {
-      .text {
-        color: styles.$color-status-error-dark;
-      }
-    }
-
-    &--opportunities {
-      .text {
-        color: styles.$color-status-success-dark;
-      }
-    }
-
-    &--training {
-      .text {
-        color: styles.$color-status-warning-dark;
-      }
-    }
   }
 
   &__notice-container {
@@ -109,53 +56,6 @@ a {
     }
   }
 
-  &__notice {
-    display: grid;
-    grid-template-columns: repeat(2, styles.$box-fr-base);
-    padding: 0 styles.func-toRem(2.5);
-    gap: styles.func-toRem(3.12);
-    row-gap: styles.func-toRem(1.8);
-    margin: 0 auto;
-  }
-
-  &__links {
-    position: relative;
-    display: flex;
-    justify-content: flex-start;
-    gap: styles.func-toRem(2);
-    margin-top: styles.func-toRem(2);
-    flex-wrap: wrap;
-
-    &-item {
-      padding: 2px 10px;
-      cursor: pointer;
-
-      .text {
-        color: styles.$color-bg-white !important;
-      }
-      
-      &--network {
-        background-color: styles.$color-status-info-dark;
-      }
-
-      &--business {
-        background-color: styles.$color-status-error-dark;
-      }
-
-      &--opportunities {
-        background-color: styles.$color-status-success-dark;
-      }
-
-      &--training {
-        background-color: styles.$color-status-warning-dark;
-      }
-
-      &--contact {
-        background-color: styles.$color-primary-color;
-      }
-    }
-  }
-
   &__wave {
     position: fixed;
     bottom: -1px;
@@ -165,13 +65,48 @@ a {
     z-index: -1;
   }
 
+  &__users-container {
+    .table {
+      &__tr {
+        &:nth-child(even) {
+          background: styles.$color-status-info !important;
+        }
+
+        &:hover {
+          background: styles.$color-status-info !important;
+        }
+      }
+    }
+  }
+
+  &-users-list {
+    &__td {
+      padding: styles.$box-pad-half;
+      max-width: styles.$box-wth-column-list;
+
+      .button {
+        background: styles.$color-status-info-dark !important;
+      }
+
+      &--contact {
+        background-color: styles.$color-primary-color;
+      }
+    }
+
+    &__image {
+      cursor: pointer;
+      width: styles.$box-wth-double;
+      height: styles.$box-hht-double;
+    }
+  }
+
   &__back {
     position: fixed;
     bottom: 10px;
     left: 10px;
     z-index: 1;
     animation: animate 1s linear infinite;
-  
+
     & .button-icon {
       height: styles.func-toRem(4) !important;
       width: styles.func-toRem(4) !important;
@@ -227,10 +162,6 @@ a {
         }
       }
     }
-
-    &__image-notice {
-      height: styles.func-toRem(20.25);
-    }
   }
 }
 
@@ -247,11 +178,6 @@ a {
     &__info {
       padding: styles.$box-pad-double styles.$box-pad-none styles.func-toRem(3)
         styles.func-toRem(3);
-    }
-
-    &__notice {
-      padding: 0 styles.func-toRem(0.6);
-      gap: styles.func-toRem(1.25);
     }
   }
 }

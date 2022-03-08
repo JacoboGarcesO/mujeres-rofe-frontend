@@ -1,10 +1,7 @@
-<mr-text
-  class="form-user-login__text"
-  [type]="'paragraph'"
-  [size]="'medium'"
-  [weight]="'bold'"
-  [text]="'¡Bienvenida a la comunidad de MujeresROFÉ, un espacio para crecer, aprender y emprender!'"
-></mr-text>
+<p class="form-user-login__text">
+  ¡Bienvenida a la comunidad de Mujeres ROFÉ! <br />
+  Un espacio para crecer, aprender y emprender.
+</p>
 
 <form class="form-user-login" [formGroup]="form.formGroup">
   <mr-alert
@@ -14,7 +11,7 @@
     [icon]="'fa-exclamation-triangle'"
   ></mr-alert>
   <fieldset class="form-user-login__section">
-    <mr-sub-form-input 
+    <mr-sub-form-input
       [type]="'input'"
       [label]="'Correo'"
       [icon]="'fas fa-user'"
@@ -22,21 +19,23 @@
       [formControlName]="form.formControlNames.email"
     ></mr-sub-form-input>
 
-    <mr-sub-form-input 
+    <mr-sub-form-input-login
       [type]="'password'"
       [label]="'Contraseña'"
       [icon]="'fas fa-lock'"
       [placeholder]="'**********'"
       [formControlName]="form.formControlNames.password"
-    ></mr-sub-form-input>
+    ></mr-sub-form-input-login>
 
-    <mr-button 
+    <mr-button
       [label]="'Iniciar sesión'"
       [display]="'block'"
       [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
       (clicked)="manualSave$.next()"
     ></mr-button>
 
-    <a class="form-user-login__link" (click)="navigateToRegister()">Registrarse</a>
+    <a class="form-user-login__link" (click)="navigateToRegister()"
+      >Registrarse</a
+    >
   </fieldset>
 </form>

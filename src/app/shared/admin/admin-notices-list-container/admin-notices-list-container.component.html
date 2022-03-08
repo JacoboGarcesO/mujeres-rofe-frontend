@@ -2,13 +2,16 @@
   notices: (notices$ | async),
   canCloseModal: (canCloseModal$ | async),
   channelOptions: (channelOptions$ | async),
-  noticeToUpdate: (noticeToUpdate$ | async)
+  noticeToUpdate: (noticeToUpdate$ | async),
+  forms: (forms$ | async)
 } as data">
   <mr-admin-notices-list 
     [notices]="data.notices"
     [canCloseModal]="data.canCloseModal"
     [channelOptions]="data.channelOptions"
     [noticeToUpdate]="data.noticeToUpdate"
+    [forms]="data.forms"
+    (noticesByChannel)="handleLoadNoticesByChannel($event)"
     (createNotice)="handleCreateNotice($event)"
     (deleteNotice)="handleDeleteNotice($event)"
     (loadNoticeToUpdate)="handleLoadNoticeToUpdate($event)"

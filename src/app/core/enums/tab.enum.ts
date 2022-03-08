@@ -2,7 +2,9 @@ export enum TabEnum {
     users = 'users',
     notices = 'notices',
     slides = 'slides',
-    channels = 'channels'
+    channels = 'channels',
+    forms = 'forms',
+    requests = 'requests',
 }
   
 export const toTabEnum = (key: string): TabEnum => {

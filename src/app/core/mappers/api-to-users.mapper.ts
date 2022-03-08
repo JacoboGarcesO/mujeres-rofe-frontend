@@ -22,7 +22,7 @@ export class ApiToUsersMapper {
       document: user?.document,
       image: user?.image,
       description: user?.description,
-      location:  {
+      location: {
         city: user?.location?.city,
         state: user?.location?.state,
         cityName: user?.location?.cityName,
@@ -31,6 +31,20 @@ export class ApiToUsersMapper {
       facebook: this.getSocialNetwork(user?.socialsNetworks, 'facebook'),
       hobbies: this.getHobbies(user?.hobbies),
       phoneNumber: user?.phoneNumber,
+      documentType: user?.documentType,
+      maritalStatus: user?.maritalStatus,
+      address: user?.address,
+      age: user?.age,
+      familyCore: user?.familyCore,
+      familyIncome: user?.familyIncome,
+      housingType: user?.housingType,
+      education: user?.education,
+      stratum: user?.stratum,
+      promocionalCode: user?.promocionalCode,
+      disclosure: user?.disclosure,
+      ethnicGroup: this.getHobbies(user?.ethnicGroup),
+      sustaining: this.getHobbies(user?.sustaining),
+      documentImage: user?.documentImage,
     };
   }
 

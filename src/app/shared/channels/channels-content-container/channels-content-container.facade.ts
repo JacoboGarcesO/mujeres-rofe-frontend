@@ -38,10 +38,6 @@ export class ChannelsContentContainerFacade {
   notices$(): Observable<NoticeModel[]> {
     return this.state.notices.notices.$();
   }
-
-  users$(): Observable<UserModel[]> {
-    return this.state.users.users.$();
-  }
   //#endregion
 
   //#region Public methods
@@ -78,18 +74,6 @@ export class ChannelsContentContainerFacade {
   destroyNotices(): void {
     this.state.notices.notices.set(null);
   }
-
-  loadUsers(): void {
-    this.subscriptions.add(
-      this.usersService.getUsers().pipe(
-        tap(this.storeUsers.bind(this)),
-      ).subscribe(),
-    );
-  }
-
-  destroyUsers(): void {
-    this.state.users.users.set(null);
-  }
   //#endregion
 
   //#region Private Methods
@@ -99,10 +83,6 @@ export class ChannelsContentContainerFacade {
 
   private storeNotices(notices: NoticeModel[]): void {
     this.state.notices.notices.set(notices);
-  }
-
-  private storeUsers(users: UserModel[]): void {
-    this.state.users.users.set(users);
   }
   //#endregion
 }
