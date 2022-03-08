@@ -22,6 +22,14 @@
       [icon]="'fas fa-link'"
       [formControlName]="form.formControlNames.url"
     ></mr-sub-form-input>
+
+    <mr-sub-form-select
+      [placeholder]="'Seleccione formulario'"
+      [options]="forms"
+      [label]="'Formulario'"
+      [icon]="'fas fa-sort'"
+      [formControlName]="form.formControlNames.formId"
+    ></mr-sub-form-select>
   </fieldset>
 
   <fieldset class="form-notice__description">

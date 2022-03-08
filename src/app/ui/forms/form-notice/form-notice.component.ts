@@ -13,6 +13,7 @@ import { OptionModel } from 'src/app/core/models/option.model';
 })
 export class FormNoticeComponent implements OnChanges {
   @Input() channelOptions: OptionModel[];
+  @Input() forms: OptionModel[];
   @Input() canResetForm: boolean;
 
   public manualSave$: Subject<void> = new Subject();
@@ -44,6 +45,7 @@ export class FormNoticeComponent implements OnChanges {
       showUsersList: new FormControl(null),
       isLink: new FormControl(null),
       url: new FormControl(null),
+      formId: new FormControl(null),
       //---
       id: new FormControl(null),
     },

@@ -14,6 +14,7 @@ export interface NoticeModel {
   isLink: boolean;
   url: string;
   icon: MediaModel;
+  formId: string;
   content: MediaModel;
   order: string;
   links: LinkNoticeModel[];

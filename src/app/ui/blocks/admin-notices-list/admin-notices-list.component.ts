@@ -18,6 +18,7 @@ export class AdminNoticesListComponent implements OnChanges {
   @Input() notices: NoticeModel[];
   @Input() noticeToUpdate: NoticeModel;
   @Input() channelOptions: OptionModel[];
+  @Input() forms: OptionModel[];
   @Input() canCloseModal: boolean;
   @Output() noticesByChannel: EventEmitter<string> = new EventEmitter();
   @Output() createNotice: EventEmitter<NoticeModel> = new EventEmitter();

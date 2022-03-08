@@ -31,6 +31,7 @@ export class ApiToNoticesMapper {
       showUsersList: notice?.showUsersList,
       isLink: notice?.isLink,
       url: notice?.url,
+      formId: notice?.formId,
       links: this.getLinks(notice?.links),
     };
   }

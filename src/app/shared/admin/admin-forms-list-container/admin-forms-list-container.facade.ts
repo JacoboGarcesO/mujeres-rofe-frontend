@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Subscription, Observable, EMPTY } from 'rxjs';
+import { Subscription, Observable, EMPTY, tap, finalize, catchError } from 'rxjs';
 import { FormRequestModel } from 'src/app/core/models/form-requests.model';
+import { FormRequestsService } from 'src/app/core/services/form-requests.service';
 import { AppState } from '../../../core/state/app.state';
 
 @Injectable({
@@ -11,9 +12,17 @@ export class AdminFormsListContainerFacade {
 
   constructor(
     private state: AppState,
+    private service: FormRequestsService,
   ) { }
 
   //#region Observables
+  canCloseModal$(): Observable<boolean> {
+    return this.state.resources.canCloseModal.$();
+  }
+
+  forms$(): Observable<FormRequestModel[]> {
+    return this.state.formRequest.forms.$();
+  }
   //#endregion
 
   //#region Public methods
@@ -26,11 +35,41 @@ export class AdminFormsListContainerFacade {
   }
 
   createForm(form: FormRequestModel): void {
-    console.log(form);
+    this.notify('init');
+    const callback = this.loadForms.bind(this);
+
+    this.subscriptions.add(
+      this.service.createFormRequest(form).pipe(
+        tap(this.notify.bind(this, 'complete', callback)),
+        tap(this.storeCanCloseModal.bind(this, true)),
+        catchError(this.notify.bind(this, 'error', null)),
+        finalize(this.notifyClose.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  loadForms(): void {
+    this.subscriptions.add(
+      this.service.getFormRequests().pipe(
+        tap(this.storeForms.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyForms(): void {
+    this.state.formRequest.forms.set(null);
   }
   //#endregion
 
   //#region Private Methods
+  private storeCanCloseModal(value: boolean): void {
+    this.state.resources.canCloseModal.set(value);
+  }
+
+  private storeForms(forms: FormRequestModel[]): void {
+    this.state.formRequest.forms.set(forms);
+  }
+
   private notify(
     key: 'init' | 'complete' | 'error',
     callback: () => void = null,

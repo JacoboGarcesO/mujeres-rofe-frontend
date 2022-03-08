@@ -81,6 +81,7 @@
     <mr-form-notice
       [channelOptions]="channelOptions"
       [canResetForm]="canCloseModal"
+      [forms]="forms"
       (dataOutput)="handleCreateNotice($event)"
     ></mr-form-notice>
   </ng-container>
@@ -92,6 +93,7 @@
       [dataInput]="noticeToUpdate"
       [channelOptions]="channelOptions"
       [canResetForm]="canCloseModal"
+      [forms]="forms"
       (dataOutput)="handleUpdateNotice($event)"
     ></mr-form-notice>
   </ng-container>

@@ -6,9 +6,9 @@ import { FormRequestFieldsModel, FormRequestModel } from '../models/form-request
 })
 export class ApiToFormRequestsMapper {
   map(response: any): FormRequestModel[] {
-    if (!response?.requests) { return []; }
+    if (!response?.forms) { return []; }
 
-    return response?.requests?.map(this.getRequest.bind(this));
+    return response?.forms?.map(this.getRequest.bind(this));
   }
 
   private getRequest(request: any): FormRequestModel {
@@ -16,7 +16,7 @@ export class ApiToFormRequestsMapper {
       id: request?._id,
       title: request?.title,
       subject: request?.subject,
-      plantilla: request?.plantilla,
+      plantilla: request?.template,
       fields: this.getFields(request?.fields),
     };
   }

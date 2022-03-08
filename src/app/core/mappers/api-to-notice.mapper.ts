@@ -26,6 +26,7 @@ export class ApiToNoticeMapper {
       isLink: response?.notices[0]?.isLink,
       url: response?.notices[0]?.url,
       links: this.getLinks(response?.notices[0]?.links),
+      formId: response?.notices[0]?.formId,
     };
   }
 

@@ -14,6 +14,7 @@ export class AdminNoticesListContainerComponent implements OnInit, OnDestroy {
   public noticeToUpdate$: Observable<NoticeModel>;
   public canCloseModal$: Observable<boolean>;
   public channelOptions$: Observable<OptionModel[]>;
+  public forms$: Observable<OptionModel[]>;
 
   constructor(private facade: AdminNoticesListContainerFacade) {}
   
@@ -21,6 +22,7 @@ export class AdminNoticesListContainerComponent implements OnInit, OnDestroy {
     this.facade.initSubscriptions();
     this.facade.loadNotices();
     this.facade.loadChannelOptions();
+    this.facade.loadForms();
     this.initializeSubscriptions();
   }
 
@@ -30,6 +32,7 @@ export class AdminNoticesListContainerComponent implements OnInit, OnDestroy {
     this.facade.destroyNoticesByChannel();
     this.facade.destroyCanCloseModal();
     this.facade.destroyChannelOptions();
+    this.facade.destroyForms();
     this.facade.destroySubscriptions();
   }
 
@@ -63,5 +66,6 @@ export class AdminNoticesListContainerComponent implements OnInit, OnDestroy {
     this.canCloseModal$ = this.facade.canCloseModal$();
     this.channelOptions$ = this.facade.channelOptions$();
     this.noticeToUpdate$ = this.facade.currentNoticeToUpdate$();
+    this.forms$ = this.facade.forms$();
   }
 }
