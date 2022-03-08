@@ -9,5 +9,13 @@
     <mr-admin-users-list-container 
       *ngIf="tabs.active === tabEnum.users"
     ></mr-admin-users-list-container>
+
+    <mr-admin-forms-list-container
+      *ngIf="tabs.active === tabEnum.forms"
+    ></mr-admin-forms-list-container>
+
+    <mr-admin-requests-list-container
+      *ngIf="tabs.active === tabEnum.requests"
+    ></mr-admin-requests-list-container>
   </mr-tabs>
 </ng-container>

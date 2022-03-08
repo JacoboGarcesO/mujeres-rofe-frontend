@@ -4,6 +4,8 @@ import { AdminContentContainerComponent } from './admin-content-container.compon
 import { TabsModule } from '../../../ui/blocks/tabs/tabs.module';
 import { AdminNoticesListContainerModule } from '../admin-notices-list-container/admin-notices-list-container.module';
 import { AdminUsersListContainerModule } from '../admin-users-list-container/admin-users-list-container.module';
+import { AdminFormsListContainerModule } from '../admin-forms-list-container/admin-forms-list-container.module';
+import { AdminRequestsListContainerModule } from '../admin-requests-list-container/admin-requests-list-container.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import { AdminUsersListContainerModule } from '../admin-users-list-container/adm
     CommonModule,
     TabsModule,
     AdminNoticesListContainerModule,
+    AdminFormsListContainerModule,
     AdminUsersListContainerModule,
+    AdminRequestsListContainerModule,
   ],
   exports: [
     AdminContentContainerComponent,

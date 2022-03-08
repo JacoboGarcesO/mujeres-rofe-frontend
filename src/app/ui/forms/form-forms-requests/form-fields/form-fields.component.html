@@ -1,0 +1,19 @@
+<fieldset class="form-fields" [formGroup]="form.formGroup">
+  <mr-text [text]="'Campos'" [weight]="'bold'" [size]="'medium'"></mr-text>
+  <ng-container
+    *ngFor="let linkControl of form.formGroup.controls.value.controls; trackBy: trackIndex; index as i"
+    [formArrayName]="form.formControlNames.value"
+  >
+    <div>
+      <mr-form-field 
+        [formControl]="linkControl" 
+        (deleteControl)="formManager.delete(i)"
+      ></mr-form-field>
+    </div>
+  </ng-container>
+
+  <mr-button-icon
+    [icon]="'plus'"
+    (clicked)="formManager.add()"
+  ></mr-button-icon>
+</fieldset>

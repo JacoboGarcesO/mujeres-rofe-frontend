@@ -11,6 +11,7 @@ export class ResourcesService {
     const documents = [
       { id: 'cc', label: 'Cédula de ciudadanía' },
       { id: 'ce', label: 'Cédula de extrangería' },
+      { id: 'ti', label: 'Tarjeta de identidad' },
     ];
 
     return of(documents);
@@ -57,8 +58,9 @@ export class ResourcesService {
   }
 
   getFamilyCore(): Observable<OptionModel[]> {
-    const arr = Array(20).fill(null).map((_, index)=> ({ id: `${index}`, label: `${index}` }));
+    const arr = Array(21).fill(null).map((_, index)=> ({ id: `${index}`, label: `${index}` }));
     arr.push({ id: 'otro', label: 'Otro' });
+    arr.shift();
   
     return of(arr);
   }
@@ -96,7 +98,8 @@ export class ResourcesService {
   }
 
   getStratum(): Observable<OptionModel[]> {
-    const arr = Array(6).fill(null).map((_, index)=> ({ id: `${index}`, label: `${index}` }));
+    const arr = Array(7).fill(null).map((_, index)=> ({ id: `${index}`, label: `${index}` }));
+    arr.shift();
   
     return of(arr);
   }
