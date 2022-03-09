@@ -35,7 +35,8 @@
             ['Nombre', '3rem'],
             ['Apellido', '3rem'],
             ['Contacto', '3rem'],
-            ['Descripción', '10rem'],
+            ['Documento', '3rem'],
+            ['Ciudad', '4rem'],
             ['Correo', '7rem'],
             ['Ver perfil', '2.5rem']
           ]"
@@ -84,7 +85,16 @@
             <mr-text
               [color]="'initial'"
               [type]="'line'"
-              [text]="user?.description"
+              [text]="user?.document"
+              [size]="'base'"
+              [weight]="'regular'"
+            ></mr-text>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-text
+              [color]="'initial'"
+              [type]="'line'"
+              [text]="user?.location?.cityName"
               [size]="'base'"
               [weight]="'regular'"
             ></mr-text>
