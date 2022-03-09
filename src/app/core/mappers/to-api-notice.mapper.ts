@@ -22,11 +22,7 @@ export class ToApiNoticeMapper {
     formData.append('url', notice.url);
     formData.append('formId', notice?.formId);
 
-    if (notice.url !== null) {
-      formData.append('isLink', 'true');
-    } else {
-      formData.append('isLink', 'false');
-    }
+    notice.url ? formData.append('isLink', 'true') : formData.append('isLink', 'false');
 
     return formData;
   }
