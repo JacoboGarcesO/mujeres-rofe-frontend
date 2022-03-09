@@ -36,6 +36,18 @@
   }
 }
 
+@media (max-width: styles.$bkp-mobile) {
+  .register-content {
+    &__back {
+      & .button-icon {
+        height: styles.func-toRem(3) !important;
+        width: styles.func-toRem(3) !important;
+        font-size: styles.func-toRem(1.20);
+      }
+    }
+  }
+}
+
 @media (min-width: styles.$bkp-tablet) {
   .register-content {
     &__form {
