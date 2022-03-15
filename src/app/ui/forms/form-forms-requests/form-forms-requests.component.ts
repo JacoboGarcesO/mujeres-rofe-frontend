@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
 import { FormRequestModel } from 'src/app/core/models/form-requests.model';
+import { OptionModel } from 'src/app/core/models/option.model';
 
 @Component({
   selector: 'mr-form-forms-requests',
@@ -12,6 +13,7 @@ import { FormRequestModel } from 'src/app/core/models/form-requests.model';
 })
 export class FormFormsRequestsComponent implements OnChanges {
   @Input() canResetForm: boolean;
+  @Input() templates: OptionModel[];
 
   public manualSave$: Subject<void> = new Subject();
   private input$: Subject<FormRequestModel> = new Subject();
@@ -34,9 +36,9 @@ export class FormFormsRequestsComponent implements OnChanges {
     formControls: {
       title: new FormControl(null),
       subject: new FormControl(null),
+      template: new FormControl(null),
       fields: new FormControl(null),
       //---
-      plantilla: new FormControl(null),
       id: new FormControl(null),
     },
   });

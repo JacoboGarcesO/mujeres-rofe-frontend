@@ -8,7 +8,7 @@ export class ToApiFormRequestsMapper {
   map(form: FormRequestModel): any {
     return {
       title: form.title,
-      template: 'apoyoEmocional',
+      template: form.template,
       subject: form.subject,
       fields: form.fields,
       id: form?.id,

@@ -20,7 +20,10 @@ export class ToApiNoticeMapper {
     formData.append('channel', notice.channel);
     formData.append('showUsersList', 'false');
     formData.append('url', notice.url);
-    formData.append('formId', notice?.formId);
+
+    if (notice?.formId) {
+      formData.append('formId', notice?.formId);
+    }
 
     notice.url ? formData.append('isLink', 'true') : formData.append('isLink', 'false');
 

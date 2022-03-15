@@ -20,9 +20,7 @@ export class NoticesContentComponent {
   constructor(
     private location: Location,
     private router: Router,
-  ) { 
-    console.log(this.notice);
-  }
+  ) { }
 
   navigateToUser(userId: string): void {
     this.router.navigateByUrl(`profile/${userId}`);

@@ -38,7 +38,7 @@
     <mr-text
       [color]="'initial'"
       [type]="'line'"
-      [text]="request?.plantilla"
+      [text]="request?.template"
       [size]="'base'"
       [weight]="'regular'"
     ></mr-text>
@@ -62,6 +62,7 @@
   <ng-container>
     <mr-form-forms-requests
       [canResetForm]="canCloseModal"
+      [templates]="templates"
       (dataOutput)="handleCreateForm($event)"
     ></mr-form-forms-requests>
   </ng-container>
@@ -70,6 +71,7 @@
 <mr-modal #modalUpdateRef>
   <ng-container>
     <mr-form-forms-requests
+      [templates]="templates"
       [dataInput]="formToUpdate"
       [canResetForm]="canCloseModal"
       (dataOutput)="handleUpdateForm($event)"

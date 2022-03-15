@@ -1,6 +1,7 @@
 import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Output, EventEmitter, ChangeDetectorRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormRequestModel } from 'src/app/core/models/form-requests.model';
+import { OptionModel } from 'src/app/core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
 
 @Component({
@@ -14,6 +15,7 @@ export class AdminFormsListComponent {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
   @Input() formRequests: FormRequestModel[];
+  @Input() templates: OptionModel[];
   @Input() formToUpdate: FormRequestModel;
   @Input() canCloseModal: boolean;
   @Output() createForm: EventEmitter<FormRequestModel> = new EventEmitter();

@@ -13,7 +13,15 @@
       [icon]="'fas fa-pen-fancy'"
       [formControlName]="form.formControlNames.subject"
     ></mr-sub-form-input>
+
   </fieldset>
+
+  <mr-sub-form-select
+    [label]="'Plantilla'"
+    [options]="templates"
+    [icon]="'fas fa-pen'"
+    [formControlName]="form.formControlNames.template"
+  ></mr-sub-form-select>
 
   <fieldset class="form-forms-requests__section form-forms-requests__section--columness">
     <mr-form-fields

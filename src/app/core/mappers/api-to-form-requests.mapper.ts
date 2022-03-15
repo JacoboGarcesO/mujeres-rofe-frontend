@@ -16,7 +16,7 @@ export class ApiToFormRequestsMapper {
       id: request?._id,
       title: request?.title,
       subject: request?.subject,
-      plantilla: request?.template,
+      template: request?.template,
       fields: this.getFields(request?.fields),
     };
   }

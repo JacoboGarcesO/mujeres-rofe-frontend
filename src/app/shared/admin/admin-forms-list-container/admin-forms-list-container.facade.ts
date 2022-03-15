@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Subscription, Observable, EMPTY, tap, finalize, catchError } from 'rxjs';
+import { Subscription, Observable, EMPTY, tap, finalize, catchError, merge } from 'rxjs';
 import { FormRequestModel } from 'src/app/core/models/form-requests.model';
+import { OptionModel } from 'src/app/core/models/option.model';
 import { FormRequestsService } from 'src/app/core/services/form-requests.service';
+import { ResourcesService } from 'src/app/core/services/resources.service';
 import { AppState } from '../../../core/state/app.state';
 
 @Injectable({
@@ -13,6 +15,7 @@ export class AdminFormsListContainerFacade {
   constructor(
     private state: AppState,
     private service: FormRequestsService,
+    private resourcesService: ResourcesService,
   ) { }
 
   //#region Observables
@@ -27,6 +30,10 @@ export class AdminFormsListContainerFacade {
   form$(): Observable<FormRequestModel> {
     return this.state.formRequest.currentForm.$();
   }
+
+  templates$(): Observable<OptionModel[]> {
+    return this.state.resources.templates.$();
+  }
   //#endregion
 
   //#region Public methods
@@ -40,6 +47,20 @@ export class AdminFormsListContainerFacade {
 
   destroyCanCloseModal(): void {
     this.state.resources.canCloseModal.set(null);
+  }
+
+  loadResources(): void {   
+    this.subscriptions.add(
+      merge(
+        this.resourcesService.getTemplates().pipe(
+          tap(this.state.resources.templates.set.bind(this)),
+        ),
+      ).subscribe(),
+    );
+  }
+
+  destroyResources(): void {
+    this.state.resources.templates.set(null);
   }
 
   createForm(form: FormRequestModel): void {
