@@ -32,7 +32,7 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
     this.facade.initSubscriptions();
     this.facade.loadUsers();
     this.facade.loadHobbies();
-    this.facade.loadStates();
+    this.facade.loadStates();    
     this.facade.loadResources();
     this.initializeSubscriptions();
   }
