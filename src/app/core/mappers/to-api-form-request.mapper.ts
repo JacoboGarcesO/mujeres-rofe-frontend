@@ -10,7 +10,8 @@ export class ToApiFormRequestsMapper {
       title: form.title,
       template: 'apoyoEmocional',
       subject: form.subject,
-      links: form.fields,
+      fields: form.fields,
+      id: form?.id,
     };
   }
 }

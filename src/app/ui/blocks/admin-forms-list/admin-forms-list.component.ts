@@ -12,12 +12,16 @@ import { ModalComponent } from '../../elements/modal/modal.component';
 })
 export class AdminFormsListComponent {
   @ViewChild('modalRef') modalRef: ModalComponent;
+  @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
   @Input() formRequests: FormRequestModel[];
+  @Input() formToUpdate: FormRequestModel;
   @Input() canCloseModal: boolean;
   @Output() createForm: EventEmitter<FormRequestModel> = new EventEmitter();
   @Output() updateForm: EventEmitter<FormRequestModel> = new EventEmitter();
+  @Output() deleteForm: EventEmitter<string> = new EventEmitter();
+  @Output() loadForm: EventEmitter<string> = new EventEmitter();
 
-  public currrenRequest: FormRequestModel;
+  public formRequestId: string;
 
   constructor(
     private cdRef: ChangeDetectorRef,
@@ -28,11 +32,12 @@ export class AdminFormsListComponent {
     if (!this.canCloseModal) { return; }
 
     this.modalRef.close();
+    this.modalUpdateRef.close();
     this.cdRef.detectChanges();
   }
 
-  handleSetCurrentRequest(request: FormRequestModel) {
-    this.currrenRequest = request;
+  handleLoadForm(formId: string) {
+    this.loadForm.emit(formId);
   }
 
   handleCreateForm(form: FormRequestModel): void {
@@ -40,7 +45,15 @@ export class AdminFormsListComponent {
   }
 
   handleUpdateForm(form: FormRequestModel): void {
-    this.createForm.emit(form);
+    this.updateForm.emit(form);
+  }
+
+  handleDeleteForm(): void {
+    this.deleteForm.emit(this.formRequestId);
+  }
+
+  setFormRequestId(formId: string): void {
+    this.formRequestId = formId;
   }
 
   handleToBack(): void {

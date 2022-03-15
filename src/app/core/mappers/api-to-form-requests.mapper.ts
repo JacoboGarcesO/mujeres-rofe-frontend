@@ -11,7 +11,7 @@ export class ApiToFormRequestsMapper {
     return response?.forms?.map(this.getRequest.bind(this));
   }
 
-  private getRequest(request: any): FormRequestModel {
+  getRequest(request: any): FormRequestModel {
     return {
       id: request?._id,
       title: request?.title,

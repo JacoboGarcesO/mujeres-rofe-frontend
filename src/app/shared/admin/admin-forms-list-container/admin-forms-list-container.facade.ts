@@ -23,6 +23,10 @@ export class AdminFormsListContainerFacade {
   forms$(): Observable<FormRequestModel[]> {
     return this.state.formRequest.forms.$();
   }
+
+  form$(): Observable<FormRequestModel> {
+    return this.state.formRequest.currentForm.$();
+  }
   //#endregion
 
   //#region Public methods
@@ -34,12 +38,44 @@ export class AdminFormsListContainerFacade {
     this.subscriptions.unsubscribe();
   }
 
+  destroyCanCloseModal(): void {
+    this.state.resources.canCloseModal.set(null);
+  }
+
   createForm(form: FormRequestModel): void {
     this.notify('init');
     const callback = this.loadForms.bind(this);
 
     this.subscriptions.add(
       this.service.createFormRequest(form).pipe(
+        tap(this.notify.bind(this, 'complete', callback)),
+        tap(this.storeCanCloseModal.bind(this, true)),
+        catchError(this.notify.bind(this, 'error', null)),
+        finalize(this.notifyClose.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  updateForm(form: FormRequestModel): void {
+    this.notify('init');
+    const callback = this.loadForms.bind(this);
+
+    this.subscriptions.add(
+      this.service.updateFormRequest(form).pipe(
+        tap(this.notify.bind(this, 'complete', callback)),
+        tap(this.storeCanCloseModal.bind(this, true)),
+        catchError(this.notify.bind(this, 'error', null)),
+        finalize(this.notifyClose.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  deleteForm(formId: string): void {
+    this.notify('init');
+    const callback = this.loadForms.bind(this);
+  
+    this.subscriptions.add(
+      this.service.deleteFormRequest(formId).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
         tap(this.storeCanCloseModal.bind(this, true)),
         catchError(this.notify.bind(this, 'error', null)),
@@ -59,6 +95,18 @@ export class AdminFormsListContainerFacade {
   destroyForms(): void {
     this.state.formRequest.forms.set(null);
   }
+
+  loadForm(formId: string): void {
+    this.subscriptions.add(
+      this.service.getFormRequest(formId).pipe(
+        tap(this.storeForm.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyForm(): void {
+    this.state.formRequest.currentForm.set(null);
+  }
   //#endregion
 
   //#region Private Methods
@@ -68,6 +116,10 @@ export class AdminFormsListContainerFacade {
 
   private storeForms(forms: FormRequestModel[]): void {
     this.state.formRequest.forms.set(forms);
+  }
+
+  private storeForm(form: FormRequestModel): void {
+    this.state.formRequest.currentForm.set(form);
   }
 
   private notify(

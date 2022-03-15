@@ -69,7 +69,7 @@ export class ResourcesService {
     const familyIncomes = [
       { id: 'menosque1', label: 'Menor a 1 SMLV' },
       { id: 'entre1y2', label: 'Entre 1 y 2 SMLV' },
-      { id: 'masque2', label: 'Mis Superior a 2 SMLV' },
+      { id: 'masque2', label: 'Mas Superior a 2 SMLV' },
     ];
   
     return of(familyIncomes);

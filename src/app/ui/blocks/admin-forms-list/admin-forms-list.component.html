@@ -46,8 +46,14 @@
   <td class="admin-form-requests-list-tmpl__td admin-form-requests-list-tmpl__td--buttons">
     <mr-button
       [display]="'block'"
+      [icon]="'fas fa-pen'"
+      (clicked)="handleLoadForm(request.id); modalUpdateRef.toggle()"
+    ></mr-button>
+
+    <mr-button
+      [display]="'block'"
       [icon]="'fas fa-trash'"
-      (clicked)="handleSetCurrentRequest(request)"
+      (clicked)="modalDeleteRef.toggle(); setFormRequestId(request.id)"
     ></mr-button>
   </td>
 </ng-template>
@@ -57,8 +63,32 @@
     <mr-form-forms-requests
       [canResetForm]="canCloseModal"
       (dataOutput)="handleCreateForm($event)"
-      (formUpdate)="handleUpdateForm($event)"
     ></mr-form-forms-requests>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalUpdateRef>
+  <ng-container>
+    <mr-form-forms-requests
+      [dataInput]="formToUpdate"
+      [canResetForm]="canCloseModal"
+      (dataOutput)="handleUpdateForm($event)"
+    ></mr-form-forms-requests>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <mr-text
+      [text]="'¿Estás seguro de que deseas eliminar este formulario?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+    <mr-button
+      class="admin-users-list__button"
+      [label]="'Eliminar'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteForm()"
+    ></mr-button>
   </ng-container>
 </mr-modal>
 

@@ -11,6 +11,7 @@ import { AdminFormsListContainerFacade } from './admin-forms-list-container.faca
 export class AdminFormsListContainerComponent implements OnInit, OnDestroy { 
   public canCloseModal$: Observable<boolean>;
   public forms$: Observable<FormRequestModel[]>;
+  public form$: Observable<FormRequestModel>;
 
   constructor(private facade: AdminFormsListContainerFacade) { }
 
@@ -21,6 +22,7 @@ export class AdminFormsListContainerComponent implements OnInit, OnDestroy {
   }
   ngOnDestroy(): void {
     this.facade.destroyForms();
+    this.facade.destroyForm();
     this.facade.destroySubscriptions();
   }
 
@@ -28,8 +30,22 @@ export class AdminFormsListContainerComponent implements OnInit, OnDestroy {
     this.facade.createForm(form);
   }
 
+  handleUpdateForm(form: FormRequestModel): void {
+    this.facade.updateForm(form);
+  }
+
+  handleDeleteForm(formId: string): void {
+    this.facade.deleteForm(formId);
+  }
+
+  handleLoadForm(formId: string) {
+    this.facade.destroyCanCloseModal();
+    this.facade.loadForm(formId);
+  }
+
   private initializeSubscriptions(): void {
     this.canCloseModal$ = this.facade.canCloseModal$();
     this.forms$ = this.facade.forms$();
+    this.form$ = this.facade.form$();
   }
 }
