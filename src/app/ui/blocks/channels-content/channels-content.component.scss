@@ -157,6 +157,14 @@
       padding: styles.func-toRem(1) styles.$box-pad-none styles.func-toRem(1)
         styles.func-toRem(0.7) !important;
     }
+
+    &__back {
+      & .button-icon {
+        height: styles.func-toRem(3) !important;
+        width: styles.func-toRem(3) !important;
+        font-size: styles.func-toRem(1.20);
+      }
+    }
   }
 }
 

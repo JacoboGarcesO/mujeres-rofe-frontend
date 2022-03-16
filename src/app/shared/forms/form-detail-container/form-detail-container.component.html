@@ -1,0 +1,8 @@
+<ng-container *ngIf="{
+  form: (form$ | async)
+} as data">
+  <mr-form-detail
+    [form]="data.form"
+    (sendform)="handleSaveRequest($event)"
+  ></mr-form-detail>
+</ng-container>

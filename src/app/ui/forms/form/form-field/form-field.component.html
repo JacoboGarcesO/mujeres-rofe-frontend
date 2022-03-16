@@ -1,0 +1,8 @@
+<fieldset class="form-field__section" [formGroup]="form.formGroup">
+  <mr-sub-form-input 
+    [type]="'text'"
+    [label]="form.formGroup.value.label"
+    [placeholder]="form.formGroup.value.placeholder"
+    [formControlName]="form.formControlNames.value"
+  ></mr-sub-form-input>
+</fieldset>

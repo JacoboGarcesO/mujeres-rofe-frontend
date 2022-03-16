@@ -8,6 +8,7 @@ import { FormFieldsComponent } from './form-fields/form-fields.component';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
 import { TextModule } from '../../elements/text/text.module';
+import { SubFormSelectModule } from '../sub-form-select/sub-form-select.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { TextModule } from '../../elements/text/text.module';
     SubFormInputModule,
     ButtonModule,
     TextModule,
+    SubFormSelectModule,
     ButtonIconModule,
     ReactiveFormsModule,
   ],

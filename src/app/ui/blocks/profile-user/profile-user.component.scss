@@ -121,6 +121,14 @@ a {
     &__container {
       grid-template-columns: repeat(2, styles.$box-fr-base);
     }
+
+    &__back {
+      & .button-icon {
+        height: styles.func-toRem(3) !important;
+        width: styles.func-toRem(3) !important;
+        font-size: styles.func-toRem(1.20);
+      }
+    }
   }
 }
 

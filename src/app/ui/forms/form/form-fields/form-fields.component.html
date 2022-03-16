@@ -1,0 +1,10 @@
+<fieldset class="form-fields" [formGroup]="form.formGroup">
+  <ng-container
+    *ngFor="let fieldControl of form.formGroup.controls.value.controls; trackBy: trackIndex; index as i"
+    [formArrayName]="form.formControlNames.value"
+  >
+    <mr-form-field 
+      [formControl]="fieldControl" 
+    ></mr-form-field>
+  </ng-container>
+</fieldset>

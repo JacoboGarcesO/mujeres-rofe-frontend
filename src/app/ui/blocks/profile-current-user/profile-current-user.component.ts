@@ -14,6 +14,15 @@ export class ProfileCurrentUserComponent {
   @Input() hobbies: OptionModel[];
   @Input() cities: OptionModel[];
   @Input() states: OptionModel[];
+  @Input() documents: OptionModel[];
+  @Input() education: OptionModel[];
+  @Input() ethnicGroups: OptionModel[];
+  @Input() familyCore: OptionModel[];
+  @Input() familyIncome: OptionModel[];
+  @Input() housingType: OptionModel[];
+  @Input() maritalStatus: OptionModel[];
+  @Input() stratum: OptionModel[];
+  @Input() sustenting: OptionModel[];
   @Input() user: UserModel;
   @Output() createUser: EventEmitter<UserModel> = new EventEmitter();
   @Output() selectedState: EventEmitter<string> = new EventEmitter();

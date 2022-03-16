@@ -3,7 +3,7 @@ export interface FormRequestModel {
   title: string;
   subject: string;
   fields: FormRequestFieldsModel[];
-  plantilla?: string;
+  template: string;
 }
 
 export interface FormRequestFieldsModel {

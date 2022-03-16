@@ -38,6 +38,18 @@
   }
 }
 
+@media (max-width: styles.$bkp-mobile) {
+  .admin-form-requests {
+    &__back {
+      & .button-icon {
+        height: styles.func-toRem(3) !important;
+        width: styles.func-toRem(3) !important;
+        font-size: styles.func-toRem(1.20);
+      }
+    }
+  }
+}
+
 @keyframes animate {
   0% {
     transform: scale(1);

@@ -1,0 +1,17 @@
+<form class="form" [formGroup]="form.formGroup">
+  <mr-text
+    [text]="form.formGroup.value.title"
+    [weight]="'bold'"
+    [size]="'extra-large'"
+  ></mr-text>
+  <fieldset class="form__section">
+    <mr-form-fields
+      [formControlName]="form.formControlNames.fields"
+    ></mr-form-fields>
+  </fieldset>
+  <mr-button 
+    [label]="'Guardar'"
+    [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
+    (clicked)="manualSave$.next()"
+  ></mr-button>
+</form>

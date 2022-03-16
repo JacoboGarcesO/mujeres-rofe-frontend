@@ -33,6 +33,12 @@ const routes: Routes = [
       .then((module) => module.ProfileModule),
     canActivate: [PrivateGuard],
   },
+  {
+    path: 'forms',
+    loadChildren: () => import('./forms/forms.module')
+      .then((module) => module.FormsModule),
+    canActivate: [PrivateGuard],
+  },
 ];
 
 @NgModule({

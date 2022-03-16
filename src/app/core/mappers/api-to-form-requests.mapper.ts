@@ -5,18 +5,18 @@ import { FormRequestFieldsModel, FormRequestModel } from '../models/form-request
   providedIn: 'root',
 })
 export class ApiToFormRequestsMapper {
-  map(response: any): FormRequestModel[] {
-    if (!response?.forms) { return []; }
+  map(response: any, entity: string): FormRequestModel[] {
+    if (!response?.[entity]) { return []; }
 
-    return response?.forms?.map(this.getRequest.bind(this));
+    return response?.[entity]?.map(this.getRequest.bind(this));
   }
 
-  private getRequest(request: any): FormRequestModel {
+  getRequest(request: any): FormRequestModel {
     return {
       id: request?._id,
       title: request?.title,
       subject: request?.subject,
-      plantilla: request?.template,
+      template: request?.template,
       fields: this.getFields(request?.fields),
     };
   }

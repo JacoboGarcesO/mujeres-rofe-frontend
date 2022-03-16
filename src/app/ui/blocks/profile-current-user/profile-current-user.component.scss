@@ -3,6 +3,7 @@
 .profile-current-user {
   position: relative;
   display: flex;
+  margin-top: styles.func-toRem(5);
 
   &__background {
     position: absolute;
@@ -36,16 +37,16 @@
   }
 }
 
-@media (min-width: styles.$bkp-tablet) {
-  .profile-current-user {
-    &__form {
-      height: 100vh;
-    }
-  }
-}
-
 @media (max-width: styles.$bkp-mobile) {
   .profile-current-user {
+    &__back {
+      & .button-icon {
+        height: styles.func-toRem(3) !important;
+        width: styles.func-toRem(3) !important;
+        font-size: styles.func-toRem(1.20);
+      }
+    }
+
     &__form {
       padding-top: 80px;
     }

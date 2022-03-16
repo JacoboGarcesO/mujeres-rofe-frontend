@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Subscription, Observable, EMPTY, tap, finalize, catchError } from 'rxjs';
+import { Subscription, Observable, EMPTY, tap, finalize, catchError, merge } from 'rxjs';
 import { FormRequestModel } from 'src/app/core/models/form-requests.model';
+import { OptionModel } from 'src/app/core/models/option.model';
 import { FormRequestsService } from 'src/app/core/services/form-requests.service';
+import { ResourcesService } from 'src/app/core/services/resources.service';
 import { AppState } from '../../../core/state/app.state';
 
 @Injectable({
@@ -13,6 +15,7 @@ export class AdminFormsListContainerFacade {
   constructor(
     private state: AppState,
     private service: FormRequestsService,
+    private resourcesService: ResourcesService,
   ) { }
 
   //#region Observables
@@ -22,6 +25,14 @@ export class AdminFormsListContainerFacade {
 
   forms$(): Observable<FormRequestModel[]> {
     return this.state.formRequest.forms.$();
+  }
+
+  form$(): Observable<FormRequestModel> {
+    return this.state.formRequest.currentForm.$();
+  }
+
+  templates$(): Observable<OptionModel[]> {
+    return this.state.resources.templates.$();
   }
   //#endregion
 
@@ -34,12 +45,58 @@ export class AdminFormsListContainerFacade {
     this.subscriptions.unsubscribe();
   }
 
+  destroyCanCloseModal(): void {
+    this.state.resources.canCloseModal.set(null);
+  }
+
+  loadResources(): void {   
+    this.subscriptions.add(
+      merge(
+        this.resourcesService.getTemplates().pipe(
+          tap(this.state.resources.templates.set.bind(this)),
+        ),
+      ).subscribe(),
+    );
+  }
+
+  destroyResources(): void {
+    this.state.resources.templates.set(null);
+  }
+
   createForm(form: FormRequestModel): void {
     this.notify('init');
     const callback = this.loadForms.bind(this);
 
     this.subscriptions.add(
       this.service.createFormRequest(form).pipe(
+        tap(this.notify.bind(this, 'complete', callback)),
+        tap(this.storeCanCloseModal.bind(this, true)),
+        catchError(this.notify.bind(this, 'error', null)),
+        finalize(this.notifyClose.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  updateForm(form: FormRequestModel): void {
+    this.notify('init');
+    const callback = this.loadForms.bind(this);
+
+    this.subscriptions.add(
+      this.service.updateFormRequest(form).pipe(
+        tap(this.notify.bind(this, 'complete', callback)),
+        tap(this.storeCanCloseModal.bind(this, true)),
+        catchError(this.notify.bind(this, 'error', null)),
+        finalize(this.notifyClose.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  deleteForm(formId: string): void {
+    this.notify('init');
+    const callback = this.loadForms.bind(this);
+  
+    this.subscriptions.add(
+      this.service.deleteFormRequest(formId).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
         tap(this.storeCanCloseModal.bind(this, true)),
         catchError(this.notify.bind(this, 'error', null)),
@@ -59,6 +116,18 @@ export class AdminFormsListContainerFacade {
   destroyForms(): void {
     this.state.formRequest.forms.set(null);
   }
+
+  loadForm(formId: string): void {
+    this.subscriptions.add(
+      this.service.getFormRequest(formId).pipe(
+        tap(this.storeForm.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyForm(): void {
+    this.state.formRequest.currentForm.set(null);
+  }
   //#endregion
 
   //#region Private Methods
@@ -68,6 +137,10 @@ export class AdminFormsListContainerFacade {
 
   private storeForms(forms: FormRequestModel[]): void {
     this.state.formRequest.forms.set(forms);
+  }
+
+  private storeForm(form: FormRequestModel): void {
+    this.state.formRequest.currentForm.set(form);
   }
 
   private notify(
