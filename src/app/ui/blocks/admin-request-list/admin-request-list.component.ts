@@ -11,15 +11,10 @@ import { FormRequestModel } from 'src/app/core/models/form-requests.model';
 })
 export class AdminRequestListComponent {
   @Input() requests: FormRequestModel[];
-  public currrenRequest: FormRequestModel;
 
   constructor(
     private router: Router,
   ) { }
-
-  handleSetCurrentRequest(request: FormRequestModel) {
-    this.currrenRequest = request;
-  }
 
   handleToBack(): void {
     this.router.navigateByUrl('');

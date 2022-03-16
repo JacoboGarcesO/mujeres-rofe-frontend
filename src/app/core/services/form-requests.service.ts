@@ -19,17 +19,10 @@ export class FormRequestsService {
     private apiToOptionMapper: ApiToOptionMapper,
   ) { }
 
-  getRequests(): Observable<FormRequestModel[]> {
-    const url = URL_RESOURCE.requests;
-    return this.httpService.get(url).pipe(
-      map((response) => this.apiToFormRequestMapper.map(response)),
-    );
-  }
-
   getFormRequests(): Observable<FormRequestModel[]> {
     const url = URL_RESOURCE.forms;
     return this.httpService.get(url).pipe(
-      map((response) => this.apiToFormRequestMapper.map(response)),
+      map((response) => this.apiToFormRequestMapper.map(response, 'forms')),
     );
   }
 
