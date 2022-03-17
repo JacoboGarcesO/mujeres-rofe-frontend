@@ -19,7 +19,7 @@ export class ApiToUsersMapper {
       lastName: user?.lastName,
       rol: user?.rol,
       isPremium: user?.isPremium,
-      documentNumber: user?.document,
+      documentNumber: user?.documentNumber,
       image: user?.image,
       description: user?.description,
       location: {

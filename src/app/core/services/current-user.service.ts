@@ -53,5 +53,6 @@ export class CurrentUserService {
 
   logoutUser(): void {
     this.storageService.remove('CURRENT_USER');
+    this.storageService.remove('TOKEN');
   }
 }
