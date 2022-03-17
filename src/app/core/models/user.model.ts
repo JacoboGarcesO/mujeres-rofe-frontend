@@ -9,7 +9,7 @@ export interface UserModel {
   lastName: string;
   rol: RolsEnum;
   isPremium: boolean;
-  document: string;
+  documentNumber: string;
   image: MediaModel | File;
   description: string;
   location: UserLocationModel;

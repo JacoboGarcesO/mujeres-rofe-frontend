@@ -19,7 +19,7 @@ export class ToApiRequestsMapper {
         email: currentUser.email,
         firstName: currentUser.firstName,
         lastName: currentUser.lastName,
-        document: currentUser.document,
+        document: currentUser.documentNumber,
       },
     };
   }

@@ -34,12 +34,12 @@ export class ResourcesService {
 
   getMaritalStatus(): Observable<OptionModel[]> {
     const maritalStatus = [
-      { id: 'soltera', label: 'Soltera' },
-      { id: 'casada', label: 'Casada' },
-      { id: 'unionLibre', label: 'Unión libre' },
-      { id: 'divorciada', label: 'Divorciada' },
-      { id: 'viuda', label: 'Viuda' },
-      { id: 'otro', label: 'Otro' },
+      { id: 'Soltera', label: 'Soltera' },
+      { id: 'Casada', label: 'Casada' },
+      { id: 'Unión libre', label: 'Unión libre' },
+      { id: 'Divorciada', label: 'Divorciada' },
+      { id: 'Viuda', label: 'Viuda' },
+      { id: 'Otro', label: 'Otro' },
     ];
 
     return of(maritalStatus);
@@ -52,6 +52,7 @@ export class ResourcesService {
       { id: 'padres', label: 'Mis padres' },
       { id: 'abuelos', label: 'Mis abuelos' },
       { id: 'nietos', label: 'Mis mietos' },
+      { id: 'otros', label: 'Otros' },
     ];
 
     return of(sustenting);
@@ -67,9 +68,9 @@ export class ResourcesService {
 
   getFamilyIncome(): Observable<OptionModel[]> {
     const familyIncomes = [
-      { id: 'menosque1', label: 'Menor a 1 SMLV' },
-      { id: 'entre1y2', label: 'Entre 1 y 2 SMLV' },
-      { id: 'masque2', label: 'Mas Superior a 2 SMLV' },
+      { id: 'Menor a 1 SMLV', label: 'Menor a 1 SMLV' },
+      { id: 'Entre 1 y 2 SMLV', label: 'Entre 1 y 2 SMLV' },
+      { id: 'masque2', label: 'Superior a 2 SMLV' },
     ];
   
     return of(familyIncomes);
@@ -77,9 +78,9 @@ export class ResourcesService {
 
   getHousingType(): Observable<OptionModel[]> {
     const housingType = [
-      { id: 'propia', label: 'Propia' },
-      { id: 'arrendada', label: 'Arrendada' },
-      { id: 'familiar', label: 'Familiar' },
+      { id: 'Propia', label: 'Propia' },
+      { id: 'Arrendada', label: 'Arrendada' },
+      { id: 'Familiar', label: 'Familiar' },
     ];
   
     return of(housingType);
@@ -91,7 +92,7 @@ export class ResourcesService {
       { id: 'bachiller', label: 'Soy bachiller' },
       { id: 'tecnica/tecnologa', label: 'Soy técnica/tecnóloga' },
       { id: 'profesional', label: 'Soy profesional universitaria' },
-      { id: 'especialización', label: 'Tengo una especialización' },
+      { id: 'especializacion', label: 'Tengo una especialización' },
     ];
   
     return of(education);

@@ -26,7 +26,7 @@ export class ApiToCurrentUserMapper {
       lastName: user?.lastName,
       rol: toRolEnum(user?.rol),
       isPremium: user?.isPremium,
-      document: user?.document,
+      documentNumber: user?.document,
       image: user?.image,
       description: user?.description,
       location: {

@@ -24,7 +24,7 @@ export class ToApiUsersMapper {
     formData.append('hobbies', hobbies);
     formData.append('phoneNumber', `${user.phoneNumber}`);
     formData.append('socialsNetworks', socialNetworks);
-    formData.append('document', user?.document);
+    formData.append('document', user?.documentNumber);
     formData.append('image', image);
     formData.append('location', JSON.stringify(location));
   
