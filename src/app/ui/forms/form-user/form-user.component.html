@@ -33,19 +33,14 @@
       ></mr-sub-form-input>
 
       <mr-sub-form-select
-        [label]="'Estado civil'"
-        [placeholder]="'Seleccionar...'"
-        [options]="maritalStatus"
-        [isSearchable]="true"
-        [formControlName]="form.formControlNames.maritalStatus"
+      [label]="'Estado civil'"
+      [placeholder]="'Seleccionar...'"
+      [options]="maritalStatus"
+      [isSearchable]="true"
+      [formControlName]="form.formControlNames.maritalStatus"
       ></mr-sub-form-select>
-
-      <mr-sub-form-input 
-        [type]="'input'"
-        [label]="'Dirección'"
-        [formControlName]="form.formControlNames.address"
-      ></mr-sub-form-input>
-
+      
+      
       <mr-sub-form-select
         [label]="'Tipo de documento'"
         [placeholder]="'Seleccionar...'"
@@ -54,6 +49,12 @@
         [formControlName]="form.formControlNames.documentType"
       ></mr-sub-form-select>
 
+      <mr-sub-form-input 
+        [type]="'number'"
+        [label]="'Número de identificación'"
+        [formControlName]="form.formControlNames.documentNumber"
+      ></mr-sub-form-input>
+      
       <mr-sub-form-multi-select
         [label]="'Sostienes a:'"
         [placeholder]="'Seleccionar...'"
@@ -144,9 +145,9 @@
   
     <fieldset class="form-user__description">
       <mr-sub-form-input 
-        [type]="'number'"
-        [label]="'Número de identificación'"
-        [formControlName]="form.formControlNames.documentNumber"
+        [type]="'input'"
+        [label]="'Dirección'"
+        [formControlName]="form.formControlNames.address"
       ></mr-sub-form-input>
 
       <mr-sub-form-input 
