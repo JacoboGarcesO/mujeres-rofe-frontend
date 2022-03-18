@@ -22,10 +22,6 @@ export class NoticesContentComponent {
     private router: Router,
   ) { }
 
-  get wave(): string {
-    return this.notice.channel === 'contact' ? 'profile': 'wave-' + this.notice.channel;
-  }
-
   navigateToUser(userId: string): void {
     this.router.navigateByUrl(`profile/${userId}`);
   }
