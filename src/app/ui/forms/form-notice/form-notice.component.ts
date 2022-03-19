@@ -44,7 +44,7 @@ export class FormNoticeComponent implements OnChanges {
       links: new FormControl(null),
       showUsersList: new FormControl(null),
       isLink: new FormControl(null),
-      url: new FormControl(null),
+      url: new FormControl('https://'),
       formId: new FormControl(null),
       //---
       id: new FormControl(null),
