@@ -6,6 +6,7 @@
 >
   <div class="notices-content__notice">
     <figure
+      *ngIf="notice?.content?.type !== 'pdf'"
       class="notices-content__image-notice notices-content__image-notice--shadow notices-content__image-notice--shadow--{{
         notice?.channel
       }}"
@@ -15,6 +16,13 @@
         [alt]="'notice-img'"
       ></mr-image>
     </figure>
+    <pdf-viewer
+      *ngIf="notice?.content?.type === 'pdf'"
+      [src]="notice?.content?.url"
+      [render-text]="true"
+      [original-size]="false"
+      style="width: 100%; height: 500px;"
+    ></pdf-viewer>
 
     <div class="notices-content__info-notice">
       <mr-text
@@ -47,7 +55,8 @@
       </div>
     </div>
 
-    <a 
+    <a
+      class="notices-content__download"
       [href]="notice?.content?.url" 
       download="download" 
       *ngIf="notice?.content?.type === 'pdf'">
@@ -82,6 +91,7 @@
       ></mr-text>
 
       <figure
+        *ngIf="notice?.content?.type !== 'pdf'"
         class="notices-content__image-notice notices-content__image-notice--shadow notices-content__image-notice--shadow--{{
           notice?.channel
         }}"
@@ -92,6 +102,14 @@
         ></mr-image>
       </figure>
 
+      <pdf-viewer
+        *ngIf="notice?.content?.type === 'pdf'"
+        [src]="notice?.content?.url"
+        [render-text]="true"
+        [original-size]="false"
+        style="width: 100%; height: 500px;"
+      ></pdf-viewer>
+      
       <div class="notices-content__links">
         <div
           class="notices-content__links-item notices-content__links-item--{{

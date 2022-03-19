@@ -1,6 +1,29 @@
 @use "../../_styles/index.scss" as styles;
 
 .notices-content {
+  &__download {
+    border-radius: styles.$box-rad-medium;
+    border: styles.$box-bor-solid transparent;
+    gap: styles.$box-pad-half;
+    padding: styles.$box-pad-half;
+    transition: styles.$animation-ease;
+    background-color: styles.$color-primary-color-alt;
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+
+    &:hover {
+      background-color: styles.$color-primary-color;
+      border: styles.$box-bor-solid styles.$color-bg-white;
+    }
+
+    .text {
+      color: styles.$color-bg-white !important;
+      text-shadow: -4px 4px 3px rgba(0, 0, 0, 0.3);
+    }
+  }
+
   &__text {
     .text {
       color: styles.$color-bg-white !important;
@@ -140,6 +163,10 @@
   .notices-content {
     &__notice {
       grid-template-columns: 1fr !important;
+
+      &--center {
+        width: 100%;
+      }
     }
   }
 }
