@@ -8,7 +8,6 @@ a {
   &__notice {
     display: grid;
     grid-template-columns: styles.func-toRem(5) auto;
-    align-items: center;
     gap: styles.func-toRem(1.7);
     cursor: pointer;
 

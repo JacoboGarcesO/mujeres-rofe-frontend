@@ -27,12 +27,27 @@
     display: flex;
     align-items: center;
     gap: styles.func-toRem(0.75);
+    cursor: pointer;
+  }
+
+  &__profile {
+    position: relative;
+  }
+
+  &__text {
+    display: block;
+    position: absolute;
+    top: 70%;
+    left: 9%;
+    background-color: styles.$color-bg-white;
+    padding: 0 3px;
+    border-radius: 5px;
+    cursor: pointer;
   }
 
   &__image {
     width: styles.func-toRem(2.5);
     height: styles.func-toRem(2.5);
-    cursor: pointer;
   }
 
   &__icon {
