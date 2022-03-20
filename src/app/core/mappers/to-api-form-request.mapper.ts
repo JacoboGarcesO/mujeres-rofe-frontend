@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { FormRequestModel } from '../models/form-requests.model';
+import { FormRequestFieldsModel, FormRequestModel } from '../models/form-requests.model';
+import { OptionModel } from '../models/option.model';
 
 @Injectable({
   providedIn: 'root',
@@ -10,8 +11,23 @@ export class ToApiFormRequestsMapper {
       title: form.title,
       template: form.template,
       subject: form.subject,
-      fields: form.fields,
+      fields: this.getFields(form.fields),
       id: form?.id,
     };
+  }
+  private getFields(formFields: FormRequestFieldsModel[]): any[] {
+    return formFields.map((field) => ({
+      label: field?.label,
+      placeholder: field?.placeholder,
+      options: this.getOptions(field?.options),
+    }));
+  }
+
+  private getOptions(options: OptionModel[]): any[] {
+    return options.map((option) => {
+      if (option?.id) { return { _id: option.id, label: option.label }; }
+
+      return { label: option.label };
+    });
   }
 }

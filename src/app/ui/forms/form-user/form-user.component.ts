@@ -53,6 +53,7 @@ export class FormUserComponent implements OnChanges {
       description: new FormControl(null, Validators.required),
       phoneNumber: new FormControl(null, Validators.required),
       documentNumber: new FormControl(null, Validators.required),
+      documentImage: new FormControl(null, Validators.required),
       instagram: new FormControl(null),
       location: new FormControl(null),
       facebook: new FormControl(null),
@@ -70,7 +71,6 @@ export class FormUserComponent implements OnChanges {
       disclosure: new FormControl(null),
       ethnicGroup: new FormControl(null),
       sustaining: new FormControl(null),
-      documentImage: new FormControl(null),
       // --------------------
       id: new FormControl(null),
       rol: new FormControl(null),

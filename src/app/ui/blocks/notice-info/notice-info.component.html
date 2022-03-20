@@ -1,7 +1,7 @@
 <ng-container
   *ngIf="
     (!notice?.showUsersList && notice?.links?.length > 2) ||
-    notice?.description?.length > 50
+    notice?.description?.length > 70
   "
 >
   <div class="notices-content__notice">
@@ -73,7 +73,7 @@
   *ngIf="
     !notice?.showUsersList &&
     notice?.links?.length <= 2 &&
-    notice?.description?.length < 50
+    notice?.description?.length < 70
   "
 >
   <div class="notices-content__notice notices-content__notice--center">
@@ -110,7 +110,7 @@
         style="width: 100%; height: 500px;"
       ></pdf-viewer>
       
-      <div class="notices-content__links">
+      <div class="notices-content__links notices-content__links--center">
         <div
           class="notices-content__links-item notices-content__links-item--{{
             notice?.channel

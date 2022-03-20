@@ -63,7 +63,7 @@ export class AdminFormsListContainerFacade {
     this.state.resources.templates.set(null);
   }
 
-  createForm(form: FormRequestModel): void {
+  createForm(form: FormRequestModel): void {    
     this.notify('init');
     const callback = this.loadForms.bind(this);
 

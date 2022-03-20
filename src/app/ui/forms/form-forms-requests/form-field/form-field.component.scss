@@ -1,14 +1,16 @@
 @use '../../../_styles/index.scss' as styles;
 
 .form-field {
+  align-items: center;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+
   &__section {
     grid-template-columns: styles.$box-fr-base styles.$box-fr-base min-content;
     gap: styles.$box-pad-base;
     display: grid;
     align-items: center;
-    min-width: 0;
-    padding: 0;
-    margin: 0;
-    border: 0;
   }
 }

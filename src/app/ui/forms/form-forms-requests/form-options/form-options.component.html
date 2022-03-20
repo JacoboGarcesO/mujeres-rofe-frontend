@@ -1,0 +1,21 @@
+<fieldset class="form-fields" [formGroup]="form.formGroup">
+  <div class="form-fields__options">
+    <mr-text [text]="'Lista opciones'" [weight]="'bold'" [size]="'small'"></mr-text>
+    <ng-container
+      *ngFor="let optionControl of form.formGroup.controls.value.controls; trackBy: trackIndex; index as i"
+      [formArrayName]="form.formControlNames.value"
+    >
+      <div>
+        <mr-form-option 
+          [formControl]="optionControl" 
+          (deleteControl)="formManager.delete(i)"
+          (addControl)="formManager.add()"
+        ></mr-form-option>
+      </div>
+    </ng-container>
+  </div>
+  <mr-button-icon
+    [icon]="'plus'"
+    (clicked)="formManager.add()"
+  ></mr-button-icon>
+</fieldset>

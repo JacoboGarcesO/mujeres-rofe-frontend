@@ -1,10 +1,14 @@
 import { Injectable } from '@angular/core';
 import { FormRequestFieldsModel, FormRequestModel } from '../models/form-requests.model';
+import { ApiToOptionMapper } from './api-to-option.mapper';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiToFormRequestsMapper {
+
+  constructor(private apiToOptionMapper: ApiToOptionMapper) { }
+
   map(response: any, entity: string): FormRequestModel[] {
     if (!response?.[entity]) { return []; }
 
@@ -26,6 +30,8 @@ export class ApiToFormRequestsMapper {
       label: field?.label ?? null,
       placeholder: field?.placeholder ?? null,
       value: field?.value ?? null,
+      options: this.apiToOptionMapper.map(field?.options, '_id', 'label'),
     }));
   }
+
 }

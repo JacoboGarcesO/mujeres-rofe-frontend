@@ -1,0 +1,13 @@
+<fieldset class="form-field__section" [formGroup]="form.formGroup">
+  <mr-sub-form-input 
+    [type]="'text'"
+    [label]="'Nombre de la opción'"
+    [icon]="'fas fa-signature'"
+    [formControlName]="form.formControlNames.label"
+  ></mr-sub-form-input>
+
+  <mr-button-icon
+    [icon]="'trash'"
+    (clicked)="handleDeleteControl()"
+  ></mr-button-icon>
+</fieldset>

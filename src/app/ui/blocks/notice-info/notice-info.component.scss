@@ -105,6 +105,11 @@
     position: relative;
     margin-top: styles.func-toRem(2);
 
+    &--center {
+      display: flex;
+      justify-content: center;
+    }
+
     &-item {
       margin: styles.func-toRem(0.7) 0;
 

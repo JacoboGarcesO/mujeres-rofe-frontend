@@ -17,6 +17,7 @@ export class FormFieldComponent {
       label: new FormControl(null),
       placeholder: new FormControl(null),
       value: new FormControl(null, Validators.required),
+      options: new FormControl(null),
     },
   });
 }
