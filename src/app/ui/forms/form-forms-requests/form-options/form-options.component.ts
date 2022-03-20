@@ -10,7 +10,7 @@ import { OptionModel } from 'src/app/core/models/option.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: subformComponentProviders(FormOptionsComponent),
 })
-export class FormOptionsComponent implements AfterViewInit {
+export class FormOptionsComponent {
   public form = createForm<OptionModel[], { value: OptionModel[] }>(this, {
     formType: FormType.SUB,
     formControls: {
@@ -29,10 +29,6 @@ export class FormOptionsComponent implements AfterViewInit {
       delete: this.delete.bind(this),
       add: this.add.bind(this),
     };
-  }
-
-  ngAfterViewInit(): void {
-    this.add();
   }
 
   trackIndex(index: number): number {
