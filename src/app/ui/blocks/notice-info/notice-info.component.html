@@ -26,7 +26,7 @@
 
     <div class="notices-content__info-notice">
       <mr-text
-        class="notices-content__text--{{ notice?.channel }}"
+        class="notices-content__text-title notices-content__text--{{ notice?.channel }}"
         [text]="notice?.title"
         [size]="'extra-large'"
         [weight]="'bold'"
@@ -79,7 +79,7 @@
   <div class="notices-content__notice notices-content__notice--center">
     <div class="notices-content__info-notice">
       <mr-text
-        class="notices-content__text--{{ notice?.channel }}"
+        class="notices-content__text-title notices-content__text--{{ notice?.channel }}"
         [text]="notice?.title"
         [size]="'extra-large'"
         [weight]="'bold'"
@@ -128,6 +128,7 @@
       </div>
 
       <a 
+        class="notices-content__download"
         [href]="notice?.content?.url" 
         download="download" 
         *ngIf="notice?.content?.type === 'pdf'">
