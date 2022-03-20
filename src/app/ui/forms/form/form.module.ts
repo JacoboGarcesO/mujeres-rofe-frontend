@@ -7,6 +7,7 @@ import { TextModule } from '../../elements/text/text.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormFieldsComponent } from './form-fields/form-fields.component';
 import { FormFieldComponent } from './form-field/form-field.component';
+import { SubFormSelectModule } from '../sub-form-select/sub-form-select.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormFieldComponent } from './form-field/form-field.component';
   imports: [
     CommonModule,
     SubFormInputModule,
+    SubFormSelectModule,
     ButtonModule,
     TextModule,
     ReactiveFormsModule,
