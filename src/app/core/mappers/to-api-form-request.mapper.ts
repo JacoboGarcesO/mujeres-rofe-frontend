@@ -24,7 +24,7 @@ export class ToApiFormRequestsMapper {
   }
 
   private getOptions(options: OptionModel[]): any[] {
-    return options.map((option) => {
+    return options?.map((option) => {
       if (option?.id) { return { _id: option.id, label: option.label }; }
 
       return { label: option.label };
