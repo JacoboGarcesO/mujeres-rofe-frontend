@@ -51,7 +51,7 @@ export class ResourcesService {
       { id: 'esposo', label: 'Mi esposo' },
       { id: 'padres', label: 'Mis padres' },
       { id: 'abuelos', label: 'Mis abuelos' },
-      { id: 'nietos', label: 'Mis mietos' },
+      { id: 'nietos', label: 'Mis nietos' },
       { id: 'otros', label: 'Otros' },
     ];
 
@@ -70,7 +70,7 @@ export class ResourcesService {
     const familyIncomes = [
       { id: 'Menor a 1 SMLV', label: 'Menor a 1 SMLV' },
       { id: 'Entre 1 y 2 SMLV', label: 'Entre 1 y 2 SMLV' },
-      { id: 'masque2', label: 'Superior a 2 SMLV' },
+      { id: 'Superior a 2 SMLV', label: 'Superior a 2 SMLV' },
     ];
   
     return of(familyIncomes);
