@@ -48,7 +48,6 @@ export class UserLoginContainerFacade {
   handleLogin(userCredentials: UserCredentialsModel): void {
     this.subscriptions?.add(
       this.service.loginUser(userCredentials).pipe(
-        tap(console.log),
         tap(this.manageLogin.bind(this)),
       ).subscribe(),
     );
