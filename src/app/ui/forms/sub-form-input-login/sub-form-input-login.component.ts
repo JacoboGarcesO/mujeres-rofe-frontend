@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, Renderer2, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, Input, Renderer2 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { MiscUtil } from 'src/app/core/utils/misc.util';
@@ -10,7 +10,7 @@ import { MiscUtil } from 'src/app/core/utils/misc.util';
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: subformComponentProviders(SubFormInputLoginComponent),
 })
-export class SubFormInputLoginComponent implements OnInit {
+export class SubFormInputLoginComponent {
   @Input() type: 'input' | 'email' | 'password' = 'input';
   @Input() icon: string;
   @Input() iconLogin: string;
@@ -35,10 +35,6 @@ export class SubFormInputLoginComponent implements OnInit {
     private el: ElementRef,
     private renderer: Renderer2,
   ) { }
-
-  ngOnInit(): void {
-    console.log('pepe');
-  }
 
   handleShowPassword(input: any): void {
     const icon = this.el?.nativeElement?.querySelector('.sub-form-input__iconLogin');

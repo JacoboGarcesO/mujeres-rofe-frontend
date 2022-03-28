@@ -1,0 +1,18 @@
+@use '../../../_styles/index.scss' as styles;
+
+.form-fields {
+  gap: styles.$box-pad-base;
+  display: grid;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  margin-top: styles.$box-pad-base;
+  grid-template-columns: auto min-content;
+  align-items: center;
+
+  &__options {
+    display: grid;
+    row-gap: styles.$box-pad-base;
+  }
+}

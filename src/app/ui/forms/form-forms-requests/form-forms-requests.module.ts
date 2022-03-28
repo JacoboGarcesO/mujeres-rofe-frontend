@@ -8,18 +8,24 @@ import { FormFieldsComponent } from './form-fields/form-fields.component';
 import { FormFieldComponent } from './form-field/form-field.component';
 import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
 import { TextModule } from '../../elements/text/text.module';
+import { SubFormSelectModule } from '../sub-form-select/sub-form-select.module';
+import { FormOptionsComponent } from './form-options/form-options.component';
+import { FormOptionComponent } from './form-option/form-option.component';
 
 @NgModule({
   declarations: [
     FormFormsRequestsComponent,
     FormFieldsComponent,
     FormFieldComponent,
+    FormOptionsComponent,
+    FormOptionComponent,
   ],
   imports: [
     CommonModule,
     SubFormInputModule,
     ButtonModule,
     TextModule,
+    SubFormSelectModule,
     ButtonIconModule,
     ReactiveFormsModule,
   ],

@@ -10,7 +10,7 @@ import { FormRequestFieldsModel } from 'src/app/core/models/form-requests.model'
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: subformComponentProviders(FormFieldComponent),
 })
-export class FormFieldComponent  {
+export class FormFieldComponent {
   @Output() deleteControl: EventEmitter<void> = new EventEmitter();
   public form = createForm<FormRequestFieldsModel>(this, {
     formType: FormType.SUB,
@@ -18,6 +18,7 @@ export class FormFieldComponent  {
       label: new FormControl(null, Validators.required),
       placeholder: new FormControl(null),
       value: new FormControl(null),
+      options: new FormControl(null),
     },
   });
 

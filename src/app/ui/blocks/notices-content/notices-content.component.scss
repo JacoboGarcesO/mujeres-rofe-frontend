@@ -87,6 +87,10 @@ a {
       .button {
         background: styles.$color-status-info-dark !important;
       }
+
+      &--contact {
+        background-color: styles.$color-primary-color;
+      }
     }
 
     &__image {

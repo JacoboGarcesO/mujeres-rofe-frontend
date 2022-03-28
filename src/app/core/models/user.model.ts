@@ -9,8 +9,8 @@ export interface UserModel {
   lastName: string;
   rol: RolsEnum;
   isPremium: boolean;
-  document: string;
-  image: MediaModel | File;
+  documentNumber: string;
+  image: MediaModel;
   description: string;
   location: UserLocationModel;
   instagram: string; 

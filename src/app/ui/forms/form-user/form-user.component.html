@@ -3,59 +3,60 @@
     <fieldset class="form-user__section">
       <mr-sub-form-input 
         [type]="'input'"
-        [label]="'Nombres'"
+        [label]="'Nombres*'"
         [formControlName]="form.formControlNames.firstName"
       ></mr-sub-form-input>
   
       <mr-sub-form-input 
         [type]="'input'"
-        [label]="'Apellidos'"
+        [label]="'Apellidos*'"
         [formControlName]="form.formControlNames.lastName"
       ></mr-sub-form-input>
   
       <mr-sub-form-input 
         [type]="'input'"
-        [label]="'Correo'"
+        [label]="'Correo*'"
         [placeholder]="'mujer@email.com...'"
         [formControlName]="form.formControlNames.email"
       ></mr-sub-form-input>
 
       <mr-sub-form-input 
         [type]="'input'"
-        [label]="'Edad'"
+        [label]="'Edad*'"
         [formControlName]="form.formControlNames.age"
       ></mr-sub-form-input>
   
       <mr-sub-form-input 
         [type]="'number'"
-        [label]="'Celular'"
+        [label]="'Celular*'"
         [formControlName]="form.formControlNames.phoneNumber"
       ></mr-sub-form-input>
 
       <mr-sub-form-select
-        [label]="'Estado civil'"
-        [placeholder]="'Seleccionar...'"
-        [options]="maritalStatus"
-        [isSearchable]="true"
-        [formControlName]="form.formControlNames.maritalStatus"
+      [label]="'Estado civil*'"
+      [placeholder]="'Seleccionar...'"
+      [options]="maritalStatus"
+      [isSearchable]="true"
+      [formControlName]="form.formControlNames.maritalStatus"
       ></mr-sub-form-select>
-
-      <mr-sub-form-input 
-        [type]="'input'"
-        [label]="'Dirección'"
-        [formControlName]="form.formControlNames.address"
-      ></mr-sub-form-input>
-
+      
+      
       <mr-sub-form-select
-        [label]="'Tipo de documento'"
+        [label]="'Tipo de documento*'"
         [placeholder]="'Seleccionar...'"
         [options]="documents"
         [isSearchable]="true"
         [formControlName]="form.formControlNames.documentType"
       ></mr-sub-form-select>
 
+      <mr-sub-form-input 
+        [type]="'number'"
+        [label]="'Número de identificación*'"
+        [formControlName]="form.formControlNames.documentNumber"
+      ></mr-sub-form-input>
+      
       <mr-sub-form-multi-select
-        [label]="'Sostienes a:'"
+        [label]="'Sostenimiento*'"
         [placeholder]="'Seleccionar...'"
         [options]="sustenting"
         [isSearchable]="true"
@@ -64,7 +65,7 @@
       ></mr-sub-form-multi-select>
 
       <mr-sub-form-multi-select
-        [label]="'Grupo étnico'"
+        [label]="'Grupo étnico*'"
         [placeholder]="'Seleccionar...'"
         [options]="ethnicGroups"
         [isSearchable]="true"
@@ -94,7 +95,7 @@
       ></mr-sub-form-input>
 
       <mr-sub-form-select
-        [label]="'Personas del núcleo'"
+        [label]="'Personas del núcleo*'"
         [placeholder]="'Seleccionar...'"
         [options]="familyCore"
         [isSearchable]="true"
@@ -102,7 +103,7 @@
       ></mr-sub-form-select>
 
       <mr-sub-form-select
-        [label]="'Ingresos familiares'"
+        [label]="'Ingresos familiares*'"
         [placeholder]="'Seleccionar...'"
         [options]="familyIncome"
         [isSearchable]="true"
@@ -110,7 +111,7 @@
       ></mr-sub-form-select>
 
       <mr-sub-form-select
-        [label]="'Tipo de vivienda'"
+        [label]="'Tipo de vivienda*'"
         [placeholder]="'Seleccionar...'"
         [options]="housingType"
         [isSearchable]="true"
@@ -118,7 +119,7 @@
       ></mr-sub-form-select>
 
       <mr-sub-form-select
-        [label]="'Nivel de estudios'"
+        [label]="'Nivel de estudios*'"
         [placeholder]="'Seleccionar...'"
         [options]="education"
         [isSearchable]="true"
@@ -126,7 +127,7 @@
       ></mr-sub-form-select>
 
       <mr-sub-form-select
-        [label]="'Estrato'"
+        [label]="'Estrato*'"
         [placeholder]="'Seleccionar...'"
         [options]="stratum"
         [isSearchable]="true"
@@ -144,9 +145,9 @@
   
     <fieldset class="form-user__description">
       <mr-sub-form-input 
-        [type]="'number'"
-        [label]="'Número de identificación'"
-        [formControlName]="form.formControlNames.document"
+        [type]="'input'"
+        [label]="'Dirección*'"
+        [formControlName]="form.formControlNames.address"
       ></mr-sub-form-input>
 
       <mr-sub-form-input 
@@ -156,13 +157,13 @@
       ></mr-sub-form-input>
 
       <mr-sub-form-textarea 
-        [text]="'Presentación personal'"
+        [text]="'Presentación personal*'"
         [placeholder]="'Yo soy...'"
         [formControlName]="form.formControlNames.description"
       ></mr-sub-form-textarea>
 
       <mr-sub-form-textarea 
-        [text]="'¿Por dónde conociste Mujeres Rofé?'"
+        [text]="'¿Por dónde conociste Mujeres Rofé?*'"
         [formControlName]="form.formControlNames.disclosure"
       ></mr-sub-form-textarea>
     </fieldset>
@@ -170,13 +171,13 @@
 
   <fieldset class="form-user__file">
     <mr-sub-form-file
-      [label]="'Adjuntar imagen de perfil'"
+      [label]="'Adjuntar imagen de perfil*'"
       [canResetImage]="canResetForm"
       [formControlName]="form.formControlNames.image"
     ></mr-sub-form-file>
 
     <mr-sub-form-file
-      [label]="'Adjuntar foto o scan de la cédula'"
+      [label]="'Adjuntar foto o scan de la cédula*'"
       [canResetImage]="canResetForm"
       [formControlName]="form.formControlNames.documentImage"
     ></mr-sub-form-file>

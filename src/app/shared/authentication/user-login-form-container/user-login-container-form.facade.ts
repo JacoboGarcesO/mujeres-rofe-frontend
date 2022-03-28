@@ -6,6 +6,7 @@ import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { UserCredentialsModel } from 'src/app/core/models/user-credentials.model';
 import { UserModel } from 'src/app/core/models/user.model';
 import { CurrentUserService } from 'src/app/core/services/current-user.service';
+import { StorageService } from 'src/app/core/services/generals/storage.service';
 import { AppState } from 'src/app/core/state/app.state';
 
 @Injectable({
@@ -17,6 +18,7 @@ export class UserLoginContainerFacade {
   constructor(
     private state: AppState,
     private service: CurrentUserService,
+    private storageService: StorageService,
     private router: Router,
   ) { }
 
@@ -54,12 +56,12 @@ export class UserLoginContainerFacade {
 
   //#region Private methods
   private manageLogin(currentUser: CurrentUserModel): void {
-    if (currentUser?.user?.id) {
-      this.router.navigateByUrl('/');
-    }
-    
+    if (!currentUser?.user?.id) { return this.state.notifications.formNotification.set(currentUser?.message); }
+
+    this.router.navigateByUrl('/');
     this.state.users.currentUser.set(currentUser.user);
-    this.state.notifications.formNotification.set(currentUser.message);
+    this.storageService.set<UserModel>('CURRENT_USER', currentUser?.user);
+    this.storageService.set<string>('TOKEN', currentUser?.token);
 
     // eslint-disable-next-line angular/timeout-service
     setTimeout(this.state.notifications.formNotification.set.bind(this, null), 3000);

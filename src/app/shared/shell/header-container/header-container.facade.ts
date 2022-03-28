@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of, Subscription, tap } from 'rxjs';
 import { toChannelEnum } from 'src/app/core/enums/channel.enum';
 import { ChannelModel } from 'src/app/core/models/channel.model';
@@ -19,6 +20,7 @@ export class HeaderContainerFacade {
     private service: CurrentUserService,
     private channelsService: ChannelsService,
     private location: Location,
+    private router: Router,
   ) { }
 
   //#region Observables 
@@ -41,6 +43,7 @@ export class HeaderContainerFacade {
   logoutUser(): void {
     this.state.users.currentUser.set(null);
     this.service.logoutUser();
+    this.router.navigateByUrl('/auth/login');
   }
 
   initSubscriptions(): void {

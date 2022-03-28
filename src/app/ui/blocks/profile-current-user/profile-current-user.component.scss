@@ -37,16 +37,6 @@
   }
 }
 
-@media (min-width: styles.$bkp-tablet) {
-  .profile-current-user {
-    margin-top: styles.func-toRem(12.5);
-    
-    &__form {
-      height: 100vh;
-    }
-  }
-}
-
 @media (max-width: styles.$bkp-mobile) {
   .profile-current-user {
     &__back {

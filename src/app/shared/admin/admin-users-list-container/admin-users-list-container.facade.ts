@@ -93,7 +93,7 @@ export class AdminUsersListContainerFacade {
     this.subscriptions.unsubscribe();
   }
 
-  loadResources(): void {
+  loadResources(): void {   
     this.subscriptions.add(
       merge(
         this.resourcesService.getDocuments().pipe(

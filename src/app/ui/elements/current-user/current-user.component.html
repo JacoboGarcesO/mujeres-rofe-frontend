@@ -1,8 +1,11 @@
 <div class="current-user current-user--{{channel?.type}}">
-  <div class="current-user__user">
-    <figure class="current-user__image" (click)="navigateProfile()">
-      <mr-image [image]="currentUser?.image?.url" [rounded]="'circle'"></mr-image>
-    </figure>
+  <div class="current-user__user" (click)="navigateProfile()">
+    <div class="current-user__profile">
+      <figure class="current-user__image">
+        <mr-image [image]="currentUser?.image?.url" [rounded]="'circle'"></mr-image>
+      </figure>
+      <mr-text class="current-user__text" [size]="'micro'" [weight]="'bold'" [text]="'Perfil'"></mr-text>
+    </div>
     <mr-text [type]="'line'" [weight]="'bold'" [text]="currentUser?.firstName + ' ' + currentUser?.lastName"></mr-text>
   </div>
   <i class="current-user__icon fas fa-sign-in-alt" (click)="handleLogout()"></i>

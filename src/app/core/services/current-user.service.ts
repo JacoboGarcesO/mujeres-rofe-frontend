@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, filter } from 'rxjs/operators';
 import { HttpService } from './generals/http.service';
 import { StorageService } from './generals/storage.service';
 import { ApiToCurrentUserMapper } from '../mappers/api-to-current-user.mapper';
@@ -31,14 +31,12 @@ export class CurrentUserService {
     return of(currentUser);
   }
 
-  loginUser(userCredentials: UserCredentialsModel): Observable<CurrentUserModel> {
+  loginUser(userCredentials: UserCredentialsModel): Observable<CurrentUserModel | any> {
     const url = URL_RESOURCE.userLogin;
     const credentials = this.toApiCredentialsMapper.map(userCredentials);
     const body = JSON.stringify(credentials);
     return this.httpService.post(url, body).pipe(
       map((currentUser) => this.apiToCurrentUserMapper.map(currentUser)),
-      tap((currentUser) => this.storageService.set<UserModel>('CURRENT_USER', currentUser.user)),
-      tap((currentUser) => this.storageService.set<string>('TOKEN', currentUser.token)),
     );
   }
 
@@ -53,5 +51,6 @@ export class CurrentUserService {
 
   logoutUser(): void {
     this.storageService.remove('CURRENT_USER');
+    this.storageService.remove('TOKEN');
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserLocationModel } from '../models/locations.model';
+import { MediaModel } from '../models/media.model';
 import { OptionModel } from '../models/option.model';
 import { UserModel } from '../models/user.model';
 
@@ -10,7 +11,6 @@ export class ToApiUsersMapper {
   map(user: UserModel, cities: OptionModel[]): any {
     const formData = new FormData();
     const socialNetworks = this.getSocialNetworks(user?.instagram, user?.facebook);
-    const image = this.getImage(user.image);
     const hobbies = this.getHobbies(user.hobbies);
     const location = this.getLocation(user.location, cities);
 
@@ -24,8 +24,9 @@ export class ToApiUsersMapper {
     formData.append('hobbies', hobbies);
     formData.append('phoneNumber', `${user.phoneNumber}`);
     formData.append('socialsNetworks', socialNetworks);
-    formData.append('document', user?.document);
-    formData.append('image', image);
+    formData.append('document', user?.documentNumber);
+    formData.append('image', user?.image?.file);
+    formData.append('imageEncoded', this.getImage(user?.image));
     formData.append('location', JSON.stringify(location));
   
     formData.append('documentType', user.documentType);
@@ -41,7 +42,8 @@ export class ToApiUsersMapper {
     formData.append('disclosure', user.disclosure);
     formData.append('ethnicGroup', this.getHobbies(user.ethnicGroup));
     formData.append('sustaining', this.getHobbies(user.sustaining));
-    formData.append('documentImage', this.getImage(user.documentImage));
+    formData.append('documentImageEncoded', this.getImage(user?.documentImage));
+    formData.append('documentImage', user?.documentImage?.file);
     
     return formData;
   }
@@ -51,8 +53,13 @@ export class ToApiUsersMapper {
     return JSON.stringify(socialNetwork);
   }
 
-  private getImage(image: any): File {
-    return image.file as File;
+  private getImage(image: MediaModel): string {
+    const media = {
+      _id: image.id,
+      url:image.url,
+    };
+
+    return JSON.stringify(media);
   }
 
   private getHobbies(hobbies: string[]): any {
@@ -62,7 +69,7 @@ export class ToApiUsersMapper {
   }
 
   private getLocation(location: UserLocationModel, cities: OptionModel[]): any {
-    const cityName = cities.find((city) => city.id === location.city).label;    
+    const cityName = cities.find((city) => city?.id === location?.city)?.label;    
     return { ...location, cityName };
   }
 }

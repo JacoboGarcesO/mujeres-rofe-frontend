@@ -1,20 +1,26 @@
-  <fieldset class="form-field__section" [formGroup]="form.formGroup">
-    <mr-sub-form-input 
-      [type]="'text'"
-      [label]="'Nombre del campo'"
-      [icon]="'fas fa-signature'"
-      [formControlName]="form.formControlNames.label"
-    ></mr-sub-form-input>
+  <fieldset class="form-field" [formGroup]="form.formGroup">
+    <div class="form-field__section">
+      <mr-sub-form-input 
+        [type]="'text'"
+        [label]="'Nombre del campo'"
+        [icon]="'fas fa-signature'"
+        [formControlName]="form.formControlNames.label"
+      ></mr-sub-form-input>
 
-    <mr-sub-form-input 
-      [type]="'text'"
-      [label]="'Placeholder'"
-      [icon]="'fas fa-font'"
-      [formControlName]="form.formControlNames.placeholder"
-    ></mr-sub-form-input>
+      <mr-sub-form-input 
+        [type]="'text'"
+        [label]="'Placeholder'"
+        [icon]="'fas fa-font'"
+        [formControlName]="form.formControlNames.placeholder"
+      ></mr-sub-form-input>
 
-    <mr-button-icon
-      [icon]="'trash'"
-      (clicked)="handleDeleteControl()"
-    ></mr-button-icon>
+      <mr-button-icon
+        [icon]="'trash'"
+        (clicked)="handleDeleteControl()"
+      ></mr-button-icon>
+    </div>
+
+    <mr-form-options
+      [formControlName]="form.formControlNames.options"
+    ></mr-form-options>
   </fieldset>

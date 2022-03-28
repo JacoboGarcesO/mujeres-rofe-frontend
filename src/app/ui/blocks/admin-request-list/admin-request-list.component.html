@@ -1,12 +1,8 @@
 <mr-table
   [headers]="[
-    ['', '0.5rem'],
-    ['Nombre', '3rem'],
-    ['Apellido', '3rem'],
-    ['Contacto', '3rem'],
-    ['Descripción', '10rem'],
-    ['Correo', '7rem'],
-    ['Acciones', '3rem']
+    ['Titulo', '10rem'],
+    ['Asunto', '10rem'],
+    ['Plantilla', '10rem'],
   ]"
   [items]="requests || []"
   [itemTemplateRef]="userTemplate"
@@ -17,17 +13,28 @@
     <mr-text
       [color]="'initial'"
       [type]="'line'"
-      [text]=""
+      [text]="request.title"
       [size]="'base'"
       [weight]="'regular'"
     ></mr-text>
   </td>
-  <td class="admin-requests-list-tmpl__td admin-requests-list-tmpl__td--buttons">
-    <mr-button
-      [display]="'block'"
-      [icon]="'fas fa-trash'"
-      (clicked)="handleSetCurrentRequest(request)"
-    ></mr-button>
+  <td class="admin-requests-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="request.subject"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-requests-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="request.template"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
   </td>
 </ng-template>
 

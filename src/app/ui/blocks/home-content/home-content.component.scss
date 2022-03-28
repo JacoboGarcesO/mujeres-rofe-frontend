@@ -5,6 +5,7 @@
   padding-top: styles.$box-pad-home-content;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
 
   &__background {
     position: absolute;
@@ -16,7 +17,7 @@
 
   &__channels {
     display: grid;
-    gap: styles.$box-pad-double;
+    gap: styles.$box-pad-base;
   }
 
   &__channel {
@@ -25,6 +26,11 @@
     align-items: center;
     justify-content: space-between;
     cursor: pointer;
+    transition: styles.$animation-ease;
+
+    &:hover {
+      transform: translateY(-5px) scale(1.05);
+    }
 
     &--red {
       .text--initial {

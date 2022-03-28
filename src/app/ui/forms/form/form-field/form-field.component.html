@@ -1,0 +1,17 @@
+<fieldset class="form-field__section" [formGroup]="form.formGroup">
+  <mr-sub-form-input
+    *ngIf="!form.formGroup.value.options?.length"
+    [type]="'text'"
+    [label]="form.formGroup.value.label"
+    [placeholder]="form.formGroup.value.placeholder"
+    [formControlName]="form.formControlNames.value"
+  ></mr-sub-form-input>
+
+  <mr-sub-form-select
+    *ngIf="form.formGroup.value.options?.length"
+    [label]="form.formGroup.value.label"
+    [placeholder]="form.formGroup.value.placeholder"
+    [options]="form.formGroup.value.options"
+    [formControlName]="form.formControlNames.value"
+  ></mr-sub-form-select>
+</fieldset>

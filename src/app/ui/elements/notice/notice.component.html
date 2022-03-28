@@ -1,25 +1,25 @@
-<div *ngIf="isLink">
-  <a [href]="url" target="_blank">
+<div *ngIf="notice?.isLink">
+  <a [href]="notice?.url" target="_blank">
     <div class="channels-content-container__notice">
       <figure
         class="channels-content-container__image channels-content-container__image--shadow channels-content-container__image--shadow--{{
-          channel
+          notice?.channel
         }}"
       >
         <mr-image
-          [image]="image"
+          [image]="notice?.icon?.url"
           [rounded]="'circle'"
           [alt]="'notice-item'"
         ></mr-image>
       </figure>
       <div class="channels-content-container__notice-info">
         <mr-text
-          [text]="title"
+          [text]="notice?.title"
           [size]="'extra-large'"
           [weight]="'bold'"
         ></mr-text>
         <mr-text
-          [text]="description"
+          [text]="notice?.description"
           [size]="'medium'"
           [weight]="'light'"
         ></mr-text>
@@ -28,27 +28,27 @@
   </a>
 </div>
 
-<div *ngIf="!isLink" (click)="navigateToNotice(channel, id)">
+<div *ngIf="!notice?.isLink" (click)="navigateToNotice()">
   <div class="channels-content-container__notice">
     <figure
       class="channels-content-container__image channels-content-container__image--shadow channels-content-container__image--shadow--{{
-        channel
+        notice.channel
       }}"
     >
       <mr-image
-        [image]="image"
+        [image]="notice?.icon?.url"
         [rounded]="'circle'"
         [alt]="'notice-item'"
       ></mr-image>
     </figure>
     <div class="channels-content-container__notice-info">
       <mr-text
-        [text]="title"
+        [text]="notice?.title"
         [size]="'extra-large'"
         [weight]="'bold'"
       ></mr-text>
       <mr-text
-        [text]="description"
+        [text]="notice?.description"
         [size]="'medium'"
         [weight]="'light'"
       ></mr-text>

@@ -4,6 +4,7 @@ import { NoticeInfoComponent } from './notice-info.component';
 import { ImageModule } from '../../elements/image/image.module';
 import { TextModule } from '../../elements/text/text.module';
 import { ButtonModule } from '../../elements/button/button.module';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { ButtonModule } from '../../elements/button/button.module';
   imports: [
     CommonModule,
     ImageModule,
+    PdfViewerModule,
     TextModule,
     ButtonModule,
   ],

@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { NoticeModel } from 'src/app/core/models/notice.model';
 
 @Component({
   selector: 'mr-notice',
@@ -9,19 +10,18 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
 })
 export class NoticeComponent { 
-  @Input() image: string;
-  @Input() title: string;
-  @Input() description: string;
-  @Input() channel: string;
-  @Input() isLink: boolean;
-  @Input() url: string;
-  @Input() id: string;
+  @Input() notice: NoticeModel;
 
   constructor(
     private router: Router,
   ) { }
 
-  navigateToNotice(channel: string, id: string): void {
-    this.router.navigateByUrl(`notices/${channel}/${id}`);
+  navigateToNotice(): void {
+    if (this.notice?.formId) { 
+      this.router.navigateByUrl(`forms/${this.notice?.formId}`);
+      return;
+    }
+
+    this.router.navigateByUrl(`notices/${this.notice?.channel}/${this.notice?.id}`);
   }
 }

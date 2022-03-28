@@ -18,7 +18,7 @@ $weight-light: 300;
 
   @media (min-width: bkp.$desktop) {
     font-size: func.toRem(1.5);
-    line-height: func.toRem(3);
+    line-height: func.toRem(2);
   }
 }
 
@@ -36,28 +36,23 @@ $weight-light: 300;
 @mixin medium {
   @include _font;
   font-size: func.toRem(1.05);
-  line-height: func.toRem(1.05);
 
   @media (min-width: bkp.$desktop) {
     font-size: func.toRem(1.15);
-    line-height: func.toRem(1.15);
   }
 }
 
 @mixin base {
   @include _font;
   font-size: func.toRem(0.95);
-  line-height: func.toRem(1.1);
 }
 
 @mixin small {
   @include _font;
   font-size: func.toRem(0.85);
-  line-height: func.toRem(1.1);
 }
 
 @mixin micro {
   @include _font;
   font-size: func.toRem(0.75);
-  line-height: func.toRem(1.1);
 }

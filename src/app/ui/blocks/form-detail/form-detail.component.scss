@@ -1,0 +1,22 @@
+@use '../../_styles/index.scss' as styles;
+
+.form-detail {
+  padding-top: styles.$box-pad-home-content-dkp;
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  &__background {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &__card {
+    display: block;
+    width: 80%;
+  }
+}
+

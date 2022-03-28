@@ -9,6 +9,7 @@ import { StateFactory } from './factory.state';
 export class FormRequestState {
   private requests$: BehaviorSubject<FormRequestModel[]> = new BehaviorSubject(null);
   private forms$: BehaviorSubject<FormRequestModel[]> = new BehaviorSubject(null);
+  private currentForm$: BehaviorSubject<FormRequestModel> = new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) { }
 
@@ -16,6 +17,7 @@ export class FormRequestState {
     return {
       requests: this.factory.state(this.requests$),
       forms: this.factory.state(this.forms$),
+      currentForm: this.factory.state(this.currentForm$),
     };
   }
 
