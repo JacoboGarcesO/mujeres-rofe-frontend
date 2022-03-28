@@ -51,6 +51,11 @@ export class SubFormFileComponent implements OnChanges {
         return;
       }
 
+      if (event.target.files[0].size == 2000000) {
+        this.fileSelected = 'assets/img/noimage.png';
+        return;
+      }
+
       const reader = new FileReader();
       reader.onload = (e) => (this.fileSelected = reader.result);
       reader.readAsDataURL(this.form.formGroup.controls.file.value);
