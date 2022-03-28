@@ -75,9 +75,12 @@
   }
 
   &__welcome {
-    text-align: left;
-    width: fit-content;
+    text-align: center;
     padding: styles.$box-pad-base styles.$box-pad-none;
+
+    .text{
+      color: styles.$color-typo-base !important;
+    }
   }
 }
 
