@@ -3,6 +3,7 @@
     ['Titulo', '10rem'],
     ['Asunto', '10rem'],
     ['Plantilla', '10rem'],
+    ['Campos', '10rem'],
   ]"
   [items]="requests || []"
   [itemTemplateRef]="userTemplate"
@@ -32,6 +33,16 @@
       [color]="'initial'"
       [type]="'line'"
       [text]="request.template"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-requests-list-tmpl__td">
+    <mr-text
+      *ngFor="let field of request?.fields"
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="field?.label +' '+ field?.value"
       [size]="'base'"
       [weight]="'regular'"
     ></mr-text>

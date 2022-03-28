@@ -30,7 +30,7 @@ export class ApiToFormRequestsMapper {
       label: field?.label ?? null,
       placeholder: field?.placeholder ?? null,
       value: field?.value ?? null,
-      options: this.apiToOptionMapper.map(field?.options, '_id', 'label'),
+      options: this.apiToOptionMapper.map(field?.options ?? [], '_id', 'label'),
     }));
   }
 
