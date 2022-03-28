@@ -10,8 +10,8 @@
     ['Nombre', '3rem'],
     ['Apellido', '3rem'],
     ['Contacto', '3rem'],
-    ['Descripción', '10rem'],
     ['Correo', '7rem'],
+    ['Fecha de creación', '5rem'],
     ['Acciones', '3rem']
   ]"
   [items]="users || []"
@@ -57,18 +57,18 @@
   </td>
   <td class="admin-users-list-tmpl__td">
     <mr-text
-      [color]="'initial'"
-      [type]="'line'"
-      [text]="user?.description"
-      [size]="'base'"
-      [weight]="'regular'"
+    [color]="'initial'"
+    [type]="'line'"
+    [text]="user?.email"
+    [size]="'base'"
+    [weight]="'regular'"
     ></mr-text>
   </td>
   <td class="admin-users-list-tmpl__td">
     <mr-text
       [color]="'initial'"
       [type]="'line'"
-      [text]="user?.email"
+      [text]="user?.creationDate | date"
       [size]="'base'"
       [weight]="'regular'"
     ></mr-text>

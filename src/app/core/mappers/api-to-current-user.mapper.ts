@@ -52,6 +52,7 @@ export class ApiToCurrentUserMapper {
       ethnicGroup: this.getHobbies(user?.ethnicGroup),
       sustaining: this.getHobbies(user?.sustaining),
       documentImage: user?.documentImage,
+      creationDate: user?.creationDate,
     };
   }
 
