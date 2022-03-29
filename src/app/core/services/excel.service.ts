@@ -15,7 +15,7 @@ export class ExcelService {
     const usersMapper = this.excelMapper.map(users);
     const ws = utils.json_to_sheet(usersMapper);
     const wb = utils.book_new();
-    utils.book_append_sheet(wb, ws, 'Presidents');
+    utils.book_append_sheet(wb, ws, 'Mujeres');
     writeFileXLSX(wb, 'Mujeres-ROFÉ.xlsx');
 
     return of('ok');
