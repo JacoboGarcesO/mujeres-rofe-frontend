@@ -251,14 +251,9 @@ export class AdminUsersListContainerFacade {
 
   downloadUsers(): void {
     const users = this.state.users.users.snapshot();
-    const callback = this.notifyClose.bind(this);
 
-    this.notify('init');
     this.subscriptions.add(
-      this.excelService.exportUsersToExcel(users).pipe(
-        tap(this.notify.bind(this, 'complete', callback)),
-        catchError(this.notify.bind(this, 'error', null)),
-      ).subscribe(),
+      this.excelService.exportUsersToExcel(users).subscribe(),
     );
   }
   //#endregion
