@@ -1,9 +1,17 @@
-<mr-button
-  [display]="'inline'"
-  [icon]="'fas fa-plus'"
-  [label]="'Crear'"
-  (clicked)="modalRef.toggle()"
-></mr-button>
+<div class="admin-users-list__head">
+  <mr-button
+    [display]="'inline'"
+    [icon]="'fas fa-plus'"
+    [label]="'Crear'"
+    (clicked)="modalRef.toggle()"
+  ></mr-button>
+  <mr-button
+    [display]="'inline'"
+    [icon]="'fas fa-download'"
+    [label]="'Descargar'"
+    (clicked)="handleDownloadUsers()"
+  ></mr-button>
+</div>
 <mr-table
   [headers]="[
     ['', '0.5rem'],

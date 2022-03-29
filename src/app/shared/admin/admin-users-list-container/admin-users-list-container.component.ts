@@ -68,6 +68,10 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
   handleLoadUserToUpdate(userId: string): void {
     this.facade.loadUser(userId);
   }
+  
+  handleDownloadUsers(): void {
+    this.facade.downloadUsers();
+  }
 
   private initializeSubscriptions(): void {
     this.users$ = this.facade.users$();

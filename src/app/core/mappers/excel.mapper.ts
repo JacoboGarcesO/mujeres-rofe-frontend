@@ -1,0 +1,37 @@
+import { Injectable } from '@angular/core';
+import { UserModel } from '../models/user.model';
+
+@Injectable({
+  providedIn: 'root',
+})
+export class ExcelMapper {
+  map(users: UserModel[]): any {
+    return users.map((user: UserModel) => this.getUser(user));
+  }
+
+  private getUser(user: UserModel): any {
+    return {
+      Nombres: user?.firstName,
+      Apellidos: user?.lastName,
+      Correo: user?.email,
+      'Número de identificación': user?.documentNumber,
+      Celular: user?.phoneNumber,
+      'Presentación personal': user?.description,
+      'Tipo de documento': user?.documentType,
+      'Estado civil': user?.maritalStatus,
+      Dirección: user?.address,
+      Edad: user?.age,
+      'Personas del núcleo': user?.familyCore,
+      'Ingresos familiares': user?.familyIncome,
+      'Tipo de vivienda': user?.housingType,
+      'Nivel de estudios': user?.education,
+      Estrato: user?.stratum,
+      'Código promocional': user?.promocionalCode,
+      '¿Por dónde conociste Mujeres Rofé?': user?.disclosure,
+      'Grupo étnico': JSON.stringify(user?.ethnicGroup),
+      Sostenimiento: JSON.stringify(user?.sustaining),
+      Hobbies: JSON.stringify(user?.hobbies),
+      Ciudad: user?.location?.cityName,
+    };
+  }
+}

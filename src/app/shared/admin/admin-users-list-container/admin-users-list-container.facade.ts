@@ -7,6 +7,7 @@ import { HobbiesService } from '../../../core/services/hobbies.service';
 import { OptionModel } from '../../../core/models/option.model';
 import { UserModel } from 'src/app/core/models/user.model';
 import { ResourcesService } from '../../../core/services/resources.service';
+import { ExcelService } from '../../../core/services/excel.service';
 
 @Injectable({
   providedIn: 'root',
@@ -20,6 +21,7 @@ export class AdminUsersListContainerFacade {
     private locationsService: LocationsService,
     private habbiesService: HobbiesService,
     private resourcesService: ResourcesService,
+    private excelService: ExcelService,
   ) { }
 
   //#region Observables
@@ -243,6 +245,19 @@ export class AdminUsersListContainerFacade {
         tap(this.notify.bind(this, 'complete', callback)),
         catchError(this.notify.bind(this, 'error', null)),
         finalize(this.notifyClose.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  downloadUsers(): void {
+    const users = this.state.users.users.snapshot();
+    const callback = this.notifyClose.bind(this);
+
+    this.notify('init');
+    this.subscriptions.add(
+      this.excelService.exportUsersToExcel(users).pipe(
+        tap(this.notify.bind(this, 'complete', callback)),
+        catchError(this.notify.bind(this, 'error', null)),
       ).subscribe(),
     );
   }

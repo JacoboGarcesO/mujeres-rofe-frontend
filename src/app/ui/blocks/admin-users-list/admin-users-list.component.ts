@@ -35,6 +35,7 @@ export class AdminUsersListComponent implements OnChanges {
   @Output() updateUser: EventEmitter<UserModel> = new EventEmitter();
   @Output() deleteUser: EventEmitter<string> = new EventEmitter();
   @Output() loadUserToUpdate: EventEmitter<string> = new EventEmitter();
+  @Output() downloadUsers: EventEmitter<string> = new EventEmitter();
   private currentUser: UserModel;
   private userId: string;
 
@@ -82,5 +83,9 @@ export class AdminUsersListComponent implements OnChanges {
 
   handleToBack(): void {
     this.router.navigateByUrl('');
+  }
+
+  handleDownloadUsers(): void {
+    this.downloadUsers.emit();
   }
 }
