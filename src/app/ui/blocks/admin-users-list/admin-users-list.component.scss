@@ -20,6 +20,13 @@
 }
 
 .admin-users-list {
+  &__head {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 5px;
+  }
+  
   &__button {
     display: flex;
     justify-content: center;
