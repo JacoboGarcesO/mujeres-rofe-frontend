@@ -1,0 +1,28 @@
+<div class="request">
+  <i class="request__icon fas fa-trash" (click)="modalDeleteRef.toggle()"></i>
+  <div class="request__title">
+    <mr-text [text]="request.title | capitalize" [weight]="'bold'"></mr-text><i class="fas fa-clock"></i>
+  </div>
+  <div class="request__fields">
+    <div class="request__field" *ngFor="let field of request?.fields">
+      <i class="fas fa-info-circle fa-s"></i>
+      <mr-text [text]="field.label" [weight]="'regular'"></mr-text> : <mr-text [text]="field.value"></mr-text>
+    </div>
+  </div>
+</div>
+
+<mr-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <mr-text
+      class="modal__label"
+      [text]="'¿Estás seguro de que deseas eliminar este comunicado?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+    <mr-button
+      class="admin-notices-list__button"
+      [label]="'Eliminar'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteRequest()"
+    ></mr-button>
+  </ng-container>
+</mr-modal>

@@ -6,6 +6,7 @@ import { TextModule } from '../../elements/text/text.module';
 import { ButtonModule } from '../../elements/button/button.module';
 import { ModalModule } from '../../elements/modal/modal.module';
 import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
+import { RequestsListModule } from '../requests-list/requests-list.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { ButtonIconModule } from '../../elements/button-icon/button-icon.module'
     ButtonModule,
     ModalModule,
     ButtonIconModule,
+    RequestsListModule,
   ],
   exports: [
     AdminRequestListComponent,

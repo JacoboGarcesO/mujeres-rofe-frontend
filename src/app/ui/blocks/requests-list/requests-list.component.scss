@@ -1,0 +1,7 @@
+@use '../../_styles/index.scss' as styles;
+
+.requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: styles.$box-pad-onehalf;
+}

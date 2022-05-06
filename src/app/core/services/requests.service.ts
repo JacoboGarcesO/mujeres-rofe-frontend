@@ -31,4 +31,9 @@ export class RequestsService {
       map((response: any) => response?.requests?.[0]?._id),
     );
   }
+
+  deleteRequest(requestId: string): Observable<unknown> {
+    const url = URL_RESOURCE.deleteRequest(requestId);
+    return this.httpService.delete(url);
+  }
 }

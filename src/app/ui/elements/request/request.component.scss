@@ -1,0 +1,47 @@
+@use '../../_styles/index.scss' as styles;
+
+.request {
+  position: relative;
+  border-radius: styles.$box-rad-small;
+  border: styles.$box-bor-solid styles.$color-bg-dark;
+  padding: styles.$box-pad-base;
+  padding-top: styles.$box-pad-onehalf;
+
+  &__field {
+    display: flex;
+    align-items: center;
+    gap: styles.$box-pad-quarter;
+  }
+
+  &__icon {
+    padding: styles.$box-pad-quarter;
+    position: absolute;
+    bottom: 90%;
+    right: styles.$box-pad-base;
+    background-color: styles.$color-bg-white;
+    border-radius: styles.$box-rad-small;
+    border: styles.$box-bor-solid styles.$color-bg-dark;
+    color: styles.$color-primary-color-alt;
+    cursor: pointer;
+  }
+
+  &__title {
+    background-color: styles.$color-bg-white;
+    padding: styles.$box-pad-quarter styles.$box-pad-half;
+    border-radius: styles.$box-rad-small;
+    border: styles.$box-bor-solid styles.$color-bg-dark;
+    display: flex;
+    align-items: center;
+    gap: styles.$box-pad-base;
+    position: absolute;
+    left: styles.$box-pad-base;
+    bottom: 90%;
+  }
+}
+
+.modal {
+  &__label {
+    display: block;
+    margin-bottom: styles.$box-mrg-base;
+  }
+}

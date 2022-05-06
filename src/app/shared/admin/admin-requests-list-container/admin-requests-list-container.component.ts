@@ -24,6 +24,10 @@ export class AdminRequestsListContainerComponent implements OnInit, OnDestroy {
     this.facade.destroySubscriptions();
   }
 
+  handleDeleteRequest(requestId: string): void {
+    this.facade.deleteRequest(requestId);
+  }
+
   private initializeSubscriptions(): void {
     this.requests$ = this.facade.requests$();
   }

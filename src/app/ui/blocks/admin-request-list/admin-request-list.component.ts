@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormRequestModel } from 'src/app/core/models/form-requests.model';
 
@@ -11,6 +11,7 @@ import { FormRequestModel } from 'src/app/core/models/form-requests.model';
 })
 export class AdminRequestListComponent {
   @Input() requests: FormRequestModel[];
+  @Output() clickedDelete: EventEmitter<string> = new EventEmitter();
 
   constructor(
     private router: Router,
@@ -18,5 +19,9 @@ export class AdminRequestListComponent {
 
   handleToBack(): void {
     this.router.navigateByUrl('');
+  }
+
+  handleDeleteRequest(requestId: string): void {
+    this.clickedDelete.emit(requestId);
   }
 }

@@ -1,5 +1,8 @@
 <ng-container *ngIf="{
   requests: (requests$ | async)
 } as data">
-  <mr-admin-request-list [requests]="data.requests"></mr-admin-request-list>
+  <mr-admin-request-list
+    [requests]="data.requests"
+    (clickedDelete)="handleDeleteRequest($event)"
+  ></mr-admin-request-list>
 </ng-container>
