@@ -3,6 +3,12 @@
 .sliders {
   margin: styles.$box-mrg-base auto styles.$box-mrg-none;
   width: 90%;
+  cursor: pointer;
+
+  &__image {
+    width: 15rem;
+    height: 7rem;
+  }
 }
 
 .swiper-button-prev, .swiper-button-next {

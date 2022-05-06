@@ -9,8 +9,8 @@
   >
     <ng-container *ngFor="let slide of items; index as i">
       <ng-template swiperSlide>
-        <div class="slider">
-          <figure class="slide__image">
+        <div class="sliders" (click)="handleRedirect(slide.url)">
+          <figure class="sliders__image">
             <mr-image [image]="slide.image.url"></mr-image>
           </figure>
         </div>
