@@ -5,7 +5,7 @@
   gap: styles.$box-pad-base;
   align-items: center;
 
-  &__section, 
+  &__section,
   &__location,
   &__description,
   &__file {
@@ -32,17 +32,26 @@
   }
 }
 
+@media (max-width: styles.$bkp-mobile) {
+  .form-user {
+    &__button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
 @media (min-width: styles.$bkp-tablet) {
   .form-user {
     grid-template-columns: repeat(2, styles.$box-fr-base);
 
-    &__section, 
+    &__section,
     &__location,
     &__description {
       grid-template-columns: repeat(2, styles.$box-fr-base);
     }
 
-    
+
     &__location {
       grid-template-columns: styles.$box-fr-base;
     }

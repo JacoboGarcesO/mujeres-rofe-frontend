@@ -4,6 +4,7 @@ import { FormDetailComponent } from './form-detail.component';
 import { FormModule } from '../../forms/form/form.module';
 import { CardModule } from '../../elements/card/card.module';
 import { HomeBackgroundModule } from '../../elements/home-background/home-background.module';
+import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { HomeBackgroundModule } from '../../elements/home-background/home-backgr
     FormModule,
     CardModule,
     HomeBackgroundModule,
+    ButtonIconModule,
   ],
   exports: [
     FormDetailComponent,
