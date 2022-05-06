@@ -69,7 +69,7 @@ export class ToApiUsersMapper {
   }
 
   private getLocation(location: UserLocationModel, cities: OptionModel[]): any {
-    const cityName = cities.find((city) => city?.id === location?.city)?.label;    
+    const cityName = cities?.find((city) => city?.id === location?.city)?.label;    
     return { ...location, cityName };
   }
 }
