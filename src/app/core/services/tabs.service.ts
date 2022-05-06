@@ -14,6 +14,7 @@ export class TabsService {
       { label: 'Comunicados', icon: 'fas fa-newspaper', target: TabEnum.notices },
       { label: 'Formularios', icon: 'fas fa-align-left', target: TabEnum.forms },
       { label: 'Solicitudes', icon: 'fas fa-question', target: TabEnum.requests },
+      { label: 'Slides', icon: 'fab fa-slideshare', target: TabEnum.slides },
     ];
 
     return of(tabs);

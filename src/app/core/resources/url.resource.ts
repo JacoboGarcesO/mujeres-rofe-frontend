@@ -14,4 +14,5 @@ export const URL_RESOURCE = {
   deleteNotice: (noticeId: string) =>`${environment.apiUrl}/notices/${noticeId}`,
   deleteRequest: (requestId: string) =>`${environment.apiUrl}/requests/${requestId}`,
   userById: (userId: string) =>`${environment.apiUrl}/users/${userId}`,
+  slides: `${environment.apiUrl}/slides`,
 };

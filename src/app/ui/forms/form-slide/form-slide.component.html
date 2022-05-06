@@ -1,0 +1,32 @@
+<form class="form-slide" [formGroup]="form.formGroup">
+  <fieldset class="form-slide__section">
+    <mr-sub-form-input
+      [type]="'text'"
+      [label]="'Título*'"
+      [icon]="'fas fa-signature'"
+      [formControlName]="form.formControlNames.title"
+    ></mr-sub-form-input>
+
+    <mr-sub-form-input
+      [type]="'input'"
+      [label]="'Enlace*'"
+      [icon]="'fas fa-link'"
+      [formControlName]="form.formControlNames.url"
+    ></mr-sub-form-input>
+
+  </fieldset>
+  <fieldset class="form-slide__file">
+    <mr-sub-form-file
+      [label]="'Adjuntar imagen*'"
+      [canResetImage]="canResetForm"
+      [formControlName]="form.formControlNames.image"
+    ></mr-sub-form-file>
+
+    <mr-button
+      [label]="'Guardar'"
+      [display]="'block'"
+      [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
+      (clicked)="manualSave$.next()"
+    ></mr-button>
+  </fieldset>
+</form>

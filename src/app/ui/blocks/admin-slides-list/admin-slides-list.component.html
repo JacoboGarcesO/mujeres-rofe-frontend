@@ -1,0 +1,90 @@
+<div class="admin-users-list__head">
+  <mr-button
+    [display]="'inline'"
+    [icon]="'fas fa-plus'"
+    [label]="'Crear'"
+    (clicked)="modalRef.toggle()"
+  ></mr-button>
+</div>
+<mr-table
+  [headers]="[
+    ['', '0.5rem'],
+    ['Titulo', '17rem'],
+    ['Acciones', '3rem']
+  ]"
+  [items]="slides || []"
+  [itemTemplateRef]="userTemplate"
+></mr-table>
+
+<ng-template #userTemplate let-slide="item" let-index="index">
+  <td class="admin-users-list-tmpl__td">
+    <figure class="admin-users-list-tmpl__image">
+      <mr-image
+        [image]="slide?.image?.url"
+        [rounded]="'medium'"
+        [alt]="'icon-user'"
+      ></mr-image>
+    </figure>
+  </td>
+  <td class="admin-users-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="slide?.title"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-users-list-tmpl__td admin-users-list-tmpl__td--buttons">
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-pen'"
+      (clicked)="handleLoadSlide(slide?.id); modalUpdateRef.toggle()"
+    ></mr-button>
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-trash'"
+      (clicked)="modalDeleteRef.toggle(); setSlideId(slide.id)"
+    ></mr-button>
+  </td>
+</ng-template>
+
+<mr-modal #modalRef>
+  <ng-container>
+    <mr-form-slide
+      [canResetForm]="canResetForm"
+      (dataOutput)="handleSendForm($event)"
+    ></mr-form-slide>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalUpdateRef>
+  <ng-container>
+    <mr-form-slide
+      [dataInput]="slide"
+      [canResetForm]="canResetForm"
+      (dataOutput)="handleSendForm($event)"
+    ></mr-form-slide>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <mr-text
+      [text]="'¿Estás seguro de que deseas eliminar este slide?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+    <mr-button
+      class="admin-users-list__button"
+      [label]="'Eliminar'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteSlide()"
+    ></mr-button>
+  </ng-container>
+</mr-modal>
+
+<mr-button-icon
+  [icon]="'arrow-left'"
+  (clicked)="handleToBack()"
+  class="admin-users__back"
+></mr-button-icon>

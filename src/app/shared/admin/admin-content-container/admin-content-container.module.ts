@@ -6,6 +6,7 @@ import { AdminNoticesListContainerModule } from '../admin-notices-list-container
 import { AdminUsersListContainerModule } from '../admin-users-list-container/admin-users-list-container.module';
 import { AdminFormsListContainerModule } from '../admin-forms-list-container/admin-forms-list-container.module';
 import { AdminRequestsListContainerModule } from '../admin-requests-list-container/admin-requests-list-container.module';
+import { AdminSlidesListContainerModule } from '../admin-slides-list-container/admin-slides-list-container.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AdminRequestsListContainerModule } from '../admin-requests-list-contain
     AdminFormsListContainerModule,
     AdminUsersListContainerModule,
     AdminRequestsListContainerModule,
+    AdminSlidesListContainerModule,
   ],
   exports: [
     AdminContentContainerComponent,

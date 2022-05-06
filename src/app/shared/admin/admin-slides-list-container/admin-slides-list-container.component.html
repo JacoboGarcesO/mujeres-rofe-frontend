@@ -1,0 +1,14 @@
+<ng-container *ngIf="{
+  slides: slides$ | async,
+  canResetForm: canCloseModal$ | async,
+  slide: slide$ | async
+} as data">
+  <mr-admin-slides-list
+    [slides]="data.slides"
+    [slide]="data.slide"
+    [canResetForm]="data.canResetForm"
+    (sendForm)="handleSendForm($event)"
+    (loadSlide)="handledLoadSlide($event)"
+    (deleteSlide)="handleDeleteSlide($event)"
+  ></mr-admin-slides-list>
+</ng-container>

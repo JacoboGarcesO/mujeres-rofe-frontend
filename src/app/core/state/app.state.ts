@@ -8,6 +8,7 @@ import { NoticesState } from './notices.state';
 import { TabsState } from './tabs.state';
 import { ResourcesState } from './resources.state';
 import { FormRequestState } from './form-requests.state';
+import { SlidesSatate } from './slides.state';
 
 @Injectable({
   providedIn: 'root',
@@ -23,6 +24,7 @@ export class AppState {
     private tabsState: TabsState,
     private resourcesState: ResourcesState,
     private formRequestState: FormRequestState,
+    private slidesSatate: SlidesSatate,
   ) { }
 
   get users() { return this.usersState.store(); }
@@ -34,4 +36,5 @@ export class AppState {
   get tabs() { return this.tabsState.store(); }
   get resources() { return this.resourcesState.store(); }
   get formRequest() { return this.formRequestState.store(); }
+  get slides() { return this.slidesSatate.store(); }
 }
