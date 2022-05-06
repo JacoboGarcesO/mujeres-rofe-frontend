@@ -5,6 +5,7 @@ import { ImageModule } from '../../elements/image/image.module';
 import { HomeBackgroundModule } from '../../elements/home-background/home-background.module';
 import { TextModule } from '../../elements/text/text.module';
 import { CardModule } from '../../elements/card/card.module';
+import { SliderModule } from '../slider/slider.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { CardModule } from '../../elements/card/card.module';
     HomeBackgroundModule,
     TextModule,
     CardModule,
+    SliderModule,
   ],
   exports: [
     HomeContentComponent,

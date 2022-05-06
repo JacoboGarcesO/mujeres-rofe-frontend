@@ -1,8 +1,10 @@
 <ng-container *ngIf="{
-  currentUser: (currentUser$ | async) 
+  currentUser: (currentUser$ | async),
+  slides: (slides$ | async) 
 } as data">
   <mr-home-content
     [currentUser]="data.currentUser"
+    [slides]="data.slides"
   ></mr-home-content>
 </ng-container>
 

@@ -1,0 +1,19 @@
+@use '../../_styles/index.scss' as styles;
+
+.sliders {
+  margin: styles.$box-mrg-base auto styles.$box-mrg-none;
+  width: 90%;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  color: styles.$color-primary-color;
+}
+
+.swiper-pagination-bullet-active {
+  color: styles.$color-primary-color !important;
+  background-color: styles.$color-primary-color !important;
+}
+
+.swiper-pagination-bullet {
+  background-color: styles.$color-primary-color-alt !important;
+}
