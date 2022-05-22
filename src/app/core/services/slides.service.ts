@@ -20,7 +20,7 @@ export class SlidesService {
   getAll(): Observable<SlideModel[]> {
     const url = URL_RESOURCE.slides;
     return this.httpService.get(url).pipe(
-      map((response: any) => this.apiToSliderMapper.map(response)),
+      map((response: any) => this.apiToSliderMapper.map(response?.slides ?? [])),
     );
   }
 

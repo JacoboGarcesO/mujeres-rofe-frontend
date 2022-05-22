@@ -12,20 +12,7 @@
     </mr-card>
   </div>
 
-  <mr-slider [items]="slides"></mr-slider>
-
-  <div class="home-content__description">
-    <mr-card>
-      <ng-container>
-        <p>
-          Mujeres ROFÉ busca dar autosuficiencia e independencia económica a
-          mujeres cabeza de hogar, a través de su fortalecimiento personal y
-          transferencia de herramientas para que se desempeñen
-          satisfactoriamente en el entorno del emprendimiento.
-        </p>
-      </ng-container>
-    </mr-card>
-  </div>
+  <mr-slider *ngIf="slides" [items]="slides"></mr-slider>
 
   <div class="home-content__channels">
     <div
@@ -92,5 +79,18 @@
         [weight]="'bold'"
       ></mr-text>
     </div>
+  </div>
+
+  <div class="home-content__description">
+    <mr-card>
+      <ng-container>
+        <p>
+          Mujeres ROFÉ busca dar autosuficiencia e independencia económica a
+          mujeres cabeza de hogar, a través de su fortalecimiento personal y
+          transferencia de herramientas para que se desempeñen
+          satisfactoriamente en el entorno del emprendimiento.
+        </p>
+      </ng-container>
+    </mr-card>
   </div>
 </div>

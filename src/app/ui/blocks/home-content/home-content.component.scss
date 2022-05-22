@@ -1,6 +1,7 @@
 @use '../../_styles/index.scss' as styles;
 
 .home-content {
+  min-height: 100vh;
   position: relative;
   padding-top: styles.$box-pad-home-content;
   display: flex;
@@ -94,7 +95,6 @@
 
     &__description {
       width: 60%;
-      padding: styles.$box-pad-home-content-description styles.$box-pad-none;
     }
 
     &__logo {

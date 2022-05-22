@@ -1,7 +1,7 @@
 @use '../../_styles/index.scss' as styles;
 
 .form-detail {
-  padding-top: styles.$box-pad-home-content-dkp;
+  padding-top: styles.func-toRem(4);
   position: relative;
   display: flex;
   justify-content: center;
