@@ -39,6 +39,7 @@ export class AdminSlidesListContainerFacade {
   }
 
   loadSlides(): void {
+    this.destroySlides();
     this.subscriptions.add(
       this.service.getAll().pipe(
         tap(this.state.slides.slides.set.bind(this)),

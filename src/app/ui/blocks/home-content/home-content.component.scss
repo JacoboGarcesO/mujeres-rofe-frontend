@@ -29,7 +29,7 @@
     transition: styles.$animation-ease;
 
     &:hover {
-      transform: translateY(-5px) scale(1.05);
+      transform: translateY(-5px);
     }
 
     &--red {
@@ -67,7 +67,7 @@
     margin: 0 auto;
     width: 85%;
     text-align: center;
-    padding: styles.$box-pad-double styles.$box-pad-none;
+    padding: styles.$box-pad-base styles.$box-pad-none;
 
     p {
       color: styles.$color-primary-color !important;
@@ -86,8 +86,6 @@
 
 @media (min-width: styles.$bkp-tablet) {
   .home-content {
-    padding-top: styles.$box-pad-home-content-dkp;
-
     &__channels {
       display: flex;
       align-items: center;
