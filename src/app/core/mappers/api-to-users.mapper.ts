@@ -1,14 +1,30 @@
 import { Injectable } from '@angular/core';
-import { UserModel } from '../models/user.model';
+import { UserModel, UserPaginatedModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiToUsersMapper {
   map(response: any): UserModel[] {
-    if (!response?.users) { return []; }
+    if (!response?.users) {
+      return [];
+    }
 
     return response?.users?.map(this.getUser.bind(this));
+  }
+
+  mapPaginatedUsers(response: any): UserPaginatedModel {
+    if (!response?.users) {
+      return {
+        users: [],
+        total: 0,
+      };
+    }
+
+    return {
+      users: response?.users?.map(this.getUser.bind(this)),
+      total: response?.total,
+    };
   }
 
   getUser(user: any): UserModel {
@@ -54,6 +70,6 @@ export class ApiToUsersMapper {
   }
 
   private getSocialNetwork(socials: any[], social: string): string {
-    return socials.find((_)=> _.name === social)?.url;
+    return socials.find((_) => _.name === social)?.url;
   }
 }

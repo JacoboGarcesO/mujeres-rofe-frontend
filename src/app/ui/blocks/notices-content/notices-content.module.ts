@@ -9,6 +9,7 @@ import { ButtonIconModule } from '../../elements/button-icon/button-icon.module'
 import { ButtonModule } from '../../elements/button/button.module';
 import { TableModule } from '../table/table.module';
 import { NoticeInfoModule } from '../notice-info/notice-info.module';
+import { PaginationModule } from '../pagination/pagination.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { NoticeInfoModule } from '../notice-info/notice-info.module';
     ButtonModule,
     TableModule,
     NoticeInfoModule,
+    PaginationModule,
   ],
   exports: [
     NoticesContentComponent,

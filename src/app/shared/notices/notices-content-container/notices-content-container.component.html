@@ -8,5 +8,6 @@
     [notice]="data.notice"
     [channel]="data.channel"
     [users]="data.users"
+    (changePagePaginated)="loadUsers($event)"
   ></mr-notices-content>
 </ng-container>

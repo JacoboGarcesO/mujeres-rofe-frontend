@@ -4,7 +4,7 @@ import { Observable, of, Subscription, tap } from 'rxjs';
 import { toChannelEnum } from 'src/app/core/enums/channel.enum';
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { NoticeModel } from 'src/app/core/models/notice.model';
-import { UserModel } from 'src/app/core/models/user.model';
+import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
 import { NoticesService } from 'src/app/core/services/notices.service';
 import { UsersService } from 'src/app/core/services/users.service';
 import { AppState } from 'src/app/core/state/app.state';
@@ -33,8 +33,8 @@ export class NoticesContentContainerFacade {
     return of(channels.find((channel)=> channel.type === toChannelEnum(url[2])));
   }
 
-  users$(): Observable<UserModel[]> {
-    return this.state.users.users.$();
+  users$(): Observable<UserPaginatedModel> {
+    return this.state.users.paginatedUsers.$();
   }
   //#endregion
 
@@ -46,7 +46,7 @@ export class NoticesContentContainerFacade {
   destroySubscriptions(): void {
     this.subscriptions.unsubscribe();
   }
-  
+
   loadNotice(): void {
     const noticeId = this.location.path().split('/')[3];
 
@@ -61,9 +61,9 @@ export class NoticesContentContainerFacade {
     this.state.notices.notice.set(null);
   }
 
-  loadUsers(): void {
+  loadUsers(from: number): void {
     this.subscriptions.add(
-      this.usersService.getUsers().pipe(
+      this.usersService.getPaginatedUsers(from).pipe(
         tap(this.storeUsers.bind(this)),
       ).subscribe(),
     );
@@ -79,8 +79,8 @@ export class NoticesContentContainerFacade {
     this.state.notices.notice.set(notice);
   }
 
-  private storeUsers(users: UserModel[]): void {
-    this.state.users.users.set(users);
+  private storeUsers(users: UserPaginatedModel): void {
+    this.state.users.paginatedUsers.set(users);
   }
   //#endregion
 }

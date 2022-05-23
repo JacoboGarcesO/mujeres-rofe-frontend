@@ -24,7 +24,7 @@
   <mr-card class="notices-content__notice-container">
     <mr-notice-info [notice]="notice"></mr-notice-info>
 
-    <div 
+    <div
       *ngIf="notice?.showUsersList"
       class="notices-content__users-container"
     >
@@ -39,10 +39,10 @@
             ['Correo', '7rem'],
             ['Ver perfil', '2.5rem']
           ]"
-          [items]="users || []"
+          [items]="getUsers || []"
           [itemTemplateRef]="userTemplate"
         ></mr-table>
-  
+
         <ng-template #userTemplate let-user="item" let-index="index">
           <td class="notices-content-users-list__td">
             <figure class="notices-content-users-list__image">
@@ -107,6 +107,8 @@
           </td>
         </ng-template>
       </ng-container>
+
+      <mr-pagination [totalUsers]="totalPages" (changePagePaginated)="loadUsers($event)"></mr-pagination>
     </div>
   </mr-card>
 
