@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges, ChangeDetectorRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UserModel } from 'src/app/core/models/user.model';
+import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
 import { OptionModel } from '../../../core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
 import { Router } from '@angular/router';
@@ -15,7 +15,7 @@ export class AdminUsersListComponent implements OnChanges {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
   @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
-  @Input() users: UserModel[];
+  @Input() users: UserPaginatedModel;
   @Input() userToUpdate: UserModel;
   @Input() hobbies: OptionModel[];
   @Input() states: OptionModel[];
@@ -36,8 +36,11 @@ export class AdminUsersListComponent implements OnChanges {
   @Output() deleteUser: EventEmitter<string> = new EventEmitter();
   @Output() loadUserToUpdate: EventEmitter<string> = new EventEmitter();
   @Output() downloadUsers: EventEmitter<string> = new EventEmitter();
+  @Output() changePagePaginated: EventEmitter<number> = new EventEmitter();
   private currentUser: UserModel;
   private userId: string;
+  totalUsers = 0;
+  totalPages = 0;
 
   constructor(
     private cdRef: ChangeDetectorRef,
@@ -45,12 +48,23 @@ export class AdminUsersListComponent implements OnChanges {
   ) { }
 
   ngOnChanges(): void {
+    this.totalUsers = this.users?.total;
+    this.totalPages = Math.round(this.users?.total / 10);
+
     if (!this.canCloseModal) { return; }
 
     this.modalRef.close();
     this.modalDeleteRef.close();
     this.modalUpdateRef.close();
     this.cdRef.detectChanges();
+  }
+
+  get getUsers(): UserModel[] {
+    return this.users?.users;
+  }
+
+  handleLoadUsers(from: number): void {
+    this.changePagePaginated.emit(from);
   }
 
   handleCreateUser(user: UserModel): void {

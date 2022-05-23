@@ -15,10 +15,10 @@
   canCloseModal: (canCloseModal$ | async),
   userToUpdate: (userToUpdate$ | async)
 } as data">
-    <mr-admin-users-list 
+    <mr-admin-users-list
       [users]="data.users"
       [hobbies]="data.hobbies"
-      [cities]="data.cities" 
+      [cities]="data.cities"
       [states]="data.states"
       [documents]="data.documents"
       [education]="data.education"
@@ -37,5 +37,6 @@
       (loadUserToUpdate)="handleLoadUserToUpdate($event)"
       (updateUser)="handleUpdateUser($event)"
       (downloadUsers)="handleDownloadUsers()"
+      (changePagePaginated)="handleLoadUsers($event)"
     ></mr-admin-users-list>
 </ng-container>

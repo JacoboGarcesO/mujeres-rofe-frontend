@@ -5,7 +5,7 @@ import { AppState } from '../../../core/state/app.state';
 import { LocationsService } from '../../../core/services/locations.service';
 import { HobbiesService } from '../../../core/services/hobbies.service';
 import { OptionModel } from '../../../core/models/option.model';
-import { UserModel } from 'src/app/core/models/user.model';
+import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
 import { ResourcesService } from '../../../core/services/resources.service';
 import { ExcelService } from '../../../core/services/excel.service';
 
@@ -25,8 +25,8 @@ export class AdminUsersListContainerFacade {
   ) { }
 
   //#region Observables
-  users$(): Observable<UserModel[]> {
-    return this.state.users.users.$();
+  users$(): Observable<UserPaginatedModel> {
+    return this.state.users.paginatedUsers.$();
   }
 
   cities$(): Observable<OptionModel[]> {
@@ -95,7 +95,7 @@ export class AdminUsersListContainerFacade {
     this.subscriptions.unsubscribe();
   }
 
-  loadResources(): void {   
+  loadResources(): void {
     this.subscriptions.add(
       merge(
         this.resourcesService.getDocuments().pipe(
@@ -171,9 +171,9 @@ export class AdminUsersListContainerFacade {
     this.state.locations.cities.set(null);
   }
 
-  loadUsers(): void {
+  loadUsers(from: number): void {
     this.subscriptions.add(
-      this.usersService.getUsers().pipe(
+      this.usersService.getPaginatedUsers(from).pipe(
         tap(this.storeUsers.bind(this)),
       ).subscribe(),
     );
@@ -263,8 +263,8 @@ export class AdminUsersListContainerFacade {
     this.state.locations?.[entity].set(options);
   }
 
-  private storeUsers(users: UserModel[]): void {
-    this.state.users.users.set(users);
+  private storeUsers(users: UserPaginatedModel): void {
+    this.state.users.paginatedUsers.set(users);
   }
 
   private storeHobbies(hobbies: OptionModel[]): void {
