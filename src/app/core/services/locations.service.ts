@@ -28,4 +28,11 @@ export class LocationsService {
       map(({ cities }: any) => this.apiToOptionMapper.map(cities, '_id')),
     );
   }
+
+  getCities(): Observable<OptionModel[]> {
+    const url = URL_RESOURCE.getCities;
+    return this.httpService.post(url, '').pipe(
+      map(({ cities }: any) => this.apiToOptionMapper.map(cities, '_id')),
+    );
+  }
 }

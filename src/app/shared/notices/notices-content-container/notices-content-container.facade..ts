@@ -4,7 +4,9 @@ import { Observable, of, Subscription, tap } from 'rxjs';
 import { toChannelEnum } from 'src/app/core/enums/channel.enum';
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { NoticeModel } from 'src/app/core/models/notice.model';
+import { OptionModel } from 'src/app/core/models/option.model';
 import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
+import { LocationsService } from 'src/app/core/services/locations.service';
 import { NoticesService } from 'src/app/core/services/notices.service';
 import { UsersService } from 'src/app/core/services/users.service';
 import { AppState } from 'src/app/core/state/app.state';
@@ -19,6 +21,7 @@ export class NoticesContentContainerFacade {
     private state: AppState,
     private noticesService: NoticesService,
     private usersService: UsersService,
+    private locationsService: LocationsService,
     private location: Location,
   ) { }
 
@@ -35,6 +38,10 @@ export class NoticesContentContainerFacade {
 
   users$(): Observable<UserPaginatedModel> {
     return this.state.users.paginatedUsers.$();
+  }
+
+  cities$(): Observable<OptionModel[]> {
+    return this.state.locations.cities.$();
   }
   //#endregion
 
@@ -61,6 +68,18 @@ export class NoticesContentContainerFacade {
     this.state.notices.notice.set(null);
   }
 
+  loadCities(): void {
+    this.subscriptions.add(
+      this.locationsService.getCities().pipe(
+        tap(this.state.locations.cities.set.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyCities(): void {
+    this.state.locations.cities.set(null);
+  }
+
   loadUsers(from: number): void {
     this.subscriptions.add(
       this.usersService.getPaginatedUsers(from).pipe(
@@ -70,7 +89,23 @@ export class NoticesContentContainerFacade {
   }
 
   destroyUsers(): void {
-    this.state.users.users.set(null);
+    this.state.users.paginatedUsers.set(null);
+  }
+
+  loadUsersByCity(value: string): void {
+    this.subscriptions.add(
+      this.usersService.getUsersByCity(value).pipe(
+        tap(this.storeUsers.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  loadUsersByName(value: string): void {
+    this.subscriptions.add(
+      this.usersService.getUsersByName(value).pipe(
+        tap(this.storeUsers.bind(this)),
+      ).subscribe(),
+    );
   }
   //#endregion
 

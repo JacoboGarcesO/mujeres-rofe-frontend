@@ -4,6 +4,7 @@ import { ChannelModel } from 'src/app/core/models/channel.model';
 import { NoticeModel } from 'src/app/core/models/notice.model';
 import { Router } from '@angular/router';
 import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
+import { OptionModel } from 'src/app/core/models/option.model';
 
 @Component({
   selector: 'mr-notices-content',
@@ -16,7 +17,10 @@ export class NoticesContentComponent implements OnChanges {
   @Input() notice: NoticeModel;
   @Input() channel: ChannelModel;
   @Input() users: UserPaginatedModel;
+  @Input() cities: OptionModel;
   @Output() changePagePaginated: EventEmitter<number> = new EventEmitter();
+  @Output() filterByCity: EventEmitter<string> = new EventEmitter();
+  @Output() filterByName: EventEmitter<string> = new EventEmitter();
   totalUsers = 0;
   totalPages = 0;
 
@@ -45,7 +49,15 @@ export class NoticesContentComponent implements OnChanges {
     this.router.navigateByUrl(urlBack);
   }
 
-  loadUsers(from: number): void {
+  loadUsers(from: number): void {    
     this.changePagePaginated.emit(from);
+  }
+
+  handleCitiesFiler({value}: {value: string}): void {
+    this.filterByCity.emit(value);
+  }
+
+  handleNameFiler({value}: {value: string}): void {
+    this.filterByName.emit(value);
   }
 }

@@ -21,15 +21,17 @@ export class PaginationComponent implements OnChanges {
     this.totalPages = this.totalUsers;
     this.page = 1;
 
-    this.pagination.innerHTML = this.createPagination(
-      this.totalPages,
-      this.page,
-      true,
-    );
+    if(this.totalUsers) {
+      this.pagination.innerHTML = this.createPagination(
+        this.totalPages,
+        this.page,
+        true,
+      );
+    }
   }
 
   @HostListener('click', ['$event'])
-  validatePagination(event: any) {
+  validatePagination(event: any) {    
     if(event.path[0].id != 'pagination') {
       const button = event.path.find(
         (element: HTMLElement) => element.tagName === 'LI',

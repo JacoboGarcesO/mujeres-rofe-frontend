@@ -8,6 +8,12 @@ a {
   position: relative;
   padding-top: styles.$box-pad-home-content;
 
+  &__filters {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   &__background {
     position: absolute;
     z-index: styles.func-toNeg(3);

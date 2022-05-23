@@ -28,6 +28,15 @@
       *ngIf="notice?.showUsersList"
       class="notices-content__users-container"
     >
+      <div class="notices-content__filters">
+        <mr-form-users-filter
+          [options]="cities"
+          (formUpdate)="handleCitiesFiler($event)"
+        ></mr-form-users-filter>
+        <mr-form-users-search
+          (formUpdate)="handleNameFiler($event)"
+        ></mr-form-users-search>
+      </div>
       <ng-container>
         <mr-table
           [headers]="[

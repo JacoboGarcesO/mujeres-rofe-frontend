@@ -24,6 +24,20 @@ export class UsersService {
       .pipe(map((response) => this.apiToUsersMapper.map(response)));
   }
 
+  getUsersByCity(value: string): Observable<UserPaginatedModel> {
+    const url = URL_RESOURCE.usersByCity(value);
+    return this.httpService
+      .get(url)
+      .pipe(map((response) => this.apiToUsersMapper.mapPaginatedUsers(response)));
+  }
+
+  getUsersByName(value: string): Observable<UserPaginatedModel> {
+    const url = URL_RESOURCE.usersByName(value);
+    return this.httpService
+      .get(url)
+      .pipe(map((response) => this.apiToUsersMapper.mapPaginatedUsers(response)));
+  }
+
   getPaginatedUsers(from: number): Observable<UserPaginatedModel> {
     const url = URL_RESOURCE.paginatedUsers(from);
     return this.httpService

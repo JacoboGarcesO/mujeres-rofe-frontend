@@ -10,6 +10,8 @@ import { ButtonModule } from '../../elements/button/button.module';
 import { TableModule } from '../table/table.module';
 import { NoticeInfoModule } from '../notice-info/notice-info.module';
 import { PaginationModule } from '../pagination/pagination.module';
+import { FormUsersFilterModule } from '../../forms/form-users-filter/form-users-filter.module';
+import { FormUsersSearchModule } from '../../forms/form-users-search/form-users-search.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { PaginationModule } from '../pagination/pagination.module';
     TableModule,
     NoticeInfoModule,
     PaginationModule,
+    FormUsersFilterModule,
+    FormUsersSearchModule,
   ],
   exports: [
     NoticesContentComponent,

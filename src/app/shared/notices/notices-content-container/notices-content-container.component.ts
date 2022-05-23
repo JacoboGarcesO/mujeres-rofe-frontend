@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/
 import { Observable } from 'rxjs';
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { NoticeModel } from 'src/app/core/models/notice.model';
+import { OptionModel } from 'src/app/core/models/option.model';
 import { UserPaginatedModel } from 'src/app/core/models/user.model';
 import { NoticesContentContainerFacade } from './notices-content-container.facade.';
 
@@ -14,6 +15,7 @@ export class NoticesContentContainerComponent implements OnInit, OnDestroy {
   public notice$: Observable<NoticeModel>;
   public channel$: Observable<ChannelModel>;
   public users$: Observable<UserPaginatedModel>;
+  public cities$: Observable<OptionModel[]>;
 
   constructor(private facade: NoticesContentContainerFacade) { }
 
@@ -21,6 +23,7 @@ export class NoticesContentContainerComponent implements OnInit, OnDestroy {
     this.facade.initSubscriptions();
     this.facade.loadNotice();
     this.facade.loadUsers(0);
+    this.facade.loadCities();
     this.initializeSubscriptions();
   }
 
@@ -34,9 +37,18 @@ export class NoticesContentContainerComponent implements OnInit, OnDestroy {
     this.facade.loadUsers(from);
   }
 
+  handleFilterByCity(value: string): void {
+    this.facade.loadUsersByCity(value);
+  }
+
+  handleFilterByName(value: string): void {
+    this.facade.loadUsersByName(value);
+  }
+
   private initializeSubscriptions(): void {
     this.notice$ = this.facade.notice$();
     this.channel$ = this.facade.channel$();
     this.users$ = this.facade.users$();
+    this.cities$ = this.facade.cities$();
   }
 }

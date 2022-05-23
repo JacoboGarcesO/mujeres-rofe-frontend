@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 export const URL_RESOURCE = {
   userLogin: `${environment.apiUrl}/users/auth`,
   getStates: `${environment.apiUrl}/locations`,
+  getCities: `${environment.apiUrl}/locations/cities`,
   getCitiesByState: (stateId: string) => `${environment.apiUrl}/locations/${stateId}`,
   users: `${environment.apiUrl}/users`,
   paginatedUsers: (from: number) => `${environment.apiUrl}/users/paginated/${from}`,
@@ -17,4 +18,6 @@ export const URL_RESOURCE = {
   userById: (userId: string) => `${environment.apiUrl}/users/${userId}`,
   slides: `${environment.apiUrl}/slides`,
   forgotPassword: `${environment.apiUrl}/users/forgot-password`,
+  usersByCity: (city: string) => `${environment.apiUrl}/users/for-city/${city}`,
+  usersByName: (name: string) =>`${environment.apiUrl}/users/for-name/${name}`,
 };

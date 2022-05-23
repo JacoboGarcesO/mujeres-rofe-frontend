@@ -1,13 +1,17 @@
 <ng-container *ngIf="{
   notice: (notice$ | async),
   channel: (channel$ | async),
-  users: (users$ | async)
+  users: (users$ | async),
+  cities: (cities$ | async)
 } as data">
   <mr-notices-content
     *ngIf="data.notice"
     [notice]="data.notice"
     [channel]="data.channel"
     [users]="data.users"
+    [cities]="data.cities"
     (changePagePaginated)="loadUsers($event)"
+    (filterByCity)="handleFilterByCity($event)"
+    (filterByName)="handleFilterByName($event)"
   ></mr-notices-content>
 </ng-container>
