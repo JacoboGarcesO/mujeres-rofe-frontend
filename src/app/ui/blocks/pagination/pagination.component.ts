@@ -76,7 +76,7 @@ export class PaginationComponent implements OnChanges {
     let beforePage = page - 1;
     let afterPage = page + 1;
     if (page > 1) {
-      liTag += '<li class="btn prev" id="prev"><span><i class="fas fa-angle-left"></i> Prev</span></li>';
+      liTag += '<li class="btn prev" id="prev"><span><i class="fas fa-angle-left"></i></span></li>';
     }
 
     if (page > 2) {
@@ -120,7 +120,7 @@ export class PaginationComponent implements OnChanges {
     }
 
     if (page < totalPages) {
-      liTag += '<li class="btn next" id="next"><span>Next <i class="fas fa-angle-right"></i></span></li>';
+      liTag += '<li class="btn next" id="next"><span><i class="fas fa-angle-right"></i></span></li>';
     }
 
     this.pagination.innerHTML = liTag;
