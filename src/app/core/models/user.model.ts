@@ -13,8 +13,8 @@ export interface UserModel {
   image: MediaModel;
   description: string;
   location: UserLocationModel;
-  instagram: string; 
-  facebook: string; 
+  instagram: string;
+  facebook: string;
   hobbies: string[];
   phoneNumber: number;
   documentType: string,
@@ -32,4 +32,9 @@ export interface UserModel {
   sustaining: string[],
   documentImage: MediaModel,
   creationDate: Date;
+}
+
+export interface UserPaginatedModel {
+  users: UserModel[];
+  total: number;
 }

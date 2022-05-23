@@ -1,10 +1,75 @@
+@use "./app/ui/_styles/index.scss" as styles;
 @import "swiper/scss";
 @import "swiper/scss/navigation";
 @import "swiper/scss/pagination";
-
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.pagination {
+  position: relative;
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: styles.func-toRem(1);
+
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+    background: styles.$color-bg-white;
+    padding: styles.func-toRem(0.5);
+    border-radius: styles.func-toRem(3.125);
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  & li {
+    color: styles.$color-typo-light;
+    list-style: none;
+    line-height: styles.func-toRem(2.8125);
+    text-align: center;
+    font-size: styles.func-toRem(1.125);
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    @include styles.font-base;
+
+    &.numb {
+      list-style: none;
+      height: styles.func-toRem(2.8125);
+      width: styles.func-toRem(2.8125);
+      margin: styles.$box-mrg-none styles.func-toRem(0.1875);
+      line-height: styles.func-toRem(2.8125);
+      border-radius: 50%;
+
+      &.first {
+        margin: styles.$box-mrg-none styles.func-toRem(0.1875) 0 -5px;
+      }
+
+      &.last {
+        margin: styles.$box-mrg-none -5px 0 styles.func-toRem(0.1875);
+      }
+    }
+
+    &.dots {
+      font-size: styles.func-toRem(1.375);
+      cursor: default;
+    }
+
+    &.btn {
+      padding: styles.$box-pad-none styles.func-toRem(1.25);
+      border-radius: styles.func-toRem(3.125);
+    }
+
+    &.active,
+    &.numb:hover,
+    &:first-child:hover,
+    &:last-child:hover {
+      color: styles.$color-bg-white;
+      background: styles.$color-typo-light;
+    }
+  }
 }

@@ -4,41 +4,49 @@ import { ToApiUsersMapper } from '../mappers/to-api-users.mapper';
 import { ApiToUsersMapper } from '../mappers/api-to-users.mapper';
 import { URL_RESOURCE } from '../resources/url.resource';
 import { HttpService } from './generals/http.service';
-import { UserModel } from '../models/user.model';
+import { UserModel, UserPaginatedModel } from '../models/user.model';
 import { OptionModel } from '../models/option.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
-
   constructor(
     private httpService: HttpService,
     private toApiUsersMapper: ToApiUsersMapper,
     private apiToUsersMapper: ApiToUsersMapper,
-  ) { }
+  ) {}
 
   getUsers(): Observable<UserModel[]> {
-    const url =  URL_RESOURCE.users;
-    return this.httpService.get(url).pipe(    
-      map((response) => this.apiToUsersMapper.map(response)),
-    );
+    const url = URL_RESOURCE.users;
+    return this.httpService
+      .get(url)
+      .pipe(map((response) => this.apiToUsersMapper.map(response)));
+  }
+
+  getPaginatedUsers(from: number): Observable<UserPaginatedModel> {
+    const url = URL_RESOURCE.paginatedUsers(from);
+    return this.httpService
+      .get(url)
+      .pipe(
+        map((response) => this.apiToUsersMapper.mapPaginatedUsers(response)),
+      );
   }
 
   create(user: UserModel, cities: OptionModel[]): Observable<string> {
-    const url =  URL_RESOURCE.users;
+    const url = URL_RESOURCE.users;
     const formData = this.toApiUsersMapper.map(user, cities);
-    return this.httpService.postFile(url, formData).pipe(
-      map((response: any) => response?.users?.[0]?._id),
-    );
+    return this.httpService
+      .postFile(url, formData)
+      .pipe(map((response: any) => response?.users?.[0]?._id));
   }
 
   update(user: UserModel, cities: OptionModel[]): Observable<string> {
-    const url =  URL_RESOURCE.users;
+    const url = URL_RESOURCE.users;
     const formData = this.toApiUsersMapper.map(user, cities);
-    return this.httpService.putFile(url, formData).pipe(
-      map((response: any) => response?.users?.[0]?._id),
-    );
+    return this.httpService
+      .putFile(url, formData)
+      .pipe(map((response: any) => response?.users?.[0]?._id));
   }
 
   delete(userId: string): Observable<any> {
@@ -48,8 +56,12 @@ export class UsersService {
 
   getById(userId: string): Observable<UserModel> {
     const url = URL_RESOURCE.userById(userId);
-    return this.httpService.get(url).pipe(
-      map((response: any)=> this.apiToUsersMapper.getUser(response.users?.[0])),
-    );
+    return this.httpService
+      .get(url)
+      .pipe(
+        map((response: any) =>
+          this.apiToUsersMapper.getUser(response.users?.[0]),
+        ),
+      );
   }
 }
