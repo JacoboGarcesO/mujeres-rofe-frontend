@@ -56,7 +56,7 @@ export class ForgotPasswordContainerFacade {
     const messages = {
       init: 'Estamos procesando su solicitud',
       complete: '¡Revisa tu correo, allí encontrarás tus credenciales de ingreso!',
-      error: 'El proceso que solicitaste falló, inténtalo de nuevo más tarde',
+      error: 'El correo que ingresaste no está registrado',
     };
 
     this.state.notifications.notification.set(messages[key]);
