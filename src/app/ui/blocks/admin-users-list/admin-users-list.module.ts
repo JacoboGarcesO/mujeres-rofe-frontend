@@ -8,6 +8,7 @@ import { ImageModule } from '../../elements/image/image.module';
 import { ModalModule } from '../../elements/modal/modal.module';
 import { FormUserModule } from '../../forms/form-user/form-user.module';
 import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
+import { PaginationModule } from '../pagination/pagination.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ButtonIconModule } from '../../elements/button-icon/button-icon.module'
     ModalModule,
     FormUserModule,
     ButtonIconModule,
+    PaginationModule,
   ],
   exports: [
     AdminUsersListComponent,

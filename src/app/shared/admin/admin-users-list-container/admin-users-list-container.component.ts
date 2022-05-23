@@ -2,7 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/
 import { Observable } from 'rxjs';
 import { AdminUsersListContainerFacade } from './admin-users-list-container.facade';
 import { OptionModel } from '../../../core/models/option.model';
-import { UserModel } from 'src/app/core/models/user.model';
+import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'mr-admin-users-list-container',
@@ -10,7 +10,7 @@ import { UserModel } from 'src/app/core/models/user.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
-  public users$: Observable<UserModel[]>;
+  public users$: Observable<UserPaginatedModel>;
   public states$: Observable<OptionModel[]>;
   public cities$: Observable<OptionModel[]>;
   public hobbies$: Observable<OptionModel[]>;
@@ -30,9 +30,9 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.facade.initSubscriptions();
-    this.facade.loadUsers();
+    this.facade.loadUsers(0);
     this.facade.loadHobbies();
-    this.facade.loadStates();    
+    this.facade.loadStates();
     this.facade.loadResources();
     this.initializeSubscriptions();
   }
@@ -68,9 +68,13 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
   handleLoadUserToUpdate(userId: string): void {
     this.facade.loadUser(userId);
   }
-  
+
   handleDownloadUsers(): void {
     this.facade.downloadUsers();
+  }
+
+  handleLoadUsers(from: number): void {
+    this.facade.loadUsers(from);
   }
 
   private initializeSubscriptions(): void {
@@ -78,15 +82,15 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
     this.states$ = this.facade.states$();
     this.cities$ = this.facade.cities$();
     this.hobbies$ = this.facade.hobbies$();
-    this.documents$ = this.facade.documents$(); 
-    this.education$ = this.facade.education$(); 
-    this.ethnicGroups$ = this.facade.ethnicGroups$(); 
-    this.familyCore$ = this.facade.familyCore$(); 
-    this.familyIncome$ = this.facade.familyIncome$(); 
-    this.housingType$ = this.facade.housingType$(); 
-    this.maritalStatus$ = this.facade.maritalStatus$(); 
-    this.stratum$ = this.facade.stratum$(); 
-    this.sustenting$ = this.facade.sustenting$(); 
+    this.documents$ = this.facade.documents$();
+    this.education$ = this.facade.education$();
+    this.ethnicGroups$ = this.facade.ethnicGroups$();
+    this.familyCore$ = this.facade.familyCore$();
+    this.familyIncome$ = this.facade.familyIncome$();
+    this.housingType$ = this.facade.housingType$();
+    this.maritalStatus$ = this.facade.maritalStatus$();
+    this.stratum$ = this.facade.stratum$();
+    this.sustenting$ = this.facade.sustenting$();
     this.canCloseModal$ = this.facade.canCloseModal$();
     this.userToUpdate$ = this.facade.currentUserToUpdate$();
   }
