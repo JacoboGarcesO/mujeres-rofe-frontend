@@ -30,34 +30,36 @@ export class PaginationComponent implements OnChanges {
 
   @HostListener('click', ['$event'])
   validatePagination(event: any) {
-    const button = event.path.find(
-      (element: HTMLElement) => element.tagName === 'LI',
-    )?.id;
+    if(event.path[0].id != 'pagination') {
+      const button = event.path.find(
+        (element: HTMLElement) => element.tagName === 'LI',
+      )?.id;
 
-    if (button === 'prev') {
-      this.createPagination(this.totalPages, this.page - 1);
-    }
-    if (button === 'first') {
-      this.createPagination(this.totalPages, 1, true);
-    }
+      if (button === 'prev') {
+        this.createPagination(this.totalPages, this.page - 1);
+      }
+      if (button === 'first') {
+        this.createPagination(this.totalPages, 1, true);
+      }
 
-    if (
-      button !== 'prev' &&
-      button !== 'first' &&
-      button !== 'last' &&
-      button !== 'next'
-    ) {
-      const page = parseInt(
-        event.path.find((element: HTMLElement) => element.tagName === 'LI')?.id,
-      );
-      this.createPagination(this.totalPages, page);
-    }
+      if (
+        button !== 'prev' &&
+        button !== 'first' &&
+        button !== 'last' &&
+        button !== 'next'
+      ) {
+        const page = parseInt(
+          event.path.find((element: HTMLElement) => element.tagName === 'LI')?.id,
+        );
+        this.createPagination(this.totalPages, page);
+      }
 
-    if (button === 'last') {
-      this.createPagination(this.totalPages, this.totalPages);
-    }
-    if (button === 'next') {
-      this.createPagination(this.totalPages, this.page + 1);
+      if (button === 'last') {
+        this.createPagination(this.totalPages, this.totalPages);
+      }
+      if (button === 'next') {
+        this.createPagination(this.totalPages, this.page + 1);
+      }
     }
   }
 
