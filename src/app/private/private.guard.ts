@@ -19,7 +19,7 @@ export class PrivateGuard implements CanActivate {
   ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     return new Observable((observer: Observer<boolean>) => {
       this.appState.users.currentUser.$().subscribe((user) => {       
-        user?.id ? this.approvedVisit(observer) : this.rejectedVisit(observer);
+        user?.id ? this.approvedVisit(observer) : this.rejectedVisit(observer, state);
       });
     });
   }
@@ -29,8 +29,8 @@ export class PrivateGuard implements CanActivate {
     observer.complete();
   }
 
-  private rejectedVisit(observer: Observer<boolean>): void {
-    this.route.navigate(['/auth/login']);
+  private rejectedVisit(observer: Observer<boolean>, state: RouterStateSnapshot): void {
+    this.route.navigate(['/auth/login'], { queryParams: { returnUrl: state.url }});
     observer.next(false);
     observer.complete();
   }

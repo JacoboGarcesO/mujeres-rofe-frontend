@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
@@ -20,6 +20,7 @@ export class UserLoginContainerFacade {
     private service: CurrentUserService,
     private storageService: StorageService,
     private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   //#region Observables 
@@ -57,14 +58,17 @@ export class UserLoginContainerFacade {
   //#region Private methods
   private manageLogin(currentUser: CurrentUserModel): void {
     if (!currentUser?.user?.id) { return this.state.notifications.formNotification.set(currentUser?.message); }
-
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl(this.getRedirectUrl());
     this.state.users.currentUser.set(currentUser.user);
     this.storageService.set<UserModel>('CURRENT_USER', currentUser?.user);
     this.storageService.set<string>('TOKEN', currentUser?.token);
 
     // eslint-disable-next-line angular/timeout-service
     setTimeout(this.state.notifications.formNotification.set.bind(this, null), 3000);
+  }
+
+  private getRedirectUrl(): string {
+    return this.route.snapshot?.queryParams?.returnUrl ?? '/';
   }
   //#endregion
 }

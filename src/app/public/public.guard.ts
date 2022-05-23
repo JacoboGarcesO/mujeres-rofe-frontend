@@ -29,7 +29,7 @@ export class PublicGuard implements CanActivate {
     observer.complete();
   }
 
-  private rejectedVisit(observer: Observer<boolean>): void {
+  private rejectedVisit(observer: Observer<boolean>): void {    
     this.route.navigate(['/']);
     observer.next(false);
     observer.complete();

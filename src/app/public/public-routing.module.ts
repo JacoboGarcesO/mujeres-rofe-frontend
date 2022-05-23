@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PublicGuard } from './public.guard';
+// import { PublicGuard } from './public.guard';
 
 const routes: Routes = [
   {
     path: '',
-    canActivate: [PublicGuard],
+    // canActivate: [PublicGuard],
     loadChildren: () => import('./authentication/authentication.module')
       .then((module) => module.AuthenticationModule),
   },
