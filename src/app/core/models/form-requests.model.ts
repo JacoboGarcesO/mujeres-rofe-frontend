@@ -4,6 +4,7 @@ export interface FormRequestModel {
   id: string;
   title: string;
   subject: string;
+  creationDate: Date;
   fields: FormRequestFieldsModel[];
   template: string;
 }

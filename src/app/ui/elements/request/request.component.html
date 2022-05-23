@@ -1,7 +1,9 @@
 <div class="request">
   <i class="request__icon fas fa-trash" (click)="modalDeleteRef.toggle()"></i>
   <div class="request__title">
-    <mr-text [text]="request.title | capitalize" [weight]="'bold'"></mr-text><i class="fas fa-clock"></i>
+    <mr-text [text]="request.title | capitalize" [weight]="'bold'"></mr-text>
+    <i class="fas fa-clock"></i>
+    <mr-text [text]="request.creationDate | date" [weight]="'bold'"></mr-text>
   </div>
   <div class="request__fields">
     <div class="request__field" *ngFor="let field of request?.fields">

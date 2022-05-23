@@ -36,6 +36,7 @@ export class FormComponent {
       fields: new FormControl(null),
       //---
       id: new FormControl(null),
+      creationDate: new FormControl(null),
     },
   });
 }
