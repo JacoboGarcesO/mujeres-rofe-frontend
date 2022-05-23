@@ -1,41 +1,24 @@
-<p class="form-user-login__text">
-  ¡Bienvenida a la comunidad de Mujeres ROFÉ! <br />
-  Un espacio para crecer, aprender y emprender.
-</p>
-
+<mr-card class="form-user-login__text">
+  <p>
+    ¡Bienvenida a la comunidad de Mujeres ROFÉ! <br />
+    Un espacio para crecer, aprender y emprender.
+  </p>  
+</mr-card>
 <form class="form-user-login" [formGroup]="form.formGroup">
-  <mr-alert
-    *ngIf="formNotification"
-    [text]="formNotification"
-    [type]="notificationsEnum.warning"
-    [icon]="'fa-exclamation-triangle'"
-  ></mr-alert>
+  <mr-alert *ngIf="formNotification" [text]="formNotification" [type]="notificationsEnum.warning"
+    [icon]="'fa-exclamation-triangle'"></mr-alert>
   <fieldset class="form-user-login__section">
-    <mr-sub-form-input
-      [type]="'input'"
-      [label]="'Correo'"
-      [icon]="'fas fa-user'"
-      [placeholder]="'mujer@email.com'"
-      [formControlName]="form.formControlNames.email"
-    ></mr-sub-form-input>
+    <mr-sub-form-input [type]="'input'" [label]="'Correo'" [icon]="'fas fa-user'" [placeholder]="'mujer@email.com'"
+      [formControlName]="form.formControlNames.email"></mr-sub-form-input>
 
-    <mr-sub-form-input-login
-      [type]="'password'"
-      [label]="'Contraseña'"
-      [icon]="'fas fa-lock'"
-      [placeholder]="'**********'"
-      [formControlName]="form.formControlNames.password"
-    ></mr-sub-form-input-login>
+    <mr-sub-form-input-login [type]="'password'" [label]="'Contraseña'" [icon]="'fas fa-lock'"
+      [placeholder]="'**********'" [formControlName]="form.formControlNames.password"></mr-sub-form-input-login>
 
-    <mr-button
-      [label]="'Iniciar sesión'"
-      [display]="'block'"
-      [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
-      (clicked)="manualSave$.next()"
-    ></mr-button>
-
-    <a class="form-user-login__link" (click)="navigateToRegister()"
-      >Registrarse</a
-    >
+    <mr-button [label]="'Iniciar sesión'" [display]="'block'"
+      [isDisabled]="form.formGroup.invalid || form.formGroup.disabled" (clicked)="manualSave$.next()"></mr-button>
+    <div class="form-user-login__link">
+      <a (click)="navigateToForgotPassword()">Recordar contraseña</a>
+      <a (click)="navigateToRegister()">Registrarse</a>
+    </div>
   </fieldset>
 </form>

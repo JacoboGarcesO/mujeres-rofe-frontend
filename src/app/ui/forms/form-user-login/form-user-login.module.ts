@@ -7,6 +7,7 @@ import { ButtonModule } from '../../elements/button/button.module';
 import { TextModule } from '../../elements/text/text.module';
 import { AlertModule } from '../../elements/alert/alert.module';
 import { SubFormInputLoginModule } from '../sub-form-input-login/sub-form-input-login.module';
+import { CardModule } from '../../elements/card/card.module';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { SubFormInputLoginModule } from '../sub-form-input-login/sub-form-input-
     SubFormInputModule,
     SubFormInputLoginModule,
     ButtonModule,
+    CardModule,
     TextModule,
     AlertModule,
   ],

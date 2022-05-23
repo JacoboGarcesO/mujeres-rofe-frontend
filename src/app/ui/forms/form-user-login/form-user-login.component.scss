@@ -4,6 +4,7 @@
   padding: styles.$box-pad-onehalf;
   background-color: styles.$color-primary-color;
   border-radius: styles.$box-rad-large;
+  box-shadow: 0px 5px 32px rgba(9, 30, 66, 0.15);
 
   &__section {
     gap: styles.$box-pad-base;
@@ -20,13 +21,18 @@
     margin-bottom: styles.$box-mrg-onehalf;
     color: styles.$color-primary-color;
     text-align: center;
+    display: block;
+    margin-bottom: styles.$box-mrg-double;
   }
 
   &__link {
-    @include styles.font-base;
     display: flex;
-    justify-content: flex-end;
-    color: styles.$color-primary-color-light;
-    cursor: pointer;
+    justify-content: space-between;
+
+    & a {
+      @include styles.font-base;
+      color: styles.$color-primary-color-light;
+      cursor: pointer;
+    }
   }
 }

@@ -54,4 +54,8 @@ export class FormUserLoginComponent {
   navigateToRegister(): void {
     this.router.navigateByUrl('auth/register');
   }
+
+  navigateToForgotPassword(): void {
+    this.router.navigateByUrl('auth/forgot-password');
+  }
 }
