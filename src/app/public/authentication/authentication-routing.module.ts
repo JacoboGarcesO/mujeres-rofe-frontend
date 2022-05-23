@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ForgotPasswordContainerComponent } from 'src/app/shared/authentication/forgot-password-container/forgot-password-container.component';
 import { RegisterContainerComponent } from 'src/app/shared/authentication/register-container/register-container.component';
 import { UserLoginAsideContainerComponent } from 'src/app/shared/authentication/user-login-aside-container/user-login-aside-container.component';
 import { UserLoginFormContainerComponent } from 'src/app/shared/authentication/user-login-form-container/user-login-container-form.component';
@@ -22,6 +23,14 @@ const routes: Routes = [
     children: [
       { path: '', component: RequestNotificationsContainerComponent, outlet: 'notifications' },
       { path: '', component: RegisterContainerComponent },
+    ],
+  },
+  {
+    path: 'forgot-password',
+    component: LayoutRegisterComponent,
+    children: [
+      { path: '', component: RequestNotificationsContainerComponent, outlet: 'notifications' },
+      { path: '', component: ForgotPasswordContainerComponent },
     ],
   },
 ];

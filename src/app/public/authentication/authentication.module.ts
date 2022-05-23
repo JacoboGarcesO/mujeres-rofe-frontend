@@ -6,6 +6,7 @@ import { UserLoginAsideContainerModule } from 'src/app/shared/authentication/use
 import { LayoutRegisterModule } from 'src/app/ui/layouts/layout-register/layout-register.module';
 import { RequestNotificationsContainerModule } from 'src/app/shared/static/request-notifications-container/request-notifications-container.module';
 import { RegisterContainerModule } from 'src/app/shared/authentication/register-container/register-container.module';
+import { ForgotPasswordContainerModule } from 'src/app/shared/authentication/forgot-password-container/forgot-password-container.module';
 @NgModule({
   declarations: [],
   imports: [
@@ -16,6 +17,7 @@ import { RegisterContainerModule } from 'src/app/shared/authentication/register-
     LayoutRegisterModule,
     RequestNotificationsContainerModule,
     RegisterContainerModule,
+    ForgotPasswordContainerModule,
   ],
 })
 export class AuthenticationModule { }
