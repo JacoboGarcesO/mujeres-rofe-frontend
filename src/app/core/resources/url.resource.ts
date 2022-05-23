@@ -16,5 +16,5 @@ export const URL_RESOURCE = {
   deleteRequest: (requestId: string) => `${environment.apiUrl}/requests/${requestId}`,
   userById: (userId: string) => `${environment.apiUrl}/users/${userId}`,
   slides: `${environment.apiUrl}/slides`,
-  forgotPassword: `${environment.apiUrl}/forgot-password`,
+  forgotPassword: `${environment.apiUrl}/users/forgot-password`,
 };
