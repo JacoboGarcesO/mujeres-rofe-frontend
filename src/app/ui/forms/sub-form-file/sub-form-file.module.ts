@@ -15,7 +15,6 @@ import { PipesModule } from '../../pipes/pipes.module';
     CommonModule,
     ReactiveFormsModule,
     TextModule,
-    ButtonModule,
     ImageModule,
     PipesModule,
   ],

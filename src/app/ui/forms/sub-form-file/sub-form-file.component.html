@@ -1,11 +1,3 @@
-<figure *ngIf="isImage" class="sub-form-file__image">
-  <mr-image
-    [image]="(fileSelected || form.formGroup.controls.url.value) | noimage"
-    [alt]="fileSelected || 'file selected'"
-    [rounded]="'circle'"
-  ></mr-image>
-</figure>
-
 <div class="sub-form-file" [formGroup]="form.formGroup">
   <label
     class="sub-form-file__label"
@@ -13,18 +5,33 @@
   >
     <i  class="sub-form-file__icon fas fa-upload"></i>
     <div class="sub-form-file__text">
-      <mr-button
-        [label]="label"
-        [type]="'blank'"
-        (clicked)="inputRef.click(); toggleLabelFocus(true)"
-      ></mr-button>
+      <mr-text
+        class="sub-form-file__button"
+        [text]="label"
+        [size]="'small'"
+        [weight]="'bold'"
+        (click)="inputRef.click(); toggleLabelFocus(true)"
+      ></mr-text>
+      <input 
+        class="sub-form-file__input" 
+        [type]="'input'"
+        [value]="form.formGroup.value.file?.name"
+      >
       <input 
         #inputRef
-        class="sub-form-file__input" 
+        class="sub-form-file__handle" 
         [type]="'file'"
         [value]=""
         (input)="handleChange($event)"
       >
     </div>
   </label>
+
+  <figure *ngIf="isImage" class="sub-form-file__image">
+    <mr-image
+      [image]="(fileSelected || form.formGroup.controls.url.value) | noimage"
+      [alt]="fileSelected || 'file selected'"
+      [rounded]="'medium'"
+    ></mr-image>
+  </figure>
 </div>

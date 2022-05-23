@@ -50,9 +50,9 @@ export class SubFormFileComponent implements OnChanges {
         this.fileSelected = 'assets/img/pdf.svg';
         return;
       }
-
-      if (event.target.files[0].size == 2000000) {
-        this.fileSelected = 'assets/img/noimage.png';
+      
+      if (event.target.files[0].size > 2000000) {
+        this.fileSelected = 'assets/img/waiting.png';
         return;
       }
 
