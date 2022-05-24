@@ -1,44 +1,23 @@
 @use '../../_styles/index.scss' as styles;
 
-.swiper-slide {
-  flex-shrink: 0;
-  width: auto !important;
-  height: 100%;
-  position: relative;
-  transition-property: transform;
-}
-
 .sliders {
-  margin: styles.$box-mrg-base auto styles.$box-mrg-none;
-  width: 90%;
-  cursor: pointer;
-
-  &__card {
-    position: relative;
-    background: transparent;
-    width: 24rem;
-    height: 14rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 20px;
-  }
-
   &__image {
     width: 100%;
-    height: 100%;
   }
 }
 
 .swiper-button-prev, .swiper-button-next {
-  color: styles.$color-primary-color;
-}
-
-.swiper-pagination-bullet-active {
-  color: styles.$color-primary-color !important;
-  background-color: styles.$color-primary-color !important;
+  color: styles.$color-bg-white;
 }
 
 .swiper-pagination-bullet {
-  background-color: styles.$color-primary-color-alt !important;
+  background-color: styles.$color-bg-white !important;
+}
+
+@media (min-width: styles.$bkp-mobile) {
+  .swiper-slide {
+    margin-right: styles.$box-mrg-none !important;
+    cursor: pointer;
+    width: calc(100vw - 57rem) !important;
+  }
 }

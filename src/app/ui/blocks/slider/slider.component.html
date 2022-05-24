@@ -1,5 +1,27 @@
 <div class="sliders">
   <swiper
+    *ngIf="isMobile"
+    [slidesPerView]="1"
+    [spaceBetween]="50"
+    [virtual]="true"
+    [navigation]="true"
+    [pagination]="{ clickable: true }"
+    [scrollbar]="{ draggable: true }"
+    [autoplay]="true"
+  >
+    <ng-container *ngFor="let slide of items; index as i">
+      <ng-template swiperSlide>
+        <div class="sliders__card" (click)="handleRedirect(slide.url)">
+          <figure class="sliders__image">
+            <mr-image [image]="slide.image.url"></mr-image>
+          </figure>
+        </div>
+      </ng-template>
+    </ng-container>
+  </swiper>
+
+  <swiper
+    *ngIf="!isMobile"
     [slidesPerView]="3"
     [spaceBetween]="50"
     [virtual]="true"
