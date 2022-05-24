@@ -250,10 +250,8 @@ export class AdminUsersListContainerFacade {
   }
 
   downloadUsers(): void {
-    const users = this.state.users.users.snapshot();
-
     this.subscriptions.add(
-      this.excelService.exportUsersToExcel(users).subscribe(),
+      this.excelService.exportUsersToExcel().subscribe(),
     );
   }
   //#endregion
@@ -265,6 +263,10 @@ export class AdminUsersListContainerFacade {
 
   private storeUsers(users: UserPaginatedModel): void {
     this.state.users.paginatedUsers.set(users);
+  }
+
+  private storeUsersDownload(users: UserModel[]): void {
+    this.state.users.users.set(users);
   }
 
   private storeHobbies(hobbies: OptionModel[]): void {

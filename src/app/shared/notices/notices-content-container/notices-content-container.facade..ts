@@ -6,6 +6,7 @@ import { ChannelModel } from 'src/app/core/models/channel.model';
 import { NoticeModel } from 'src/app/core/models/notice.model';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
+import { HighlightedCitiesService } from 'src/app/core/services/highlighted-cities.service';
 import { LocationsService } from 'src/app/core/services/locations.service';
 import { NoticesService } from 'src/app/core/services/notices.service';
 import { UsersService } from 'src/app/core/services/users.service';
@@ -21,6 +22,7 @@ export class NoticesContentContainerFacade {
     private state: AppState,
     private noticesService: NoticesService,
     private usersService: UsersService,
+    private service: HighlightedCitiesService,
     private locationsService: LocationsService,
     private location: Location,
   ) { }
@@ -70,7 +72,7 @@ export class NoticesContentContainerFacade {
 
   loadCities(): void {
     this.subscriptions.add(
-      this.locationsService.getCities().pipe(
+      this.service.getAll().pipe(
         tap(this.state.locations.cities.set.bind(this)),
       ).subscribe(),
     );

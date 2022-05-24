@@ -13,6 +13,8 @@ export const URL_RESOURCE = {
   notices: `${environment.apiUrl}/notices`,
   requests: `${environment.apiUrl}/requests`,
   forms: `${environment.apiUrl}/form`,
+  highlightedCities: `${environment.apiUrl}/highlighted`,
+  deleteHighlightedCity: (cityId) => `${environment.apiUrl}/highlighted/${cityId}`,
   noticeById: (noticeId: string) => `${environment.apiUrl}/notices/${noticeId}`,
   noticesByChannel: (channel: string) => `${environment.apiUrl}/notices/channel/${channel}`,
   deleteNotice: (noticeId: string) => `${environment.apiUrl}/notices/${noticeId}`,

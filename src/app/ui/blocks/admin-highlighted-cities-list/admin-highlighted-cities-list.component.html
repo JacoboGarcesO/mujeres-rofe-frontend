@@ -1,0 +1,67 @@
+<div class="admin-notices-list__header">
+  <mr-button
+    [display]="'inline'"
+    [icon]="'fas fa-plus'"
+    [label]="'Crear'"
+    (clicked)="modalRef.toggle()"
+  ></mr-button>
+</div>
+
+<mr-table
+  [headers]="[
+    ['Ciudad', ''],
+    ['Acciones', '8rem']
+  ]"
+  [items]="highlightedCities || []"
+  [itemTemplateRef]="noticeTemplate"
+></mr-table>
+
+<ng-template #noticeTemplate let-city="item" let-index="index">
+  <td class="admin-notices-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="city?.label"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-notices-list-tmpl__td admin-notices-list-tmpl__td--buttons">
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-trash'"
+      (clicked)="modalDeleteRef.toggle(); setCityId(city.id)"
+    ></mr-button>
+  </td>
+</ng-template>
+
+<mr-modal #modalRef>
+  <ng-container>
+    <mr-form-highlighted-cities
+      [options]="cities"
+      (dataOutput)="handleCreateCity($event)"
+    ></mr-form-highlighted-cities>
+  </ng-container>
+</mr-modal>
+
+
+<mr-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <mr-text
+      [text]="'¿Estás seguro de que deseas eliminar esta ciudad??'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+    <mr-button
+      class="admin-notices-list__button"
+      [label]="'Eliminar'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteCity()"
+    ></mr-button>
+  </ng-container>
+</mr-modal>
+
+<mr-button-icon
+  [icon]="'arrow-left'"
+  (clicked)="handleToBack()"
+  class="admin-notices__back"
+></mr-button-icon>

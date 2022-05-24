@@ -22,7 +22,6 @@ export class AdminChannelsListContainerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.facade.destroyChannels();
     this.facade.destroyChannel();
     this.facade.destroyCanCloseModal();
     this.facade.destroySubscriptions();

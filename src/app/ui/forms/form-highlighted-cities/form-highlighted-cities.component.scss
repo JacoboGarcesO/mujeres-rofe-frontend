@@ -1,0 +1,7 @@
+@use '../../_styles/index.scss' as styles;
+
+.form-user-filter {
+  display: grid;
+  row-gap: styles.$box-pad-base;
+  align-items: center;
+}

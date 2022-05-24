@@ -6,7 +6,7 @@ import { UserModel } from '../models/user.model';
 })
 export class ExcelMapper {
   map(users: UserModel[]): any {
-    return users.map((user: UserModel) => this.getUser(user));
+    return users?.map((user: UserModel) => this.getUser(user));
   }
 
   private getUser(user: UserModel): any {

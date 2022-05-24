@@ -1,0 +1,13 @@
+<ng-container *ngIf="{
+  highlightedCities: (highlightedCities$ | async),
+  cities: (cities$ | async),
+  canCloseModal: (canCloseModal$ | async)
+} as data">
+  <mr-admin-highlighted-cities-list
+    [highlightedCities]="data.highlightedCities"
+    [cities]="data.cities"
+    [canCloseModal]="data.canCloseModal"
+    (createCity)="handleCreateHighlightedCity($event)"
+    (deleteCity)="handleDeleteHighlightedCities($event)"
+  ></mr-admin-highlighted-cities-list>
+</ng-container>

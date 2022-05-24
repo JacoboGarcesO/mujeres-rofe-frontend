@@ -9,6 +9,7 @@ import { StateFactory } from './factory.state';
 export class LocationsState {
   private states$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
   private cities$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
+  private highlightedCities$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) { }
 
@@ -16,6 +17,7 @@ export class LocationsState {
     return {
       cities: this.factory.state(this.cities$),
       states: this.factory.state(this.states$),
+      highlightedCities: this.factory.state(this.highlightedCities$),
     };
   }
 

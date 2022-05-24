@@ -24,6 +24,10 @@
 
     <mr-admin-slides-list-container
     *ngIf="tabs.active === tabEnum.slides"
-  ></mr-admin-slides-list-container>
+    ></mr-admin-slides-list-container>
+
+    <mr-admin-highlighted-cities-container
+    *ngIf="tabs.active === tabEnum.highlightedCities"
+    ></mr-admin-highlighted-cities-container>
   </mr-tabs>
 </ng-container>

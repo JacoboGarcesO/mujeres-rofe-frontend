@@ -8,6 +8,7 @@ import { AdminFormsListContainerModule } from '../admin-forms-list-container/adm
 import { AdminRequestsListContainerModule } from '../admin-requests-list-container/admin-requests-list-container.module';
 import { AdminSlidesListContainerModule } from '../admin-slides-list-container/admin-slides-list-container.module';
 import { AdminChannelsListContainerModule } from '../admin-channels-list-container/admin-channels-list-container.module';
+import { AdminHighlightedCitiesContainerModule } from '../admin-highlighted-cities-container/admin-highlighted-cities-container.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { AdminChannelsListContainerModule } from '../admin-channels-list-contain
     AdminUsersListContainerModule,
     AdminRequestsListContainerModule,
     AdminSlidesListContainerModule,
+    AdminHighlightedCitiesContainerModule,
     AdminChannelsListContainerModule,
   ],
   exports: [

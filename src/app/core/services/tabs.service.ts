@@ -16,6 +16,7 @@ export class TabsService {
       { label: 'Formularios', icon: 'fas fa-align-left', target: TabEnum.forms },
       { label: 'Solicitudes', icon: 'fas fa-question', target: TabEnum.requests },
       { label: 'Slides', icon: 'fab fa-slideshare', target: TabEnum.slides },
+      { label: 'Ciudades', icon: 'fab fa-slideshare', target: TabEnum.highlightedCities },
     ];
 
     return of(tabs);
