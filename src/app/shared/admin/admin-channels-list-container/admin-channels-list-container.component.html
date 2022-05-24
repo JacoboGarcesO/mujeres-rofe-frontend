@@ -1,0 +1,15 @@
+<ng-container *ngIf="{
+  channels: (channels$ | async),
+  canCloseModal: (canCloseModal$ | async),
+  channelToUpdate: (channelToUpdate$ | async)
+} as data">
+  <mr-admin-channels-list
+    [channels]="data.channels"
+    [canCloseModal]="data.canCloseModal"
+    [channelToUpdate]="data.channelToUpdate"
+    (createChannel)="handleCreateChannel($event)"
+    (deleteChannel)="handleDeleteChannel($event)"
+    (loadChannelToUpdate)="handleLoadChannelToUpdate($event)"
+    (updateChannel)="handleUpdateChannel($event)"
+  ></mr-admin-channels-list>
+</ng-container>

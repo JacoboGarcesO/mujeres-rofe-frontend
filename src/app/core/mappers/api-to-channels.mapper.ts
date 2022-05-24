@@ -29,6 +29,7 @@ export class ApiToChannelsMapper {
       },
       type: toChannelEnum(channel?.type),
       link: channel?.link,
+      order: channel?.order,
     };
   }
 }

@@ -1,0 +1,101 @@
+<div class="admin-channels-list__header">
+  <mr-button
+    [display]="'inline'"
+    [icon]="'fas fa-plus'"
+    [label]="'Crear'"
+    (clicked)="modalRef.toggle()"
+  ></mr-button>
+</div>
+
+<mr-table
+  [headers]="[
+    ['', '0.5rem'],
+    ['Nombre', '7rem'],
+    ['Descripción', '10rem'],
+    ['Acciones', '3rem']
+  ]"
+  [items]="channels || []"
+  [itemTemplateRef]="channelTemplate"
+></mr-table>
+
+<ng-template #channelTemplate let-channel="item" let-index="index">
+  <td class="admin-channels-list-tmpl__td">
+    <figure class="admin-channels-list-tmpl__image">
+      <mr-image
+        [image]="channel?.icon?.url"
+        [rounded]="'circle'"
+        [alt]="'icon-channel'"
+      ></mr-image>
+    </figure>
+  </td>
+  <td class="admin-channels-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="channel?.name"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-channels-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="channel?.description"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-channels-list-tmpl__td admin-channels-list-tmpl__td--buttons">
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-pen'"
+      (clicked)="handleLoadChannelToUpdate(channel.id); modalUpdateRef.toggle()"
+    ></mr-button>
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-trash'"
+      (clicked)="modalDeleteRef.toggle(); setChannelId(channel.id)"
+    ></mr-button>
+  </td>
+</ng-template>
+
+<mr-modal #modalRef>
+  <ng-container>
+    <mr-form-channel
+      [canResetForm]="canCloseModal"
+      (dataOutput)="handleCreateChannel($event)"
+    ></mr-form-channel>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalUpdateRef>
+  <ng-container>
+    <mr-form-channel
+      [dataInput]="channelToUpdate"
+      [canResetForm]="canCloseModal"
+      (dataOutput)="handleUpdateChannel($event)"
+    ></mr-form-channel>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <mr-text
+      [text]="'¿Estás seguro de que deseas eliminar este comunicado?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+    <mr-button
+      class="admin-channels-list__button"
+      [label]="'Eliminar'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteChannel()"
+    ></mr-button>
+  </ng-container>
+</mr-modal>
+
+<mr-button-icon
+  [icon]="'arrow-left'"
+  (clicked)="handleToBack()"
+  class="admin-channels__back"
+></mr-button-icon>

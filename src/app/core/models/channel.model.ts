@@ -9,4 +9,5 @@ export interface ChannelModel {
   name: string;
   link: string;
   description?: string;
+  order: string;
 }

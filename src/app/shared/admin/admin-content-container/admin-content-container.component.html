@@ -2,11 +2,15 @@
   tabs: (tabs$ | async)
 } as data">
   <mr-tabs #tabs [items]="data.tabs">
-    <mr-admin-notices-list-container 
+    <mr-admin-notices-list-container
       *ngIf="tabs.active === tabEnum.notices"
     ></mr-admin-notices-list-container>
 
-    <mr-admin-users-list-container 
+    <mr-admin-channels-list-container
+      *ngIf="tabs.active === tabEnum.channels"
+    ></mr-admin-channels-list-container>
+
+    <mr-admin-users-list-container
       *ngIf="tabs.active === tabEnum.users"
     ></mr-admin-users-list-container>
 

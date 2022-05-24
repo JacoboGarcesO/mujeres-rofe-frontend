@@ -9,6 +9,7 @@ export const URL_RESOURCE = {
   paginatedUsers: (from: number) => `${environment.apiUrl}/users/paginated/${from}`,
   deleteUser: (userId: string) => `${environment.apiUrl}/users/${userId}`,
   channels: `${environment.apiUrl}/channels`,
+  deleteChannel: (channelId: string) => `${environment.apiUrl}/channels/${channelId}`,
   notices: `${environment.apiUrl}/notices`,
   requests: `${environment.apiUrl}/requests`,
   forms: `${environment.apiUrl}/form`,

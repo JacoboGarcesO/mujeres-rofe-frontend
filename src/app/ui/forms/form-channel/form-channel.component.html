@@ -1,0 +1,60 @@
+<form class="form-channel" [formGroup]="form.formGroup">
+  <fieldset class="form-channel__section">
+    <mr-sub-form-input
+      [type]="'input'"
+      [label]="'Nombre'"
+      [icon]="'fas fa-file-signature'"
+      [formControlName]="form.formControlNames.name"
+    ></mr-sub-form-input>
+
+    <mr-sub-form-input
+      [type]="'number'"
+      [label]="'Orden'"
+      [icon]="'fas fa-sort'"
+      [formControlName]="form.formControlNames.order"
+    ></mr-sub-form-input>
+  </fieldset>
+
+  <fieldset class="form-channel__section">
+    <mr-sub-form-input
+      [type]="'input'"
+      [label]="'Tipo'"
+      [icon]="'fas fa-file-signature'"
+      [formControlName]="form.formControlNames.type"
+    ></mr-sub-form-input>
+
+    <mr-sub-form-input
+      [type]="'input'"
+      [label]="'Link'"
+      [icon]="'fas fa-sort'"
+      [formControlName]="form.formControlNames.link"
+    ></mr-sub-form-input>
+  </fieldset>
+
+  <fieldset class="form-channel__description">
+    <mr-sub-form-textarea
+      [text]="'Descripción'"
+      [formControlName]="form.formControlNames.description"
+    ></mr-sub-form-textarea>
+  </fieldset>
+
+  <fieldset class="form-channel__file">
+    <mr-sub-form-file
+      [label]="'Adjuntar icono'"
+      [canResetImage]="canResetForm"
+      [formControlName]="form.formControlNames.icon"
+    ></mr-sub-form-file>
+
+    <mr-sub-form-file
+      [label]="'Adjuntar banner'"
+      [canResetImage]="canResetForm"
+      [formControlName]="form.formControlNames.banner"
+    ></mr-sub-form-file>
+  </fieldset>
+
+  <mr-button
+    [label]="'Guardar'"
+    [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
+    (clicked)="manualSave$.next()"
+  ></mr-button>
+</form>

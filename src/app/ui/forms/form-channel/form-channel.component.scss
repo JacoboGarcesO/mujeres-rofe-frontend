@@ -1,0 +1,30 @@
+@use '../../_styles/index.scss' as styles;
+
+.form-channel {
+  display: grid;
+  gap: styles.$box-pad-base;
+  align-items: center;
+
+  &__section,
+  &__description,
+  &__file {
+    gap: styles.$box-pad-base;
+    display: grid;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+
+  &__file {
+    row-gap: styles.$box-pad-base;
+  }
+}
+
+@media (min-width: styles.$bkp-tablet) {
+  .form-channel {
+    &__section {
+      grid-template-columns: repeat(2, styles.$box-fr-base);
+    }
+  }
+}

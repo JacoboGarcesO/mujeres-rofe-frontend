@@ -1,11 +1,9 @@
 import { Injectable } from '@angular/core';
 import { catchError, EMPTY, finalize, Observable, Subscription, tap } from 'rxjs';
-import { FormRequestModel } from 'src/app/core/models/form-requests.model';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { ChannelsOptionsService } from 'src/app/core/services/channels-options.service';
 import { FormRequestsService } from 'src/app/core/services/form-requests.service';
 import { NoticesService } from 'src/app/core/services/notices.service';
-import { ResourcesService } from 'src/app/core/services/resources.service';
 import { AppState } from 'src/app/core/state/app.state';
 import { NoticeModel } from '../../../core/models/notice.model';
 
@@ -153,12 +151,12 @@ export class AdminNoticesListContainerFacade {
         catchError(this.notify.bind(this, 'error', null)),
         finalize(this.notifyClose.bind(this)),
       ).subscribe(),
-    );    
+    );
   }
   //#endregion
 
   //#region Private Methods
-  private storeNotices(notices: NoticeModel[]): void {   
+  private storeNotices(notices: NoticeModel[]): void {
     this.state.notices.notices.set(notices);
   }
 
