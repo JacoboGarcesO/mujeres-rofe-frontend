@@ -12,11 +12,7 @@
         [weight]="'bold'"
         (click)="inputRef.click(); toggleLabelFocus(true)"
       ></mr-text>
-      <input 
-        class="sub-form-file__input" 
-        [type]="'input'"
-        [value]="form.formGroup.value.file?.name"
-      >
+      <mr-text [text]="form.formGroup.value.file?.name"></mr-text>
       <input 
         #inputRef
         class="sub-form-file__handle" 

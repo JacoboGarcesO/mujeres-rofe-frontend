@@ -1,6 +1,9 @@
 @use '../../_styles/index.scss' as styles;
 
 .sliders {
+  width: 90%;
+  margin: styles.$box-mrg-base auto 0;
+
   &__image {
     width: 100%;
   }
@@ -16,8 +19,8 @@
 
 @media (min-width: styles.$bkp-mobile) {
   .swiper-slide {
-    margin-right: styles.$box-mrg-none !important;
+    margin-right: styles.$box-mrg-base !important;
     cursor: pointer;
-    width: calc(100vw - 57rem) !important;
+    width: calc(100vw - 60.5rem) !important;
   }
 }
