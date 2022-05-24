@@ -11,6 +11,9 @@
     [label]="'Descargar'"
     (clicked)="handleDownloadUsers()"
   ></mr-button>
+  <mr-form-users-search
+    (formUpdate)="handleNameFiler($event)"
+  ></mr-form-users-search>
 </div>
 <mr-table
   [headers]="[

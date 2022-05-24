@@ -77,6 +77,10 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
     this.facade.loadUsers(from);
   }
 
+  handleFilterByName(value: string): void {
+    this.facade.loadUsersByName(value);
+  }
+
   private initializeSubscriptions(): void {
     this.users$ = this.facade.users$();
     this.states$ = this.facade.states$();

@@ -9,6 +9,7 @@ import { ModalModule } from '../../elements/modal/modal.module';
 import { FormUserModule } from '../../forms/form-user/form-user.module';
 import { ButtonIconModule } from '../../elements/button-icon/button-icon.module';
 import { PaginationModule } from '../pagination/pagination.module';
+import { FormUsersSearchModule } from '../../forms/form-users-search/form-users-search.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { PaginationModule } from '../pagination/pagination.module';
     FormUserModule,
     ButtonIconModule,
     PaginationModule,
+    FormUsersSearchModule,
   ],
   exports: [
     AdminUsersListComponent,

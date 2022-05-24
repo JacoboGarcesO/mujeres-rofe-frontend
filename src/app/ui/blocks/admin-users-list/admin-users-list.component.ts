@@ -37,6 +37,7 @@ export class AdminUsersListComponent implements OnChanges {
   @Output() loadUserToUpdate: EventEmitter<string> = new EventEmitter();
   @Output() downloadUsers: EventEmitter<string> = new EventEmitter();
   @Output() changePagePaginated: EventEmitter<number> = new EventEmitter();
+  @Output() filterByName: EventEmitter<string> = new EventEmitter();
   private currentUser: UserModel;
   private userId: string;
   totalUsers = 0;
@@ -85,6 +86,10 @@ export class AdminUsersListComponent implements OnChanges {
     }
 
     this.currentUser = { ...formUpdate };
+  }
+
+  handleNameFiler({value}: {value: string}): void {
+    this.filterByName.emit(value);
   }
 
   setUserId(userId: string): void {

@@ -180,7 +180,7 @@ export class AdminUsersListContainerFacade {
   }
 
   destroyUsers(): void {
-    this.state.users.users.set(null);
+    this.state.users.paginatedUsers.set(null);
   }
 
   loadUser(userId: string): void {
@@ -252,6 +252,14 @@ export class AdminUsersListContainerFacade {
   downloadUsers(): void {
     this.subscriptions.add(
       this.excelService.exportUsersToExcel().subscribe(),
+    );
+  }
+
+  loadUsersByName(value: string): void {
+    this.subscriptions.add(
+      this.usersService.getUsersByName(value).pipe(
+        tap(this.storeUsers.bind(this)),
+      ).subscribe(),
     );
   }
   //#endregion
