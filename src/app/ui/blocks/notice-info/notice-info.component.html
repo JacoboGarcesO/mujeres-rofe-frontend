@@ -58,6 +58,7 @@
     <a
       class="notices-content__download"
       [href]="notice?.content?.url" 
+      target="_blank"
       download="download" 
       *ngIf="notice?.content?.type === 'pdf'">
       <mr-text
@@ -130,7 +131,8 @@
       <a 
         class="notices-content__download"
         [href]="notice?.content?.url" 
-        download="download" 
+        download="download"
+        target="_blank"
         *ngIf="notice?.content?.type === 'pdf'">
         <mr-text
           [text]="'Descargar'"

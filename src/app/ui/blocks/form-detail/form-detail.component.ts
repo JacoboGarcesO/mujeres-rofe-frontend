@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormRequestModel } from 'src/app/core/models/form-requests.model';
 
 @Component({
@@ -13,13 +14,13 @@ export class FormDetailComponent {
   @Input() form: FormRequestModel;
   @Output() sendform: EventEmitter<FormRequestModel> = new EventEmitter();
 
-  constructor(private location: Location) { }
+  constructor(private router: Router) { }
 
   handleSendForm(form: FormRequestModel): void {
     this.sendform.emit(form);
   }
 
-  handleGoBack(): void {
-    this.location.back();
+  handleToBack(): void {
+    this.router.navigateByUrl('/');
   }
 }

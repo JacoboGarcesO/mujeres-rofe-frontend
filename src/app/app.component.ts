@@ -19,7 +19,9 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeUser();
-    this.jacoboGay();
+    if (this.appState.users.currentUser.snapshot()?.id) {
+      this.jacoboGay();
+    }
   }
 
   private initializeUser(): void {
