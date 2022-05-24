@@ -76,11 +76,22 @@
   }
 
   &__welcome {
+    position: fixed;
+    top: -15px;
+    left: styles.func-toRem(4.375);
+    width: auto;
     text-align: center;
     padding: styles.$box-pad-base styles.$box-pad-none;
+    visibility: hidden;
+    opacity: 0;
+    z-index: styles.$box-z-13;
+
+    .card {
+      background: transparent !important;
+    }
 
     .text{
-      color: styles.$color-typo-base !important;
+      color: styles.$color-bg-white !important;
     }
   }
 }
@@ -99,6 +110,11 @@
 
     &__logo {
       height: styles.$box-hht-home-content-logo-tbl
+    }
+
+    &__welcome {
+      visibility: visible;
+      opacity: 1;
     }
   }
 }
