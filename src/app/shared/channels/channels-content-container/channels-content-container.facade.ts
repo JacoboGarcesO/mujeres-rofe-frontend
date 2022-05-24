@@ -32,7 +32,8 @@ export class ChannelsContentContainerFacade {
   channel$(): Observable<ChannelModel> {
     const url = this.location.path().split('/');
     const channels = this.state.channels.channels.snapshot();
-    return of(channels.find((channel)=> channel.type === toChannelEnum(url[2])));
+
+    return of(channels?.find((channel)=> channel?.type === toChannelEnum(url[2])));
   }
 
   notices$(): Observable<NoticeModel[]> {
@@ -48,7 +49,7 @@ export class ChannelsContentContainerFacade {
   destroySubscriptions(): void {
     this.subscriptions.unsubscribe();
   }
-  
+
   loadChannels(): void {
     this.subscriptions.add(
       this.channelsService.getChannels().pipe(

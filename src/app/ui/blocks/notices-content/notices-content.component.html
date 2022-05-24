@@ -1,12 +1,12 @@
 <div class="notices-content">
   <mr-channels-background
     class="notices-content__background"
-    [bannerImage]="channel?.banner"
+    [bannerImage]="channel?.banner?.url"
   ></mr-channels-background>
 
   <div class="notices-content__info">
     <figure class="notices-content__image">
-      <mr-image [image]="channel?.icon" [alt]="'bg-notices'"></mr-image>
+      <mr-image [image]="channel?.icon?.url" [alt]="'bg-notices'"></mr-image>
     </figure>
 
     <div class="notices-content__text">

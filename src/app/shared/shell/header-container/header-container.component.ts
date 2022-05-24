@@ -15,15 +15,13 @@ export class HeaderContainerComponent implements OnInit, OnDestroy {
   public channel$: Observable<ChannelModel>;
 
   constructor(private facade: HeaderContainerFacade) { }
-  
+
   ngOnInit(): void {
     this.facade.initSubscriptions();
-    this.facade.loadChannels();
     this.initializeSubscriptions();
   }
-  
+
   ngOnDestroy(): void {
-    this.facade.destroyChannels();
     this.facade.destroySubscriptions();
   }
 

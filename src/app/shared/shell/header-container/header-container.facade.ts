@@ -23,7 +23,7 @@ export class HeaderContainerFacade {
     private router: Router,
   ) { }
 
-  //#region Observables 
+  //#region Observables
   currentUser$(): Observable<UserModel> {
     return this.state.users.currentUser.$();
   }
@@ -35,7 +35,8 @@ export class HeaderContainerFacade {
   channel$(): Observable<ChannelModel> {
     const url = this.location.path().split('/');
     const channels = this.state.channels.channels.snapshot();
-    return of(channels.find((channel)=> channel.type === toChannelEnum(url[2])));
+
+    return of(channels?.find((channel)=> channel?.type === toChannelEnum(url[2])));
   }
   //#endregion
 
@@ -53,23 +54,7 @@ export class HeaderContainerFacade {
   destroySubscriptions(): void {
     this.subscriptions.unsubscribe();
   }
-  
-  loadChannels(): void {
-    this.subscriptions.add(
-      this.channelsService.getChannels().pipe(
-        tap(this.storeChannels.bind(this)),
-      ).subscribe(),
-    );
-  }
-
-  destroyChannels(): void {
-    this.state.hobbies.hobbies.set(null);
-  }
   //#endregion
 
-  //#region Private methods
-  private storeChannels(channels: ChannelModel[]): void {
-    this.state.channels.channels.set(channels);
-  }
   //#endregion
 }

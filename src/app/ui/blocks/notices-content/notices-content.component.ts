@@ -49,7 +49,7 @@ export class NoticesContentComponent implements OnChanges {
     this.router.navigateByUrl(urlBack);
   }
 
-  loadUsers(from: number): void {    
+  loadUsers(from: number): void {
     this.changePagePaginated.emit(from);
   }
 
