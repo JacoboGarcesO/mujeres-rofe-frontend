@@ -1,13 +1,32 @@
 @use '../../_styles/index.scss' as styles;
 
+.swiper-slide {
+  flex-shrink: 0;
+  width: auto !important;
+  height: 100%;
+  position: relative;
+  transition-property: transform;
+}
+
 .sliders {
   margin: styles.$box-mrg-base auto styles.$box-mrg-none;
   width: 90%;
   cursor: pointer;
 
-  &__image {
+  &__card {
+    position: relative;
+    background: transparent;
     width: 24rem;
     height: 14rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
   }
 }
 
