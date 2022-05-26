@@ -1,0 +1,13 @@
+<label
+  class="subform-checkbox__label"
+  tabindex="0"
+  [formGroup]="form.formGroup"
+  (keydown.space)="handleKeydown($event.target)"
+>
+  <input class="subform-checkbox__input" type="checkbox" name="value" [formControlName]="form.formControlNames.value">
+  <span class="subform-checkbox__mask"></span>
+  <span class="subform-checkbox__text">
+    <mr-text [size]="'small'" [text]="label"></mr-text>
+    <ng-content select="[label]"></ng-content>
+  </span>
+</label>

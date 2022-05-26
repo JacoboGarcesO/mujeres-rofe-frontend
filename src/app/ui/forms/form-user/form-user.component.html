@@ -178,10 +178,18 @@
     ></mr-sub-form-input>
   </fieldset>
 
+  <div class="form-user__terms">
+    <mr-sub-form-checkbox 
+      [formControlName]="form.formControlNames.isAccept" 
+      [label]="'Declaro que he leído y acepto los'"
+    ></mr-sub-form-checkbox>      
+    <a href="https://res.cloudinary.com/dbsypkhbz/image/upload/v1651856273/dfqmkvpzwtfnacgrfvs4.pdf" target="_blank">términos y condiciones.</a>
+  </div>
+
   <mr-button 
     class="form-user__button" 
     [label]="'Guardar'"
-    [isDisabled]="form.formGroup.invalid || form.formGroup.disabled" 
+    [isDisabled]="form.formGroup.invalid || form.formGroup.disabled || !form.formGroup.value.isAccept" 
     (clicked)="manualSave$.next()"
   ></mr-button>
 </form>

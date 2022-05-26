@@ -32,6 +32,7 @@ export interface UserModel {
   sustaining: string[],
   documentImage: MediaModel,
   creationDate: Date;
+  isAccept?: boolean;
 }
 
 export interface UserPaginatedModel {

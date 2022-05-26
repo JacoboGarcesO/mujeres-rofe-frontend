@@ -1,0 +1,73 @@
+@use '../../_styles/index.scss' as styles;
+
+.subform-checkbox {
+  $self: &;
+
+  &__label {
+    margin: 0;
+    padding: 0;
+    gap: styles.$box-pad-quarter;
+    align-items: flex-start;
+    display: flex;
+    cursor: pointer;
+  }
+
+  &__mask {
+    border-color: styles.$color-primary-color;
+    border-radius: styles.$box-rad-small;
+    border: styles.$box-bor-solid styles.$color-bg-dark;
+    height: 1.125rem;
+    margin: 1px;
+    width: 1.125rem;
+    display: grid;
+    place-items: center;
+
+    &::before {
+      border-radius: 0.125rem;
+      height: styles.$box-hht-base;
+      width: styles.$box-wth-base;
+      content: "";
+      display: none;
+      grid-column: 1/2;
+      grid-row: 1/2;
+    }
+
+    &::after {
+      border-bottom: styles.$box-bor-solid styles.$color-bg-dark;
+      border-right: styles.$box-bor-solid styles.$color-bg-dark;
+      height: 0.5rem;
+      width: 0.25rem;
+      content: "";
+      display: none;
+      grid-column: 1/2;
+      grid-row: 1/2;
+      transform: rotate(45deg);
+      transform-origin: right;
+    }
+
+    &::before {
+      background-color: styles.$color-primary-color;
+    }
+
+    &::after {
+      border-color: styles.$color-bg-white;
+    }
+  }
+
+  &__text {
+    margin-top: 0.125rem;
+    flex: 1;
+  }
+
+  &__input {
+    display: none;
+
+    &:checked+#{$self}__mask {
+
+      &::before,
+      &::after {
+        display: block;
+      }
+    }
+  }
+}

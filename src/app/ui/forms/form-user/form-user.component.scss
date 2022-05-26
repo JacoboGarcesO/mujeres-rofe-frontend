@@ -14,6 +14,19 @@
     border: 0;
   }
 
+  &__terms {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    & a { 
+      @include styles.font-small;
+      display: inline;
+      text-decoration: none;
+      color: styles.$color-primary-color;
+    }
+  }
+
   &__files {
     display: grid;
     row-gap: styles.$box-pad-base;

@@ -75,6 +75,7 @@ export class FormUserComponent implements OnChanges {
       id: new FormControl(null),
       rol: new FormControl(null),
       isPremium: new FormControl(null),
+      isAccept: new FormControl(null),
       creationDate: new FormControl(null),
     },
   });
