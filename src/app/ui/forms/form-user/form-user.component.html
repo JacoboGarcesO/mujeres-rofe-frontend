@@ -178,7 +178,7 @@
     ></mr-sub-form-input>
   </fieldset>
 
-  <div class="form-user__terms">
+  <div class="form-user__terms" *ngIf="showCheckConditions">
     <mr-sub-form-checkbox 
       [formControlName]="form.formControlNames.isAccept" 
       [label]="'Declaro que he leído y acepto los'"

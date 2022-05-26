@@ -26,6 +26,7 @@ export class FormUserComponent implements OnChanges {
   @Input() stratum: OptionModel[];
   @Input() sustenting: OptionModel[];
   @Input() canResetForm: boolean;
+  @Input() showCheckConditions = false;
 
   public manualSave$: Subject<void> = new Subject();
   private input$: Subject<UserModel> = new Subject();

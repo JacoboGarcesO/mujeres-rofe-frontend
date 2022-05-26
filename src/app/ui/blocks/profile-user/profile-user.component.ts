@@ -17,6 +17,6 @@ export class ProfileUserComponent {
   ) { }
 
   handleToBack(): void {
-    this.router.navigateByUrl('/channels/network');
+    this.router.navigateByUrl('/channels/network/621e4ad6b9839f66542da235');
   }
 }
