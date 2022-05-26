@@ -185,7 +185,7 @@ export class AdminUsersListContainerFacade {
 
   loadUser(userId: string): void {
     this.destroyUser();
-    const user = this.state.users.users.snapshot().find((user) => user.id === userId);
+    const user = this.state.users.paginatedUsers.snapshot()?.users?.find((user) => user.id === userId);
     this.state.users.currentUserToUpdate.set(user);
   }
 
