@@ -62,6 +62,7 @@ export class ApiToUsersMapper {
       sustaining: this.getHobbies(user?.sustaining),
       documentImage: user?.documentImage,
       creationDate: user?.creationDate,
+      isAccept: user?.hasAcceptTermsAndConditions ?? true,
     };
   }
 

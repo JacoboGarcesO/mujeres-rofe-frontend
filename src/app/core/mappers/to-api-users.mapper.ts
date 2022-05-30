@@ -44,6 +44,7 @@ export class ToApiUsersMapper {
     formData.append('sustaining', this.getHobbies(user.sustaining));
     formData.append('documentImageEncoded', this.getImage(user?.documentImage));
     formData.append('documentImage', user?.documentImage?.file);
+    formData.append('hasAcceptTermsAndConditions', JSON.stringify(user?.isAccept));
     
     return formData;
   }
