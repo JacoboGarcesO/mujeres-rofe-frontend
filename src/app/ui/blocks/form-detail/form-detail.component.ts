@@ -21,6 +21,6 @@ export class FormDetailComponent {
   }
 
   handleToBack(): void {
-    this.router.navigateByUrl('/');
+    this.router.navigateByUrl('/channels/' + this.form?.channel);
   }
 }

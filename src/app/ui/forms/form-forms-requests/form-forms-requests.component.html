@@ -23,6 +23,13 @@
     [formControlName]="form.formControlNames.template"
   ></mr-sub-form-select>
 
+  <mr-sub-form-select
+    [label]="'Canal'"
+    [options]="channels"
+    [icon]="'fas fa-pen'"
+    [formControlName]="form.formControlNames.channel"
+  ></mr-sub-form-select>
+
   <fieldset class="form-forms-requests__section form-forms-requests__section--columness">
     <mr-form-fields
       [formControlName]="form.formControlNames.fields"

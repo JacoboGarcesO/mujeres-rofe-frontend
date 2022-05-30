@@ -33,6 +33,7 @@ export class FormComponent {
       title: new FormControl(null),
       subject: new FormControl(null),
       template: new FormControl(null),
+      channel: new FormControl(null),
       fields: new FormControl(null),
       //---
       id: new FormControl(null),

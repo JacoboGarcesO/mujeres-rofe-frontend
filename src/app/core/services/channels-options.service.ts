@@ -1,37 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { ChannelEnum, fromChannelEnum } from '../enums/channel.enum';
+import { map, Observable } from 'rxjs';
+import { ApiToOptionMapper } from '../mappers/api-to-option.mapper';
 import { OptionModel } from '../models/option.model';
+import { URL_RESOURCE } from '../resources/url.resource';
+import { HttpService } from './generals/http.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChannelsOptionsService {
-  
-  getChannels(): Observable<OptionModel[]> {
-    const channels = [
-      { 
-        label: 'Red',
-        id: fromChannelEnum(ChannelEnum.network),
-      },
-      { 
-        label: 'Oportunidades', 
-        id: fromChannelEnum(ChannelEnum.opportunities),
-      },
-      { 
-        label: 'Formación', 
-        id: fromChannelEnum(ChannelEnum.training),
-      },
-      { 
-        label: 'Emprendimiento', 
-        id: fromChannelEnum(ChannelEnum.business),
-      },
-      { 
-        label: 'Contácto', 
-        id: fromChannelEnum(ChannelEnum.contact),
-      },
-    ];
 
-    return of(channels);
+  constructor(
+    private httpService: HttpService,
+    private apiToOptionMapper: ApiToOptionMapper,
+  ) { }
+
+  getChannels(): Observable<OptionModel[]> {
+    const url = URL_RESOURCE.channels;
+    return this.httpService.get(url).pipe(
+      map((response: any) => this.apiToOptionMapper.map(response?.channels, 'type')),
+    );
   }
 }

@@ -16,6 +16,7 @@ export class AdminFormsListComponent {
   @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
   @Input() formRequests: FormRequestModel[];
   @Input() templates: OptionModel[];
+  @Input() channelsOptions: OptionModel[];
   @Input() formToUpdate: FormRequestModel;
   @Input() canCloseModal: boolean;
   @Output() createForm: EventEmitter<FormRequestModel> = new EventEmitter();

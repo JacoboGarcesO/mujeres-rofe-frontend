@@ -14,18 +14,21 @@ export class AdminFormsListContainerComponent implements OnInit, OnDestroy {
   public forms$: Observable<FormRequestModel[]>;
   public form$: Observable<FormRequestModel>;
   public templates$: Observable<OptionModel[]>;
+  public channels$: Observable<OptionModel[]>;
 
   constructor(private facade: AdminFormsListContainerFacade) { }
 
   ngOnInit(): void {
     this.facade.initSubscriptions();
     this.facade.loadForms();
+    this.facade.loadChannelOptions();
     this.facade.loadResources();
     this.initializeSubscriptions();
   }
   ngOnDestroy(): void {
     this.facade.destroyForms();
     this.facade.destroyForm();
+    this.facade.destroyChannelOptions();
     this.facade.destroyResources();
     this.facade.destroySubscriptions();
   }
@@ -52,5 +55,6 @@ export class AdminFormsListContainerComponent implements OnInit, OnDestroy {
     this.forms$ = this.facade.forms$();
     this.form$ = this.facade.form$();
     this.templates$ = this.facade.templates$();
+    this.channels$ = this.facade.channelOptions$();
   }
 }

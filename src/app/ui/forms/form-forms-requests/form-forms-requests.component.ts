@@ -14,6 +14,7 @@ import { OptionModel } from 'src/app/core/models/option.model';
 export class FormFormsRequestsComponent implements OnChanges {
   @Input() canResetForm: boolean;
   @Input() templates: OptionModel[];
+  @Input() channels: OptionModel[];
 
   public manualSave$: Subject<void> = new Subject();
   private input$: Subject<FormRequestModel> = new Subject();
@@ -38,6 +39,7 @@ export class FormFormsRequestsComponent implements OnChanges {
       subject: new FormControl(null),
       template: new FormControl(null),
       fields: new FormControl(null),
+      channel: new FormControl(null),
       //---
       id: new FormControl(null),
       creationDate: new FormControl(null),

@@ -5,6 +5,7 @@ export interface FormRequestModel {
   title: string;
   subject: string;
   creationDate: Date;
+  channel: string;
   fields: FormRequestFieldsModel[];
   template: string;
 }

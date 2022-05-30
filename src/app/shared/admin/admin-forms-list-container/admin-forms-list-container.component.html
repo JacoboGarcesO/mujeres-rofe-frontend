@@ -2,13 +2,15 @@
   canCloseModal: (canCloseModal$ | async),
   forms: (forms$ | async),
   form: (form$ | async),
-  templates: (templates$ | async)
+  templates: (templates$ | async),
+  channels: (channels$ | async)
 } as data">
   <mr-admin-forms-list
     [canCloseModal]="data.canCloseModal"
     [formRequests]="data.forms"
     [formToUpdate]="data.form"
     [templates]="data.templates"
+    [channelsOptions]="data.channels"
     (createForm)="handleCreateForm($event)"
     (updateForm)="handleUpdateForm($event)"
     (deleteForm)="handleDeleteForm($event)"

@@ -63,6 +63,7 @@
     <mr-form-forms-requests
       [canResetForm]="canCloseModal"
       [templates]="templates"
+      [channels]="channelsOptions"
       (dataOutput)="handleCreateForm($event)"
     ></mr-form-forms-requests>
   </ng-container>
@@ -73,6 +74,7 @@
     <mr-form-forms-requests
       [templates]="templates"
       [dataInput]="formToUpdate"
+      [channels]="channelsOptions"
       [canResetForm]="canCloseModal"
       (dataOutput)="handleUpdateForm($event)"
     ></mr-form-forms-requests>

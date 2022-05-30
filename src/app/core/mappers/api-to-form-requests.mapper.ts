@@ -22,6 +22,7 @@ export class ApiToFormRequestsMapper {
       subject: request?.subject,
       template: request?.template,
       creationDate: request?.creationDate,
+      channel: request?.channel,
       fields: this.getFields(request?.fields),
     };
   }

@@ -13,6 +13,7 @@ export class ToApiRequestsMapper {
         title: form.title,
         template: form.template,
         subject: form.subject,
+        channel: form?.channel,
         fields: form.fields,
       },
       user: {

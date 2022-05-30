@@ -33,7 +33,7 @@ export class AdminNoticesListComponent implements OnChanges {
   ) { }
 
   get channelOptionsAll (): OptionModel[] {
-    return [{ id: '', label: 'Todos' }, ...this.channelOptions];
+    return [{ id: '', label: 'Todos' }, ...this.channelOptions ?? []];
   }
 
   ngOnChanges(): void {

@@ -13,6 +13,7 @@ export class ToApiFormRequestsMapper {
       subject: form.subject,
       fields: this.getFields(form.fields),
       id: form?.id,
+      channel: form?.channel,
     };
   }
   private getFields(formFields: FormRequestFieldsModel[]): any[] {

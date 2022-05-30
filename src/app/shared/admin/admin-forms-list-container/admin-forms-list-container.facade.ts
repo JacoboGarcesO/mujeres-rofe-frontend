@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subscription, Observable, EMPTY, tap, finalize, catchError, merge } from 'rxjs';
 import { FormRequestModel } from 'src/app/core/models/form-requests.model';
 import { OptionModel } from 'src/app/core/models/option.model';
+import { ChannelsOptionsService } from 'src/app/core/services/channels-options.service';
 import { FormRequestsService } from 'src/app/core/services/form-requests.service';
 import { ResourcesService } from 'src/app/core/services/resources.service';
 import { AppState } from '../../../core/state/app.state';
@@ -15,6 +16,7 @@ export class AdminFormsListContainerFacade {
   constructor(
     private state: AppState,
     private service: FormRequestsService,
+    private channelsOptionsService: ChannelsOptionsService,
     private resourcesService: ResourcesService,
   ) { }
 
@@ -33,6 +35,10 @@ export class AdminFormsListContainerFacade {
 
   templates$(): Observable<OptionModel[]> {
     return this.state.resources.templates.$();
+  }
+
+  channelOptions$(): Observable<OptionModel[]> {
+    return this.state.channels.channelsResource.$();
   }
   //#endregion
 
@@ -61,6 +67,18 @@ export class AdminFormsListContainerFacade {
 
   destroyResources(): void {
     this.state.resources.templates.set(null);
+  }
+
+  loadChannelOptions(): void {
+    this.subscriptions.add(
+      this.channelsOptionsService.getChannels().pipe(
+        tap(this.storeChannelOptions.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyChannelOptions(): void {
+    this.state.channels.channelsResource.set(null);
   }
 
   createForm(form: FormRequestModel): void {    
@@ -133,6 +151,10 @@ export class AdminFormsListContainerFacade {
   //#region Private Methods
   private storeCanCloseModal(value: boolean): void {
     this.state.resources.canCloseModal.set(value);
+  }
+
+  private storeChannelOptions(channels: OptionModel[]): void {
+    this.state.channels.channelsResource.set(channels);
   }
 
   private storeForms(forms: FormRequestModel[]): void {
