@@ -1,27 +1,31 @@
 import { Injectable } from '@angular/core';
-import { FormRequestModel } from '../models/form-requests.model';
+import { FormRequestFieldsModel, FormRequestModel } from '../models/form-requests.model';
 import { UserModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ToApiRequestsMapper {
-  map(form: FormRequestModel, currentUser: UserModel): any {
-    return {
-      request: {
-        formId: form.id,
-        title: form.title,
-        template: form.template,
-        subject: form.subject,
-        channel: form?.channel,
-        fields: form.fields,
-      },
-      user: {
-        email: currentUser.email,
-        firstName: currentUser.firstName,
-        lastName: currentUser.lastName,
-        document: currentUser.documentNumber,
-      },
-    };
+  map(form: FormRequestModel, currentUser: UserModel): FormData {
+    const formData = new FormData();
+    
+    formData.append('requestFormId', form.id);
+    formData.append('requestTitle', form.title);
+    formData.append('requestTemplate', form.template);
+    formData.append('requestSubject', form.subject);
+    formData.append('requestChannel', form.channel);
+    formData.append('requestFields', JSON.stringify(form.fields));
+
+    formData.append('userEmail', currentUser.email);
+    formData.append('userFirstName', currentUser.firstName);
+    formData.append('userLastName', currentUser.lastName);
+    formData.append('userDocument', currentUser.documentNumber);
+    formData.append('image', this.getMedia(form.fields));
+
+    return formData;
+  }
+
+  private getMedia(fields: FormRequestFieldsModel[]): File {
+    return fields.find((field) => field.type === 'image')?.image?.file;
   }
 }

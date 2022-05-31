@@ -7,8 +7,15 @@
   </div>
   <div class="request__fields">
     <div class="request__field" *ngFor="let field of request?.fields">
-      <i class="fas fa-info-circle fa-s"></i>
-      <mr-text [text]="field.label" [weight]="'regular'"></mr-text> : <mr-text [text]="field.value"></mr-text>
+      <ng-container *ngIf="field?.type !== 'image'">
+        <i class="fas fa-info-circle fa-s"></i>
+        <mr-text [text]="field.label" [weight]="'regular'"></mr-text> : <mr-text [text]="field.value"></mr-text>
+      </ng-container>
+      <ng-container *ngIf="field?.type === 'image'">
+        <figure class="request__image">
+          <mr-image [image]="field?.image?.url" [rounded]="'medium'"></mr-image>
+        </figure>
+      </ng-container>
     </div>
   </div>
 </div>

@@ -19,6 +19,7 @@ export class ToApiFormRequestsMapper {
   private getFields(formFields: FormRequestFieldsModel[]): any[] {
     return formFields.map((field) => ({
       label: field?.label,
+      type: field?.type,
       placeholder: field?.placeholder,
       options: this.getOptions(field?.options),
     }));

@@ -7,6 +7,10 @@
   padding: styles.$box-pad-base;
   padding-top: styles.$box-pad-onehalf;
 
+  &__image {
+    margin-top: 1rem;
+  }
+
   &__field {
     display: flex;
     align-items: center;
@@ -16,7 +20,7 @@
   &__icon {
     padding: styles.$box-pad-quarter;
     position: absolute;
-    bottom: 90%;
+    bottom: calc(100% - 20px);
     right: styles.$box-pad-base;
     background-color: styles.$color-bg-white;
     border-radius: styles.$box-rad-small;
@@ -35,7 +39,7 @@
     gap: styles.$box-pad-base;
     position: absolute;
     left: styles.$box-pad-base;
-    bottom: 90%;
+    bottom: calc(100% - 20px);
   }
 }
 

@@ -1,6 +1,6 @@
 <fieldset class="form-field__section" [formGroup]="form.formGroup">
   <mr-sub-form-input
-    *ngIf="!form.formGroup.value.options?.length"
+    *ngIf="form.formGroup.value.type === 'text'"
     [type]="'text'"
     [label]="form.formGroup.value.label"
     [placeholder]="form.formGroup.value.placeholder"
@@ -8,10 +8,16 @@
   ></mr-sub-form-input>
 
   <mr-sub-form-select
-    *ngIf="form.formGroup.value.options?.length"
+    *ngIf="form.formGroup.value.type === 'list'"
     [label]="form.formGroup.value.label"
     [placeholder]="form.formGroup.value.placeholder"
     [options]="form.formGroup.value.options"
     [formControlName]="form.formControlNames.value"
   ></mr-sub-form-select>
+
+  <mr-sub-form-file
+    *ngIf="form.formGroup.value.type === 'image'"
+    [label]="form.formGroup.value.label"
+    [formControlName]="form.formControlNames.image"
+  ></mr-sub-form-file>
 </fieldset>

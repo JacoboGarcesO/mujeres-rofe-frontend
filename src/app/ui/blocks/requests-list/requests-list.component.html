@@ -1,7 +1,15 @@
 <div class="requests-list">
-  <mr-request 
-    *ngFor="let request of requests"
-    [request]="request"
-    (clickedDelete)="handleDeleteRequest($event)"
-  ></mr-request>
+  <ng-container *ngIf="requests.length; else notFound">
+    <mr-request 
+      *ngFor="let request of requests"
+      [request]="request"
+      (clickedDelete)="handleDeleteRequest($event)"
+    ></mr-request>
+  </ng-container>
 </div>
+
+<ng-template #notFound>
+  <div class="requests-list__notfound">
+    <mr-text [text]="'No se encontraron resultados.'"></mr-text>
+  </div>
+</ng-template>

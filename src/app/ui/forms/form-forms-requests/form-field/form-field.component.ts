@@ -16,11 +16,19 @@ export class FormFieldComponent {
     formType: FormType.SUB,
     formControls: {
       label: new FormControl(null, Validators.required),
+      type: new FormControl(null, Validators.required),
       placeholder: new FormControl(null),
+      image: new FormControl(null),
       value: new FormControl(null),
       options: new FormControl(null),
     },
   });
+
+  public options = [
+    { id: 'image', label: 'Imagen'},
+    { id: 'text', label: 'Texto'},
+    { id: 'list', label: 'Lista'},
+  ];
 
   handleDeleteControl(): void {
     this.deleteControl.emit();

@@ -7,12 +7,12 @@
         [formControlName]="form.formControlNames.label"
       ></mr-sub-form-input>
 
-      <mr-sub-form-input 
-        [type]="'text'"
-        [label]="'Placeholder'"
+      <mr-sub-form-select 
+        [label]="'Tipo'"
+        [options]="options"
         [icon]="'fas fa-font'"
-        [formControlName]="form.formControlNames.placeholder"
-      ></mr-sub-form-input>
+        [formControlName]="form.formControlNames.type"
+      ></mr-sub-form-select>
 
       <mr-button-icon
         [icon]="'trash'"

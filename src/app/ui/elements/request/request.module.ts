@@ -5,6 +5,7 @@ import { TextModule } from '../text/text.module';
 import { PipesModule } from '../../pipes/pipes.module';
 import { ModalModule } from '../modal/modal.module';
 import { ButtonModule } from '../button/button.module';
+import { ImageModule } from '../image/image.module';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { ButtonModule } from '../button/button.module';
     TextModule,
     PipesModule,
     ModalModule,
+    ImageModule,
     ButtonModule,
   ],
   exports: [

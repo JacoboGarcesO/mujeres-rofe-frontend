@@ -1,3 +1,4 @@
+import { MediaModel } from './media.model';
 import { OptionModel } from './option.model';
 
 export interface FormRequestModel {
@@ -14,5 +15,7 @@ export interface FormRequestFieldsModel {
   label: string;
   placeholder: string;
   value: string;
+  image?: MediaModel;
+  type: string;
   options: OptionModel[];
 }
