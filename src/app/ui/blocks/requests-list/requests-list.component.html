@@ -1,5 +1,5 @@
 <div class="requests-list">
-  <ng-container *ngIf="requests.length; else notFound">
+  <ng-container *ngIf="requests?.length; else notFound">
     <mr-request 
       *ngFor="let request of requests"
       [request]="request"
