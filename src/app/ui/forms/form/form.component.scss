@@ -13,4 +13,8 @@
     margin: 0;
     border: 0;
   }
+
+  &__title {
+    margin-bottom: styles.$box-mrg-half;
+  }
 }

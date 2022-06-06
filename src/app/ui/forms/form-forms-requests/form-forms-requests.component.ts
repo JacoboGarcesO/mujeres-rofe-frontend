@@ -37,6 +37,7 @@ export class FormFormsRequestsComponent implements OnChanges {
     formControls: {
       title: new FormControl(null),
       subject: new FormControl(null),
+      description: new FormControl(null),
       template: new FormControl(null),
       fields: new FormControl(null),
       channel: new FormControl(null),

@@ -1,9 +1,17 @@
 <form class="form" [formGroup]="form.formGroup">
   <mr-text
+    class="form__title"
     [text]="form.formGroup.value.title"
     [weight]="'bold'"
     [size]="'extra-large'"
   ></mr-text>
+
+  <mr-text
+    class="form__title"
+    [text]="form.formGroup.value.description"
+    [size]="'medium'"
+  ></mr-text>
+
   <fieldset class="form__section">
     <mr-form-fields
       [formControlName]="form.formControlNames.fields"

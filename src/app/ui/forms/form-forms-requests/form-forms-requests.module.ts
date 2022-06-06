@@ -11,6 +11,7 @@ import { TextModule } from '../../elements/text/text.module';
 import { SubFormSelectModule } from '../sub-form-select/sub-form-select.module';
 import { FormOptionsComponent } from './form-options/form-options.component';
 import { FormOptionComponent } from './form-option/form-option.component';
+import { SubFormTextareaModule } from '../sub-form-textarea/sub-form-textarea.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FormOptionComponent } from './form-option/form-option.component';
     TextModule,
     SubFormSelectModule,
     ButtonIconModule,
+    SubFormTextareaModule,
     ReactiveFormsModule,
   ],
   exports: [

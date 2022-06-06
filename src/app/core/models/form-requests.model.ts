@@ -9,6 +9,7 @@ export interface FormRequestModel {
   channel: string;
   fields: FormRequestFieldsModel[];
   template: string;
+  description: string;
 }
 
 export interface FormRequestFieldsModel {

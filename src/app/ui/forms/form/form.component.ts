@@ -31,6 +31,7 @@ export class FormComponent {
     manualSave$: this.manualSave$,
     formControls: {
       title: new FormControl(null),
+      description: new FormControl(null),
       subject: new FormControl(null),
       template: new FormControl(null),
       channel: new FormControl(null),
