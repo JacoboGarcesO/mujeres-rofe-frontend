@@ -1,13 +1,13 @@
 <form class="form-forms-requests" [formGroup]="form.formGroup">
   <fieldset class="form-forms-requests__section">
-    <mr-sub-form-input 
+    <mr-sub-form-input
       [type]="'input'"
       [label]="'Título'"
       [icon]="'fas fa-file-signature'"
       [formControlName]="form.formControlNames.title"
     ></mr-sub-form-input>
 
-    <mr-sub-form-input 
+    <mr-sub-form-input
       [type]="'input'"
       [label]="'Asunto'"
       [icon]="'fas fa-pen-fancy'"
@@ -30,7 +30,7 @@
     [formControlName]="form.formControlNames.channel"
   ></mr-sub-form-select>
 
-  <mr-sub-form-textarea 
+  <mr-sub-form-textarea
     [text]="'Descripción'"
     [formControlName]="form.formControlNames.description"
   ></mr-sub-form-textarea>
@@ -41,8 +41,8 @@
     ></mr-form-fields>
   </fieldset>
 
-  <mr-button 
-    [label]="'Guardar'"
+  <mr-button
+    [label]="'Enviar'"
     [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
     (clicked)="manualSave$.next()"
   ></mr-button>

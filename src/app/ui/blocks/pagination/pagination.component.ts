@@ -31,8 +31,8 @@ export class PaginationComponent implements OnChanges {
   }
 
   @HostListener('click', ['$event'])
-  validatePagination(event: any) {    
-    if(event.path[0].id != 'pagination') {
+  validatePagination(event: any) {
+    if(event.path[0].id != 'pagination' && event.path[0].id != 'pagination-ul' && event.path[0].id != 'dots') {
       const button = event.path.find(
         (element: HTMLElement) => element.tagName === 'LI',
       )?.id;
@@ -84,7 +84,7 @@ export class PaginationComponent implements OnChanges {
     if (page > 2) {
       liTag += '<li class="first numb" id="first"><span>1</span></li>';
       if (page > 3) {
-        liTag += '<li class="dots"><span>...</span></li>';
+        liTag += '<li class="dots"><span id="dots">...</span></li>';
       }
     }
 
@@ -116,7 +116,7 @@ export class PaginationComponent implements OnChanges {
 
     if (page < totalPages - 1) {
       if (page < totalPages - 2) {
-        liTag += '<li class="dots"><span>...</span></li>';
+        liTag += '<li class="dots"><span id="dots">...</span></li>';
       }
       liTag += `<li class="last numb" id="last"><span>${totalPages}</span></li>`;
     }

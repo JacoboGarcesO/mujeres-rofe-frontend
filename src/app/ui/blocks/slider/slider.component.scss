@@ -13,6 +13,11 @@
   color: styles.$color-bg-white;
 }
 
+.swiper-button-prev {
+  position: absolute;
+  left: 0;
+}
+
 .swiper-pagination-bullet {
   background-color: styles.$color-bg-white !important;
 }

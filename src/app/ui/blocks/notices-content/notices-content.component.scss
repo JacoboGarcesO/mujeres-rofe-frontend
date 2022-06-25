@@ -164,6 +164,11 @@ a {
         font-size: styles.func-toRem(1.20);
       }
     }
+
+    &__filters {
+      flex-direction: column;
+      gap: styles.func-toRem(0.7);
+    }
   }
 }
 

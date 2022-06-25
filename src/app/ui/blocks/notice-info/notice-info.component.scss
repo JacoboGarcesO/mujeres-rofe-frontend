@@ -65,7 +65,8 @@
   &__image-notice {
     position: relative;
     width: 50%;
-    height: styles.func-toRem(34.25);
+    height: auto;
+    margin-top: styles.func-toRem(1.3);
 
     &--shadow {
       position: relative;
@@ -186,14 +187,17 @@
 @media (max-width: styles.$bkp-tablet) {
   .notices-content {
     &__image-notice {
-      height: styles.func-toRem(20.25);
-
-      &--shadow {
-        background-color: transparent !important;
-      }
+      width: 100%;
 
       .image {
         object-fit: contain;
+      }
+    }
+
+    &__text-title {
+      .text {
+        font-size: 1.5rem;
+        line-height: 2.25rem;
       }
     }
   }
