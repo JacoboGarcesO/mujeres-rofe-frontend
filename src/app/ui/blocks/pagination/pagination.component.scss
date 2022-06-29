@@ -1,0 +1,65 @@
+@use "../../_styles/index.scss" as styles;
+
+.pagination {
+  position: relative;
+  width: auto;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: styles.$box-mrg-base;
+
+  & ul {
+    display: flex;
+    flex-wrap: wrap;
+    background: styles.$color-bg-white;
+    padding: styles.$box-pad-half;
+    border-radius: styles.$box-rad-rounded;
+    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  & li {
+    color: styles.$color-typo-light;
+    list-style: none;
+    line-height: styles.$box-pad-onehalf;
+    text-align: center;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+    @include styles.font-base;
+
+    &.numb {
+      list-style: none;
+      height: styles.$box-pad-onehalf;
+      width: styles.$box-pad-onehalf;
+      line-height: styles.$box-pad-onehalf;
+      border-radius: styles.$box-rad-rounded;
+    }
+
+    &.btn {
+      padding: styles.$box-pad-none styles.$box-pad-half;
+    }
+
+    &.active,
+    &.numb:hover,
+    &:first-child:hover,
+    &:last-child:hover {
+      color: styles.$color-bg-white;
+      background: styles.$color-typo-light;
+    }
+  }
+}
+
+@media (min-width: styles.$bkp-tablet) {
+  .pagination {
+    & li {
+      line-height: styles.$box-pad-double;
+
+  
+      &.numb {
+        height: styles.$box-pad-double;
+        width: styles.$box-pad-double;
+        line-height: styles.$box-pad-double;
+      }
+    }
+  }
+}

@@ -1,10 +1,11 @@
-import { Component, ChangeDetectionStrategy, ElementRef, HostListener, Input, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, ChangeDetectionStrategy, ElementRef, HostListener, Input, OnChanges, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'mr-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
 })
 export class PaginationComponent implements OnChanges {
   @Input() totalUsers!: number;
