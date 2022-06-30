@@ -124,21 +124,16 @@
       [label]="'Dirección*'"
       [formControlName]="form.formControlNames.address"
     ></mr-sub-form-input>
-
-    <div class="form-user__files">
-      <mr-sub-form-file
-        [label]="'Adjuntar imagen de perfil*'"
-        [canResetImage]="canResetForm"
-        [formControlName]="form.formControlNames.image"
-      ></mr-sub-form-file>
-
-      <mr-sub-form-file
-        [label]="'Adjuntar foto o scan de la cédula*'"
-        [canResetImage]="canResetForm"
-        [formControlName]="form.formControlNames.documentImage"
-      ></mr-sub-form-file>
-    </div>
     
+    <mr-sub-form-multi-select
+      [label]="'Hobbies'"
+      [placeholder]="'Seleccionar...'"
+      [options]="hobbies"
+      [isSearchable]="true"
+      [canResetForm]="canResetForm"
+      [formControlName]="form.formControlNames.hobbies"
+    ></mr-sub-form-multi-select>
+
     <mr-sub-form-textarea 
       [text]="'Presentación personal*'"
       [placeholder]="'Yo soy...'"
@@ -149,15 +144,6 @@
       [text]="'¿Por dónde conociste Mujeres Rofé?*'"
       [formControlName]="form.formControlNames.disclosure"
     ></mr-sub-form-textarea>
-
-    <mr-sub-form-multi-select
-      [label]="'Hobbies'"
-      [placeholder]="'Seleccionar...'"
-      [options]="hobbies"
-      [isSearchable]="true"
-      [canResetForm]="canResetForm"
-      [formControlName]="form.formControlNames.hobbies"
-    ></mr-sub-form-multi-select>
 
     <mr-sub-form-input 
       [type]="'input'"
@@ -176,6 +162,20 @@
       [label]="'Código promocional'"
       [formControlName]="form.formControlNames.promocionalCode"
     ></mr-sub-form-input>
+
+    <div class="form-user__files">
+      <mr-sub-form-file
+        [label]="'Adjuntar imagen de perfil*'"
+        [canResetImage]="canResetForm"
+        [formControlName]="form.formControlNames.image"
+      ></mr-sub-form-file>
+
+      <mr-sub-form-file
+        [label]="'Adjuntar foto o scan de la cédula*'"
+        [canResetImage]="canResetForm"
+        [formControlName]="form.formControlNames.documentImage"
+      ></mr-sub-form-file>
+    </div>
   </fieldset>
 
   <div class="form-user__terms" *ngIf="showCheckConditions">
