@@ -13,13 +13,26 @@
   color: styles.$color-bg-white;
 }
 
+.swiper-button-disabled {
+  display: none;
+}
+
 .swiper-button-prev {
   position: absolute;
   left: 0;
 }
 
 .swiper-pagination-bullet {
-  background-color: styles.$color-bg-white !important;
+  bottom: 15px;
+  background-color: styles.$color-primary-color !important;
+}
+
+.swiper-pagination {
+  bottom: -2px !important;
+}
+
+.swiper-wrapper {
+  padding: styles.$box-pad-base styles.$box-pad-none;
 }
 
 @media (min-width: styles.$bkp-mobile) {

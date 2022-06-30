@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy, Input, ChangeDetectorRef, ViewChild, EventEmitter, Output, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserLocationModel } from 'src/app/core/models/locations.model';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
 
@@ -15,9 +16,11 @@ export class AdminHighlightedCitiesListComponent {
   @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
   @Input() highlightedCities: OptionModel[];
   @Input() cities: OptionModel[];
+  @Input() states: OptionModel[];
   @Input() canCloseModal: boolean;
   @Output() deleteCity: EventEmitter<string> = new EventEmitter();
   @Output() createCity: EventEmitter<string> = new EventEmitter();
+  @Output() selectState: EventEmitter<string> = new EventEmitter();
   private cityId: string;
 
   constructor(
@@ -42,12 +45,14 @@ export class AdminHighlightedCitiesListComponent {
   }
 
   handleDeleteCity(): void {
-    console.log(this.highlightedCities);
-    
     this.deleteCity.emit(this.cityId);
   }
 
-  handleCreateCity({ value }: { value: string }): void {
-    this.createCity.emit(value);
+  handleLoadCitiesByState({ value }: { value: UserLocationModel }): void {    
+    value?.state && this.selectState.emit(value?.state);
+  }
+
+  handleCreateCity({ value}: { value: UserLocationModel }): void {
+    this.createCity.emit(value?.city);
   }
 }

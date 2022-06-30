@@ -1,11 +1,9 @@
 <form class="form-user-filter" [formGroup]="form.formGroup">
-  <mr-sub-form-select
-    [placeholder]="'Seleccione una ciudad'"
-    [options]="options"
+  <mr-sub-form-location
+    [cities]="cities"
+    [states]="states"
     [formControlName]="form.formControlNames.value"
-    [canDeleteText]="true"
-    [isSearchable]="true"
-  ></mr-sub-form-select>
+  ></mr-sub-form-location>
 
   <mr-button 
     class="form-user__button" 

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input, Output, OnChanges } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
@@ -10,8 +10,10 @@ import { OptionModel } from 'src/app/core/models/option.model';
   styleUrls: ['./form-highlighted-cities.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FormHighlightedCitiesComponent {
-  @Input() options: OptionModel[];
+export class FormHighlightedCitiesComponent implements OnChanges {
+  @Input() states: OptionModel[];
+  @Input() cities: OptionModel[];
+  @Input() canResetForm: boolean;
 
   public manualSave$: Subject<void> = new Subject();
   private input$: Subject<{value: string}> = new Subject();
@@ -35,4 +37,14 @@ export class FormHighlightedCitiesComponent {
       value: new FormControl(null, Validators.required),
     },
   });
+
+  @Output() formUpdate = this.form.formGroup.valueChanges;
+
+  ngOnChanges(): void {
+    if (!this.canResetForm) { return; }
+    
+    Object.keys(
+      this.form.formGroup.controls,
+    ).forEach((control) => this.form.formGroup.controls[control].setValue(null));
+  }
 }

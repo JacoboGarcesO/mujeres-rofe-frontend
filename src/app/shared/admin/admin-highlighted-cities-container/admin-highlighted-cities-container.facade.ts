@@ -29,6 +29,10 @@ export class AdminHighlightedCitiesContainerFacade {
   cities$(): Observable<OptionModel[]> {
     return this.state.locations.cities.$();
   }
+
+  states$(): Observable<OptionModel[]> {
+    return this.state.locations.states.$();
+  }
   //#endregion
 
   //#region Public methods
@@ -86,15 +90,29 @@ export class AdminHighlightedCitiesContainerFacade {
     this.state.locations.highlightedCities.set(null);
   }
 
-  loadCities(): void {
+  loadStates(): void {
+    this.destroyStates();
     this.subscriptions.add(
-      this.locationsService.getCities().pipe(
+      this.locationsService.getStates().pipe(
+        tap(this.state.locations.states.set.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyStates(): void {
+    this.state.locations.states.set(null);
+  }
+
+  loadCitiesByState(stateId: string): void {
+    this.destroyCitiesByState();
+    this.subscriptions.add(
+      this.locationsService.getCitiesByState(stateId).pipe(
         tap(this.state.locations.cities.set.bind(this)),
       ).subscribe(),
     );
   }
 
-  destroyCities(): void {
+  destroyCitiesByState(): void {
     this.state.locations.cities.set(null);
   }
   //#endregion

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormHighlightedCitiesComponent } from './form-highlighted-cities.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SubFormSelectModule } from '../sub-form-select/sub-form-select.module';
 import { ButtonModule } from '../../elements/button/button.module';
+import { SubFormLocationModule } from '../sub-form-location/sub-form-location.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +12,7 @@ import { ButtonModule } from '../../elements/button/button.module';
   imports: [
     CommonModule,
     ReactiveFormsModule, 
-    SubFormSelectModule,
+    SubFormLocationModule,
     ButtonModule,
   ],
   exports: [

@@ -38,7 +38,10 @@
 <mr-modal #modalRef>
   <ng-container>
     <mr-form-highlighted-cities
-      [options]="cities"
+      [cities]="cities"
+      [states]="states"
+      [canResetForm]="canCloseModal"
+      (formUpdate)="handleLoadCitiesByState($event)"
       (dataOutput)="handleCreateCity($event)"
     ></mr-form-highlighted-cities>
   </ng-container>

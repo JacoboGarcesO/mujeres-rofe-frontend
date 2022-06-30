@@ -10,6 +10,8 @@ a {
 
   &__filters {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
   &__background {
@@ -165,6 +167,8 @@ a {
 
     &__filters {
       flex-direction: column;
+      align-items: initial;
+      justify-content: space-between;
       gap: styles.func-toRem(0.7);
     }
   }
