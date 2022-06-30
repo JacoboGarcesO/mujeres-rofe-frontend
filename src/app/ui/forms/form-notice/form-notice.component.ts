@@ -1,5 +1,5 @@
-import { Component, ChangeDetectionStrategy, Input, Output, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, ChangeDetectionStrategy, Input, Output, OnChanges } from '@angular/core';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
 import { NoticeModel } from 'src/app/core/models/notice.model';
@@ -35,19 +35,19 @@ export class FormNoticeComponent implements OnChanges {
     output$: this.dataOutput,
     manualSave$: this.manualSave$,
     formControls: {
-      title: new FormControl(null, Validators.required),
-      icon: new FormControl(null, Validators.required),
-      content: new FormControl(null, Validators.required),
-      order: new FormControl(null, Validators.required),
-      channel: new FormControl(null, Validators.required),
-      description: new FormControl(null),
-      links: new FormControl(null),
-      showUsersList: new FormControl(null),
-      isLink: new FormControl(null),
-      url: new FormControl('https://'),
-      formId: new FormControl(null),
+      title: new UntypedFormControl(null, Validators.required),
+      icon: new UntypedFormControl(null, Validators.required),
+      content: new UntypedFormControl(null, Validators.required),
+      order: new UntypedFormControl(null, Validators.required),
+      channel: new UntypedFormControl(null, Validators.required),
+      description: new UntypedFormControl(null),
+      links: new UntypedFormControl(null),
+      showUsersList: new UntypedFormControl(null),
+      isLink: new UntypedFormControl(null),
+      url: new UntypedFormControl('https://'),
+      formId: new UntypedFormControl(null),
       //---
-      id: new FormControl(null),
+      id: new UntypedFormControl(null),
     },
   });
 

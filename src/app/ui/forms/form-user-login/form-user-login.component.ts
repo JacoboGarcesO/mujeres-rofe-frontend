@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output, ViewEncapsulation, HostListener } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
@@ -39,8 +39,8 @@ export class FormUserLoginComponent {
     output$: this.dataOutput,
     manualSave$: this.manualSave$,
     formControls: {
-      email: new FormControl(null, [Validators.required, Validators.pattern(REGEX_RESOURCE.email)]),
-      password: new FormControl(null, Validators.required),
+      email: new UntypedFormControl(null, [Validators.required, Validators.pattern(REGEX_RESOURCE.email)]),
+      password: new UntypedFormControl(null, Validators.required),
     },
   });
 

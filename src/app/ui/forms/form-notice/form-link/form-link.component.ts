@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { LinkNoticeModel } from 'src/app/core/models/notice.model';
 
@@ -15,8 +15,8 @@ export class FormLinkComponent {
   public form = createForm<LinkNoticeModel>(this, {
     formType: FormType.SUB,
     formControls: {
-      name: new FormControl(null, Validators.required),
-      url: new FormControl(null, Validators.required),
+      name: new UntypedFormControl(null, Validators.required),
+      url: new UntypedFormControl(null, Validators.required),
     },
   });
 

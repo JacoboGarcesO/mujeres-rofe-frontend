@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
 import { OptionModel } from 'src/app/core/models/option.model';
@@ -30,7 +30,7 @@ export class FormNoticeFilterComponent {
     disabled$: this.disabled$,
     output$: this.dataOutput,
     formControls: {
-      value: new FormControl(null, Validators.required),
+      value: new UntypedFormControl(null, Validators.required),
     },
   });
 

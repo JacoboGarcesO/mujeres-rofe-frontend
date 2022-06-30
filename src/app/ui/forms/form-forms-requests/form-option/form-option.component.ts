@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { OptionModel } from 'src/app/core/models/option.model';
 
@@ -16,8 +16,8 @@ export class FormOptionComponent {
   public form = createForm<OptionModel>(this, {
     formType: FormType.SUB,
     formControls: {
-      label: new FormControl(null, Validators.required),
-      id: new FormControl(null),
+      label: new UntypedFormControl(null, Validators.required),
+      id: new UntypedFormControl(null),
     },
   });
 

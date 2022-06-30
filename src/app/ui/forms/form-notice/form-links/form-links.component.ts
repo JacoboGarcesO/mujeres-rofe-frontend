@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, AfterViewInit, ViewEncapsulation } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { LinkNoticeModel } from 'src/app/core/models/notice.model';
 
@@ -15,7 +15,7 @@ export class FormLinksComponent implements AfterViewInit {
   public form = createForm<LinkNoticeModel[], { value: LinkNoticeModel[] }>(this, {
     formType: FormType.SUB,
     formControls: {
-      value: new FormArray([]),
+      value: new UntypedFormArray([]),
     },
     toFormGroup: (value: LinkNoticeModel[]): { value: LinkNoticeModel[] } => {
       return { value };
@@ -45,6 +45,6 @@ export class FormLinksComponent implements AfterViewInit {
   }
 
   private add(): void {
-    this.form.formGroup.controls.value.push(new FormControl({ name: null, url: 'https://' }));
+    this.form.formGroup.controls.value.push(new UntypedFormControl({ name: null, url: 'https://' }));
   }
 }

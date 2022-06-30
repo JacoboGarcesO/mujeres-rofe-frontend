@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { FormArray } from '@angular/forms';
+import { UntypedFormArray } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { FormRequestFieldsModel } from 'src/app/core/models/form-requests.model';
 
@@ -14,7 +14,7 @@ export class FormFieldsComponent {
   public form = createForm<FormRequestFieldsModel[], { value: FormRequestFieldsModel[] }>(this, {
     formType: FormType.SUB,
     formControls: {
-      value: new FormArray([]),
+      value: new UntypedFormArray([]),
     },
     toFormGroup: (value: FormRequestFieldsModel[]): { value: FormRequestFieldsModel[] } => {
       return { value };

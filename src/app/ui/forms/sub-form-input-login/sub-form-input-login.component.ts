@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, ElementRef, Input, Renderer2 } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { MiscUtil } from 'src/app/core/utils/misc.util';
 
@@ -21,7 +21,7 @@ export class SubFormInputLoginComponent {
   public form = createForm<string, { value: string }>(this, {
     formType: FormType.SUB,
     formControls: {
-      value: new FormControl(null),
+      value: new UntypedFormControl(null),
     },
     toFormGroup: (value: string): { value: string } => {
       return { value };

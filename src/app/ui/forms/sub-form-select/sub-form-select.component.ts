@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { debounceTime, distinctUntilChanged, Subject, Subscription, tap } from 'rxjs';
 import { OptionModel } from 'src/app/core/models/option.model';
@@ -66,7 +66,7 @@ export class SubFormSelectComponent implements OnInit, OnDestroy {
   public form = createForm<string, { value: string }>(this, {
     formType: FormType.SUB,
     formControls: {
-      value: new FormControl(null),
+      value: new UntypedFormControl(null),
     },
     toFormGroup: (value: string): { value: string } => {
       return { value };

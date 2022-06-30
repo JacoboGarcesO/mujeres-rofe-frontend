@@ -1,9 +1,8 @@
-import { Component, ChangeDetectionStrategy, OnInit, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NoticeModel } from '../../../core/models/notice.model';
-import { AdminContentContainerFacade } from './admin-content-container.facade';
-import { TabModel } from '../../../core/models/tab.model';
 import { TabEnum } from 'src/app/core/enums/tab.enum';
+import { TabModel } from '../../../core/models/tab.model';
+import { AdminContentContainerFacade } from './admin-content-container.facade';
 
 @Component({
   selector: 'mr-admin-content-container',

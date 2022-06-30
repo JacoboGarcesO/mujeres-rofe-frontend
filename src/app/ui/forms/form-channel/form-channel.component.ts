@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy, Input, Output } from '@angular/core
 import { Subject } from 'rxjs';
 import { ChannelModel } from '../../../core/models/channel.model';
 import { createForm, FormType } from 'ngx-sub-form';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'mr-form-channel',
@@ -32,15 +32,15 @@ export class FormChannelComponent {
     output$: this.dataOutput,
     manualSave$: this.manualSave$,
     formControls: {
-      name: new FormControl(null, Validators.required),
-      icon: new FormControl(null, Validators.required),
-      banner: new FormControl(null, Validators.required),
-      order: new FormControl(null, Validators.required),
-      description: new FormControl(null),
-      type: new FormControl(null, Validators.required),
-      link: new FormControl(null, Validators.required),
+      name: new UntypedFormControl(null, Validators.required),
+      icon: new UntypedFormControl(null, Validators.required),
+      banner: new UntypedFormControl(null, Validators.required),
+      order: new UntypedFormControl(null, Validators.required),
+      description: new UntypedFormControl(null),
+      type: new UntypedFormControl(null, Validators.required),
+      link: new UntypedFormControl(null, Validators.required),
       //---
-      id: new FormControl(null),
+      id: new UntypedFormControl(null),
     },
   });
 

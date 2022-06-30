@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, ElementRef, Renderer2, ChangeDetectorRef, OnChanges } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { MediaModel } from 'src/app/core/models/media.model';
 import { MiscUtil } from 'src/app/core/utils/misc.util';
@@ -22,10 +22,10 @@ export class SubFormFileComponent implements OnChanges {
   public form = createForm<MediaModel>(this, {
     formType: FormType.SUB,
     formControls: {
-      url: new FormControl(null),
-      id: new FormControl(null),
-      file: new FormControl(null),
-      type: new FormControl(null),
+      url: new UntypedFormControl(null),
+      id: new UntypedFormControl(null),
+      file: new UntypedFormControl(null),
+      type: new UntypedFormControl(null),
     },
   });
 

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Output, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
 import { OptionModel } from 'src/app/core/models/option.model';
@@ -30,7 +30,7 @@ export class FormUsersFilterComponent {
     disabled$: this.disabled$,
     output$: this.dataOutput,
     formControls: {
-      value: new FormControl(null),
+      value: new UntypedFormControl(null),
     },
   });
 

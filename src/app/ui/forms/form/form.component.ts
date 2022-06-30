@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Output, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
 import { FormRequestModel } from 'src/app/core/models/form-requests.model';
@@ -30,15 +30,15 @@ export class FormComponent {
     output$: this.dataOutput,
     manualSave$: this.manualSave$,
     formControls: {
-      title: new FormControl(null),
-      description: new FormControl(null),
-      subject: new FormControl(null),
-      template: new FormControl(null),
-      channel: new FormControl(null),
-      fields: new FormControl(null),
+      title: new UntypedFormControl(null),
+      description: new UntypedFormControl(null),
+      subject: new UntypedFormControl(null),
+      template: new UntypedFormControl(null),
+      channel: new UntypedFormControl(null),
+      fields: new UntypedFormControl(null),
       //---
-      id: new FormControl(null),
-      creationDate: new FormControl(null),
+      id: new UntypedFormControl(null),
+      creationDate: new UntypedFormControl(null),
     },
   });
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, ViewEncapsulation, Renderer2, ChangeDetectorRef, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { debounceTime, distinctUntilChanged, Subject, Subscription, tap } from 'rxjs';
 import { OptionModel } from 'src/app/core/models/option.model';
@@ -29,7 +29,7 @@ export class SubFormMultiSelectComponent implements OnInit, OnDestroy, OnChanges
   public form = createForm<string[], { value: string[] }>(this, {
     formType: FormType.SUB,
     formControls: {
-      value: new FormControl([]),
+      value: new UntypedFormControl([]),
     },
     toFormGroup: (value: string[]): { value: string[] } => {
       return { value };

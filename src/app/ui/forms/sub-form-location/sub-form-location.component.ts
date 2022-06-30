@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { UserLocationModel } from 'src/app/core/models/locations.model';
 import { OptionModel } from 'src/app/core/models/option.model';
@@ -17,9 +17,9 @@ export class SubFormLocationComponent {
   public form = createForm<UserLocationModel>(this, {
     formType: FormType.SUB,
     formControls: {
-      city: new FormControl(null),
-      state: new FormControl(null),
-      cityName: new FormControl(null),
+      city: new UntypedFormControl(null),
+      state: new UntypedFormControl(null),
+      cityName: new UntypedFormControl(null),
     },
   });
 }

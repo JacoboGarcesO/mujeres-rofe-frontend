@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectionStrategy, Output, Input } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { Component, ChangeDetectionStrategy, Output, Input } from '@angular/core';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
 import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
@@ -30,7 +30,7 @@ export class FormForgotPasswordComponent {
     output$: this.dataOutput,
     manualSave$: this.manualSave$,
     formControls: {
-      value: new FormControl(null, [Validators.required, Validators.pattern(REGEX_RESOURCE.email)]),
+      value: new UntypedFormControl(null, [Validators.required, Validators.pattern(REGEX_RESOURCE.email)]),
     },
   });
 

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, Validators } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { FormRequestFieldsModel } from 'src/app/core/models/form-requests.model';
 
@@ -15,12 +15,12 @@ export class FormFieldComponent {
   public form = createForm<FormRequestFieldsModel>(this, {
     formType: FormType.SUB,
     formControls: {
-      label: new FormControl(null, Validators.required),
-      type: new FormControl(null, Validators.required),
-      placeholder: new FormControl(null),
-      image: new FormControl(null),
-      value: new FormControl(null),
-      options: new FormControl(null),
+      label: new UntypedFormControl(null, Validators.required),
+      type: new UntypedFormControl(null, Validators.required),
+      placeholder: new UntypedFormControl(null),
+      image: new UntypedFormControl(null),
+      value: new UntypedFormControl(null),
+      options: new UntypedFormControl(null),
     },
   });
 

@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { MiscUtil } from 'src/app/core/utils/misc.util';
 
@@ -16,7 +16,7 @@ export class SubFormCheckboxComponent {
   public form = createForm<boolean, { value: boolean }>(this, {
     formType: FormType.SUB,
     formControls: {
-      value: new FormControl(null),
+      value: new UntypedFormControl(null),
     },
     toFormGroup: (value: boolean): { value: boolean } => {
       return { value };

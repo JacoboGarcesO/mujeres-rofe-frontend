@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl } from '@angular/forms';
 import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
 import { FormRequestFieldsModel } from 'src/app/core/models/form-requests.model';
 
@@ -14,7 +14,7 @@ export class FormFieldsComponent implements AfterViewInit {
   public form = createForm<FormRequestFieldsModel[], { value: FormRequestFieldsModel[] }>(this, {
     formType: FormType.SUB,
     formControls: {
-      value: new FormArray([]),
+      value: new UntypedFormArray([]),
     },
     toFormGroup: (value: FormRequestFieldsModel[]): { value: FormRequestFieldsModel[] } => {
       return { value };
@@ -44,6 +44,6 @@ export class FormFieldsComponent implements AfterViewInit {
   }
 
   private add(): void {
-    this.form.formGroup.controls.value.push(new FormControl({ label: null, placeholder: null, value: null }));
+    this.form.formGroup.controls.value.push(new UntypedFormControl({ label: null, placeholder: null, value: null }));
   }
 }
