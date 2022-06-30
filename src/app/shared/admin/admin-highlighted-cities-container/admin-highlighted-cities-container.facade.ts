@@ -51,7 +51,6 @@ export class AdminHighlightedCitiesContainerFacade {
   createCity(cityId: string): void {
     this.notify('init');
     const city = this.state.locations.cities.snapshot().find((city) => city.id === cityId);
-    console.log(cityId);
     const callback = this.loadHighlightedCities.bind(this);
 
     this.subscriptions.add(

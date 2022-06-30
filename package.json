@@ -22,7 +22,7 @@
     "ng-multiselect-dropdown": "^0.3.8",
     "ng2-pdf-viewer": "^8.0.1",
     "ngx-sub-form": "^6.0.2",
-    "rxjs": "~7.4.0",
+    "rxjs": "~7.5.5",
     "swiper": "^8.1.4",
     "tsdef": "^0.0.14",
     "tslib": "^2.3.0",
