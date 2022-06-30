@@ -21,7 +21,7 @@
     "lz-string": "^1.4.4",
     "ng-multiselect-dropdown": "^0.3.8",
     "ng2-pdf-viewer": "^8.0.1",
-    "ngx-sub-form": "^5.3.0",
+    "ngx-sub-form": "^6.0.2",
     "rxjs": "~7.4.0",
     "swiper": "^8.1.4",
     "tsdef": "^0.0.14",
