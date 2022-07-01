@@ -35,7 +35,7 @@ export class NoticesContentContainerFacade {
   channel$(): Observable<ChannelModel> {
     const url = this.location.path().split('/');
     const channels = this.state.channels.channels.snapshot();
-    return of(channels.find((channel)=> channel.type === toChannelEnum(url[2])));
+    return of(channels.find((channel) => channel.type === toChannelEnum(url[2])));
   }
 
   users$(): Observable<UserPaginatedModel> {
@@ -95,6 +95,11 @@ export class NoticesContentContainerFacade {
   }
 
   loadUsersByCity(value: string): void {
+    if (!value) {
+      this.loadUsers(0);
+      return;
+    }
+
     this.subscriptions.add(
       this.usersService.getUsersByCity(value).pipe(
         tap(this.storeUsers.bind(this)),
@@ -103,6 +108,11 @@ export class NoticesContentContainerFacade {
   }
 
   loadUsersByName(value: string): void {
+    if (value === '') {
+      this.loadUsers(0);
+      return;
+    }
+
     this.subscriptions.add(
       this.usersService.getUsersByName(value).pipe(
         tap(this.storeUsers.bind(this)),

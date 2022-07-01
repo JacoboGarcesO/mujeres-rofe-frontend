@@ -47,7 +47,7 @@ export class FormDetailContainerFacade {
   saveRequest(form: FormRequestModel): void {
     const callback = this.loadForm.bind(this, form.id);
     const currentUser = this.state.users.currentUser.snapshot();
-  
+    
     this.notify('init');
     this.subscriptions.add(
       this.requestService.createRequest(form, currentUser).pipe(

@@ -24,7 +24,7 @@ export class RequestsService {
     );
   }
   
-  createRequest(form: FormRequestModel, currentUser: UserModel): Observable<string> {
+  createRequest(form: FormRequestModel, currentUser: UserModel): Observable<string> | any {
     const url = URL_RESOURCE.requests;
     const body = this.toApiRequestMapper.map(form, currentUser);    
     return this.httpService.postFile(url, body).pipe(
