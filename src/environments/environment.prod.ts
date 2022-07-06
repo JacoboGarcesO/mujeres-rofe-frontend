@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://mujeres-rofe-back-pdn.azurewebsites.net/api',
+  apiUrl: 'http://mujeresrofe.com:7007/api',
 };
