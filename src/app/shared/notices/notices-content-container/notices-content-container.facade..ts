@@ -23,7 +23,6 @@ export class NoticesContentContainerFacade {
     private noticesService: NoticesService,
     private usersService: UsersService,
     private service: HighlightedCitiesService,
-    private locationsService: LocationsService,
     private location: Location,
   ) { }
 
@@ -35,7 +34,7 @@ export class NoticesContentContainerFacade {
   channel$(): Observable<ChannelModel> {
     const url = this.location.path().split('/');
     const channels = this.state.channels.channels.snapshot();
-    return of(channels.find((channel) => channel.type === toChannelEnum(url[2])));
+    return of(channels?.find((channel) => channel?.type === toChannelEnum(url[2])));
   }
 
   users$(): Observable<UserPaginatedModel> {

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { map, Observable, of, tap } from 'rxjs';
 import { ChannelModel } from '../models/channel.model';
 import { HttpService } from './generals/http.service';
 import { ApiToChannelsMapper } from '../mappers/api-to-channels.mapper';
 import { ToApiChannelMapper } from '../mappers/to-api-channel.mapper';
 import { URL_RESOURCE } from '../resources/url.resource';
+import { StorageService } from './generals/storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +15,14 @@ export class ChannelsService {
     private httpService: HttpService,
     private apiToChannelsMapper: ApiToChannelsMapper,
     private toApiChannelMapper: ToApiChannelMapper,
+    private storageService: StorageService,
   ) { }
 
   getChannels(): Observable<ChannelModel[]> {
     const url = URL_RESOURCE.channels;
     return this.httpService.get(url).pipe(
       map((response) => this.apiToChannelsMapper.mapChannels(response)),
+      tap((channels) => this.storageService.set<ChannelModel[]>('CHANNELS', channels)),
     );
   }
 
