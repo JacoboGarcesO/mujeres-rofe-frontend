@@ -23,6 +23,7 @@ export class ProfileCurrentUserComponent {
   @Input() maritalStatus: OptionModel[];
   @Input() stratum: OptionModel[];
   @Input() sustenting: OptionModel[];
+  @Input() disclosures: OptionModel[];
   @Input() user: UserModel;
   @Output() createUser: EventEmitter<UserModel> = new EventEmitter();
   @Output() selectedState: EventEmitter<string> = new EventEmitter();

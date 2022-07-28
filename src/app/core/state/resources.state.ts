@@ -18,6 +18,7 @@ export class ResourcesState {
   private education$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
   private stratum$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
   private templates$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
+  private disclosures$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) { }
 
@@ -34,6 +35,7 @@ export class ResourcesState {
       education: this.factory.state(this.education$),
       stratum: this.factory.state(this.stratum$),
       templates: this.factory.state(this.templates$),
+      disclosures: this.factory.state(this.disclosures$),
     };
   }
 

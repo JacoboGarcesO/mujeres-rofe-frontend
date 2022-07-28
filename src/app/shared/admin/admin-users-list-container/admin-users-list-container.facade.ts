@@ -84,6 +84,10 @@ export class AdminUsersListContainerFacade {
   currentUserToUpdate$(): Observable<UserModel> {
     return this.state.users.currentUserToUpdate.$();
   }
+
+  disclosures$(): Observable<OptionModel[]> {
+    return this.state.resources.disclosures.$();
+  }
   //#endregion
 
   //#region Public methods
@@ -125,6 +129,9 @@ export class AdminUsersListContainerFacade {
         this.resourcesService.getSustenting().pipe(
           tap(this.state.resources.sustenting.set.bind(this)),
         ),
+        this.resourcesService.getDisclosures().pipe(
+          tap(this.state.resources.disclosures.set.bind(this)),
+        ),
       ).subscribe(),
     );
   }
@@ -139,6 +146,7 @@ export class AdminUsersListContainerFacade {
     this.state.resources.maritalStatus.set(null);
     this.state.resources.stratum.set(null);
     this.state.resources.sustenting.set(null);
+    this.state.resources.disclosures.set(null);
   }
 
   loadStates(): void {

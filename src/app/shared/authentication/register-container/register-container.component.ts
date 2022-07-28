@@ -22,6 +22,7 @@ export class RegisterContainerComponent implements OnInit, OnDestroy {
   public maritalStatus$: Observable<OptionModel[]>;
   public stratum$: Observable<OptionModel[]>;
   public sustenting$: Observable<OptionModel[]>;
+  public disclosures$: Observable<OptionModel[]>;
 
   constructor(private facade: RegisterContainerFacade) { }
 
@@ -62,5 +63,6 @@ export class RegisterContainerComponent implements OnInit, OnDestroy {
     this.maritalStatus$ = this.facade.maritalStatus$(); 
     this.stratum$ = this.facade.stratum$(); 
     this.sustenting$ = this.facade.sustenting$(); 
+    this.disclosures$ = this.facade.disclosures$(); 
   }
 }

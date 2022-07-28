@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, Input, Output, OnChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnChanges, Output } from '@angular/core';
 import { UntypedFormControl, Validators } from '@angular/forms';
 import { createForm, FormType } from 'ngx-sub-form';
 import { Subject } from 'rxjs';
@@ -25,8 +25,10 @@ export class FormUserComponent implements OnChanges {
   @Input() maritalStatus: OptionModel[];
   @Input() stratum: OptionModel[];
   @Input() sustenting: OptionModel[];
+  @Input() disclosures: OptionModel[];
   @Input() canResetForm: boolean;
   @Input() showCheckConditions = false;
+  public isOther = false;
 
   public manualSave$: Subject<void> = new Subject();
   private input$: Subject<UserModel> = new Subject();
@@ -84,12 +86,20 @@ export class FormUserComponent implements OnChanges {
   @Output() initForm = this.form.controlValue$;
   @Output() formUpdate = this.form.formGroup.valueChanges;
 
-
   ngOnChanges(): void {
+    this.validateIsOther();
     if (!this.canResetForm) { return; }
-    
+
     Object.keys(
       this.form.formGroup.controls,
     ).forEach((control) => this.form.formGroup.controls[control].setValue(null));
+  }
+
+  handleToggleOther(event: string): void {
+    this.isOther = event === 'otro';
+  }
+
+  private validateIsOther(): void {
+    this.isOther = !this.disclosures?.map((disclosures) => disclosures.id).includes(this.form.formGroup.value?.disclosure);
   }
 }

@@ -76,6 +76,10 @@ export class ProfileCurrentUserContainerFacade {
   sustenting$(): Observable<OptionModel[]> {
     return this.state.resources.sustenting.$();
   }
+
+  disclosures$(): Observable<OptionModel[]> {
+    return this.state.resources.disclosures.$();
+  }
   //#endregion
 
   //#region Public methods
@@ -117,6 +121,9 @@ export class ProfileCurrentUserContainerFacade {
         this.resourcesService.getSustenting().pipe(
           tap(this.state.resources.sustenting.set.bind(this)),
         ),
+        this.resourcesService.getDisclosures().pipe(
+          tap(this.state.resources.disclosures.set.bind(this)),
+        ),
       ).subscribe(),
     );
   }
@@ -131,6 +138,7 @@ export class ProfileCurrentUserContainerFacade {
     this.state.resources.maritalStatus.set(null);
     this.state.resources.stratum.set(null);
     this.state.resources.sustenting.set(null);
+    this.state.resources.disclosures.set(null);
   }
 
   loadStates(): void {

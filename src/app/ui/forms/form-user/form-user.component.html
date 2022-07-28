@@ -141,10 +141,21 @@
       [formControlName]="form.formControlNames.description"
     ></mr-sub-form-textarea>
 
-    <mr-sub-form-textarea 
-      [text]="'¿Por dónde conociste Mujeres Rofé?*'"
-      [formControlName]="form.formControlNames.disclosure"
-    ></mr-sub-form-textarea>
+    <span class="form-user__disclosure">
+      <mr-sub-form-select 
+        [label]="'¿Por dónde conociste Mujeres Rofé?*'"
+        [options]="disclosures"
+        [formControlName]="form.formControlNames.disclosure"
+        (ngModelChange)="handleToggleOther($event)"
+      ></mr-sub-form-select>
+
+      <mr-sub-form-input
+        [hidden]="!isOther"
+        [type]="'input'"
+        [label]="'¿Cuál?*'"
+        [formControlName]="form.formControlNames.disclosure"
+      ></mr-sub-form-input>
+    </span>
 
     <mr-sub-form-input 
       [type]="'input'"

@@ -72,6 +72,10 @@ export class RegisterContainerFacade {
   sustenting$(): Observable<OptionModel[]> {
     return this.state.resources.sustenting.$();
   }
+
+  disclosures$(): Observable<OptionModel[]> {
+    return this.state.resources.disclosures.$();
+  }
   //#endregion
 
   //#region Observables
@@ -113,6 +117,9 @@ export class RegisterContainerFacade {
         this.resourcesService.getSustenting().pipe(
           tap(this.state.resources.sustenting.set.bind(this)),
         ),
+        this.resourcesService.getDisclosures().pipe(
+          tap(this.state.resources.disclosures.set.bind(this)),
+        ),
       ).subscribe(),
     );
   }
@@ -127,6 +134,7 @@ export class RegisterContainerFacade {
     this.state.resources.maritalStatus.set(null);
     this.state.resources.stratum.set(null);
     this.state.resources.sustenting.set(null);
+    this.state.resources.disclosures.set(null);
   }
 
   loadStates(): void {

@@ -113,4 +113,15 @@ export class ResourcesService {
 
     return of(templates);
   }
+
+  getDisclosures(): Observable<OptionModel[]> {
+    const options = [
+      { label: 'Por un/a amig@', id: 'amig@' },
+      { label: 'Redes sociales', id: 'redes-sociales' },
+      { label: 'Familias en acción', id: 'familias-en-accion' },
+      { label: 'Otro', id: 'otro' },
+    ];
+
+    return of(options);
+  }
 }

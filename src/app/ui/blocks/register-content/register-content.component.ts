@@ -23,6 +23,7 @@ export class RegisterContentComponent {
   @Input() maritalStatus: OptionModel[];
   @Input() stratum: OptionModel[];
   @Input() sustenting: OptionModel[];
+  @Input() disclosures: OptionModel[];
   @Output() createUser: EventEmitter<UserModel> = new EventEmitter();
   @Output() selectedState: EventEmitter<string> = new EventEmitter();
   private currentUser: UserModel;

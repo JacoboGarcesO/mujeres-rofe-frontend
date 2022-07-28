@@ -10,7 +10,8 @@
   housingType: (housingType$ | async),
   maritalStatus: (maritalStatus$ | async),
   stratum: (stratum$ | async),
-  sustenting: (sustenting$ | async)
+  sustenting: (sustenting$ | async),
+  disclosures: (disclosures$ | async)
 } as data">
   <mr-register-content
     [hobbies]="data.hobbies"
@@ -25,6 +26,7 @@
     [maritalStatus]="data.maritalStatus"
     [stratum]="data.stratum"
     [sustenting]="data.sustenting"
+    [disclosures]="data.disclosures"
     (createUser)="handleCreateUser($event)"
     (selectedState)="handleLoadCities($event)"
   ></mr-register-content>

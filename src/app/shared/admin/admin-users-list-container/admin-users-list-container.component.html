@@ -13,7 +13,8 @@
   stratum: (stratum$ | async),
   sustenting: (sustenting$ | async),
   canCloseModal: (canCloseModal$ | async),
-  userToUpdate: (userToUpdate$ | async)
+  userToUpdate: (userToUpdate$ | async),
+  disclosures: (disclosures$ | async)
 } as data">
     <mr-admin-users-list
       [users]="data.users"
@@ -31,6 +32,7 @@
       [sustenting]="data.sustenting"
       [userToUpdate]="data.userToUpdate"
       [canCloseModal]="data.canCloseModal"
+      [disclosures]="data.disclosures"
       (stateSelected)="handleSelectState($event)"
       (createUser)="handleCreateUser($event)"
       (deleteUser)="handleDeleteUser($event)"

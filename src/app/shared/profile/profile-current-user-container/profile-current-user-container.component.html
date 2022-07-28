@@ -11,7 +11,8 @@
   housingType: (housingType$ | async),
   maritalStatus: (maritalStatus$ | async),
   stratum: (stratum$ | async),
-  sustenting: (sustenting$ | async)
+  sustenting: (sustenting$ | async),
+  disclosures: (disclosures$ | async)
 } as data">
   <mr-profile-current-user
     [user]="data.user"
@@ -25,6 +26,7 @@
     [familyIncome]="data.familyIncome"
     [housingType]="data.housingType"
     [maritalStatus]="data.maritalStatus"
+    [disclosures]="data.disclosures"
     [stratum]="data.stratum"
     [sustenting]="data.sustenting"
     (createUser)="handleUpdateUser($event)"

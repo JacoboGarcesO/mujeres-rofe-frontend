@@ -14,6 +14,12 @@
     border: 0;
   }
 
+  &__disclosure {
+    gap: styles.$box-pad-base;
+    display: flex;
+    flex-direction: column;
+  }
+
   &__terms {
     display: flex;
     align-items: center;

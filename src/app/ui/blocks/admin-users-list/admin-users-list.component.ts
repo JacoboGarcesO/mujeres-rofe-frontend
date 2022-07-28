@@ -30,6 +30,7 @@ export class AdminUsersListComponent implements OnChanges {
   @Input() stratum: OptionModel[];
   @Input() sustenting: OptionModel[];
   @Input() canCloseModal: boolean;
+  @Input() disclosures: OptionModel[];
   @Output() stateSelected: EventEmitter<string> = new EventEmitter();
   @Output() createUser: EventEmitter<UserModel> = new EventEmitter();
   @Output() updateUser: EventEmitter<UserModel> = new EventEmitter();

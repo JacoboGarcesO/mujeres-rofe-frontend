@@ -25,6 +25,7 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
   public sustenting$: Observable<OptionModel[]>;
   public userToUpdate$: Observable<UserModel>;
   public canCloseModal$: Observable<boolean>;
+  public disclosures$: Observable<OptionModel[]>;
 
   constructor(private facade: AdminUsersListContainerFacade) { }
 
@@ -97,5 +98,6 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
     this.sustenting$ = this.facade.sustenting$();
     this.canCloseModal$ = this.facade.canCloseModal$();
     this.userToUpdate$ = this.facade.currentUserToUpdate$();
+    this.disclosures$ = this.facade.disclosures$(); 
   }
 }
