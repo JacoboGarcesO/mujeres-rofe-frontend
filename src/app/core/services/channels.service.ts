@@ -21,7 +21,7 @@ export class ChannelsService {
   getChannels(): Observable<ChannelModel[]> {
     const url = URL_RESOURCE.channels;
     return this.httpService.get(url).pipe(
-      map((response) => this.apiToChannelsMapper.mapChannels(response)),
+      map(({ result }) => this.apiToChannelsMapper.mapChannels(result)),
       tap((channels) => this.storageService.set<ChannelModel[]>('CHANNELS', channels)),
     );
   }
@@ -33,10 +33,10 @@ export class ChannelsService {
   }
 
   updateChannel(channel: ChannelModel): Observable<string> {
-    const url =  URL_RESOURCE.channels;
+    const url = URL_RESOURCE.channels;
     const formData = this.toApiChannelMapper.map(channel);
     return this.httpService.putFile(url, formData).pipe(
-      map((response: any) => response?.channels?.[0]?._id),
+      map(({ result }) => result?._id),
     );
   }
 

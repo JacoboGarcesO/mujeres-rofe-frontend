@@ -84,7 +84,7 @@ export class AdminRequestsListContainerFacade {
       setTimeout(() => {
         this.state.notifications.notification.set(null);
         if (callback) { callback(); }
-      }, 5000);
+      }, 3500);
     }
   }
 

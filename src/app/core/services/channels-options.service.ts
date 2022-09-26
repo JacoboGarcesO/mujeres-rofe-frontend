@@ -18,7 +18,7 @@ export class ChannelsOptionsService {
   getChannels(): Observable<OptionModel[]> {
     const url = URL_RESOURCE.channels;
     return this.httpService.get(url).pipe(
-      map((response: any) => this.apiToOptionMapper.map(response?.channels, 'type')),
+      map(({ result }) => this.apiToOptionMapper.map(result, 'type')),
     );
   }
 }

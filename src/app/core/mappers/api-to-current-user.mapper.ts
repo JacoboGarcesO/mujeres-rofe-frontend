@@ -10,7 +10,7 @@ import { MessageUtil } from '../utils/message.util';
 export class ApiToCurrentUserMapper {
   map(response: any): CurrentUserModel {
     return {
-      user: this.getUser(response?.user),
+      user: this.getUser(response?.result),
       token: response?.token,
       message: MessageUtil.trasnformToMessage(response?.message),
     };

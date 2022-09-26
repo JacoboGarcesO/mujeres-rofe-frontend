@@ -181,7 +181,7 @@ export class ProfileCurrentUserContainerFacade {
     this.state.hobbies.hobbies.set(null);
   }
 
-  loadUser(userId: string): void {
+  loadUser(userId: string): void {  
     this.subscriptions.add(
       this.userService.getById(userId).pipe(
         tap(this.storeUser.bind(this)),
@@ -249,7 +249,7 @@ export class ProfileCurrentUserContainerFacade {
       setTimeout(() => {
         this.state.notifications.notification.set(null);
         if (callback) { callback(); }
-      }, 5000);
+      }, 3500);
     }
   }
 

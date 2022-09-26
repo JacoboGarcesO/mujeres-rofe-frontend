@@ -21,21 +21,21 @@ export class NoticesService {
   getNotices(): Observable<NoticeModel[]> {
     const url = URL_RESOURCE.notices;
     return this.httpService.get(url).pipe(
-      map((response) => this.apiToNoticesMapper.map(response)),
+      map(({ result }) => this.apiToNoticesMapper.map(result)),
     );
   }
 
   getNoticeById(id: string): Observable<NoticeModel> {
     const url = URL_RESOURCE.noticeById(id);
     return this.httpService.get(url).pipe(
-      map((response) => this.apiToNoticeMapper.map(response)),
+      map(({ result }) => this.apiToNoticeMapper.map(result)),
     );
   }
 
   getNoticesByChannel(channel: string): Observable<NoticeModel[]> {
     const url = URL_RESOURCE.noticesByChannel(channel);
     return this.httpService.get(url).pipe(
-      map((response) => this.apiToNoticesMapper.map(response)),
+      map(({ result }) => this.apiToNoticesMapper.map(result)),
     );
   }
 
@@ -46,10 +46,10 @@ export class NoticesService {
   }
 
   updateNotice(notice: NoticeModel): Observable<string> {
-    const url =  URL_RESOURCE.notices;
+    const url = URL_RESOURCE.notices;
     const formData = this.toApiNoticeMapper.map(notice);
     return this.httpService.putFile(url, formData).pipe(
-      map((response: any) => response?.notices?.[0]?._id),
+      map(({ result }: any) => result?._id),
     );
   }
 

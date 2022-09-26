@@ -1,30 +1,14 @@
 import { Injectable } from '@angular/core';
-import { UserModel, UserPaginatedModel } from '../models/user.model';
+import { UserModel } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiToUsersMapper {
-  map(response: any): UserModel[] {
-    if (!response?.users) {
-      return [];
-    }
+  map(result: any[]): UserModel[] {    
+    if (!result?.length) { return []; }
 
-    return response?.users?.map(this.getUser.bind(this));
-  }
-
-  mapPaginatedUsers(response: any): UserPaginatedModel {
-    if (!response?.users) {
-      return {
-        users: [],
-        total: 0,
-      };
-    }
-
-    return {
-      users: response?.users?.map(this.getUser.bind(this)),
-      total: response?.total,
-    };
+    return result?.map(this.getUser.bind(this));
   }
 
   getUser(user: any): UserModel {
@@ -36,7 +20,11 @@ export class ApiToUsersMapper {
       rol: user?.rol,
       isPremium: user?.isPremium,
       documentNumber: user?.documentNumber,
-      image: user?.image,
+      image: {
+        id: user?.image?._id,
+        url: user?.image?.url,
+        type: user?.image?.type,
+      },
       description: user?.description,
       location: {
         city: user?.location?.city,
@@ -60,17 +48,21 @@ export class ApiToUsersMapper {
       disclosure: user?.disclosure,
       ethnicGroup: this.getHobbies(user?.ethnicGroup),
       sustaining: this.getHobbies(user?.sustaining),
-      documentImage: user?.documentImage,
+      documentImage: {
+        id: user?.documentImage?._id,
+        url: user?.documentImage?.url,
+        type: user?.documentImage?.type,
+      },
       creationDate: user?.creationDate,
       isAccept: user?.hasAcceptTermsAndConditions ?? true,
     };
   }
 
   private getHobbies(hobbies: any[]): string[] {
-    return hobbies.map((hobbie) => hobbie?.name);
+    return hobbies?.map((hobbie) => hobbie?.name);
   }
 
   private getSocialNetwork(socials: any[], social: string): string {
-    return socials.find((_) => _.name === social)?.url;
+    return socials?.find((_) => _.name === social)?.url;
   }
 }

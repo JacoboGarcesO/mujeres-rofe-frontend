@@ -62,7 +62,8 @@ export class AdminSlidesListContainerFacade {
 
   loadSlide(slideId: string): void {    
     this.destroySlide();
-    const slide = this.state.slides.slides.snapshot().find((slide) => slide.id === slideId);
+    this.destroyCanCloseModal();
+    const slide = this.state.slides.slides.snapshot().find((slide) => slide.id === slideId);    
     this.state.slides.slideToUpdate.set(slide);
   }
 
@@ -137,7 +138,7 @@ export class AdminSlidesListContainerFacade {
       setTimeout(() => {
         this.state.notifications.notification.set(null);
         if (callback) { callback(); }
-      }, 5000);
+      }, 3500);
     }
   }
 

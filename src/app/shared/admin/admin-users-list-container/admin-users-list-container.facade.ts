@@ -1,19 +1,27 @@
-import { Injectable } from '@angular/core';
-import { Subscription, Observable, tap, EMPTY, merge, catchError, finalize } from 'rxjs';
+
+import { Location } from '@angular/common';
+import { inject, Injectable } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { catchError, EMPTY, filter, finalize, merge, Observable, of, Subscription, tap } from 'rxjs';
+import { FilterModel } from 'src/app/core/models/filter.model';
+import { UserModel } from 'src/app/core/models/user.model';
+import { FilterParser } from 'src/app/core/parsers/filter.parser';
 import { UsersService } from 'src/app/core/services/users.service';
-import { AppState } from '../../../core/state/app.state';
-import { LocationsService } from '../../../core/services/locations.service';
-import { HobbiesService } from '../../../core/services/hobbies.service';
 import { OptionModel } from '../../../core/models/option.model';
-import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
-import { ResourcesService } from '../../../core/services/resources.service';
 import { ExcelService } from '../../../core/services/excel.service';
+import { HobbiesService } from '../../../core/services/hobbies.service';
+import { LocationsService } from '../../../core/services/locations.service';
+import { ResourcesService } from '../../../core/services/resources.service';
+import { AppState } from '../../../core/state/app.state';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AdminUsersListContainerFacade {
   private subscriptions: Subscription;
+  private router = inject(Router);
+  private parser = inject(FilterParser);
+  private location = inject(Location);
 
   constructor(
     private state: AppState,
@@ -25,8 +33,12 @@ export class AdminUsersListContainerFacade {
   ) { }
 
   //#region Observables
-  users$(): Observable<UserPaginatedModel> {
-    return this.state.users.paginatedUsers.$();
+  users$(): Observable<UserModel[]> {
+    return this.state.users.users.$();
+  }
+
+  totalUsers$(): Observable<number> {
+    return this.state.users.totalUsers.$();
   }
 
   cities$(): Observable<OptionModel[]> {
@@ -88,6 +100,10 @@ export class AdminUsersListContainerFacade {
   disclosures$(): Observable<OptionModel[]> {
     return this.state.resources.disclosures.$();
   }
+
+  filter$(): Observable<FilterModel> {
+    return of({ from: '0', limit: '10', sort: { firstName: 'asc' }, term: null, total: '0' });
+  }
   //#endregion
 
   //#region Public methods
@@ -132,6 +148,9 @@ export class AdminUsersListContainerFacade {
         this.resourcesService.getDisclosures().pipe(
           tap(this.state.resources.disclosures.set.bind(this)),
         ),
+        this.usersService.getTotalUsers().pipe(
+          tap(this.state.users.totalUsers.set.bind(this)),
+        ),
       ).subscribe(),
     );
   }
@@ -147,6 +166,7 @@ export class AdminUsersListContainerFacade {
     this.state.resources.stratum.set(null);
     this.state.resources.sustenting.set(null);
     this.state.resources.disclosures.set(null);
+    this.state.users.totalUsers.set(null);
   }
 
   loadStates(): void {
@@ -179,21 +199,26 @@ export class AdminUsersListContainerFacade {
     this.state.locations.cities.set(null);
   }
 
-  loadUsers(from: number): void {
+  loadUsers(): void {
     this.subscriptions.add(
-      this.usersService.getPaginatedUsers(from).pipe(
+      this.usersService.getUsers(this.getFilter()).pipe(
         tap(this.storeUsers.bind(this)),
       ).subscribe(),
     );
   }
 
+  filterUsers(filter: FilterModel): void {
+    const url = `/admin?${this.parser.dataToUrl(filter)}`;
+    this.router.navigateByUrl(url);
+  }
+
   destroyUsers(): void {
-    this.state.users.paginatedUsers.set(null);
+    this.state.users.users.set(null);
   }
 
   loadUser(userId: string): void {
     this.destroyUser();
-    const user = this.state.users.paginatedUsers.snapshot()?.users?.find((user) => user.id === userId);
+    const user = this.state.users.users.snapshot()?.find((user) => user.id === userId);
     this.state.users.currentUserToUpdate.set(user);
   }
 
@@ -223,7 +248,7 @@ export class AdminUsersListContainerFacade {
       this.usersService.create(user, cities).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
         tap(this.storeCanCloseModal.bind(this, true)),
-        catchError(this.notify.bind(this, 'error', null)),
+        catchError(({ error }) => this.notify('error', null, error?.error?.message)),
         finalize(this.notifyClose.bind(this)),
       ).subscribe(),
     );
@@ -263,10 +288,11 @@ export class AdminUsersListContainerFacade {
     );
   }
 
-  loadUsersByName(value: string): void {
+  initUrlListener(): void {
     this.subscriptions.add(
-      this.usersService.getUsersByName(value).pipe(
-        tap(this.storeUsers.bind(this)),
+      this.router.events.pipe(
+        filter((event) => event instanceof NavigationEnd),
+        tap(this.loadUsers.bind(this)),
       ).subscribe(),
     );
   }
@@ -277,11 +303,7 @@ export class AdminUsersListContainerFacade {
     this.state.locations?.[entity].set(options);
   }
 
-  private storeUsers(users: UserPaginatedModel): void {
-    this.state.users.paginatedUsers.set(users);
-  }
-
-  private storeUsersDownload(users: UserModel[]): void {
+  private storeUsers(users: UserModel[]): void {
     this.state.users.users.set(users);
   }
 
@@ -296,6 +318,7 @@ export class AdminUsersListContainerFacade {
   private notify(
     key: 'init' | 'complete' | 'error',
     callback: () => void = null,
+    message?: string,
   ): Observable<never> {
     const messages = {
       init: 'Estamos procesando su solicitud',
@@ -303,7 +326,7 @@ export class AdminUsersListContainerFacade {
       error: 'El proceso que solicitaste falló, inténtalo de nuevo más tarde',
     };
 
-    this.state.notifications.notification.set(messages[key]);
+    this.state.notifications.notification.set(typeof message === 'string' ? message : messages[key]);
 
     // eslint-disable-next-line angular/timeout-service
     if (!!callback && !(callback instanceof Observable)) { setTimeout(() => callback(), 2000); }
@@ -316,7 +339,7 @@ export class AdminUsersListContainerFacade {
       setTimeout(() => {
         this.state.notifications.notification.set(null);
         if (callback) { callback(); }
-      }, 5000);
+      }, 3500);
     }
   }
 
@@ -324,6 +347,10 @@ export class AdminUsersListContainerFacade {
     const lastMessage = this.state.notifications.notification.snapshot();
     const errorMessage = 'La solicitud falló';
     return !lastMessage?.startsWith(errorMessage);
+  }
+
+  private getFilter(): FilterModel {
+    return this.parser.urlToData(this.location.path());
   }
   //#endregion
 }

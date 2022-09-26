@@ -12,7 +12,7 @@
     (clicked)="handleDownloadUsers()"
   ></mr-button>
   <mr-form-users-search
-    (formUpdate)="handleNameFiler($event)"
+    (formUpdate)="filterUsers($event)"
   ></mr-form-users-search>
 </div>
 <mr-table
@@ -98,7 +98,7 @@
   </td>
 </ng-template>
 
-<mr-pagination [totalUsers]="totalPages" (changePagePaginated)="handleLoadUsers($event)"></mr-pagination>
+<mr-pagination [totalUsers]="totalPages" (changePagePaginated)="filterUsers($event)"></mr-pagination>
 
 <mr-modal #modalRef>
   <ng-container>

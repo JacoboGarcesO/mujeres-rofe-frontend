@@ -7,7 +7,7 @@ import { OptionModel } from '../models/option.model';
 export class ToApiHighlightedCitiesMapper {
   map(city: OptionModel): any {
     return {
-      _id: city?.id,
+      _id: parseInt(city?.id),
       name: city?.label,
     };
   }

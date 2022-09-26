@@ -14,7 +14,9 @@
   sustenting: (sustenting$ | async),
   canCloseModal: (canCloseModal$ | async),
   userToUpdate: (userToUpdate$ | async),
-  disclosures: (disclosures$ | async)
+  disclosures: (disclosures$ | async),
+  filter: (filter$ | async),
+  totalUsers: (totalUsers$ | async)
 } as data">
     <mr-admin-users-list
       [users]="data.users"
@@ -33,13 +35,14 @@
       [userToUpdate]="data.userToUpdate"
       [canCloseModal]="data.canCloseModal"
       [disclosures]="data.disclosures"
+      [filter]="data.filter"
+      [totalUsers]="data.totalUsers"
       (stateSelected)="handleSelectState($event)"
       (createUser)="handleCreateUser($event)"
       (deleteUser)="handleDeleteUser($event)"
       (loadUserToUpdate)="handleLoadUserToUpdate($event)"
       (updateUser)="handleUpdateUser($event)"
       (downloadUsers)="handleDownloadUsers()"
-      (changePagePaginated)="handleLoadUsers($event)"
-      (filterByName)="handleFilterByName($event)"
+      (filteredUsers)="filterUsers($event)"
     ></mr-admin-users-list>
 </ng-container>

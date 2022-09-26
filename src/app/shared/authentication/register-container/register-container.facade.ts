@@ -151,7 +151,7 @@ export class RegisterContainerFacade {
   }
 
   loadCitiesByState(stateId: string): void {
-    
+
     this.destroyCitiesByState();
     this.subscriptions.add(
       this.locationsService.getCitiesByState(stateId).pipe(
@@ -185,7 +185,7 @@ export class RegisterContainerFacade {
     this.subscriptions.add(
       this.userService.create(user, cities).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
-        catchError(this.notify.bind(this, 'error', null)),
+        catchError(({ error }) => this.notify('error', null, error?.error?.message)),
         finalize(this.notifyClose.bind(this)),
       ).subscribe(),
     );
@@ -204,6 +204,7 @@ export class RegisterContainerFacade {
   private notify(
     key: 'init' | 'complete' | 'error',
     callback: () => void = null,
+    message?: string,
   ): Observable<never> {
     const messages = {
       init: 'Estamos procesando su solicitud',
@@ -211,10 +212,10 @@ export class RegisterContainerFacade {
       error: 'El proceso que solicitaste falló, inténtalo de nuevo más tarde',
     };
 
-    this.state.notifications.notification.set(messages[key]);
+    this.state.notifications.notification.set(typeof message === 'string' ? message : messages[key]);
 
     // eslint-disable-next-line angular/timeout-service
-    if (!!callback && !(callback instanceof Observable)) { setTimeout(() => callback(), 5000); }
+    if (!!callback && !(callback instanceof Observable)) { setTimeout(() => callback(), 3500); }
     return EMPTY;
   }
 
@@ -224,7 +225,7 @@ export class RegisterContainerFacade {
       setTimeout(() => {
         this.state.notifications.notification.set(null);
         if (callback) { callback(); }
-      }, 5000);
+      }, 3500);
     }
   }
 

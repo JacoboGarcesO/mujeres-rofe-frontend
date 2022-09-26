@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { ToApiUsersMapper } from '../mappers/to-api-users.mapper';
 import { ApiToUsersMapper } from '../mappers/api-to-users.mapper';
+import { ToApiUsersMapper } from '../mappers/to-api-users.mapper';
+import { FilterModel } from '../models/filter.model';
+import { OptionModel } from '../models/option.model';
+import { UserModel } from '../models/user.model';
 import { URL_RESOURCE } from '../resources/url.resource';
 import { HttpService } from './generals/http.service';
-import { UserModel, UserPaginatedModel } from '../models/user.model';
-import { OptionModel } from '../models/option.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,44 +16,21 @@ export class UsersService {
     private httpService: HttpService,
     private toApiUsersMapper: ToApiUsersMapper,
     private apiToUsersMapper: ApiToUsersMapper,
-  ) {}
+  ) { }
 
-  getUsers(): Observable<UserModel[]> {
-    const url = URL_RESOURCE.users;
+  getUsers(filter: FilterModel): Observable<UserModel[]> {
+    const url = URL_RESOURCE.paginatedUsers;
+    const body = JSON.stringify(filter);
     return this.httpService
-      .get(url)
-      .pipe(map((response) => this.apiToUsersMapper.map(response)));
+      .post(url, body)
+      .pipe(map(({ result }) => this.apiToUsersMapper.map(result)));
   }
 
-  getUsersByCity(value: string): Observable<UserPaginatedModel> {
-    const url = URL_RESOURCE.usersByCity(value);
-    return this.httpService
-      .get(url)
-      .pipe(map((response) => this.apiToUsersMapper.mapPaginatedUsers(response)));
-  }
-
-  getUsersByName(value: string): Observable<UserPaginatedModel> {
-    const url = URL_RESOURCE.usersByName(value);
-    return this.httpService
-      .get(url)
-      .pipe(map((response) => this.apiToUsersMapper.mapPaginatedUsers(response)));
-  }
-
-  getPaginatedUsers(from: number): Observable<UserPaginatedModel> {
-    const url = URL_RESOURCE.paginatedUsers(from);
-    return this.httpService
-      .get(url)
-      .pipe(
-        map((response) => this.apiToUsersMapper.mapPaginatedUsers(response)),
-      );
-  }
-
-  create(user: UserModel, cities: OptionModel[]): Observable<string> {
+  create(user: UserModel, cities: OptionModel[]): Observable<any> {
     const url = URL_RESOURCE.users;
     const formData = this.toApiUsersMapper.map(user, cities);
     return this.httpService
-      .postFile(url, formData)
-      .pipe(map((response: any) => response?.users?.[0]?._id));
+      .postFile(url, formData);
   }
 
   update(user: UserModel, cities: OptionModel[]): Observable<string> {
@@ -73,9 +51,14 @@ export class UsersService {
     return this.httpService
       .get(url)
       .pipe(
-        map((response: any) =>
-          this.apiToUsersMapper.getUser(response.users?.[0]),
+        map(({ result }: any) =>
+          this.apiToUsersMapper.getUser(result),
         ),
       );
+  }
+
+  getTotalUsers(): Observable<number> {
+    const url = URL_RESOURCE.totalUsers;
+    return this.httpService.get(url).pipe(map(({ result }: any) => result));
   }
 }

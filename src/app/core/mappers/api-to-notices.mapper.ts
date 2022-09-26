@@ -5,10 +5,10 @@ import { LinkNoticeModel, NoticeModel } from '../models/notice.model';
   providedIn: 'root',
 })
 export class ApiToNoticesMapper {
-  map(response: any): NoticeModel[] {
-    if (!response?.notices) { return []; }
+  map(result: any[]): NoticeModel[] {
+    if (!result.length) { return []; }
 
-    return response?.notices?.map(this.getNotice.bind(this));
+    return result?.map(this.getNotice.bind(this));
   }
 
   private getNotice(notice: any): NoticeModel {

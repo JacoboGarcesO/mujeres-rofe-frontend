@@ -22,30 +22,30 @@ export class FormRequestsService {
   getFormRequests(): Observable<FormRequestModel[]> {
     const url = URL_RESOURCE.forms;
     return this.httpService.get(url).pipe(
-      map((response) => this.apiToFormRequestMapper.map(response, 'forms')),
+      map(({ result }) => this.apiToFormRequestMapper.map(result)),
     );
   }
 
   getFormRequest(formId: string): Observable<FormRequestModel> {
     const url = `${URL_RESOURCE.forms}/${formId}`;
     return this.httpService.get(url).pipe(
-      map((response: any) => this.apiToFormRequestMapper.getRequest(response?.forms?.[0])),
+      map(({ result }) => this.apiToFormRequestMapper.getRequest(result)),
     );
   }
 
   getFormRequestsOptions(): Observable<OptionModel[]> {
     const url = URL_RESOURCE.forms;
     return this.httpService.get(url).pipe(
-      map((response: any) => this.apiToOptionMapper.map(response?.forms, '_id', 'title')),
+      map(({ result }) => this.apiToOptionMapper.map(result, '_id', 'title')),
     );
   }
 
   createFormRequest(form: FormRequestModel): Observable<string> {
     const url = URL_RESOURCE.forms;
     const body = this.toApiFormRequestMapper.map(form);
-    
+
     return this.httpService.post(url, body).pipe(
-      map((response: any) => response.forms?.[0]._id),
+      map(({ result }) => result?._id),
     );
   }
 
@@ -53,14 +53,14 @@ export class FormRequestsService {
     const url = URL_RESOURCE.forms;
     const body = this.toApiFormRequestMapper.map(form);
     return this.httpService.put(url, body).pipe(
-      map((response: any) => response.forms?.[0]._id),
+      map(({ result }) => result._id),
     );
   }
 
   deleteFormRequest(formId: string): Observable<string> {
     const url = `${URL_RESOURCE.forms}/${formId}`;
     return this.httpService.delete(url).pipe(
-      map((response: any) => response.forms?.[0]._id),
+      map(({ result }) => result._id),
     );
   }
 }

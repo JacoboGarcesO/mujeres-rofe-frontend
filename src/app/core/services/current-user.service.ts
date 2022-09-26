@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { map, tap, filter } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { ApiToCurrentUserMapper } from '../mappers/api-to-current-user.mapper';
+import { ApiToUsersMapper } from '../mappers/api-to-users.mapper';
+import { ToApiCredentialsMapper } from '../mappers/to-api-credentials.mapper';
+import { ToApiUsersMapper } from '../mappers/to-api-users.mapper';
+import { CurrentUserModel } from '../models/current-user.model';
+import { OptionModel } from '../models/option.model';
+import { UserCredentialsModel } from '../models/user-credentials.model';
+import { UserModel } from '../models/user.model';
+import { URL_RESOURCE } from '../resources/url.resource';
 import { HttpService } from './generals/http.service';
 import { StorageService } from './generals/storage.service';
-import { ApiToCurrentUserMapper } from '../mappers/api-to-current-user.mapper';
-import { ToApiCredentialsMapper } from '../mappers/to-api-credentials.mapper';
-import { CurrentUserModel } from '../models/current-user.model';
-import { UserCredentialsModel } from '../models/user-credentials.model';
-import { URL_RESOURCE } from '../resources/url.resource';
-import { UserModel } from '../models/user.model';
-import { ApiToUsersMapper } from '../mappers/api-to-users.mapper';
-import { ToApiUsersMapper } from '../mappers/to-api-users.mapper';
-import { OptionModel } from '../models/option.model';
 
 @Injectable({
   providedIn: 'root',
@@ -36,7 +36,7 @@ export class CurrentUserService {
     const credentials = this.toApiCredentialsMapper.map(userCredentials);
     const body = JSON.stringify(credentials);
     return this.httpService.post(url, body).pipe(
-      map((currentUser) => this.apiToCurrentUserMapper.map(currentUser)),
+      map((result) => this.apiToCurrentUserMapper.map(result)),
     );
   }
 
@@ -44,7 +44,7 @@ export class CurrentUserService {
     const url =  URL_RESOURCE.users;
     const formData = this.toApiUsersMapper.map(user, cities);
     return this.httpService.putFile(url, formData).pipe(
-      map((response: any) => this.apiToUsersMapper.getUser(response?.users?.[0])),
+      map((response: any) => this.apiToUsersMapper.getUser(response?.result)),
       tap((user) => this.storageService.set<UserModel>('CURRENT_USER', user)),
     );
   }

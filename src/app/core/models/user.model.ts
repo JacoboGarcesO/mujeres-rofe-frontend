@@ -34,8 +34,3 @@ export interface UserModel {
   creationDate: Date;
   isAccept?: boolean;
 }
-
-export interface UserPaginatedModel {
-  users: UserModel[];
-  total: number;
-}

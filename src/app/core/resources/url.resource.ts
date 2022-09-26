@@ -6,7 +6,7 @@ export const URL_RESOURCE = {
   getCities: `${environment.apiUrl}/locations/cities`,
   getCitiesByState: (stateId: string) => `${environment.apiUrl}/locations/${stateId}`,
   users: `${environment.apiUrl}/users`,
-  paginatedUsers: (from: number) => `${environment.apiUrl}/users/paginated/${from}`,
+  paginatedUsers: `${environment.apiUrl}/users/paginated`,
   deleteUser: (userId: string) => `${environment.apiUrl}/users/${userId}`,
   channels: `${environment.apiUrl}/channels`,
   deleteChannel: (channelId: string) => `${environment.apiUrl}/channels/${channelId}`,
@@ -22,6 +22,5 @@ export const URL_RESOURCE = {
   userById: (userId: string) => `${environment.apiUrl}/users/${userId}`,
   slides: `${environment.apiUrl}/slides`,
   forgotPassword: `${environment.apiUrl}/users/forgot-password`,
-  usersByCity: (city: string) => `${environment.apiUrl}/users/for-city/${city}`,
-  usersByName: (name: string) =>`${environment.apiUrl}/users/for-name/${name}`,
+  totalUsers: `${environment.apiUrl}/users/total`,
 };

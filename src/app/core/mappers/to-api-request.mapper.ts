@@ -10,12 +10,12 @@ export class ToApiRequestsMapper {
     const formData = new FormData();
     const fields = this.getFields(form.fields);
     
-    formData.append('requestFormId', form.id);
-    formData.append('requestTitle', form.title);
-    formData.append('requestTemplate', form.template);
-    formData.append('requestSubject', form.subject);
-    formData.append('requestChannel', form.channel);
-    formData.append('requestFields', fields);
+    formData.append('formId', form.id);
+    formData.append('title', form.title);
+    formData.append('template', form.template);
+    formData.append('subject', form.subject);
+    formData.append('channel', form.channel);
+    formData.append('fields', fields);
 
     formData.append('userEmail', currentUser.email);
     formData.append('userFirstName', currentUser.firstName);

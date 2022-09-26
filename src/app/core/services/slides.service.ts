@@ -20,7 +20,7 @@ export class SlidesService {
   getAll(): Observable<SlideModel[]> {
     const url = URL_RESOURCE.slides;
     return this.httpService.get(url).pipe(
-      map((response: any) => this.apiToSliderMapper.map(response?.slides ?? [])),
+      map(({ result }) => this.apiToSliderMapper.map(result ?? [])),
     );
   }
 
@@ -28,7 +28,7 @@ export class SlidesService {
     const url = URL_RESOURCE.slides;
     const body = this.toApiSlideMapper.map(slide);
     return this.httpService.postFile(url, body).pipe(
-      map((response: any) => response?._id),
+      map(({ result }: any) => result?._id),
     );
   }
 
@@ -36,14 +36,14 @@ export class SlidesService {
     const url = URL_RESOURCE.slides;
     const body = this.toApiSlideMapper.map(slide);
     return this.httpService.putFile(url, body).pipe(
-      map((response: any) => response?._id),
+      map(({ result }) => result?._id),
     );
   }
 
   delete(slideId: string): Observable<string> {
     const url = `${URL_RESOURCE.slides}/${slideId}`;
     return this.httpService.delete(url).pipe(
-      map((response: any) => response?._id),
+      map(({ result }) => result?._id),
     );
   }
 }

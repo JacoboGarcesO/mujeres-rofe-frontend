@@ -13,8 +13,8 @@ import { OptionModel } from 'src/app/core/models/option.model';
 export class FormUsersFilterComponent {
   @Input() options: OptionModel[];
 
-  private input$: Subject<{value: string}> = new Subject();
-  @Input() set dataInput(value: {value: string}) {
+  private input$: Subject<{city: string}> = new Subject();
+  @Input() set dataInput(value: {city: string}) {
     this.input$.next(value);
   }
 
@@ -23,14 +23,14 @@ export class FormUsersFilterComponent {
     this.disabled$.next(!!value);
   }
 
-  @Output() dataOutput: Subject<{value: string}> = new Subject();
-  form = createForm<{value: string}>(this, {
+  @Output() dataOutput: Subject<{city: string}> = new Subject();
+  form = createForm<{city: string}>(this, {
     formType: FormType.ROOT,
     input$: this.input$,
     disabled$: this.disabled$,
     output$: this.dataOutput,
     formControls: {
-      value: new UntypedFormControl(null),
+      city: new UntypedFormControl(null),
     },
   });
 

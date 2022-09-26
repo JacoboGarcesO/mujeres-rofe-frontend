@@ -17,7 +17,7 @@ export class ToApiUsersMapper {
     formData.append('id', user.id);
     formData.append('firstName', user.firstName);
     formData.append('lastName', user.lastName);
-    formData.append('rol', 'user');
+    formData.append('rol', user?.rol ?? 'user');
     formData.append('isPremium', 'false');
     formData.append('email', user.email);
     formData.append('description', user.description);
@@ -28,7 +28,7 @@ export class ToApiUsersMapper {
     formData.append('image', user?.image?.file);
     formData.append('imageEncoded', this.getImage(user?.image));
     formData.append('location', JSON.stringify(location));
-  
+
     formData.append('documentType', user.documentType);
     formData.append('maritalStatus', user.maritalStatus);
     formData.append('address', user.address);
@@ -45,7 +45,7 @@ export class ToApiUsersMapper {
     formData.append('documentImageEncoded', this.getImage(user?.documentImage));
     formData.append('documentImage', user?.documentImage?.file);
     formData.append('hasAcceptTermsAndConditions', JSON.stringify(user?.isAccept));
-    
+
     return formData;
   }
 
@@ -57,7 +57,8 @@ export class ToApiUsersMapper {
   private getImage(image: MediaModel): string {
     const media = {
       _id: image.id,
-      url:image.url,
+      url: image.url,
+      type: image.type,
     };
 
     return JSON.stringify(media);
@@ -70,7 +71,7 @@ export class ToApiUsersMapper {
   }
 
   private getLocation(location: UserLocationModel, cities: OptionModel[]): any {
-    const cityName = cities?.find((city) => city?.id === location?.city)?.label;    
+    const cityName = cities?.find((city) => city?.id === location?.city)?.label;
     return { ...location, cityName };
   }
 }

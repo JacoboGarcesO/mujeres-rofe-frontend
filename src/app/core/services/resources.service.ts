@@ -108,7 +108,7 @@ export class ResourcesService {
   getTemplates(): Observable<OptionModel[]> {
     const templates = [
       { label: 'Registro', id: 'register' },
-      { label: 'Notificación', id: 'notification' },
+      { label: 'Solicitud', id: 'request' },
     ];
 
     return of(templates);

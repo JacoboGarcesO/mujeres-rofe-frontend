@@ -62,7 +62,7 @@ export class ForgotPasswordContainerFacade {
     this.state.notifications.notification.set(messages[key]);
 
     // eslint-disable-next-line angular/timeout-service
-    if (!!callback && !(callback instanceof Observable)) { setTimeout(() => callback(), 5000); }
+    if (!!callback && !(callback instanceof Observable)) { setTimeout(() => callback(), 3500); }
     return EMPTY;
   }
 
@@ -72,7 +72,7 @@ export class ForgotPasswordContainerFacade {
       setTimeout(() => {
         this.state.notifications.notification.set(null);
         if (callback) { callback(); }
-      }, 5000);
+      }, 3500);
     }
   }
 

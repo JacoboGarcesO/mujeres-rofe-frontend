@@ -1,8 +1,9 @@
-import { Component, ChangeDetectionStrategy, Input, Output, EventEmitter, OnChanges, ChangeDetectorRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Router } from '@angular/router';
+import { FilterModel } from 'src/app/core/models/filter.model';
+import { UserModel } from 'src/app/core/models/user.model';
 import { OptionModel } from '../../../core/models/option.model';
 import { ModalComponent } from '../../elements/modal/modal.component';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'mr-admin-users-list',
@@ -15,7 +16,9 @@ export class AdminUsersListComponent implements OnChanges {
   @ViewChild('modalRef') modalRef: ModalComponent;
   @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
   @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
-  @Input() users: UserPaginatedModel;
+  @Input() users: UserModel[];
+  @Input() totalUsers: number;
+  @Input() filter: FilterModel;
   @Input() userToUpdate: UserModel;
   @Input() hobbies: OptionModel[];
   @Input() states: OptionModel[];
@@ -37,21 +40,22 @@ export class AdminUsersListComponent implements OnChanges {
   @Output() deleteUser: EventEmitter<string> = new EventEmitter();
   @Output() loadUserToUpdate: EventEmitter<string> = new EventEmitter();
   @Output() downloadUsers: EventEmitter<string> = new EventEmitter();
-  @Output() changePagePaginated: EventEmitter<number> = new EventEmitter();
-  @Output() filterByName: EventEmitter<string> = new EventEmitter();
+  @Output() filteredUsers: EventEmitter<FilterModel> = new EventEmitter();
   private currentUser: UserModel;
   private userId: string;
-  totalUsers = 0;
-  totalPages = 0;
+  public totalPages = 0;
 
   constructor(
     private cdRef: ChangeDetectorRef,
     private router: Router,
   ) { }
 
-  ngOnChanges(): void {
-    this.totalUsers = this.users?.total;
-    this.totalPages = Math.round(this.users?.total / 10);
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes?.totalUsers) {
+      this.filter = { ...this.filter, total: this.totalUsers?.toString() };
+    }
+
+    this.totalPages = Math.round(this.totalUsers / 10);
 
     if (!this.canCloseModal) { return; }
 
@@ -62,11 +66,7 @@ export class AdminUsersListComponent implements OnChanges {
   }
 
   get getUsers(): UserModel[] {
-    return this.users?.users;
-  }
-
-  handleLoadUsers(from: number): void {
-    this.changePagePaginated.emit(from);
+    return this.users;
   }
 
   handleCreateUser(user: UserModel): void {
@@ -89,10 +89,6 @@ export class AdminUsersListComponent implements OnChanges {
     this.currentUser = { ...formUpdate };
   }
 
-  handleNameFiler({value}: {value: string}): void {
-    this.filterByName.emit(value);
-  }
-
   setUserId(userId: string): void {
     this.userId = userId;
   }
@@ -107,5 +103,14 @@ export class AdminUsersListComponent implements OnChanges {
 
   handleDownloadUsers(): void {
     this.downloadUsers.emit();
+  }
+
+  filterUsers(data: any): void {
+    if (typeof data === "number") {
+      this.filter = { ...this.filter, from: data.toString(), term: null, limit: '10' };
+    } else {
+      this.filter = { ...this.filter, term: data.firstName === "" ? null : data, from: '0', limit: data.firstName === "" ? '10' : this.totalUsers.toString() };
+    }
+    this.filteredUsers.emit(this.filter);
   }
 }

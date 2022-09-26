@@ -5,28 +5,28 @@ import { NoticeModel, LinkNoticeModel } from '../models/notice.model';
   providedIn: 'root',
 })
 export class ApiToNoticeMapper {
-  map(response: any): NoticeModel {
+  map(result: any): NoticeModel {
     return {
-      id: response?.notices[0]?._id,
-      title: response?.notices[0]?.title,
-      description: response?.notices[0]?.description,
+      id: result?._id,
+      title: result?.title,
+      description: result?.description,
       content: {
-        id: response?.notices[0]?.content?._id,
-        url: response?.notices[0]?.content?.url,
-        type: response?.notices[0]?.content?.type,
+        id: result?.content?._id,
+        url: result?.content?.url,
+        type: result?.content?.type,
       },
       icon: {
-        id: response?.notices[0]?.icon?._id,
-        url: response?.notices[0]?.icon?.url,
-        type: response?.notices[0]?.icon?.type,
+        id: result?.icon?._id,
+        url: result?.icon?.url,
+        type: result?.icon?.type,
       },
-      order: response?.notices[0]?.order,
-      channel: response?.notices[0]?.channel,
-      showUsersList: response?.notices[0]?.showUsersList,
-      isLink: response?.notices[0]?.isLink,
-      url: response?.notices[0]?.url,
-      links: this.getLinks(response?.notices[0]?.links),
-      formId: response?.notices[0]?.formId,
+      order: result?.order,
+      channel: result?.channel,
+      showUsersList: result?.showUsersList,
+      isLink: result?.isLink,
+      url: result?.url,
+      formId: result?.formId,
+      links: this.getLinks(result?.links),
     };
   }
 

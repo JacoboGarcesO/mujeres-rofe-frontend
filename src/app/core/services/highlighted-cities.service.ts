@@ -19,23 +19,23 @@ export class HighlightedCitiesService {
   getAll(): Observable<OptionModel[]> {
     const url = URL_RESOURCE.highlightedCities;
     return this.httpService.get(url).pipe(
-      map((response: any) => this.apiToOptionMapper.map(response?.states, '_id')),
+      map(({ result }) => this.apiToOptionMapper.map(result, '_id')),
     );
   }
 
   create(city: OptionModel): Observable<string> {
     const url = URL_RESOURCE.highlightedCities;
     const body = this.toApiHighlightedCitiesMapper.map(city);
-    
+
     return this.httpService.post(url, body).pipe(
-      map((response: any) => response.states?.[0]._id),
+      map(({ result }) => result?._id),
     );
   }
 
   delete(cityId: string): Observable<string> {
     const url = URL_RESOURCE.deleteHighlightedCity(cityId);
     return this.httpService.delete(url).pipe(
-      map((response: any) => response.states?.[0]._id),
+      map(({ result }) => result._id),
     );
   }
 }

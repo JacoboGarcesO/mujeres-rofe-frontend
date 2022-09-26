@@ -6,10 +6,10 @@ import { ChannelModel } from '../models/channel.model';
   providedIn: 'root',
 })
 export class ApiToChannelsMapper {
-  mapChannels(response: any): ChannelModel[] {
-    if (!response?.channels) { return []; }
+  mapChannels(result: any[]): ChannelModel[] {
+    if (!result.length) { return []; }
 
-    return response?.channels?.map(this.mapChannel.bind(this));
+    return result?.map(this.mapChannel.bind(this));
   }
 
   mapChannel(channel: any): ChannelModel {

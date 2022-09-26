@@ -18,21 +18,21 @@ export class LocationsService {
   getStates(): Observable<OptionModel[]> {
     const url = URL_RESOURCE.getStates;
     return this.httpService.get(url).pipe(
-      map(({ states }: any) => this.apiToOptionMapper.map(states, '_id')),
+      map(({ result }: any) => this.apiToOptionMapper.map(result, '_id')),
     );
   }
 
   getCitiesByState(stateId: string): Observable<OptionModel[]> {
     const url = URL_RESOURCE.getCitiesByState(stateId);
     return this.httpService.get(url).pipe(
-      map(({ cities }: any) => this.apiToOptionMapper.map(cities, '_id')),
+      map(({ result }: any) => this.apiToOptionMapper.map(result, '_id')),
     );
   }
 
   getCities(): Observable<OptionModel[]> {
     const url = URL_RESOURCE.getCities;
     return this.httpService.post(url, '').pipe(
-      map(({ cities }: any) => this.apiToOptionMapper.map(cities, '_id')),
+      map(({ result }: any) => this.apiToOptionMapper.map(result, '_id')),
     );
   }
 }

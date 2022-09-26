@@ -9,10 +9,9 @@ export class ApiToFormRequestsMapper {
 
   constructor(private apiToOptionMapper: ApiToOptionMapper) { }
 
-  map(response: any, entity: string): FormRequestModel[] {
-    if (!response?.[entity]) { return []; }
-
-    return response?.[entity]?.map(this.getRequest.bind(this));
+  map(result: any[]): FormRequestModel[] {
+    if (!result.length) { return []; }
+    return result?.map(this.getRequest.bind(this));
   }
 
   getRequest(request: any): FormRequestModel {

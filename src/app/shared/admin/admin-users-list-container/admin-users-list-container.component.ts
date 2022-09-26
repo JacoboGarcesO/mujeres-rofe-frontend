@@ -2,7 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/
 import { Observable } from 'rxjs';
 import { AdminUsersListContainerFacade } from './admin-users-list-container.facade';
 import { OptionModel } from '../../../core/models/option.model';
-import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
+import { UserModel } from 'src/app/core/models/user.model';
+import { FilterModel } from 'src/app/core/models/filter.model';
 
 @Component({
   selector: 'mr-admin-users-list-container',
@@ -10,7 +11,9 @@ import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
-  public users$: Observable<UserPaginatedModel>;
+  public users$: Observable<UserModel[]>;
+  public totalUsers$: Observable<number>;
+  public filter$: Observable<FilterModel>;
   public states$: Observable<OptionModel[]>;
   public cities$: Observable<OptionModel[]>;
   public hobbies$: Observable<OptionModel[]>;
@@ -31,7 +34,7 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.facade.initSubscriptions();
-    this.facade.loadUsers(0);
+    this.facade.initUrlListener();
     this.facade.loadHobbies();
     this.facade.loadStates();
     this.facade.loadResources();
@@ -74,12 +77,8 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
     this.facade.downloadUsers();
   }
 
-  handleLoadUsers(from: number): void {
-    this.facade.loadUsers(from);
-  }
-
-  handleFilterByName(value: string): void {
-    this.facade.loadUsersByName(value);
+  filterUsers(filter: FilterModel): void {
+    this.facade.filterUsers(filter);
   }
 
   private initializeSubscriptions(): void {
@@ -98,6 +97,8 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
     this.sustenting$ = this.facade.sustenting$();
     this.canCloseModal$ = this.facade.canCloseModal$();
     this.userToUpdate$ = this.facade.currentUserToUpdate$();
-    this.disclosures$ = this.facade.disclosures$(); 
+    this.disclosures$ = this.facade.disclosures$();
+    this.totalUsers$ = this.facade.totalUsers$();
+    this.filter$ = this.facade.filter$();
   }
 }

@@ -18,7 +18,7 @@ export class ForgotPasswordService {
     const url = URL_RESOURCE.forgotPassword;
     const body = this.toApiForgotPasswordMapper.map(value);
     return this.httpService.post(url, body).pipe(
-      map((response: any) => response?.message),
+      map(({ message }) => message),
     );
   }
 }

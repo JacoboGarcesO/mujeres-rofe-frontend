@@ -20,15 +20,15 @@ export class RequestsService {
   getRequests(): Observable<FormRequestModel[]> {
     const url = URL_RESOURCE.requests;
     return this.httpService.get(url).pipe(
-      map((response) => this.apiToFormRequestMapper.map(response, 'requests')),
+      map(({ result }) => this.apiToFormRequestMapper.map(result)),
     );
   }
-  
+
   createRequest(form: FormRequestModel, currentUser: UserModel): Observable<string> | any {
     const url = URL_RESOURCE.requests;
-    const body = this.toApiRequestMapper.map(form, currentUser);    
+    const body = this.toApiRequestMapper.map(form, currentUser);
     return this.httpService.postFile(url, body).pipe(
-      map((response: any) => response?.requests?.[0]?._id),
+      map(({ result }: any) => result?._id),
     );
   }
 

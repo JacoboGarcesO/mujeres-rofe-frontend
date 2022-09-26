@@ -47,7 +47,7 @@ export class ChannelsContentContainerFacade {
   }
 
   destroySubscriptions(): void {
-    this.subscriptions.unsubscribe();
+    this.subscriptions?.unsubscribe();
   }
 
   loadChannels(): void {
