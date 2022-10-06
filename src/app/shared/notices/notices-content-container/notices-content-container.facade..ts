@@ -1,13 +1,15 @@
 import { Location } from '@angular/common';
-import { Injectable } from '@angular/core';
-import { Observable, of, Subscription, tap } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
+import { Observable, of, Subscription, tap, filter } from 'rxjs';
 import { toChannelEnum } from 'src/app/core/enums/channel.enum';
 import { ChannelModel } from 'src/app/core/models/channel.model';
+import { FilterModel } from 'src/app/core/models/filter.model';
 import { NoticeModel } from 'src/app/core/models/notice.model';
 import { OptionModel } from 'src/app/core/models/option.model';
-import { UserModel, UserPaginatedModel } from 'src/app/core/models/user.model';
+import { UserModel } from 'src/app/core/models/user.model';
+import { FilterParser } from 'src/app/core/parsers/filter.parser';
 import { HighlightedCitiesService } from 'src/app/core/services/highlighted-cities.service';
-import { LocationsService } from 'src/app/core/services/locations.service';
 import { NoticesService } from 'src/app/core/services/notices.service';
 import { UsersService } from 'src/app/core/services/users.service';
 import { AppState } from 'src/app/core/state/app.state';
@@ -17,13 +19,15 @@ import { AppState } from 'src/app/core/state/app.state';
 })
 export class NoticesContentContainerFacade {
   private subscriptions: Subscription;
+  private router = inject(Router);
+  private parser = inject(FilterParser);
+  private location = inject(Location);
 
   constructor(
     private state: AppState,
     private noticesService: NoticesService,
     private usersService: UsersService,
     private service: HighlightedCitiesService,
-    private location: Location,
   ) { }
 
   //#region Observables
@@ -37,12 +41,20 @@ export class NoticesContentContainerFacade {
     return of(channels?.find((channel) => channel?.type === toChannelEnum(url[2])));
   }
 
-  users$(): Observable<UserPaginatedModel> {
-    return this.state.users.paginatedUsers.$();
+  users$(): Observable<UserModel[]> {
+    return this.state.users.users.$();
   }
 
   cities$(): Observable<OptionModel[]> {
     return this.state.locations.cities.$();
+  }
+
+  totalUsers$(): Observable<number> {
+    return this.state.users.totalUsers.$();
+  }
+
+  filter$(): Observable<FilterModel> {
+    return of({ from: '0', limit: '10', sort: { firstName: 'asc' }, term: null, total: '0' });
   }
   //#endregion
 
@@ -53,6 +65,18 @@ export class NoticesContentContainerFacade {
 
   destroySubscriptions(): void {
     this.subscriptions.unsubscribe();
+  }
+
+  loadTotalUsers(): void {
+    this.subscriptions.add(
+      this.usersService.getTotalUsers().pipe(
+        tap(this.state.users.totalUsers.set.bind(this)),
+      ).subscribe(),
+    );
+  }
+
+  destroyTotalUsers(): void {
+    this.state.users.totalUsers.set(null);
   }
 
   loadNotice(): void {
@@ -81,40 +105,28 @@ export class NoticesContentContainerFacade {
     this.state.locations.cities.set(null);
   }
 
-  loadUsers(from: number): void {
+  loadUsers(): void {
     this.subscriptions.add(
-      this.usersService.getPaginatedUsers(from).pipe(
+      this.usersService.getUsers(this.getFilter()).pipe(
         tap(this.storeUsers.bind(this)),
       ).subscribe(),
     );
   }
 
   destroyUsers(): void {
-    this.state.users.paginatedUsers.set(null);
+    this.state.users.users.set(null);
   }
 
-  loadUsersByCity(value: string): void {
-    if (!value) {
-      this.loadUsers(0);
-      return;
-    }
-
-    this.subscriptions.add(
-      this.usersService.getUsersByCity(value).pipe(
-        tap(this.storeUsers.bind(this)),
-      ).subscribe(),
-    );
+  filterUsers(filter: FilterModel): void {
+    const url = `/notices/${this.state.notices.notice.snapshot()?.channel}/${this.state.notices.notice.snapshot()?.id}?${this.parser.dataToUrl(filter)}`;    
+    this.router.navigateByUrl(url);
   }
 
-  loadUsersByName(value: string): void {
-    if (value === '') {
-      this.loadUsers(0);
-      return;
-    }
-
+  initUrlListener(): void {
     this.subscriptions.add(
-      this.usersService.getUsersByName(value).pipe(
-        tap(this.storeUsers.bind(this)),
+      this.router.events.pipe(
+        filter((event) => event instanceof NavigationEnd),
+        tap(this.loadUsers.bind(this)),
       ).subscribe(),
     );
   }
@@ -125,8 +137,12 @@ export class NoticesContentContainerFacade {
     this.state.notices.notice.set(notice);
   }
 
-  private storeUsers(users: UserPaginatedModel): void {
-    this.state.users.paginatedUsers.set(users);
+  private storeUsers(users: UserModel[]): void {
+    this.state.users.users.set(users);
+  }
+
+  private getFilter(): FilterModel {
+    return this.parser.urlToData(this.location.path());
   }
   //#endregion
 }

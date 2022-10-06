@@ -31,10 +31,10 @@
       <div class="notices-content__filters">
         <mr-form-users-filter
           [options]="cities"
-          (formUpdate)="handleCitiesFiler($event)"
+          (formUpdate)="filterUsers($event)"
         ></mr-form-users-filter>
         <mr-form-users-search
-          (formUpdate)="handleNameFiler($event)"
+          (formUpdate)="filterUsers($event)"
         ></mr-form-users-search>
       </div>
       <ng-container>
@@ -117,7 +117,7 @@
         </ng-template>
       </ng-container>
 
-      <mr-pagination [totalUsers]="totalPages" (changePagePaginated)="loadUsers($event)"></mr-pagination>
+      <mr-pagination [totalUsers]="totalPages" (changePagePaginated)="filterUsers($event)"></mr-pagination>
     </div>
   </mr-card>
 
