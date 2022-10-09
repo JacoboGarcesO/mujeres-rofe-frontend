@@ -16,13 +16,8 @@
         [alt]="'notice-img'"
       ></mr-image>
     </figure>
-    <pdf-viewer
-      *ngIf="notice?.content?.type === 'pdf'"
-      [src]="notice?.content?.url"
-      [render-text]="true"
-      [original-size]="false"
-      style="width: 100%; height: 500px;"
-    ></pdf-viewer>
+
+    <embed class="notices-content__pdf" *ngIf="notice?.content?.type === 'pdf'" [src]="notice?.content?.url | sanitizier" type="application/pdf">
 
     <div class="notices-content__info-notice">
       <mr-text
@@ -103,13 +98,7 @@
         ></mr-image>
       </figure>
 
-      <pdf-viewer
-        *ngIf="notice?.content?.type === 'pdf'"
-        [src]="notice?.content?.url"
-        [render-text]="true"
-        [original-size]="false"
-        style="width: 100%; height: 500px;"
-      ></pdf-viewer>
+      <embed class="notices-content__pdf" *ngIf="notice?.content?.type === 'pdf'" [src]="notice?.content?.url | sanitizier" type="application/pdf">
 
       <div class="notices-content__links notices-content__links--center">
         <div
