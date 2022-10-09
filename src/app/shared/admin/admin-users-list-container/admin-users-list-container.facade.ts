@@ -295,7 +295,7 @@ export class AdminUsersListContainerFacade {
   private storeUsers({ users, filter }: { users: UserModel[]; filter: FilterModel }): void {
     const filterSate = this.state.resources.filter.snapshot();
     this.state.users.users.set(users);
-    this.state.resources.filter.set({ ...filter, ...filterSate });
+    this.state.resources.filter.set({ ...filter, currentPage: filterSate.currentPage });
   }
 
   private storeHobbies(hobbies: OptionModel[]): void {

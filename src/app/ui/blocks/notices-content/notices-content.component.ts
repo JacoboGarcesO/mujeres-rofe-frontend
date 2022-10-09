@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { FilterModel } from 'src/app/core/models/filter.model';
@@ -14,27 +14,24 @@ import { UserModel } from 'src/app/core/models/user.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class NoticesContentComponent implements OnChanges {
+export class NoticesContentComponent {
   @Input() notice: NoticeModel;
   @Input() channel: ChannelModel;
   @Input() users: UserModel[];
   @Input() filter: FilterModel;
   @Input() cities: OptionModel;
   @Output() filteredUsers: EventEmitter<FilterModel> = new EventEmitter();
-  public totalPages = 0;
 
   get pages(): number {
-    return this.totalPages;
+    console.log(this.filter);
+    
+    return Math.ceil(this.filter.total / 10);
   }
 
   constructor(
     private location: Location,
     private router: Router,
   ) { }
-
-  ngOnChanges(): void {    
-    this.totalPages = Math.ceil(this.filter.total / 10);
-  }
 
   navigateToUser(userId: string): void {
     this.router.navigateByUrl(`profile/${userId}`);
@@ -49,7 +46,26 @@ export class NoticesContentComponent implements OnChanges {
   filterUsers(data: any): void {
     this.filter = typeof data === "number"
       ? { ...this.filter, from: data }
-      : { ...this.filter, term: data.firstName === "" ? null : data };
+      : { ...this.filter, term: this.validateTerm({ ...this.filter.term, ...this.mapTerm(data) }) };
     this.filteredUsers.emit(this.filter);
+  }
+
+  private mapTerm(term: { [key: string]: string }): { [key: string]: string } | null {
+    let data = {};
+    Object.entries(term).forEach((entry) => {
+      const [key, value] = entry;
+      if (key === 'city') { return data = { ...data, 'location.city': value }; }
+      data = { ...data, [key]: value };
+    });
+    return data;
+  }
+
+  private validateTerm(term: { [key: string]: string }): { [key: string]: string } | null {
+    let data = {};
+    Object.entries(term).forEach((entry) => {
+      const [key, value] = entry;
+      if (value) { data = { ...data, [key]: value }; }
+    });
+    return data;
   }
 }

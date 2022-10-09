@@ -42,10 +42,9 @@ export class AdminUsersListComponent implements OnChanges {
   @Output() filteredUsers: EventEmitter<FilterModel> = new EventEmitter();
   private currentUser: UserModel;
   private userId: string;
-  public totalPages = 0;
 
   get pages(): number {
-    return this.totalPages;
+    return Math.ceil(this.filter.total / 10);
   }
 
   constructor(
@@ -54,8 +53,6 @@ export class AdminUsersListComponent implements OnChanges {
   ) { }
 
   ngOnChanges(): void {
-    this.totalPages = Math.round(this.filter.total / 10);
-
     if (!this.canCloseModal) { return; }
 
     this.modalRef.close();
