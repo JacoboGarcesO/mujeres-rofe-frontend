@@ -22,9 +22,7 @@ export class NoticesContentComponent {
   @Input() cities: OptionModel;
   @Output() filteredUsers: EventEmitter<FilterModel> = new EventEmitter();
 
-  get pages(): number {
-    console.log(this.filter);
-    
+  get pages(): number {    
     return Math.ceil(this.filter.total / 10);
   }
 
