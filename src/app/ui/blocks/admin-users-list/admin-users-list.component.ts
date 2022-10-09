@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnChanges, Output, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { FilterModel } from 'src/app/core/models/filter.model';
 import { UserModel } from 'src/app/core/models/user.model';
@@ -17,7 +17,6 @@ export class AdminUsersListComponent implements OnChanges {
   @ViewChild('modalDeleteRef') modalDeleteRef: ModalComponent;
   @ViewChild('modalUpdateRef') modalUpdateRef: ModalComponent;
   @Input() users: UserModel[];
-  @Input() totalUsers: number;
   @Input() filter: FilterModel;
   @Input() userToUpdate: UserModel;
   @Input() hobbies: OptionModel[];
@@ -45,17 +44,17 @@ export class AdminUsersListComponent implements OnChanges {
   private userId: string;
   public totalPages = 0;
 
+  get pages(): number {
+    return this.totalPages;
+  }
+
   constructor(
     private cdRef: ChangeDetectorRef,
     private router: Router,
   ) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes?.totalUsers) {
-      this.filter = { ...this.filter, total: this.totalUsers?.toString() };
-    }
-
-    this.totalPages = Math.round(this.totalUsers / 10);
+  ngOnChanges(): void {
+    this.totalPages = Math.round(this.filter.total / 10);
 
     if (!this.canCloseModal) { return; }
 
@@ -63,10 +62,6 @@ export class AdminUsersListComponent implements OnChanges {
     this.modalDeleteRef.close();
     this.modalUpdateRef.close();
     this.cdRef.detectChanges();
-  }
-
-  get getUsers(): UserModel[] {
-    return this.users;
   }
 
   handleCreateUser(user: UserModel): void {
@@ -106,11 +101,9 @@ export class AdminUsersListComponent implements OnChanges {
   }
 
   filterUsers(data: any): void {
-    if (typeof data === "number") {
-      this.filter = { ...this.filter, from: data.toString(), term: null, limit: '10' };
-    } else {
-      this.filter = { ...this.filter, term: data.firstName === "" ? null : data, from: '0', limit: data.firstName === "" ? '10' : this.totalUsers.toString() };
-    }
+    this.filter = typeof data === "number"
+      ? { ...this.filter, from: data }
+      : { ...this.filter, term: data.firstName === "" ? null : data };
     this.filteredUsers.emit(this.filter);
   }
 }

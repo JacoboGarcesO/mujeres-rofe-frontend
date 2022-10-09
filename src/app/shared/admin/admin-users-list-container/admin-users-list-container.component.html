@@ -15,8 +15,7 @@
   canCloseModal: (canCloseModal$ | async),
   userToUpdate: (userToUpdate$ | async),
   disclosures: (disclosures$ | async),
-  filter: (filter$ | async),
-  totalUsers: (totalUsers$ | async)
+  filter: (filter$ | async)
 } as data">
     <mr-admin-users-list
       [users]="data.users"
@@ -36,7 +35,6 @@
       [canCloseModal]="data.canCloseModal"
       [disclosures]="data.disclosures"
       [filter]="data.filter"
-      [totalUsers]="data.totalUsers"
       (stateSelected)="handleSelectState($event)"
       (createUser)="handleCreateUser($event)"
       (deleteUser)="handleDeleteUser($event)"

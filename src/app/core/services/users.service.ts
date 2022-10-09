@@ -18,12 +18,12 @@ export class UsersService {
     private apiToUsersMapper: ApiToUsersMapper,
   ) { }
 
-  getUsers(filter: FilterModel): Observable<UserModel[]> {
+  getUsers(filter: FilterModel): Observable<{ users: UserModel[]; filter: FilterModel }> {
     const url = URL_RESOURCE.paginatedUsers;
     const body = JSON.stringify(filter);
     return this.httpService
       .post(url, body)
-      .pipe(map(({ result }) => this.apiToUsersMapper.map(result)));
+      .pipe(map(({ result, filter }) => ({ users: this.apiToUsersMapper.map(result), filter })));
   }
 
   create(user: UserModel, cities: OptionModel[]): Observable<any> {
@@ -55,10 +55,5 @@ export class UsersService {
           this.apiToUsersMapper.getUser(result),
         ),
       );
-  }
-
-  getTotalUsers(): Observable<number> {
-    const url = URL_RESOURCE.totalUsers;
-    return this.httpService.get(url).pipe(map(({ result }: any) => result));
   }
 }

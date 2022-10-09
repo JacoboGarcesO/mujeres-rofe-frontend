@@ -22,5 +22,4 @@ export const URL_RESOURCE = {
   userById: (userId: string) => `${environment.apiUrl}/users/${userId}`,
   slides: `${environment.apiUrl}/slides`,
   forgotPassword: `${environment.apiUrl}/users/forgot-password`,
-  totalUsers: `${environment.apiUrl}/users/total`,
 };

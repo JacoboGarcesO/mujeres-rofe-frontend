@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { FilterModel } from '../models/filter.model';
 import { OptionModel } from '../models/option.model';
 import { StateFactory } from './factory.state';
 
@@ -19,6 +20,7 @@ export class ResourcesState {
   private stratum$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
   private templates$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
   private disclosures$: BehaviorSubject<OptionModel[]> = new BehaviorSubject(null);
+  private filter$: BehaviorSubject<FilterModel> = new BehaviorSubject(null);
 
   constructor(private factory: StateFactory) { }
 
@@ -36,6 +38,7 @@ export class ResourcesState {
       stratum: this.factory.state(this.stratum$),
       templates: this.factory.state(this.templates$),
       disclosures: this.factory.state(this.disclosures$),
+      filter: this.factory.state(this.filter$),
     };
   }
 

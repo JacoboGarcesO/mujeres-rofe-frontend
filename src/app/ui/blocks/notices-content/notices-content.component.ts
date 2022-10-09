@@ -1,11 +1,11 @@
 import { Location } from '@angular/common';
-import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, OnChanges, EventEmitter, Output, SimpleChanges } from '@angular/core';
-import { ChannelModel } from 'src/app/core/models/channel.model';
-import { NoticeModel } from 'src/app/core/models/notice.model';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserModel } from 'src/app/core/models/user.model';
-import { OptionModel } from 'src/app/core/models/option.model';
+import { ChannelModel } from 'src/app/core/models/channel.model';
 import { FilterModel } from 'src/app/core/models/filter.model';
+import { NoticeModel } from 'src/app/core/models/notice.model';
+import { OptionModel } from 'src/app/core/models/option.model';
+import { UserModel } from 'src/app/core/models/user.model';
 
 @Component({
   selector: 'mr-notices-content',
@@ -18,27 +18,22 @@ export class NoticesContentComponent implements OnChanges {
   @Input() notice: NoticeModel;
   @Input() channel: ChannelModel;
   @Input() users: UserModel[];
-  @Input() totalUsers: number;
   @Input() filter: FilterModel;
   @Input() cities: OptionModel;
   @Output() filteredUsers: EventEmitter<FilterModel> = new EventEmitter();
   public totalPages = 0;
+
+  get pages(): number {
+    return this.totalPages;
+  }
 
   constructor(
     private location: Location,
     private router: Router,
   ) { }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes?.totalUsers) {
-      this.filter = { ...this.filter, total: this.totalUsers?.toString() };
-    }
-
-    this.totalPages = Math.round(this.totalUsers / 10);
-  }
-
-  get getUsers(): UserModel[] {
-    return this.users;
+  ngOnChanges(): void {    
+    this.totalPages = Math.ceil(this.filter.total / 10);
   }
 
   navigateToUser(userId: string): void {
@@ -52,15 +47,9 @@ export class NoticesContentComponent implements OnChanges {
   }
 
   filterUsers(data: any): void {
-    if (typeof data === "number") {
-      this.filter = { ...this.filter, from: data.toString(), term: null, limit: '10' };
-    } else {
-      this.filter = {
-        ...this.filter, term: data.firstName === "" ? null : (
-          data.city ? { 'location.city': data.city } : data
-        ), from: '0', limit: data.firstName === "" ? '10' : this.totalUsers?.toString()
-      };
-    }
+    this.filter = typeof data === "number"
+      ? { ...this.filter, from: data }
+      : { ...this.filter, term: data.firstName === "" ? null : data };
     this.filteredUsers.emit(this.filter);
   }
 }

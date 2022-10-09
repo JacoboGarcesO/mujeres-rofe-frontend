@@ -1,11 +1,8 @@
 
-import { Location } from '@angular/common';
-import { inject, Injectable } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
-import { catchError, EMPTY, filter, finalize, merge, Observable, of, Subscription, tap } from 'rxjs';
+import { Injectable } from '@angular/core';
+import { catchError, EMPTY, finalize, merge, Observable, of, Subscription, tap } from 'rxjs';
 import { FilterModel } from 'src/app/core/models/filter.model';
 import { UserModel } from 'src/app/core/models/user.model';
-import { FilterParser } from 'src/app/core/parsers/filter.parser';
 import { UsersService } from 'src/app/core/services/users.service';
 import { OptionModel } from '../../../core/models/option.model';
 import { ExcelService } from '../../../core/services/excel.service';
@@ -19,9 +16,6 @@ import { AppState } from '../../../core/state/app.state';
 })
 export class AdminUsersListContainerFacade {
   private subscriptions: Subscription;
-  private router = inject(Router);
-  private parser = inject(FilterParser);
-  private location = inject(Location);
 
   constructor(
     private state: AppState,
@@ -35,10 +29,6 @@ export class AdminUsersListContainerFacade {
   //#region Observables
   users$(): Observable<UserModel[]> {
     return this.state.users.users.$();
-  }
-
-  totalUsers$(): Observable<number> {
-    return this.state.users.totalUsers.$();
   }
 
   cities$(): Observable<OptionModel[]> {
@@ -102,7 +92,7 @@ export class AdminUsersListContainerFacade {
   }
 
   filter$(): Observable<FilterModel> {
-    return of({ from: '0', limit: '10', sort: { firstName: 'asc' }, term: null, total: '0' });
+    return this.state.resources.filter.$();
   }
   //#endregion
 
@@ -148,9 +138,6 @@ export class AdminUsersListContainerFacade {
         this.resourcesService.getDisclosures().pipe(
           tap(this.state.resources.disclosures.set.bind(this)),
         ),
-        this.usersService.getTotalUsers().pipe(
-          tap(this.state.users.totalUsers.set.bind(this)),
-        ),
       ).subscribe(),
     );
   }
@@ -166,7 +153,19 @@ export class AdminUsersListContainerFacade {
     this.state.resources.stratum.set(null);
     this.state.resources.sustenting.set(null);
     this.state.resources.disclosures.set(null);
-    this.state.users.totalUsers.set(null);
+    this.state.resources.filter.set(null);
+  }
+
+  setFilter(filter?: FilterModel): void {
+    this.state.resources.filter.set({
+      from: filter?.from ?? 0,
+      limit: filter?.limit ?? 10,
+      sort: { firstName: 'asc'},
+      term: filter?.term,
+      total: filter?.total,
+    });
+
+    this.loadUsers();
   }
 
   loadStates(): void {
@@ -197,19 +196,6 @@ export class AdminUsersListContainerFacade {
 
   destroyCitiesByState(): void {
     this.state.locations.cities.set(null);
-  }
-
-  loadUsers(): void {
-    this.subscriptions.add(
-      this.usersService.getUsers(this.getFilter()).pipe(
-        tap(this.storeUsers.bind(this)),
-      ).subscribe(),
-    );
-  }
-
-  filterUsers(filter: FilterModel): void {
-    const url = `/admin?${this.parser.dataToUrl(filter)}`;
-    this.router.navigateByUrl(url);
   }
 
   destroyUsers(): void {
@@ -283,28 +269,31 @@ export class AdminUsersListContainerFacade {
   }
 
   downloadUsers(): void {
-    this.subscriptions.add(
-      this.excelService.exportUsersToExcel().subscribe(),
-    );
-  }
+    const filter = this.state.resources.filter.snapshot();
 
-  initUrlListener(): void {
     this.subscriptions.add(
-      this.router.events.pipe(
-        filter((event) => event instanceof NavigationEnd),
-        tap(this.loadUsers.bind(this)),
-      ).subscribe(),
+      this.excelService.exportUsersToExcel(filter).subscribe(),
     );
   }
   //#endregion
 
   //#region Private Methods
+  private loadUsers(): void {
+    const filter = this.state.resources.filter.snapshot();
+    this.subscriptions.add(
+      this.usersService.getUsers(filter).pipe(
+        tap(this.storeUsers.bind(this)),
+      ).subscribe(),
+    );
+  }
+
   private store(entity: string, options: OptionModel[]): void {
     this.state.locations?.[entity].set(options);
   }
 
-  private storeUsers(users: UserModel[]): void {
+  private storeUsers({ users, filter }: { users: UserModel[]; filter: FilterModel }): void {
     this.state.users.users.set(users);
+    this.state.resources.filter.set(filter);
   }
 
   private storeHobbies(hobbies: OptionModel[]): void {
@@ -347,10 +336,6 @@ export class AdminUsersListContainerFacade {
     const lastMessage = this.state.notifications.notification.snapshot();
     const errorMessage = 'La solicitud falló';
     return !lastMessage?.startsWith(errorMessage);
-  }
-
-  private getFilter(): FilterModel {
-    return this.parser.urlToData(this.location.path());
   }
   //#endregion
 }

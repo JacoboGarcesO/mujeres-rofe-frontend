@@ -48,7 +48,7 @@
             ['Correo', '7rem'],
             ['Ver perfil', '2.5rem']
           ]"
-          [items]="getUsers || []"
+          [items]="users || []"
           [itemTemplateRef]="userTemplate"
         ></mr-table>
 
@@ -117,7 +117,7 @@
         </ng-template>
       </ng-container>
 
-      <mr-pagination [totalUsers]="totalPages" (changePagePaginated)="filterUsers($event)"></mr-pagination>
+      <mr-pagination [totalUsers]="pages" (changePagePaginated)="filterUsers($event)"></mr-pagination>
     </div>
   </mr-card>
 

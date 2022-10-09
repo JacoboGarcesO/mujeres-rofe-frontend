@@ -3,8 +3,7 @@
   channel: (channel$ | async),
   users: (users$ | async),
   cities: (cities$ | async),
-  filter: (filter$ | async),
-  totalUsers: (totalUsers$ | async)
+  filter: (filter$ | async)
 } as data">
   <mr-notices-content
     *ngIf="data.notice"
@@ -13,7 +12,6 @@
     [users]="data.users"
     [cities]="data.cities"
     [filter]="data.filter"
-    [totalUsers]="data.totalUsers"
     (filteredUsers)="filterUsers($event)"
   ></mr-notices-content>
 </ng-container>

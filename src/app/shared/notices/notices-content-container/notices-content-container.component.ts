@@ -17,15 +17,13 @@ export class NoticesContentContainerComponent implements OnInit, OnDestroy {
   public channel$: Observable<ChannelModel>;
   public users$: Observable<UserModel[]>;
   public cities$: Observable<OptionModel[]>;
-  public totalUsers$: Observable<number>;
   public filter$: Observable<FilterModel>;
 
   constructor(private facade: NoticesContentContainerFacade) { }
 
   ngOnInit(): void {
     this.facade.initSubscriptions();
-    this.facade.loadTotalUsers();
-    this.facade.initUrlListener();
+    this.facade.setFilter();
     this.facade.loadNotice();
     this.facade.loadCities();
     this.initializeSubscriptions();
@@ -33,20 +31,18 @@ export class NoticesContentContainerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.facade.destroyNotice();
-    this.facade.destroyTotalUsers();
     this.facade.destroyUsers();
     this.facade.destroySubscriptions();
   }
   
   filterUsers(filter: FilterModel): void {
-    this.facade.filterUsers(filter);
+    this.facade.setFilter(filter);
   }
 
   private initializeSubscriptions(): void {
     this.notice$ = this.facade.notice$();
     this.channel$ = this.facade.channel$();
     this.users$ = this.facade.users$();
-    this.totalUsers$ = this.facade.totalUsers$();
     this.filter$ = this.facade.filter$();
     this.cities$ = this.facade.cities$();
   }

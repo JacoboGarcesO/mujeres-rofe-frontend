@@ -1,7 +1,7 @@
 export interface FilterModel {
-  from: string;
-  limit: string;
+  from: number;
+  limit: number;
   term: any;
   sort: any;
-  total: string;
+  total: number;
 }

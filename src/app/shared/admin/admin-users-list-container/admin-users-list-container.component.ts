@@ -12,7 +12,6 @@ import { FilterModel } from 'src/app/core/models/filter.model';
 })
 export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
   public users$: Observable<UserModel[]>;
-  public totalUsers$: Observable<number>;
   public filter$: Observable<FilterModel>;
   public states$: Observable<OptionModel[]>;
   public cities$: Observable<OptionModel[]>;
@@ -34,7 +33,7 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.facade.initSubscriptions();
-    this.facade.initUrlListener();
+    this.facade.setFilter();
     this.facade.loadHobbies();
     this.facade.loadStates();
     this.facade.loadResources();
@@ -78,7 +77,7 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
   }
 
   filterUsers(filter: FilterModel): void {
-    this.facade.filterUsers(filter);
+    this.facade.setFilter(filter);
   }
 
   private initializeSubscriptions(): void {
@@ -98,7 +97,6 @@ export class AdminUsersListContainerComponent implements OnInit, OnDestroy {
     this.canCloseModal$ = this.facade.canCloseModal$();
     this.userToUpdate$ = this.facade.currentUserToUpdate$();
     this.disclosures$ = this.facade.disclosures$();
-    this.totalUsers$ = this.facade.totalUsers$();
     this.filter$ = this.facade.filter$();
   }
 }

@@ -14,15 +14,14 @@ export class PaginationComponent implements OnChanges {
   totalPages!: number;
   page!: number;
 
-  constructor(private element: ElementRef) {}
+  constructor(private element: ElementRef) { }
 
   ngOnChanges(): void {
-    this.pagination =
-      this.element.nativeElement.querySelector('.pagination ul');
+    this.pagination = this.element.nativeElement.querySelector('.pagination ul');
     this.totalPages = this.totalUsers;
     this.page = 1;
 
-    if(this.totalUsers) {
+    if (this.totalUsers) {
       this.pagination.innerHTML = this.createPagination(
         this.totalPages,
         this.page,
@@ -33,7 +32,7 @@ export class PaginationComponent implements OnChanges {
 
   @HostListener('click', ['$event'])
   validatePagination(event: any) {
-    if(event.path[0].id != 'pagination' && event.path[0].id != 'pagination-ul' && event.path[0].id != 'dots') {
+    if (event.path[0].id != 'pagination' && event.path[0].id != 'pagination-ul' && event.path[0].id != 'dots') {
       const button = event.path.find(
         (element: HTMLElement) => element.tagName === 'LI',
       )?.id;
@@ -67,10 +66,10 @@ export class PaginationComponent implements OnChanges {
   }
 
   createPagination(totalPages: number, page: number, isPageOne?: boolean) {
-    if(isPageOne) {
+    if (isPageOne) {
       this.changePagePaginated.emit(0);
     } else {
-      this.changePagePaginated.emit((page-1)*10);
+      this.changePagePaginated.emit((page - 1) * 10);
     }
     this.page = page;
 

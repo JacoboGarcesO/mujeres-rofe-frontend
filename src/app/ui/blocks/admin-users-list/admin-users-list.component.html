@@ -25,7 +25,7 @@
     ['Fecha de creación', '5rem'],
     ['Acciones', '3rem']
   ]"
-  [items]="getUsers || []"
+  [items]="users || []"
   [itemTemplateRef]="userTemplate"
 ></mr-table>
 
@@ -98,7 +98,7 @@
   </td>
 </ng-template>
 
-<mr-pagination [totalUsers]="totalPages" (changePagePaginated)="filterUsers($event)"></mr-pagination>
+<mr-pagination [totalUsers]="pages" (changePagePaginated)="filterUsers($event)"></mr-pagination>
 
 <mr-modal #modalRef>
   <ng-container>

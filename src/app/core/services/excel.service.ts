@@ -13,9 +13,9 @@ export class ExcelService {
 
   constructor(private excelMapper: ExcelMapper, private userService: UsersService) { }
 
-  exportUsersToExcel(filter: FilterModel = { from: '0', limit: '10', sort: { firstName: 'asc' }, term: null, total: '500' }): Observable<string> {   
-    this.userService.getUsers(filter).subscribe((users) => {
-      const usersMapper = this.excelMapper.map(users);
+  exportUsersToExcel(filter: FilterModel): Observable<string> {   
+    this.userService.getUsers(filter).subscribe((response) => {
+      const usersMapper = this.excelMapper.map(response?.users);
       const ws = utils.json_to_sheet(usersMapper);
       const wb = utils.book_new();
       utils.book_append_sheet(wb, ws, 'Mujeres');
