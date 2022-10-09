@@ -158,11 +158,12 @@ export class AdminUsersListContainerFacade {
 
   setFilter(filter?: FilterModel): void {
     this.state.resources.filter.set({
-      from: filter?.from ?? 0,
+      from: filter?.from ? (filter?.from - 1) * 10 : 0,
       limit: filter?.limit ?? 10,
       sort: { firstName: 'asc'},
       term: filter?.term,
       total: filter?.total,
+      currentPage: filter?.currentPage ?? 1,
     });
 
     this.loadUsers();
@@ -292,8 +293,9 @@ export class AdminUsersListContainerFacade {
   }
 
   private storeUsers({ users, filter }: { users: UserModel[]; filter: FilterModel }): void {
+    const filterSate = this.state.resources.filter.snapshot();
     this.state.users.users.set(users);
-    this.state.resources.filter.set(filter);
+    this.state.resources.filter.set({ ...filter, ...filterSate });
   }
 
   private storeHobbies(hobbies: OptionModel[]): void {

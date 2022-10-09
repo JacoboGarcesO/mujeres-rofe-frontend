@@ -98,7 +98,11 @@
   </td>
 </ng-template>
 
-<mr-pagination [totalUsers]="pages" (changePagePaginated)="filterUsers($event)"></mr-pagination>
+<mr-pagination
+  [totalPages]="pages"
+  [currentPage]="filter.currentPage"
+  (changePage)="filterUsers($event)"
+></mr-pagination>
 
 <mr-modal #modalRef>
   <ng-container>

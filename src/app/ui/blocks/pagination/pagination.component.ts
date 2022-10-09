@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, ElementRef, HostListener, Input, OnChanges, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'mr-pagination',
@@ -7,125 +7,51 @@ import { Component, ChangeDetectionStrategy, ElementRef, HostListener, Input, On
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None,
 })
-export class PaginationComponent implements OnChanges {
-  @Input() totalUsers!: number;
-  @Output() changePagePaginated: EventEmitter<number> = new EventEmitter();
-  pagination!: HTMLElement;
-  totalPages!: number;
-  page!: number;
+export class PaginationComponent {
+  @Input() currentPage: number;
+  @Input() totalPages: number;
+  @Output() changePage: EventEmitter<number> = new EventEmitter();
 
-  constructor(private element: ElementRef) { }
-
-  ngOnChanges(): void {
-    this.pagination = this.element.nativeElement.querySelector('.pagination ul');
-    this.totalPages = this.totalUsers;
-    this.page = 1;
-
-    if (this.totalUsers) {
-      this.pagination.innerHTML = this.createPagination(
-        this.totalPages,
-        this.page,
-        true,
-      );
-    }
+  get pagesList(): number[] {    
+    return [
+      this.currentPage - 1,
+      this.currentPage,
+      this.currentPage + 1,
+    ].filter((pageNumber) => pageNumber >= 1 && pageNumber <= this.totalPages);
   }
 
-  @HostListener('click', ['$event'])
-  validatePagination(event: any) {
-    if (event.path[0].id != 'pagination' && event.path[0].id != 'pagination-ul' && event.path[0].id != 'dots') {
-      const button = event.path.find(
-        (element: HTMLElement) => element.tagName === 'LI',
-      )?.id;
-
-      if (button === 'prev') {
-        this.createPagination(this.totalPages, this.page - 1);
-      }
-      if (button === 'first') {
-        this.createPagination(this.totalPages, 1, true);
-      }
-
-      if (
-        button !== 'prev' &&
-        button !== 'first' &&
-        button !== 'last' &&
-        button !== 'next'
-      ) {
-        const page = parseInt(
-          event.path.find((element: HTMLElement) => element.tagName === 'LI')?.id,
-        );
-        this.createPagination(this.totalPages, page);
-      }
-
-      if (button === 'last') {
-        this.createPagination(this.totalPages, this.totalPages);
-      }
-      if (button === 'next') {
-        this.createPagination(this.totalPages, this.page + 1);
-      }
-    }
+  handleClickPrev(): void {
+    if (this.currentPage === 1) { return; }
+    this.currentPage--;
+    this.emitPage();
   }
 
-  createPagination(totalPages: number, page: number, isPageOne?: boolean) {
-    if (isPageOne) {
-      this.changePagePaginated.emit(0);
-    } else {
-      this.changePagePaginated.emit((page - 1) * 10);
-    }
-    this.page = page;
+  handleClickNext(): void {
+    if (this.currentPage === this.totalPages) { return; }
+    this.currentPage++;
+    this.emitPage();
+  }
 
-    let liTag = '';
-    let active;
-    let beforePage = page - 1;
-    let afterPage = page + 1;
-    if (page > 1) {
-      liTag += '<li class="btn prev" id="prev"><span><i class="fas fa-angle-left"></i></span></li>';
-    }
+  handleClickFirst(): void {
+    this.currentPage = 1;
+    this.emitPage();
+  }
 
-    if (page > 2) {
-      liTag += '<li class="first numb" id="first"><span>1</span></li>';
-      if (page > 3) {
-        liTag += '<li class="dots"><span id="dots">...</span></li>';
-      }
-    }
+  handleClickLast(): void {
+    this.currentPage = this.totalPages;
+    this.emitPage();
+  }
 
-    if (page == totalPages) {
-      beforePage = beforePage - 2;
-    } else if (page == totalPages - 1) {
-      beforePage = beforePage - 1;
-    }
-    if (page == 1) {
-      afterPage = afterPage + 2;
-    } else if (page == 2) {
-      afterPage = afterPage + 1;
-    }
+  handleClickExact(page: number) {
+    this.currentPage = page;
+    this.emitPage();
+  }
 
-    for (let plength = beforePage; plength <= afterPage; plength++) {
-      if (plength > totalPages) {
-        continue;
-      }
-      if (plength == 0) {
-        plength = plength + 1;
-      }
-      if (page == plength) {
-        active = 'active';
-      } else {
-        active = '';
-      }
-      liTag += `<li class="numb ${active}" id="${plength}"><span>${plength}</span></li>`;
-    }
+  trackPages(index: number): number {
+    return index;
+  }
 
-    if (page < totalPages - 1) {
-      if (page < totalPages - 2) {
-        liTag += '<li class="dots"><span id="dots">...</span></li>';
-      }
-      liTag += `<li class="last numb" id="last"><span>${totalPages}</span></li>`;
-    }
-
-    if (page < totalPages) {
-      liTag += '<li class="btn next" id="next"><span><i class="fas fa-angle-right"></i></span></li>';
-    }
-
-    this.pagination.innerHTML = liTag;
-    return liTag;
+  private emitPage(): void {
+    this.changePage.emit(this.currentPage);
   }
 }

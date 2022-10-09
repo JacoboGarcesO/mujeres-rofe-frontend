@@ -8,6 +8,14 @@ a {
   position: relative;
   padding-top: styles.$box-pad-home-content;
 
+  .pagination {
+    &__button {
+      &--active {
+        background-color: styles.$color-status-info-dark;
+      }
+    }
+  }
+
   &__filters {
     display: flex;
     align-items: center;
@@ -32,8 +40,7 @@ a {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    padding: styles.$box-pad-double styles.$box-pad-none styles.func-toRem(3)
-      styles.func-toRem(7.5);
+    padding: styles.$box-pad-double styles.$box-pad-none styles.func-toRem(3) styles.func-toRem(7.5);
     gap: styles.$box-pad-base;
   }
 
@@ -55,8 +62,7 @@ a {
     position: relative;
 
     .card {
-      border-radius: styles.$box-rad-large styles.$box-rad-large
-        styles.$box-pad-none styles.$box-pad-none !important;
+      border-radius: styles.$box-rad-large styles.$box-rad-large styles.$box-pad-none styles.$box-pad-none !important;
       width: 90% !important;
       margin: styles.$box-mrg-none auto;
     }
@@ -125,9 +131,11 @@ a {
   0% {
     transform: scale(1);
   }
+
   60% {
     transform: scale(0.8);
   }
+
   100% {
     transform: scale(1);
   }
@@ -153,8 +161,7 @@ a {
     }
 
     &__info {
-      padding: styles.func-toRem(1) styles.$box-pad-none styles.func-toRem(1)
-        styles.func-toRem(0.7) !important;
+      padding: styles.func-toRem(1) styles.$box-pad-none styles.func-toRem(1) styles.func-toRem(0.7) !important;
     }
 
     &__back {
@@ -197,8 +204,7 @@ a {
     }
 
     &__info {
-      padding: styles.$box-pad-double styles.$box-pad-none styles.func-toRem(3)
-        styles.func-toRem(3);
+      padding: styles.$box-pad-double styles.$box-pad-none styles.func-toRem(3) styles.func-toRem(3);
     }
   }
 }

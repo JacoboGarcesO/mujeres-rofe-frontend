@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PaginationComponent } from './pagination.component';
+import { TextModule } from '../../elements/text/text.module';
 
 
 @NgModule({
@@ -9,6 +10,7 @@ import { PaginationComponent } from './pagination.component';
   ],
   imports: [
     CommonModule,
+    TextModule,
   ],
   exports: [
     PaginationComponent,

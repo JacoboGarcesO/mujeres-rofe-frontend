@@ -1,3 +1,44 @@
-<ng-container>
-  <div class="pagination" id="pagination"><ul id="pagination-ul"></ul></div>
-</ng-container>
+<div class="pagination">
+  <div class="pagination__actions">
+    <div class="pagination__prev">
+      <button
+        type="button"
+        class="pagination__button"
+        (click)="handleClickFirst()"
+      ><i class="fas fa-angle-double-left" aria-hidden="true"></i></button>
+    </div>
+    <div class="pagination__prev">
+      <button
+        type="button"
+        class="pagination__button"
+        (click)="handleClickPrev()"
+      ><i class="fas fa-angle-left" aria-hidden="true"></i></button>
+    </div>
+    <div class="pagination__current">
+      <button
+        *ngFor="let page of pagesList; trackBy: trackPages"
+        type="button"
+        class="pagination__button"
+        [ngClass]="{'pagination__button--active': page === currentPage}"
+        (click)="handleClickExact(page)"
+      ><mr-text [text]="page"></mr-text></button>
+    </div>
+    <div class="pagination__next">
+      <button
+        type="button"
+        class="pagination__button"
+        (click)="handleClickNext()"
+      ><i class="fas fa-angle-right" aria-hidden="true"></i></button>
+    </div>
+    <div class="pagination__next">
+      <button
+        type="button"
+        class="pagination__button"
+        (click)="handleClickLast()"
+      ><i class="fas fa-angle-double-right" aria-hidden="true"></i></button>
+    </div>
+    <div class="pagination__go">
+      <mr-text [text]="currentPage + ' | ' + totalPages" [weight]="'bold'"></mr-text>
+    </div>
+  </div>
+</div>

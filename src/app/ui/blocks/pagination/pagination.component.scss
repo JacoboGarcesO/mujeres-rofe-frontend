@@ -1,66 +1,54 @@
 @use "../../_styles/index.scss" as styles;
 
 .pagination {
-  position: relative;
-  width: auto;
+  width: styles.$box-wth-block;
+  margin: styles.$box-mrg-base styles.$box-mrg-none;
+  align-items: center;
   display: flex;
   justify-content: flex-end;
-  margin-top: styles.$box-mrg-base;
 
-  & ul {
+  &__actions {
+    align-items: center;
     display: flex;
-    flex-wrap: wrap;
-    background: styles.$color-bg-white;
-    padding: styles.$box-pad-half;
-    border-radius: styles.$box-rad-rounded;
-    box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
   }
 
-  & li {
-    color: styles.$color-typo-light;
-    list-style: none;
-    line-height: styles.$box-pad-onehalf;
-    text-align: center;
-    font-weight: 500;
+  &__button {
+    background-color: styles.$color-bg-white;
+    border: styles.$box-bor-solid styles.$color-bor;
+    border-radius: styles.$box-rad-rounded;
+    width: styles.$box-wth-double;
+    height: styles.$box-hht-double;
+    margin: styles.$box-mrg-none styles.$box-mrg-pagination;
+    outline: none;
+    transition: styles.$animation-bezier;
     cursor: pointer;
-    user-select: none;
-    transition: all 0.3s ease;
-    @include styles.font-base;
-    margin: styles.$box-mrg-none 0.125rem;
 
-    &.numb {
-      list-style: none;
-      height: styles.$box-pad-onehalf;
-      width: styles.$box-pad-onehalf;
-      line-height: styles.$box-pad-onehalf;
-      border-radius: styles.$box-rad-rounded;
+    &:hover {
+      box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.41);
     }
 
-    &.btn {
-      padding: styles.$box-pad-none styles.$box-pad-half;
-    }
+    &--active {
+      background-color: styles.$color-primary-color;
 
-    &.active,
-    &.numb:hover,
-    &:first-child:hover,
-    &:last-child:hover {
-      color: styles.$color-bg-white;
-      background: styles.$color-typo-light;
+      .text{
+        color: styles.$color-typo-contrast;
+      }
     }
+  }
+
+  &__go {
+    margin-left: styles.$box-mrg-base;
+  }
+
+  &__current {
+    display: none;
   }
 }
 
 @media (min-width: styles.$bkp-tablet) {
   .pagination {
-    & li {
-      line-height: styles.$box-pad-double;
-
-  
-      &.numb {
-        height: styles.$box-pad-double;
-        width: styles.$box-pad-double;
-        line-height: styles.$box-pad-double;
-      }
+    &__current {
+      display: block;
     }
   }
 }
