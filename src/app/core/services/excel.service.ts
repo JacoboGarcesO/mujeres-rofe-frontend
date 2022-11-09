@@ -13,10 +13,11 @@ export class ExcelService {
 
   constructor(private excelMapper: ExcelMapper, private userService: UsersService) { }
 
-  exportUsersToExcel(filter: FilterModel): Observable<string> {   
-    this.userService.getUsers(filter).subscribe((response) => {
-      const usersMapper = this.excelMapper.map(response?.users);
-      const ws = utils.json_to_sheet(usersMapper);
+  exportUsersToExcel(filter: FilterModel): Observable<string> {
+    const filterToExcel = { ...filter, limit: filter.total };
+    this.userService.getUsers(filterToExcel).subscribe((response) => {
+      const users = this.excelMapper.map(response?.users);
+      const ws = utils.json_to_sheet(users);
       const wb = utils.book_new();
       utils.book_append_sheet(wb, ws, 'Mujeres');
       writeFileXLSX(wb, 'Mujeres-ROFÉ.xlsx');
