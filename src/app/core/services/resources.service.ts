@@ -10,7 +10,7 @@ export class ResourcesService {
   getDocuments(): Observable<OptionModel[]> {
     const documents = [
       { id: 'cc', label: 'Cédula de ciudadanía' },
-      { id: 'ce', label: 'Cédula de extrangería' },
+      { id: 'ce', label: 'Cédula de extranjería' },
       { id: 'ti', label: 'Tarjeta de identidad' },
     ];
 
