@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, Renderer2, ElementRef } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
-import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, Renderer2 } from '@angular/core';
+import { UntypedFormControl, ValidationErrors } from '@angular/forms';
+import { createForm, FormType, subformComponentProviders, TypedFormGroup } from 'ngx-sub-form';
 import { MiscUtil } from 'src/app/core/utils/misc.util';
 
 @Component({
@@ -15,8 +15,9 @@ export class SubFormTextareaComponent {
   @Input() placeholder: string;
   @Input() rows = 5;
   @Input() patternKey = '';
-
+  @Input() isRequired = false;
   public uniqueId = MiscUtil.uuid();
+  public isTouched = false;
   public form = createForm<string, { value: string }>(this, {
     formType: FormType.SUB,
     formControls: {
@@ -28,11 +29,20 @@ export class SubFormTextareaComponent {
     fromFormGroup: (formValue: { value: string }): string => {
       return formValue.value;
     },
+    formGroupOptions: {
+      validators: [
+        (formGroup) => this.validateIsRequired(formGroup),
+      ],
+    }
   });
+
+  get errors(): string[] | null {
+    return Object.entries(this.form?.formGroupErrors?.formGroup ?? {}).map((error) => error[0]);
+  }
 
   constructor (
     private renderer: Renderer2,
-    private el: ElementRef,
+    private cdRef: ChangeDetectorRef,
   ) { }
 
   handleKeypress(key: string): boolean {
@@ -42,25 +52,22 @@ export class SubFormTextareaComponent {
 
   handleFocus(target: EventTarget | null): void {
     this.renderer.selectRootElement(target).select();
-    this.toggleLabelFocus(true);
   }
 
   handleBlur(): void {
-    this.toggleLabelFocus(false);
+    this.setIsTouched(true);
   }
 
-  private toggleLabelFocus(toggle: boolean): void {
-    const classes = 'sub-form-textarea__label--focus';
-    this.toggleLabelClass(toggle, classes);
+  setIsTouched(value: boolean): void {
+    this.isTouched = value;
+    this.cdRef.detectChanges();
   }
 
-  private toggleLabelClass(toggle: boolean, classes: string): void {
-    const label = this.el?.nativeElement?.querySelector('.sub-form-textarea__label');
+  private validateIsRequired(formGroup: TypedFormGroup<{ value: string }>): ValidationErrors {
+    if (this.isRequired && !formGroup.controls.value.value?.trim()) {
+      return { required: true };
+    }
 
-    if (!label) { return; }
-
-    toggle
-      ? this.renderer.addClass(label, classes)
-      : this.renderer.removeClass(label, classes);
+    return null;
   }
 }

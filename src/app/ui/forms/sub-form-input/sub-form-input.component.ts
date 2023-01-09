@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, ElementRef, Input, Renderer2 } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
-import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, Renderer2 } from '@angular/core';
+import { UntypedFormControl, ValidationErrors } from '@angular/forms';
+import { createForm, FormType, subformComponentProviders, TypedFormGroup } from 'ngx-sub-form';
+import { REGEX_RESOURCE } from 'src/app/core/resources/regex.resource';
 import { MiscUtil } from 'src/app/core/utils/misc.util';
 
 @Component({
@@ -16,7 +17,9 @@ export class SubFormInputComponent {
   @Input() label: string;
   @Input() placeholder: string;
   @Input() patternKey = '';
+  @Input() isRequired = false;
   public uniqueId = MiscUtil.uuid();
+  public isTouched = false;
   public form = createForm<string, { value: string }>(this, {
     formType: FormType.SUB,
     formControls: {
@@ -28,11 +31,21 @@ export class SubFormInputComponent {
     fromFormGroup: (formValue: { value: string }): string => {
       return formValue.value;
     },
+    formGroupOptions: {
+      validators: [
+        (formGroup) => this.validateIsRequired(formGroup),
+        (formGroup) => this.validateEmail(formGroup),
+      ],
+    }
   });
 
+  get errors(): string[] | null {
+    return Object.entries(this.form?.formGroupErrors?.formGroup ?? {}).map((error) => error[0]);
+  }
+
   constructor(
-    private el: ElementRef,
     private renderer: Renderer2,
+    private cdRef: ChangeDetectorRef,
   ) { }
 
   handleKeypress(key: string): boolean {
@@ -42,30 +55,30 @@ export class SubFormInputComponent {
 
   handleFocus(target: EventTarget | null): void {
     this.renderer.selectRootElement(target).select();
-    this.toggleLabelFocus(true);
   }
 
   handleBlur(): void {
-    this.toggleLabelFocus(false);
+    this.setIsTouched(true);
   }
 
-  private toggleLabelFocus(toggle: boolean): void {
-    const classes = 'sub-form-input__label--focus';
-    this.toggleLabelClass(toggle, classes);
+  setIsTouched(value: boolean): void {
+    this.isTouched = value;
+    this.cdRef.detectChanges();
   }
 
-  private toggleLabelError(toggle: boolean): void {
-    const classes = 'sub-form-input__label--error';
-    this.toggleLabelClass(toggle, classes);
+  private validateIsRequired(formGroup: TypedFormGroup<{ value: string }>): ValidationErrors {
+    if (this.isRequired && !formGroup.controls.value.value?.trim()) {
+      return { required: true };
+    }
+
+    return null;
   }
 
-  private toggleLabelClass(toggle: boolean, classes: string): void {
-    const label = this.el?.nativeElement?.querySelector('.sub-form-input__label');
+  private validateEmail(formGroup: TypedFormGroup<{ value: string }>): ValidationErrors {
+    if (this.type === 'email' && !REGEX_RESOURCE.email.test(formGroup.controls.value.value)) {
+      return { emailFormatWrong: true };
+    }
 
-    if (!label) { return; }
-
-    toggle
-      ? this.renderer.addClass(label, classes)
-      : this.renderer.removeClass(label, classes);
+    return null;
   }
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SubFormTextareaComponent } from './sub-form-textarea.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TextModule } from '../../elements/text/text.module';
+import { FormErrorsComponent } from '../form-errors/form-errors.component';
 
 
 @NgModule({
@@ -13,6 +14,7 @@ import { TextModule } from '../../elements/text/text.module';
     CommonModule,
     ReactiveFormsModule,
     TextModule,
+    FormErrorsComponent,
   ],
   exports: [
     SubFormTextareaComponent,

@@ -1,0 +1,29 @@
+@use '../../_styles/index.scss' as styles;
+
+.form-errors {
+  &__error {
+    position: relative;
+    list-style: none;
+    padding-left: styles.$box-pad-base;
+    margin-top: styles.$box-mrg-half;
+
+    .text {
+      color: styles.$color-status-error-dark !important;
+    }
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: styles.$box-pad-half;
+      height: styles.$box-pad-half;
+      background-color: styles.$color-status-error-dark;
+      border-radius: styles.$box-rad-rounded;
+      top: 6px;
+      left: 0;
+    }
+
+    &:last-of-type {
+      margin-bottom: styles.$box-mrg-none;
+    }
+  }
+}

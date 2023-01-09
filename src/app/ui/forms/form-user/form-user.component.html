@@ -1,128 +1,161 @@
 <form class="form-user" [formGroup]="form.formGroup">
   <fieldset class="form-user__section">
-    <mr-sub-form-input 
+    <mr-sub-form-input
+      #firstNameRef
       [type]="'input'"
       [label]="'Nombres*'"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.firstName"
     ></mr-sub-form-input>
 
-    <mr-sub-form-input 
+    <mr-sub-form-input
+      #lastNameRef
       [type]="'input'"
       [label]="'Apellidos*'"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.lastName"
     ></mr-sub-form-input>
 
-    <mr-sub-form-input 
-      [type]="'input'"
+    <mr-sub-form-input
+      #emailRef
+      [type]="'email'"
       [label]="'Correo*'"
+      [isRequired]="true"
       [placeholder]="'mujer@email.com...'"
       [formControlName]="form.formControlNames.email"
     ></mr-sub-form-input>
 
-    <mr-sub-form-input 
-      [type]="'number'"
+    <mr-sub-form-input
+      #phoneNumberRef
+      [type]="'input'"
       [label]="'Celular*'"
+      [isRequired]="true"
+      [patternKey]="'[0-9]'"
       [formControlName]="form.formControlNames.phoneNumber"
     ></mr-sub-form-input>
 
     <mr-sub-form-select
+      #documentTypeRef
       [label]="'Tipo de documento*'"
       [placeholder]="'Seleccionar...'"
       [options]="documents"
       [isSearchable]="true"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.documentType"
     ></mr-sub-form-select>
 
-    <mr-sub-form-input 
-      [type]="'number'"
+    <mr-sub-form-input
+      #documentNumberRef
+      [type]="'input'"
       [label]="'Número de identificación*'"
+      [isRequired]="true"
+      [patternKey]="'[0-9]'"
       [formControlName]="form.formControlNames.documentNumber"
     ></mr-sub-form-input>
 
     <mr-sub-form-input 
-      [type]="'number'"
+      #ageRef
+      [type]="'input'"
       [label]="'Edad*'"
+      [isRequired]="true"
+      [patternKey]="'[0-9]'"
       [formControlName]="form.formControlNames.age"
     ></mr-sub-form-input>
 
-
     <mr-sub-form-select
+      #maritalStatusRef
       [label]="'Estado civil*'"
       [placeholder]="'Seleccionar...'"
       [options]="maritalStatus"
       [isSearchable]="true"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.maritalStatus"
     ></mr-sub-form-select>
     
-
-    
     <mr-sub-form-multi-select
+      #sustainingRef
       [label]="'Sostenimiento*'"
       [placeholder]="'Seleccionar...'"
       [options]="sustenting"
       [isSearchable]="true"
       [canResetForm]="canResetForm"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.sustaining"
     ></mr-sub-form-multi-select>
 
     <mr-sub-form-multi-select
+      #ethnicGroupRef
       [label]="'Grupo étnico*'"
       [placeholder]="'Seleccionar...'"
       [options]="ethnicGroups"
       [isSearchable]="true"
       [canResetForm]="canResetForm"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.ethnicGroup"
     ></mr-sub-form-multi-select>
 
     <mr-sub-form-select
+      #familyCoreRef
       [label]="'Personas del núcleo*'"
       [placeholder]="'Seleccionar...'"
       [options]="familyCore"
       [isSearchable]="true"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.familyCore"
     ></mr-sub-form-select>
 
     <mr-sub-form-select
+      #familyIncomeRef
       [label]="'Ingresos familiares*'"
       [placeholder]="'Seleccionar...'"
       [options]="familyIncome"
       [isSearchable]="true"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.familyIncome"
     ></mr-sub-form-select>
 
     <mr-sub-form-select
+      #housingTypeRef
       [label]="'Tipo de vivienda*'"
       [placeholder]="'Seleccionar...'"
       [options]="housingType"
       [isSearchable]="true"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.housingType"
     ></mr-sub-form-select>
 
     <mr-sub-form-select
+      #educationRef
       [label]="'Nivel de estudios*'"
       [placeholder]="'Seleccionar...'"
       [options]="education"
       [isSearchable]="true"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.education"
     ></mr-sub-form-select>
 
     <mr-sub-form-select
+      #stratumRef
       [label]="'Estrato*'"
       [placeholder]="'Seleccionar...'"
       [options]="stratum"
       [isSearchable]="true"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.stratum"
     ></mr-sub-form-select>
 
     <mr-sub-form-location
+      #locationRef
       [cities]="cities"
       [states]="states"
       [formControlName]="form.formControlNames.location"
     ></mr-sub-form-location>
 
-    <mr-sub-form-input 
+    <mr-sub-form-input
+      #addressRef
       [type]="'input'"
       [label]="'Dirección*'"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.address"
     ></mr-sub-form-input>
     
@@ -135,16 +168,20 @@
       [formControlName]="form.formControlNames.hobbies"
     ></mr-sub-form-multi-select>
 
-    <mr-sub-form-textarea 
+    <mr-sub-form-textarea
+      #descriptionRef
       [text]="'Presentación personal*'"
       [placeholder]="'Yo soy...'"
+      [isRequired]="true"
       [formControlName]="form.formControlNames.description"
     ></mr-sub-form-textarea>
 
     <span class="form-user__disclosure">
       <mr-sub-form-select 
+        #disclosureRef
         [label]="'¿Por dónde conociste Mujeres Rofé?*'"
         [options]="disclosures"
+        [isRequired]="true"
         [formControlName]="form.formControlNames.disclosure"
         (ngModelChange)="handleToggleOther($event)"
       ></mr-sub-form-select>
@@ -177,12 +214,14 @@
 
     <div class="form-user__files">
       <mr-sub-form-file
+        #imageRef
         [label]="'Adjuntar imagen de perfil*'"
         [canResetImage]="canResetForm"
         [formControlName]="form.formControlNames.image"
       ></mr-sub-form-file>
 
       <mr-sub-form-file
+        #documentImageRef
         [label]="'Adjuntar foto o scan de la cédula*'"
         [canResetImage]="canResetForm"
         [formControlName]="form.formControlNames.documentImage"
@@ -201,7 +240,6 @@
   <mr-button 
     class="form-user__button" 
     [label]="'Guardar'"
-    [isDisabled]="form.formGroup.invalid || form.formGroup.disabled || !form.formGroup.value.isAccept" 
-    (clicked)="manualSave$.next()"
+    (clicked)="sendForm()"
   ></mr-button>
 </form>

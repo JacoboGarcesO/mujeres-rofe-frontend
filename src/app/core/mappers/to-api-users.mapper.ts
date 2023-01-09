@@ -15,11 +15,11 @@ export class ToApiUsersMapper {
     const location = this.getLocation(user.location, cities);
 
     formData.append('id', user.id);
-    formData.append('firstName', user.firstName);
-    formData.append('lastName', user.lastName);
+    formData.append('firstName', user.firstName.trim());
+    formData.append('lastName', user.lastName.trim());
     formData.append('rol', user?.rol ?? 'user');
     formData.append('isPremium', 'false');
-    formData.append('email', user.email);
+    formData.append('email', user.email.trim());
     formData.append('description', user.description);
     formData.append('hobbies', hobbies);
     formData.append('phoneNumber', `${user.phoneNumber}`);

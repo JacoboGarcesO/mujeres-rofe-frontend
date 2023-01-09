@@ -1,6 +1,6 @@
-import { Component, ChangeDetectionStrategy, Input, ViewEncapsulation, ElementRef, Renderer2, ChangeDetectorRef, OnChanges } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
-import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ElementRef, Input, OnChanges, Renderer2, ViewEncapsulation } from '@angular/core';
+import { UntypedFormControl, ValidationErrors } from '@angular/forms';
+import { createForm, FormType, subformComponentProviders, TypedFormGroup } from 'ngx-sub-form';
 import { MediaModel } from 'src/app/core/models/media.model';
 import { MiscUtil } from 'src/app/core/utils/misc.util';
 
@@ -18,6 +18,7 @@ export class SubFormFileComponent implements OnChanges {
   @Input() canResetImage = false;
   public uniqueId = MiscUtil.uuid();
   public fileSelected: string | ArrayBuffer;
+  public isTouched = false;
 
   public form = createForm<MediaModel>(this, {
     formType: FormType.SUB,
@@ -27,32 +28,42 @@ export class SubFormFileComponent implements OnChanges {
       file: new UntypedFormControl(null),
       type: new UntypedFormControl(null),
     },
+    formGroupOptions: {
+      validators: [
+        (formGroup) => this.validateFileSize(formGroup),
+        (formGroup) => this.validateFileRequired(formGroup),
+      ],
+    }
   });
 
+  get errors(): string[] | null {
+    return Object.entries(this.form?.formGroupErrors?.formGroup ?? {}).map((error) => error[0]);
+  }
+
   constructor(
-    private el: ElementRef,
-    private renderer: Renderer2,
     private cdRef: ChangeDetectorRef,
   ) { }
 
   ngOnChanges(): void {
     if (!this.canResetImage) { return; }
-
     this.fileSelected = null;
   }
 
   handleChange(event: any) {
-    if (event.target.files?.[0]) {
-      this.form.formGroup.controls.file.setValue(event.target.files[0]);
-      this.toggleLabelFocus(false);
+    this.setIsTouched(true);
+    const file = event.target.files?.[0];
+    if (file) {
+      this.form.formGroup.controls.file.setValue(file);
 
-      if (event.target.files[0].type === 'application/pdf') {
+      if (file.type === 'application/pdf') {
         this.fileSelected = 'assets/img/pdf.svg';
+        this.cdRef.detectChanges();
         return;
       }
-      
-      if (event.target.files[0].size > 2000000) {
+
+      if (file.size > 2000000) {
         this.fileSelected = 'assets/img/waiting.png';
+        this.cdRef.detectChanges();
         return;
       }
 
@@ -63,18 +74,26 @@ export class SubFormFileComponent implements OnChanges {
     }
   }
 
-  toggleLabelFocus(toggle: boolean): void {
-    const classes = 'sub-form-file__label--focus';
-    this.toggleLabelClass(toggle, classes);
+  setIsTouched(value: boolean): void {
+    this.isTouched = value;
+    this.cdRef.detectChanges();
   }
 
-  private toggleLabelClass(toggle: boolean, classes: string): void {
-    const label = this.el?.nativeElement?.querySelector('.sub-form-file__label');
+  private validateFileSize(formGroup: TypedFormGroup<MediaModel>): ValidationErrors {
+    const fileSize = formGroup.controls.file.value?.size;
 
-    if (!label) { return; }
+    if (fileSize && fileSize > 10000000) {
+      return { fileSizeOutRange: true };
+    }
 
-    toggle
-      ? this.renderer.addClass(label, classes)
-      : this.renderer.removeClass(label, classes);
+    return null;
+  }
+
+  private validateFileRequired(formGroup: TypedFormGroup<MediaModel>): ValidationErrors {
+    if (!formGroup.controls.url.value && !formGroup.controls.file.value) {
+      return { required: true };
+    }
+
+    return null;
   }
 }

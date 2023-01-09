@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, ViewEncapsulation, Renderer2, ChangeDetectorRef, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
-import { UntypedFormControl, Validators } from '@angular/forms';
-import { createForm, FormType, subformComponentProviders } from 'ngx-sub-form';
+import { UntypedFormControl, ValidationErrors, Validators } from '@angular/forms';
+import { createForm, FormType, subformComponentProviders, TypedFormGroup } from 'ngx-sub-form';
 import { debounceTime, distinctUntilChanged, Subject, Subscription, tap } from 'rxjs';
 import { OptionModel } from 'src/app/core/models/option.model';
 import { MiscUtil } from 'src/app/core/utils/misc.util';
@@ -21,6 +21,8 @@ export class SubFormMultiSelectComponent implements OnInit, OnDestroy, OnChanges
   @Input() tabid!: string;
   @Input() isSearchable = false;
   @Input() canResetForm: boolean;
+  @Input() isRequired = false;
+  public isTouched = false;
   private termSubject: Subject<string> = new Subject();
   private subscriptions: Subscription = new Subscription();
   private optionsListValue: OptionModel[] = [];
@@ -37,6 +39,11 @@ export class SubFormMultiSelectComponent implements OnInit, OnDestroy, OnChanges
     fromFormGroup: (formValue: { value: string[] }): string[] => {
       return formValue.value;
     },
+    formGroupOptions: {
+      validators: [
+        (formGroup) => this.validateIsRequired(formGroup),
+      ],
+    }
   });
 
   constructor(
@@ -44,6 +51,10 @@ export class SubFormMultiSelectComponent implements OnInit, OnDestroy, OnChanges
     private cdRef: ChangeDetectorRef,
   ) {
     this.bindClosest();
+  }
+
+  get errors(): string[] | null {
+    return Object.entries(this.form?.formGroupErrors?.formGroup ?? {}).map((error) => error[0]);
   }
 
   get showSearchable(): boolean {
@@ -97,6 +108,11 @@ export class SubFormMultiSelectComponent implements OnInit, OnDestroy, OnChanges
     return index;
   }
 
+  setIsTouched(value: boolean): void {
+    this.isTouched = value;
+    this.cdRef.detectChanges();
+  }
+
   private listenTerm(): void {
     this.subscriptions.add(
       this.termSubject.pipe(
@@ -132,5 +148,13 @@ export class SubFormMultiSelectComponent implements OnInit, OnDestroy, OnChanges
     const target = event.target as unknown as HTMLElement;
     const closest = target.closest(`.closest__form-multiselect__${this.uniqueId}`);
     if (!closest) { this.closeOptions(); }
+  }
+
+  private validateIsRequired(formGroup: TypedFormGroup<{ value: string[] }>): ValidationErrors {
+    if (this.isRequired && !formGroup.controls.value.value?.length) {
+      return { required: true };
+    }
+
+    return null;
   }
 }

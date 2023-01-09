@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SubFormSelectComponent } from './sub-form-select.component';
 import { DropdownModule } from '../../elements/dropdown/dropdown.module';
 import { TextModule } from '../../elements/text/text.module';
+import { FormErrorsComponent } from '../form-errors/form-errors.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { TextModule } from '../../elements/text/text.module';
     CommonModule,
     DropdownModule,
     TextModule,
+    FormErrorsComponent,
   ],
   exports: [
     SubFormSelectComponent,

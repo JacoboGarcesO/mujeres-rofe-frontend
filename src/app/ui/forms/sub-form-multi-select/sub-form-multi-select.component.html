@@ -22,9 +22,11 @@
       *ngFor="let option of optionsList; trackBy: trackIndex"
       class="sub-form-multi-select__option"
       type="button"
-      (click)="handleClick($event, option?.id); dropdown.handleClose()"
+      (click)="handleClick($event, option?.id); dropdown.handleClose(); setIsTouched(true)"
     >
       <mr-text [type]="'line'" [size]="'small'" [text]="option?.label"></mr-text>
     </button>
   </div>
 </mr-dropdown>
+
+<mr-form-errors *ngIf="isTouched" [errors]="errors"></mr-form-errors>

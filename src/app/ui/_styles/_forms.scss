@@ -11,7 +11,7 @@
 
     &__label {
       background-color: color.$bg-lighter;
-      border-radius: box.$rad-rounded;
+      border-radius: box.$rad-medium;
       border: box.$bor-solid color.$bor-light;
       column-gap: box.$pad-half;
       padding: box.$pad-quarter box.$pad-base;
@@ -20,16 +20,6 @@
       align-items: center;
       display: flex;
       position: relative;
-
-      &#{$self}__label--focus {
-        background-color: color.$primary-color-light;
-        border-color: color.$primary-color;
-      }
-
-      &#{$self}__label--error {
-        background-color: color.$status-error;
-        border-color: color.$status-error-dark;
-      }
 
       &--disabled {
         background-color: color.$bg-lighter;

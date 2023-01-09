@@ -2,7 +2,6 @@ import { Component, ChangeDetectionStrategy, Input, EventEmitter, Output } from 
 import { ChannelEnum } from 'src/app/core/enums/channel.enum';
 import { fromRolEnum } from 'src/app/core/enums/rols.enum';
 import { ChannelModel } from 'src/app/core/models/channel.model';
-import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { UserModel } from 'src/app/core/models/user.model';
 
 @Component({
@@ -20,7 +19,7 @@ export class AsideMenuComponent {
 
   get channelsFiltered(): ChannelModel[] {
     return fromRolEnum(this.currentUser?.rol) === 'user' 
-      ? this.channels.filter((channel) => channel.type !== ChannelEnum.admin) 
+      ? this.channels?.filter((channel) => channel.type !== ChannelEnum.admin) 
       : this.channels;
   }
 

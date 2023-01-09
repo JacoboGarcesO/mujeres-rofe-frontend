@@ -10,9 +10,9 @@
         [text]="label"
         [size]="'small'"
         [weight]="'bold'"
-        (click)="inputRef.click(); toggleLabelFocus(true)"
+        (click)="inputRef.click();"
       ></mr-text>
-      <mr-text [text]="form.formGroup.value.file?.name"></mr-text>
+      <mr-text class="sub-form-file__filename" [size]="'small'" [type]="'line'" [text]="form.formGroup.value.file?.name ?? form.formGroup.value?.url"></mr-text>
       <input 
         #inputRef
         class="sub-form-file__handle" 
@@ -31,3 +31,5 @@
     ></mr-image>
   </figure>
 </div>
+
+<mr-form-errors *ngIf="isTouched" [errors]="errors"></mr-form-errors>

@@ -6,6 +6,7 @@
   display: grid;
   grid-template-columns: auto min-content;
   gap: styles.$box-pad-base;
+  align-items: center;
 
   &__handle {
     display: none;
@@ -19,5 +20,9 @@
   &__image {
     width: styles.func-toRem(2.85);
     height: styles.func-toRem(2.85);
+  }
+
+  &__filename {
+    max-width: 300px;
   }
 }
