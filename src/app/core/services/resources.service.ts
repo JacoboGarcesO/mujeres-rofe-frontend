@@ -118,7 +118,7 @@ export class ResourcesService {
     const options = [
       { label: 'Por un/a amig@', id: 'amig@' },
       { label: 'Redes sociales', id: 'redes-sociales' },
-      { label: 'Familias en acción', id: 'familias-en-accion' },
+      { label: 'Jóvenes en acción', id: 'jovenes-en-accion' },
       { label: 'Otro', id: 'otro' },
     ];
 
