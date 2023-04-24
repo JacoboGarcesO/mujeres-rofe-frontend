@@ -1,13 +1,9 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { EMPTY, Observable, Subscription } from 'rxjs';
 import { catchError, finalize, tap } from 'rxjs/operators';
-import { CurrentUserModel } from 'src/app/core/models/current-user.model';
-import { UserCredentialsModel } from 'src/app/core/models/user-credentials.model';
-import { UserModel } from 'src/app/core/models/user.model';
-import { CurrentUserService } from 'src/app/core/services/current-user.service';
 import { ForgotPasswordService } from 'src/app/core/services/forgot-password.service';
-import { StorageService } from 'src/app/core/services/generals/storage.service';
 import { AppState } from 'src/app/core/state/app.state';
 
 @Injectable({
@@ -41,7 +37,7 @@ export class ForgotPasswordContainerFacade {
     this.subscriptions?.add(
       this.service.forgotPassword(value).pipe(
         tap(this.notify.bind(this, 'complete', callback)),
-        catchError(this.notify.bind(this, 'error', null)),
+        catchError(({ error }: HttpErrorResponse) => error.status ? this.notify('error', null) : this.notify('internalError', null)),
         finalize(this.notifyClose.bind(this)),
       ).subscribe(),
     );
@@ -50,13 +46,14 @@ export class ForgotPasswordContainerFacade {
 
   //#region Private methods
   private notify(
-    key: 'init' | 'complete' | 'error',
+    key: 'init' | 'complete' | 'error' | 'internalError',
     callback: () => void = null,
   ): Observable<never> {
     const messages = {
-      init: 'Estamos procesando su solicitud',
+      init: 'Estamos procesando su solicitud...',
       complete: '¡Revisa tu correo, allí encontrarás tus credenciales de ingreso!',
-      error: 'El correo que ingresaste no está registrado',
+      error: 'El correo que ingresaste no está registrado.',
+      internalError: 'El proceso que solicitaste falló, por favor inténtalo de nuevo más tarde.',
     };
 
     this.state.notifications.notification.set(messages[key]);
@@ -72,7 +69,7 @@ export class ForgotPasswordContainerFacade {
       setTimeout(() => {
         this.state.notifications.notification.set(null);
         if (callback) { callback(); }
-      }, 3500);
+      }, 4000);
     }
   }
 

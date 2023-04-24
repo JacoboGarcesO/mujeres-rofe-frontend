@@ -1,7 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable, Subscription } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { Observable, Subscription, of } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { ChannelModel } from 'src/app/core/models/channel.model';
 import { CurrentUserModel } from 'src/app/core/models/current-user.model';
 import { UserCredentialsModel } from 'src/app/core/models/user-credentials.model';
@@ -10,6 +11,7 @@ import { ChannelsService } from 'src/app/core/services/channels.service';
 import { CurrentUserService } from 'src/app/core/services/current-user.service';
 import { StorageService } from 'src/app/core/services/generals/storage.service';
 import { AppState } from 'src/app/core/state/app.state';
+import { MessageUtil } from 'src/app/core/utils/message.util';
 
 @Injectable({
   providedIn: 'root',
@@ -53,6 +55,10 @@ export class UserLoginContainerFacade {
     this.subscriptions?.add(
       this.service.loginUser(userCredentials).pipe(
         tap(this.manageLogin.bind(this)),
+        catchError((err: HttpErrorResponse) => {
+          this.state.notifications.formNotification.set(MessageUtil.trasnformToMessage(err.error.error.message))
+          return of(err);
+        })
       ).subscribe(),
     );
   }
@@ -60,7 +66,7 @@ export class UserLoginContainerFacade {
 
   //#region Private methods
   private manageLogin(currentUser: CurrentUserModel): void {
-    if (!currentUser?.user?.id) { return this.state.notifications.formNotification.set(currentUser?.message); }
+    if (!currentUser?.user?.id) { return; }
     this.router.navigateByUrl(this.getRedirectUrl());
     this.state.users.currentUser.set(currentUser.user);
     this.storageService.set<UserModel>('CURRENT_USER', currentUser?.user);
